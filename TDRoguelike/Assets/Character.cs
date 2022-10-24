@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField] float damage = 25;
     [SerializeField] float speed;
     [SerializeField] float rotateSpeed = 1f;
     [SerializeField] float lookDirectionOffset = -90f;
 
     private WaypointManager waypointManager;
+    private PlayerBase playerBase;
 
     private int currentWaypoint;
 
     private void Start()
     {
         waypointManager = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaypointManager>();
+        playerBase = GameObject.FindGameObjectWithTag("PlayerBase").GetComponent<PlayerBase>();
     }
 
     private void Update()
@@ -31,7 +34,8 @@ public class Character : MonoBehaviour
             }
             else
             {
-                Debug.Log("GameOver");
+                playerBase.TakeDamage(damage);
+                Destroy(gameObject);
             }
         }
     }
@@ -42,4 +46,5 @@ public class Character : MonoBehaviour
         float angle = Mathf.Atan2(lookDirection.x, lookDirection.z) * Mathf.Rad2Deg - lookDirectionOffset;
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.up), rotateSpeed);
     }
+
 }

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    [SerializeField] Wave[] waves;
+    [SerializeField] GameObject waveEndCanvas;
     [SerializeField] Transform spawnPoint;
+    [SerializeField] Wave[] waves;
 
     int currentWaveIndex = 0;
     int currentMiniWaveIndex = 0;
@@ -31,9 +32,17 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(spawnWave(1f));
     }
 
+    public void SpawnNextWave()
+    {
+        if (currentWaveIndex >= waves.Length) return;
+
+        waveEndCanvas.SetActive(false);
+        StartCoroutine(spawnWave(5f));
+    }
+
     private IEnumerator spawnWave(float timeBeforeSpawn)
     {
-        if (currentMiniWaveIndex < waves.Length)
+        if (currentMiniWaveIndex < waves[currentWaveIndex].miniWaves.Length)
         { 
             yield return new WaitForSeconds(timeBeforeSpawn);
             MiniWave currentMiniWave = waves[currentWaveIndex].miniWaves[currentMiniWaveIndex];
@@ -43,7 +52,9 @@ public class WaveManager : MonoBehaviour
         else
         {
             Debug.Log("end of big wave");
+            currentMiniWaveIndex = 0;
             currentWaveIndex++;
+            waveEndCanvas.SetActive(true);
         }
     }
 
