@@ -12,6 +12,7 @@ public class TowerManager : MonoBehaviour
     [SerializeField] TMP_Text moneyAmountText;
 
     private GameObject currentTowerPrefab;
+    private Tower currentTower;
 
     private void Start()
     {
@@ -24,7 +25,7 @@ public class TowerManager : MonoBehaviour
         {
             MoveTowerPrefab();
 
-            if (Input.GetMouseButtonDown(1) && currentTowerPrefab.GetComponent<Tower>().CanBePlaced())
+            if (Input.GetMouseButtonDown(1) && currentTower.CanBePlaced())
             {
                 PlaceTower();
             }
@@ -33,9 +34,9 @@ public class TowerManager : MonoBehaviour
 
     private void PlaceTower()
     {
-        currentMoneyAmount -= currentTowerPrefab.GetComponent<Tower>().GetTowerPrize();
+        currentMoneyAmount -= currentTower.GetTowerPrize();
         moneyAmountText.text = currentMoneyAmount.ToString() + "$";
-        currentTowerPrefab.GetComponent<Tower>().SetOrginalColor();
+        currentTower.SetOrginalColor();
         currentTowerPrefab = null;
     }
 
@@ -47,6 +48,7 @@ public class TowerManager : MonoBehaviour
         {
             Destroy(currentTowerPrefab);
             currentTowerPrefab = Instantiate(towerPrefabs[towerIndex]);
+            currentTower = currentTowerPrefab.GetComponent<Tower>();
         }
         else
         {
@@ -63,6 +65,6 @@ public class TowerManager : MonoBehaviour
         {
             currentTowerPrefab.transform.position = groundHit.point;
         }
-        currentTowerPrefab.GetComponent<Tower>().SetTowerColor();
+        currentTower.SetTowerColor();
     }
 }
