@@ -1,45 +1,47 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] towerPrefabs;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private int currentMoneyAmount = 100;
+    [SerializeField] TMP_Text moneyAmountText;
 
     private GameObject currentTowerPrefab;
 
+    private void Start()
+    {
+        moneyAmountText.text = currentMoneyAmount.ToString() + "$";
+    }
+
     void Update()
     {
-        //HandleNewObjectHotKey();
-
         if (currentTowerPrefab != null)
         {
             MoveTowerPrefab();
 
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1) && currentTowerPrefab.GetComponent<Tower>().CanBePlaced())
             {
-                currentTowerPrefab = null;
+                PlaceTower();
             }
         }
     }
 
-    private void HandleNewObjectHotKey()
+    private void PlaceTower()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SwitchTowers(0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SwitchTowers(1);
-        }
+        currentMoneyAmount -= currentTowerPrefab.GetComponent<Tower>().GetTowerPrize();
+        moneyAmountText.text = currentMoneyAmount.ToString() + "$";
+        currentTowerPrefab = null;
     }
 
     public void SwitchTowers(int towerIndex)
     {
+        if (towerPrefabs[towerIndex].GetComponent<Tower>().GetTowerPrize() > currentMoneyAmount) return;
+
         if (currentTowerPrefab != towerPrefabs[towerIndex])
         {
             Destroy(currentTowerPrefab);
