@@ -35,6 +35,7 @@ public class TowerManager : MonoBehaviour
     {
         currentMoneyAmount -= currentTowerPrefab.GetComponent<Tower>().GetTowerPrize();
         moneyAmountText.text = currentMoneyAmount.ToString() + "$";
+        currentTowerPrefab.GetComponent<Tower>().SetOrginalColor();
         currentTowerPrefab = null;
     }
 
@@ -62,5 +63,6 @@ public class TowerManager : MonoBehaviour
         {
             currentTowerPrefab.transform.position = groundHit.point;
         }
+        currentTowerPrefab.GetComponent<Tower>().SetTowerColor();
     }
 }

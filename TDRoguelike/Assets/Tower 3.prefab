@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerPrize: 50
-  canBePlaced: 1
+  renderer: {fileID: 4400322570426434597}
 --- !u!54 &-6673747475480135083
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -73,10 +73,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!1 &7864478827267447240
 GameObject:
   m_ObjectHideFlags: 0

@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerPrize: 10
-  canBePlaced: 1
+  renderer: {fileID: 2072018365752782548}
 --- !u!54 &-3001383272700952038
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -5,8 +5,17 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     [SerializeField] private int towerPrize = 10;
+    [SerializeField] Renderer renderer;
 
+    Color orginalColor;
     [SerializeField] bool canBePlaced = true;
+    Material myMaterial;
+
+    private void Awake()
+    {
+        myMaterial = renderer.material;
+        orginalColor = myMaterial.color;
+    }
 
     public int GetTowerPrize()
     {
@@ -18,7 +27,18 @@ public class Tower : MonoBehaviour
         return canBePlaced;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void SetTowerColor()
+    {
+        Color color = CanBePlaced() ? Color.green : Color.red;
+        myMaterial.color = color;
+    }
+
+    public void SetOrginalColor()
+    {
+        myMaterial.color = orginalColor;
+    }
+
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.collider.CompareTag("Obstacle"))
         {   
