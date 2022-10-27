@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    [Header("Settings")]
     [SerializeField] private int towerPrize = 10;
+
+    [Header("To Attach")]
     [SerializeField] Renderer renderer;
 
     Color orginalColor;
-    [SerializeField] bool canBePlaced = true;
+    bool canBePlaced = true;
     Material myMaterial;
 
     private void Awake()

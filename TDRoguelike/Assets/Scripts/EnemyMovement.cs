@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
+    [Header("Settings")]
     [SerializeField] float damage = 25;
     [SerializeField] float speed;
     [SerializeField] float rotateSpeed = 1f;
@@ -46,5 +47,4 @@ public class Character : MonoBehaviour
         float angle = Mathf.Atan2(lookDirection.x, lookDirection.z) * Mathf.Rad2Deg - lookDirectionOffset;
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.up), rotateSpeed);
     }
-
 }

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    [SerializeField] GameObject waveEndCanvas;
-    [SerializeField] Transform spawnPoint;
+    [Header("Settings")]
     [SerializeField] Wave[] waves;
+
+    [Header("To Attach")]
+    [SerializeField] Transform spawnPoint;
+    [SerializeField] GameObject waveEndCanvas;
 
     int currentWaveIndex = 0;
     int currentMiniWaveIndex = 0;

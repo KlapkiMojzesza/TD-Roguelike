@@ -6,10 +6,13 @@ using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] towerPrefabs;
-    [SerializeField] private LayerMask groundLayer;
+    [Header("Settings")]
     [SerializeField] private int currentMoneyAmount = 100;
+    [SerializeField] private LayerMask groundLayer;
+
+    [Header("To Attach")]
     [SerializeField] TMP_Text moneyAmountText;
+    [SerializeField] private GameObject[] towerPrefabs;
 
     private GameObject currentTowerPrefab;
     private Tower currentTower;
