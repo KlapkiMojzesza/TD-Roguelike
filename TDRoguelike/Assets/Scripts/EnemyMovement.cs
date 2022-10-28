@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class EnemyMovement : MonoBehaviour
 
     private WaypointManager waypointManager;
     private PlayerBase playerBase;
+    public static event Action<GameObject> OnEnemyDeath;
 
     private int currentWaypoint;
 
@@ -36,6 +38,7 @@ public class EnemyMovement : MonoBehaviour
             else
             {
                 playerBase.TakeDamage(damage);
+                OnEnemyDeath?.Invoke(gameObject);
                 Destroy(gameObject);
             }
         }

@@ -97,7 +97,7 @@ MonoBehaviour:
   towerDamage: 100
   enemyTag: Enemy
   firePoint: {fileID: 5353035342041310943}
-  projectilePrefab: {fileID: 2547094118735421181, guid: 82ec74c9fcd6d734e8268d496aeb3f3c,
+  projectilePrefab: {fileID: 2547094118735421181, guid: 813242f308e8f1b4dbbe569eb4ec3aa1,
     type: 3}
 --- !u!1 &4144036885032542584
 GameObject:

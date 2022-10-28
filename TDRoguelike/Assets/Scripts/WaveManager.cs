@@ -37,6 +37,7 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         EnemyHealth.OnEnemyDeath += HandleEnemyDeath;
+        EnemyMovement.OnEnemyDeath += HandleEnemyDeath;
     }
 
     public void SpawnNextWave()
@@ -44,6 +45,7 @@ public class WaveManager : MonoBehaviour
         if (currentWaveIndex >= waves.Length)
         {
             EnemyHealth.OnEnemyDeath -= HandleEnemyDeath;
+            EnemyMovement.OnEnemyDeath -= HandleEnemyDeath;
             return;
         }
 

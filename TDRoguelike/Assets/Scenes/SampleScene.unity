@@ -2220,6 +2220,13 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1731703287}
+    - target: {fileID: 5018614834109254798, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: m_text
+      value: 'Tower 1
+
+        10$'
+      objectReference: {fileID: 0}
     - target: {fileID: 5018614834388842329, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
       propertyPath: m_RootOrder
@@ -2297,6 +2304,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
+      propertyPath: waves.Array.data[2].miniWaves.Array.data[0].spawnRate
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
       propertyPath: waves.Array.data[0].miniWaves.Array.data[0].enemyPrefab
       value: 
       objectReference: {fileID: 781780417796994703, guid: 6aa9e3642d6110540967cfd9ff2e3a81,
@@ -2306,10 +2318,29 @@ PrefabInstance:
       propertyPath: waves.Array.data[0].miniWaves.Array.data[2].timeAfterWave
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: waves.Array.data[1].miniWaves.Array.data[0].timeAfterWave
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5018614834388842343, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
       propertyPath: m_Name
       value: Wave Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018614834399611506, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: m_text
+      value: 'Tower 3
+
+        50$'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018614835024293789, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: m_text
+      value: 'Tower 2
+
+        20$'
       objectReference: {fileID: 0}
     - target: {fileID: 5018614835403311153, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
