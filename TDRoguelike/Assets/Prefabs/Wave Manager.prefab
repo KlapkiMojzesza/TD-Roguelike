@@ -536,7 +536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5018614834262112065
 RectTransform:
   m_ObjectHideFlags: 0
@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 5018614834388842328}
   - component: {fileID: 5018614834388842330}
   m_Layer: 0
-  m_Name: Wave Manager 1
+  m_Name: Wave Manager
   m_TagString: WaveManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -693,8 +693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8a478243115fd4ebe9802006a55a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveEndCanvas: {fileID: 5018614834262112077}
-  spawnPoint: {fileID: 5018614835240930846}
   waves:
   - miniWaves:
     - enemyPrefab: {fileID: 781780417796994703, guid: 6aa9e3642d6110540967cfd9ff2e3a81,
@@ -732,6 +730,9 @@ MonoBehaviour:
       spawnRate: 1
       timeAfterWave: 1
     goldForWaveCompleated: 10
+  spawnPoint: {fileID: 5018614835240930846}
+  waveEndCanvas: {fileID: 5018614834262112077}
+  aliveEnemies: []
 --- !u!1 &5018614834399611504
 GameObject:
   m_ObjectHideFlags: 0

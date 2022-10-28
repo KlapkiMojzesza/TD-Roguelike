@@ -1,130 +1,81 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerShooting : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float fireRate;
-    [SerializeField] float towerRange;
-    [SerializeField] float bulletSpeed;
-    [SerializeField] float damage;
+    [SerializeField] float fireRate = 1f;
+    [SerializeField] float towerRange = 50f;
+    [SerializeField] float projectileSpeed = 200f;
+    [SerializeField] float towerDamage = 10f;
+    [SerializeField] string enemyTag = "Enemy";
 
     [Header("To Attach")]
     [SerializeField] Transform firePoint;
+    [SerializeField] GameObject projectilePrefab;
 
-    GameObject[] enemies;
-
-    private void Update()
-    {
-        
-    }
-
-    
-
-
-    /*public GameObject GetClosestEnemy(Vector3 position, float towerRange)
-    {
-        GameObject closest = null;
-        foreach (GameObject enemy in enemies)
-        {
-            if ()
-        }
-    }*/
-
-    /*
-    public class Equalizer : MonoBehaviour
-{
-    [Header("Settings")]
-    [SerializeField] float fireRate;
-    [SerializeField] float bulletSpeed;
-    [SerializeField] float damage;
-
-    [Header("To Attach")]
-    [SerializeField] GameObjectsPool bulletsPool;
-    [SerializeField] GameObject movingParts;
-    [SerializeField] Transform firePoint;
-    [SerializeField] AudioClip shootSound;
-
-    Animator animator;
-    AudioSource audioSource;
-    GameManager gameManager;
-    GameObject player;
-    GameObject[] enemies;
-    float lastFired = 0f;
+    Transform target;
+    float fireCountdown = 0;
 
     private void Start()
     {
-        var sameTraps = GameObject.FindGameObjectsWithTag("Equalizer");
-        audioSource = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
-        if (sameTraps.Length > 1)
+        InvokeRepeating("UpdateTarget", 0f, 0.2f);
+    }
+
+    private void UpdateTarget()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        float shortestDistance = Mathf.Infinity;
+        GameObject nearestEnemy = null;
+        foreach (GameObject enemy in enemies)
         {
-            audioSource.enabled = false;
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy < shortestDistance)
+            {
+                shortestDistance = distanceToEnemy;
+                nearestEnemy = enemy;
+            }
+
+            if (nearestEnemy != null && shortestDistance <= towerRange)
+            {
+                target = nearestEnemy.transform;
+            }
+            else
+            {
+                target = null;
+            }
         }
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        player = gameManager.GetPlayer();
     }
 
     private void Update()
     {
-        if (gameManager.GetCurrentState() == GameState.CombatPhase)
+        if (target == null) return;
+
+        if (fireCountdown <= 0f)
         {
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
 
-            GameObject target = GetClosestEnemy(GameObject.FindGameObjectWithTag("Player").transform, enemies);
-            if (target != null)
-            {
-                Rotate(target);
-                Shoot(target);
-            }
+        fireCountdown -= Time.deltaTime;
+    }
 
+    private void Shoot()
+    {
+        GameObject projectileObject = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        Projectile projectile = projectileObject.GetComponent<Projectile>();
+
+        if (projectile != null)
+        {
+            projectile.Create(target.gameObject.GetComponent<EnemyHealth>().GetAimPoint(), projectileSpeed, towerDamage);
         }
     }
 
-    private void Shoot(GameObject target)
+    private void OnDrawGizmosSelected()
     {
-        if (Time.time - lastFired > 1 / fireRate)
-        {
-            animator.SetTrigger("shoot");
-            audioSource.PlayOneShot(shootSound);
-            lastFired = Time.time;
-            var bullet = bulletsPool.GetBullet();
-            bullet.GetComponent<Bullet>().SetBulletDamage(damage);
-            bullet.transform.rotation = firePoint.transform.rotation;
-            bullet.transform.position = firePoint.transform.position;
-            bullet.gameObject.SetActive(true);
-
-            bullet.GetComponent<FollowingBullet>().CreateBullet(bulletSpeed, target);  
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, towerRange);
     }
-
-    private void Rotate(GameObject enemy)
-    {
-        Vector3 direction = enemy.transform.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        movingParts.transform.rotation = Quaternion.Euler(0, 0, angle - 90);
-    }
-
-    GameObject GetClosestEnemy(Transform player, GameObject[] enemies)
-    {
-        GameObject bestTarget = null;
-        float closestDistanceSqr = Mathf.Infinity;
-        Vector3 playerPosition = player.position;
-        foreach (GameObject potentialTarget in enemies)
-        {
-            Vector3 directionToTarget = potentialTarget.transform.position - playerPosition;
-            float dSqrToTarget = directionToTarget.sqrMagnitude;
-            if (dSqrToTarget < closestDistanceSqr)
-            {
-                closestDistanceSqr = dSqrToTarget;
-                bestTarget = potentialTarget;
-            }
-        }
-
-        return bestTarget;
-    }
-}
-     */
 }

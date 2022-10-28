@@ -70,4 +70,10 @@ public class TowerManager : MonoBehaviour
         }
         currentTower.SetTowerColor();
     }
+
+    public void GiveMoney(int amount)
+    {
+        currentMoneyAmount += amount;
+        moneyAmountText.text = currentMoneyAmount.ToString() + "$";
+    }
 }

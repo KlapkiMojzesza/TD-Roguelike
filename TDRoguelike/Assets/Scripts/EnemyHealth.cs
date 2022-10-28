@@ -3,10 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IDamegeable
 {
     [Header("Settings")]
     [SerializeField] float health;
+
+    [Header("To Attach")]
+    [SerializeField] Transform aimPoint;
+
+    public static event Action<GameObject> OnEnemyDeath;
 
     public void TakeDamage(float damage)
     {
@@ -19,6 +24,17 @@ public class EnemyHealth : MonoBehaviour
 
     private void EnemyDeath()
     {
+        OnEnemyDeath?.Invoke(gameObject);
         Destroy(gameObject);
     }
+
+    public Transform GetAimPoint()
+    {
+        return aimPoint;
+    }
+}
+
+public interface IDamegeable
+{
+    void TakeDamage(float damage);
 }
