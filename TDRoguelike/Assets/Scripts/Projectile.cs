@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    Transform target;
+    public Transform target;
     float speed;
     float damage;
     Vector3 targetPosition;
@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
         this.target = target;
         this.speed = speed;
         this.damage = damage;
-        targetPosition = target.position;
+        lastKnownDirection = target.position - transform.position;
     }
 
     private void Update()
