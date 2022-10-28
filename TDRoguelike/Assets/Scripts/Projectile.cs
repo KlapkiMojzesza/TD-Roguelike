@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     float damage;
     Vector3 targetPosition;
     Vector3 lastKnownDirection;
+    int eniemiesHitAmount = 1;
 
     public void Create(Transform target, float speed, float damage)
     {
@@ -41,7 +42,9 @@ public class Projectile : MonoBehaviour
     {
         if (collision.collider.CompareTag("Enemy"))
         {
+            if (eniemiesHitAmount <= 0) return;
             collision.gameObject.GetComponent<IDamegeable>().TakeDamage(damage);
+            eniemiesHitAmount--;
             Destroy(gameObject);
             return;
         }
