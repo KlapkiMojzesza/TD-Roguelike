@@ -8,7 +8,6 @@ public class Projectile : MonoBehaviour
     public Transform target;
     float speed;
     float damage;
-    Vector3 targetPosition;
     Vector3 lastKnownDirection;
     int eniemiesHitAmount = 1;
 
@@ -24,8 +23,7 @@ public class Projectile : MonoBehaviour
     {
         if (target != null)
         {
-            targetPosition = target.position;
-            lastKnownDirection = targetPosition - transform.position;
+            lastKnownDirection = target.position - transform.position;
         }
 
         transform.Translate(lastKnownDirection.normalized * speed * Time.deltaTime, Space.World);
