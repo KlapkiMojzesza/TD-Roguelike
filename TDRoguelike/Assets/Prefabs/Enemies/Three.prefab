@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 781780416298672438}
   - component: {fileID: 781780416298672437}
   - component: {fileID: 781780416298672436}
-  - component: {fileID: 781780416298672427}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,20 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &781780416298672427
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781780416298672425}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &781780417718398920
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,8 +90,7 @@ GameObject:
   - component: {fileID: 781780417718398921}
   - component: {fileID: 781780417718398932}
   - component: {fileID: 781780417718398923}
-  - component: {fileID: 781780417718398922}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,19 +158,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &781780417718398922
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781780417718398920}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &781780417796994703
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +170,7 @@ GameObject:
   - component: {fileID: 3979590790691811439}
   - component: {fileID: 3299689278891925760}
   - component: {fileID: 5668169971611671001}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Three
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -276,7 +247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4933604376224254392}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Aim Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}

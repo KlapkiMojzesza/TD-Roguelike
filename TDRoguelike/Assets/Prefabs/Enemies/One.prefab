@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 781780416298672438}
   - component: {fileID: 781780416298672437}
   - component: {fileID: 781780416298672436}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 781780417718398921}
   - component: {fileID: 781780417718398932}
   - component: {fileID: 781780417718398923}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: -4438851779033516877}
   - component: {fileID: -7664421301148022990}
   - component: {fileID: 1338034353102245274}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: One
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4865280893974307543}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Aim Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}

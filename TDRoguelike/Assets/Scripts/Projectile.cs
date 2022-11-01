@@ -25,14 +25,7 @@ public class Projectile : MonoBehaviour
         if (target != null)
         {
             targetPosition = target.position;
-
             lastKnownDirection = targetPosition - transform.position;
-
-            /*if (lastKnownDirection.magnitude <= speed * Time.deltaTime)
-            {
-                HitTarget();
-                return;
-            }*/
         }
 
         transform.Translate(lastKnownDirection.normalized * speed * Time.deltaTime, Space.World);
@@ -48,13 +41,5 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-    }
-
-    private void HitTarget()
-    {
-        if (target != null) target.GetComponent<IDamegeable>().TakeDamage(damage);
-
-        Destroy(gameObject);
-        return;
     }
 }
