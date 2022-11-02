@@ -25,15 +25,15 @@ public class TowerManager : MonoBehaviour
 
     void Update()
     {
-        if (currentTowerPrefab != null)
-        {
-            MoveTowerPrefab();
+        if (currentTowerPrefab == null) return;
+        
+        MoveTowerPrefab();
 
-            if (Input.GetMouseButtonDown(0) && currentTower.CanBePlaced() && !mouseOnButton)
-            {
-                PlaceTower();
-            }
+        if (Input.GetMouseButtonDown(0) && currentTower.CanBePlaced() && !mouseOnButton)
+        {
+            PlaceTower();
         }
+        
     }
 
     private void PlaceTower()
@@ -77,6 +77,11 @@ public class TowerManager : MonoBehaviour
     {
         currentMoneyAmount += amount;
         moneyAmountText.text = currentMoneyAmount.ToString() + "$";
+    }
+
+    public void HideTowerPrefab()
+    {
+        Destroy(currentTowerPrefab);
     }
 
     public void mousceOverButtonEnter()
