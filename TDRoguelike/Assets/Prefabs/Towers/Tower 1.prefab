@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -3001383272700952038}
   - component: {fileID: 6226009859415181893}
   - component: {fileID: 5403998834522446609}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tower 1
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -33,6 +33,7 @@ Transform:
   m_Children:
   - {fileID: 3795852939651122733}
   - {fileID: 2753105329104795647}
+  - {fileID: 8875532692896666275}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerPrize: 10
   renderer: {fileID: 2072018365752782548}
+  towerHitBox: {fileID: 6590460790067398709}
 --- !u!114 &5403998834522446609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +112,7 @@ GameObject:
   - component: {fileID: 3795852939651122733}
   - component: {fileID: 2072018365752782548}
   - component: {fileID: 699974060357003401}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,6 +180,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6240784388897326165}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &6590460790067398709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8875532692896666275}
+  - component: {fileID: 6031676080343575952}
+  m_Layer: 0
+  m_Name: HitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8875532692896666275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6590460790067398709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4482887671162836468}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6031676080343575952
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6590460790067398709}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &8869715356458392827
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2753105329104795647}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fire point
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,6 +9,7 @@ public class Tower : MonoBehaviour
 
     [Header("To Attach")]
     [SerializeField] Renderer renderer;
+    [SerializeField] GameObject towerHitBox;
 
     Color orginalColor;
     bool canBePlaced = true;
@@ -41,6 +42,11 @@ public class Tower : MonoBehaviour
         myMaterial.color = orginalColor;
     }
 
+    public void PlaceTower()
+    {
+        towerHitBox.SetActive(true);
+    }
+
     private void OnCollisionStay(Collision collision)
     {
         if (collision.collider.CompareTag("Obstacle"))
@@ -52,6 +58,22 @@ public class Tower : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         if (collision.collider.CompareTag("Obstacle"))
+        {
+            canBePlaced = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Obstacle"))
+        {
+            canBePlaced = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Obstacle"))
         {
             canBePlaced = true;
         }

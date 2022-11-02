@@ -16,6 +16,7 @@ public class TowerManager : MonoBehaviour
 
     private GameObject currentTowerPrefab;
     private Tower currentTower;
+    private bool mouseOnButton = true;
 
     private void Start()
     {
@@ -28,7 +29,7 @@ public class TowerManager : MonoBehaviour
         {
             MoveTowerPrefab();
 
-            if (Input.GetMouseButtonDown(1) && currentTower.CanBePlaced())
+            if (Input.GetMouseButtonDown(0) && currentTower.CanBePlaced() && !mouseOnButton)
             {
                 PlaceTower();
             }
@@ -40,6 +41,7 @@ public class TowerManager : MonoBehaviour
         currentMoneyAmount -= currentTower.GetTowerPrize();
         moneyAmountText.text = currentMoneyAmount.ToString() + "$";
         currentTower.SetOrginalColor();
+        currentTower.PlaceTower();
         currentTowerPrefab = null;
     }
 
@@ -75,5 +77,15 @@ public class TowerManager : MonoBehaviour
     {
         currentMoneyAmount += amount;
         moneyAmountText.text = currentMoneyAmount.ToString() + "$";
+    }
+
+    public void mousceOverButtonEnter()
+    {
+        mouseOnButton = true;
+    }
+
+    public void mousceOverButtonExit()
+    {
+        mouseOnButton = false;
     }
 }

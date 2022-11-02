@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5018614834071172442}
   - component: {fileID: 5018614834071172441}
   - component: {fileID: 5018614834071172440}
+  - component: {fileID: 184578419}
   m_Layer: 5
   m_Name: Tower Button 3
   m_TagString: Untagged
@@ -161,6 +162,49 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &184578419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5018614834071172454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: mousceOverButtonEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: mousceOverButtonExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &5018614834071405585
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +217,7 @@ GameObject:
   - component: {fileID: 5018614834071405589}
   - component: {fileID: 5018614834071405588}
   - component: {fileID: 5018614834071405587}
+  - component: {fileID: 918625719}
   m_Layer: 5
   m_Name: Tower Button 2
   m_TagString: Untagged
@@ -291,6 +336,49 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &918625719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5018614834071405585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: mousceOverButtonEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: mousceOverButtonExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &5018614834109254796
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,7 +443,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tower 1
+  m_text: 'Tower 1
+
+    10$'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -695,10 +785,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - miniWaves:
-    - enemyPrefab: {fileID: 781780417796994703, guid: 6aa9e3642d6110540967cfd9ff2e3a81,
+    - enemyPrefab: {fileID: 781780417796994703, guid: 3073bf0f72017c14b972411de88bf837,
         type: 3}
-      amount: 4
-      spawnRate: 3
+      amount: 100
+      spawnRate: 10
       timeAfterWave: 3
     - enemyPrefab: {fileID: 781780417796994703, guid: 795d8602e819e5a46ba4b3f991cb1a14,
         type: 3}
@@ -707,29 +797,30 @@ MonoBehaviour:
       timeAfterWave: 1
     - enemyPrefab: {fileID: 781780417796994703, guid: 3073bf0f72017c14b972411de88bf837,
         type: 3}
-      amount: 10
-      spawnRate: 3
+      amount: 5
+      spawnRate: 4
       timeAfterWave: 1
-    goldForWaveCompleated: 10
+    goldForWaveCompleated: 1000
   - miniWaves:
     - enemyPrefab: {fileID: 781780417796994703, guid: 6aa9e3642d6110540967cfd9ff2e3a81,
         type: 3}
       amount: 10
       spawnRate: 1
-      timeAfterWave: 10
+      timeAfterWave: 3
     - enemyPrefab: {fileID: 781780417796994703, guid: 795d8602e819e5a46ba4b3f991cb1a14,
         type: 3}
       amount: 20
       spawnRate: 2
       timeAfterWave: 1
-    goldForWaveCompleated: 10
+    goldForWaveCompleated: 100
   - miniWaves:
     - enemyPrefab: {fileID: 781780417796994703, guid: 6aa9e3642d6110540967cfd9ff2e3a81,
         type: 3}
       amount: 100
-      spawnRate: 1
+      spawnRate: 8
       timeAfterWave: 1
     goldForWaveCompleated: 10
+  timeBeforeFirstWave: 2
   spawnPoint: {fileID: 5018614835240930846}
   waveEndCanvas: {fileID: 5018614834262112077}
   aliveEnemies: []
@@ -797,7 +888,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tower 3
+  m_text: 'Tower 3
+
+    50$'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1907,7 +2000,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tower 2
+  m_text: 'Tower 2
+
+    20$'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2299,6 +2394,7 @@ GameObject:
   - component: {fileID: 5018614835403311155}
   - component: {fileID: 5018614835403311154}
   - component: {fileID: 5018614835403311153}
+  - component: {fileID: 2108514729856313701}
   m_Layer: 5
   m_Name: Tower Button 1
   m_TagString: Untagged
@@ -2417,6 +2513,49 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2108514729856313701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5018614835403311167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: mousceOverButtonEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: mousceOverButtonExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &5018614835411888899
 GameObject:
   m_ObjectHideFlags: 0
