@@ -27,26 +27,24 @@ public class TowerShooting : MonoBehaviour
     private void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        target = GetClosestEnemy(enemies);
+    }
+
+    private Transform GetClosestEnemy(GameObject[] enemies)
+    {
+        Transform closestEnemy = null;
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
+            if (distanceToEnemy < shortestDistance && distanceToEnemy <= towerRange)
             {
                 shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
-            }
-
-            if (nearestEnemy != null && shortestDistance <= towerRange)
-            {
-                target = nearestEnemy.transform;
-            }
-            else
-            {
-                target = null;
+                closestEnemy = enemy.transform;
             }
         }
+        return closestEnemy;
     }
 
     private void Update()
@@ -78,4 +76,5 @@ public class TowerShooting : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, towerRange);
     }
+
 }

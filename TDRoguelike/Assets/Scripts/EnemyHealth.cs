@@ -19,15 +19,8 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
         if (health <= 0)
         {
             Destroy(gameObject);
-           // EnemyDeath();
         }
     }
-
-    /*private void EnemyDeath()
-    {
-        OnEnemyDeath?.Invoke(gameObject);
-        Destroy(gameObject);
-    }*/
 
     private void OnDestroy()
     {

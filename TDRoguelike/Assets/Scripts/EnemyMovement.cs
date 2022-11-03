@@ -38,7 +38,6 @@ public class EnemyMovement : MonoBehaviour
             else
             {
                 playerBase.TakeDamage(damage);
-                //OnEnemyDeath?.Invoke(gameObject);
                 Destroy(gameObject);
             }
         }
