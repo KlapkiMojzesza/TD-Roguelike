@@ -9,7 +9,7 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
     [SerializeField] float health;
 
     [Header("To Attach")]
-    [SerializeField] Transform aimPoint;
+    public Transform aimPoint;
 
     public static event Action<GameObject> OnEnemyDeath;
 
@@ -25,11 +25,6 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
     private void OnDestroy()
     {
         OnEnemyDeath?.Invoke(gameObject);
-    }
-
-    public Transform GetAimPoint()
-    {
-        return aimPoint;
     }
 }
 

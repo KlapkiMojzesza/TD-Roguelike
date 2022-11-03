@@ -40,7 +40,6 @@ public class WaveManager : MonoBehaviour
     {
         PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
         EnemyHealth.OnEnemyDeath += HandleDeath;
-        //EnemyMovement.OnEnemyDeath += HandleDeath;
     }
 
     public void SpawnNextWave()
@@ -49,7 +48,6 @@ public class WaveManager : MonoBehaviour
         {
             //to change later
             EnemyHealth.OnEnemyDeath -= HandleDeath;
-            //EnemyMovement.OnEnemyDeath -= HandleDeath;
             PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
             return;
         }

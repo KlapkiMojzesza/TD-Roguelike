@@ -15,8 +15,14 @@ public class PlayerBase : MonoBehaviour
 
     private void Start()
     {
+        EnemyMovement.OnEnemyPathCompleate += TakeDamage;
         baseHealth = startBaseHealth;
         damageText.text = baseHealth.ToString();
+    }
+
+    private void OnDestroy()
+    {
+        EnemyMovement.OnEnemyPathCompleate -= TakeDamage;
     }
 
     public void TakeDamage(float damage)

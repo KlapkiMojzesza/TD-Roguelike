@@ -67,7 +67,7 @@ public class TowerShooting : MonoBehaviour
 
         if (projectile != null)
         {
-            projectile.Create(target.gameObject.GetComponent<EnemyHealth>().GetAimPoint(), projectileSpeed, towerDamage);
+            projectile.Create(target.gameObject.GetComponent<EnemyHealth>().aimPoint, projectileSpeed, towerDamage);
         }
     }
 

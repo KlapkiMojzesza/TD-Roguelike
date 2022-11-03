@@ -12,22 +12,24 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float lookDirectionOffset = -90f;
 
     private WaypointManager waypointManager;
-    private PlayerBase playerBase;
-    public static event Action<GameObject> OnEnemyDeath;
+    public static event Action<float> OnEnemyPathCompleate;
 
     private int currentWaypoint;
 
     private void Start()
     {
         waypointManager = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaypointManager>();
-        playerBase = GameObject.FindGameObjectWithTag("PlayerBase").GetComponent<PlayerBase>();
     }
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, waypointManager.waypoints[currentWaypoint].position, speed * Time.deltaTime);
-
         RotateTowardsNextWaypoint();
+        MoveTowardsNextWaypoint();
+    }
+
+    private void MoveTowardsNextWaypoint()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, waypointManager.waypoints[currentWaypoint].position, speed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, waypointManager.waypoints[currentWaypoint].position) < 0.01f)
         {
@@ -37,7 +39,7 @@ public class EnemyMovement : MonoBehaviour
             }
             else
             {
-                playerBase.TakeDamage(damage);
+                OnEnemyPathCompleate?.Invoke(damage);
                 Destroy(gameObject);
             }
         }
