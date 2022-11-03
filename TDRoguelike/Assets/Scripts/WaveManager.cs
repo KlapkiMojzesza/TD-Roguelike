@@ -11,7 +11,9 @@ public class WaveManager : MonoBehaviour
     [Header("To Attach")]
     [SerializeField] Transform spawnPoint;
     [SerializeField] GameObject waveEndCanvas;
+    [SerializeField] GameObject baseDestroyCanvas;
 
+    //remove serialize
     [SerializeField] List<GameObject> aliveEnemies = new List<GameObject>();
 
     int currentWaveIndex = 0;
@@ -36,19 +38,23 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        EnemyHealth.OnEnemyDeath += HandleEnemyDeath;
-        EnemyMovement.OnEnemyDeath += HandleEnemyDeath;
+        PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
+        EnemyHealth.OnEnemyDeath += HandleEnemyDeathFromTower;
+        EnemyMovement.OnEnemyDeath += HandleEnemyBaseReach;
     }
 
     public void SpawnNextWave()
     {
         if (currentWaveIndex >= waves.Length)
         {
-            EnemyHealth.OnEnemyDeath -= HandleEnemyDeath;
-            EnemyMovement.OnEnemyDeath -= HandleEnemyDeath;
+            //to change later
+            EnemyHealth.OnEnemyDeath -= HandleEnemyDeathFromTower;
+            EnemyMovement.OnEnemyDeath -= HandleEnemyBaseReach;
+            PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
             return;
         }
 
+        baseDestroyCanvas.SetActive(false);
         waveEndCanvas.SetActive(false);
         waveCompleated = false;
         StartCoroutine(spawnWave(timeBeforeFirstWave));
@@ -90,16 +96,49 @@ public class WaveManager : MonoBehaviour
         //Debug.Log(enemy.name);
     }
 
-    private void HandleEnemyDeath(GameObject enemy)
+    private void HandleEnemyDeathFromTower(GameObject enemy)
     {
         aliveEnemies.Remove(enemy);
         if (!waveCompleated) return;
         if (aliveEnemies.Count != 0) return;
 
+        //if isNOtLastEnemy, 
         //move somewhere GiveMoney() somewhere else later
         GameObject.FindGameObjectWithTag("TowerManager").GetComponent<TowerManager>()
                   .GiveMoney(waves[currentWaveIndex - 1].goldForWaveCompleated);
 
+        waveEndCanvas.SetActive(true);
+    }
+
+    private void HandleEnemyBaseReach(GameObject enemy)
+    {
+        if (waveCompleated && aliveEnemies.Count == 1)
+        {
+            waveEndCanvas.SetActive(true);
+        }
+        aliveEnemies.Remove(enemy);
+    }
+
+    private void HandleBaseDestruction()
+    {
+        StopAllCoroutines();
+        foreach (GameObject enemy in aliveEnemies)
+        {
+            Destroy(enemy);
+        }
+
+        aliveEnemies.Clear();
+
+        currentWaveIndex = 0;
+        currentMiniWaveIndex = 0;
+        waveCompleated = false;
+
+        baseDestroyCanvas.SetActive(true);
+    }
+
+    public void ShowTowerShop()
+    {
+        baseDestroyCanvas.SetActive(false);
         waveEndCanvas.SetActive(true);
     }
 

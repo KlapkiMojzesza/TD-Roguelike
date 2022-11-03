@@ -21,7 +21,7 @@ public class TowerShooting : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.2f);
+        InvokeRepeating("UpdateTarget", 0f, 0.1f);
     }
 
     private void UpdateTarget()

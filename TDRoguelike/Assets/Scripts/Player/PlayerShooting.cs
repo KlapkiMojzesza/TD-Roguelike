@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] Transform firePoint;
-    [SerializeField] float fireRate = .5f;
+    [Header("Settings")]
+    [SerializeField] float fireRate = 2f;
     [SerializeField] float projectileSpeed = 20f;
     [SerializeField] float playerDamage = 50f;
-    [SerializeField] GameObject projectilePrefab;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] int pierceThroughEnemiesAmount = 1;
 
-    Vector3 direction;
+    [Header("To Attach")]
+    [SerializeField] Transform firePoint;
+    [SerializeField] GameObject projectilePrefab;
 
+    Vector3 direction;
     float lastFired = 0f;
 
     private void Update()

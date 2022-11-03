@@ -7,33 +7,57 @@ using UnityEngine;
 public class TowerManager : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private int currentMoneyAmount = 100;
+    [SerializeField] private int startMoneyAmount = 100;
     [SerializeField] private LayerMask groundLayer;
 
     [Header("To Attach")]
     [SerializeField] TMP_Text moneyAmountText;
     [SerializeField] private GameObject[] towerPrefabs;
 
+    //remove serialize
+    [SerializeField] List<GameObject> towersPlaced = new List<GameObject>();
+
+    private int currentMoneyAmount;
     private GameObject currentTowerPrefab;
     private Tower currentTower;
     private bool mouseOnButton = true;
 
     private void Start()
     {
+        currentMoneyAmount = startMoneyAmount;
+        moneyAmountText.text = currentMoneyAmount.ToString() + "$";
+        PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
+    }
+
+    private void HandleBaseDestruction()
+    {
+        foreach (GameObject tower in towersPlaced)
+        {
+            Destroy(tower);
+        }
+
+        towersPlaced.Clear();
+
+        currentMoneyAmount = startMoneyAmount;
         moneyAmountText.text = currentMoneyAmount.ToString() + "$";
     }
 
     void Update()
     {
         if (currentTowerPrefab == null) return;
-        
+
         MoveTowerPrefab();
 
         if (Input.GetMouseButtonDown(0) && currentTower.CanBePlaced() && !mouseOnButton)
         {
             PlaceTower();
         }
-        
+
     }
 
     private void PlaceTower()
@@ -42,6 +66,7 @@ public class TowerManager : MonoBehaviour
         moneyAmountText.text = currentMoneyAmount.ToString() + "$";
         currentTower.SetOrginalColor();
         currentTower.PlaceTower();
+        towersPlaced.Add(currentTowerPrefab);
         currentTowerPrefab = null;
     }
 
