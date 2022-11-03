@@ -18,14 +18,20 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
         health -= damage;
         if (health <= 0)
         {
-            EnemyDeath();
+            Destroy(gameObject);
+           // EnemyDeath();
         }
     }
 
-    private void EnemyDeath()
+    /*private void EnemyDeath()
     {
         OnEnemyDeath?.Invoke(gameObject);
         Destroy(gameObject);
+    }*/
+
+    private void OnDestroy()
+    {
+        OnEnemyDeath?.Invoke(gameObject);
     }
 
     public Transform GetAimPoint()

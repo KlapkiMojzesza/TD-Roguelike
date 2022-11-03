@@ -39,8 +39,8 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
-        EnemyHealth.OnEnemyDeath += HandleEnemyDeathFromTower;
-        EnemyMovement.OnEnemyDeath += HandleEnemyBaseReach;
+        EnemyHealth.OnEnemyDeath += HandleDeath;
+        //EnemyMovement.OnEnemyDeath += HandleDeath;
     }
 
     public void SpawnNextWave()
@@ -48,8 +48,8 @@ public class WaveManager : MonoBehaviour
         if (currentWaveIndex >= waves.Length)
         {
             //to change later
-            EnemyHealth.OnEnemyDeath -= HandleEnemyDeathFromTower;
-            EnemyMovement.OnEnemyDeath -= HandleEnemyBaseReach;
+            EnemyHealth.OnEnemyDeath -= HandleDeath;
+            //EnemyMovement.OnEnemyDeath -= HandleDeath;
             PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
             return;
         }
@@ -96,27 +96,28 @@ public class WaveManager : MonoBehaviour
         //Debug.Log(enemy.name);
     }
 
-    private void HandleEnemyDeathFromTower(GameObject enemy)
+    private void HandleDeath(GameObject enemy)
     {
+        if (waveCompleated && aliveEnemies.Count == 1)
+        {
+            //elast enemy arrived
+            aliveEnemies.Remove(enemy);
+            EndWave();
+            return;
+        }
+
         aliveEnemies.Remove(enemy);
         if (!waveCompleated) return;
         if (aliveEnemies.Count != 0) return;
 
-        //if isNOtLastEnemy, 
-        //move somewhere GiveMoney() somewhere else later
-        GameObject.FindGameObjectWithTag("TowerManager").GetComponent<TowerManager>()
-                  .GiveMoney(waves[currentWaveIndex - 1].goldForWaveCompleated);
-
-        waveEndCanvas.SetActive(true);
+        EndWave();
     }
 
-    private void HandleEnemyBaseReach(GameObject enemy)
+    private void EndWave()
     {
-        if (waveCompleated && aliveEnemies.Count == 1)
-        {
-            waveEndCanvas.SetActive(true);
-        }
-        aliveEnemies.Remove(enemy);
+        waveEndCanvas.SetActive(true);
+        GameObject.FindGameObjectWithTag("TowerManager").GetComponent<TowerManager>()
+              .GiveMoney(waves[currentWaveIndex - 1].goldForWaveCompleated);
     }
 
     private void HandleBaseDestruction()
