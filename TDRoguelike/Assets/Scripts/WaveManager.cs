@@ -11,8 +11,6 @@ public class WaveManager : MonoBehaviour
 
     [Header("To Attach")]
     [SerializeField] Transform spawnPoint;
-    [SerializeField] GameObject waveEndCanvas;
-    [SerializeField] GameObject baseDestroyCanvas;
 
     //remove serialize
     [SerializeField] List<GameObject> aliveEnemies = new List<GameObject>();
@@ -44,20 +42,19 @@ public class WaveManager : MonoBehaviour
     {
         PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
         EnemyHealth.OnEnemyDeath += HandleDeath;
+        TowerManager.OnNextWaveButtonClicked += SpawnNextWave;
     }
 
     private void OnDestroy()
     {
-        EnemyHealth.OnEnemyDeath -= HandleDeath;
         PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
+        EnemyHealth.OnEnemyDeath -= HandleDeath;
+        TowerManager.OnNextWaveButtonClicked -= SpawnNextWave;
     }
 
     public void SpawnNextWave()
     {
         if (currentWaveIndex >= waves.Length) return;
-
-        baseDestroyCanvas.SetActive(false);
-        waveEndCanvas.SetActive(false);
         waveCompleated = false;
         currentEnemySpawnIndex = 0;
         StartCoroutine(spawnWave(timeBeforeFirstWave));
@@ -121,7 +118,6 @@ public class WaveManager : MonoBehaviour
     private void EndWave()
     {
         OnWaveEnd?.Invoke(waves[currentWaveIndex - 1].goldForWaveCompleated);
-        waveEndCanvas.SetActive(true);
     }
 
     private void HandleBaseDestruction()
@@ -138,14 +134,5 @@ public class WaveManager : MonoBehaviour
         currentWaveIndex = 0;
         currentMiniWaveIndex = 0;
         waveCompleated = false;
-
-        baseDestroyCanvas.SetActive(true);
     }
-
-    public void ShowTowerShop()
-    {
-        baseDestroyCanvas.SetActive(false);
-        waveEndCanvas.SetActive(true);
-    }
-
 }

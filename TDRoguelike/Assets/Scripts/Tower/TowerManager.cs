@@ -13,6 +13,8 @@ public class TowerManager : MonoBehaviour
     [Header("To Attach")]
     [SerializeField] TMP_Text moneyAmountText;
     [SerializeField] private GameObject[] towerPrefabs;
+    [SerializeField] GameObject towersCanvas;
+    [SerializeField] GameObject baseDestroyCanvas;
 
     //remove serialize
     [SerializeField] List<GameObject> towersPlaced = new List<GameObject>();
@@ -21,6 +23,7 @@ public class TowerManager : MonoBehaviour
     public static event Action OnTowerDeselect;
     public static event Action OnMouseButtonEnter;
     public static event Action OnMouseButtonExit;
+    public static event Action OnNextWaveButtonClicked;
 
     private int currentMoneyAmount;
     private GameObject currentTowerPrefab;
@@ -30,16 +33,16 @@ public class TowerManager : MonoBehaviour
     private void Start()
     {
         currentMoneyAmount = startMoneyAmount;
-        moneyAmountText.text = currentMoneyAmount.ToString() + "$";
+        moneyAmountText.text = currentMoneyAmount.ToString();
 
         PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
-        WaveManager.OnWaveEnd += GiveMoney;
+        WaveManager.OnWaveEnd += HandleWaveEnd;
     }
 
     private void OnDestroy()
     {
-        WaveManager.OnWaveEnd -= GiveMoney;
         PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
+        WaveManager.OnWaveEnd -= HandleWaveEnd;
     }
 
     void Update()
@@ -70,7 +73,7 @@ public class TowerManager : MonoBehaviour
     private void PlaceTower()
     {
         currentMoneyAmount -= currentTower.GetTowerPrize();
-        moneyAmountText.text = currentMoneyAmount.ToString() + "$";
+        moneyAmountText.text = currentMoneyAmount.ToString();
 
         currentTower.SetOrginalColor();
 
@@ -98,10 +101,10 @@ public class TowerManager : MonoBehaviour
         }
     }
 
-    public void GiveMoney(int amount)
+    public void HandleWaveEnd(int amount)
     {
         currentMoneyAmount += amount;
-        moneyAmountText.text = currentMoneyAmount.ToString() + "$";
+        moneyAmountText.text = currentMoneyAmount.ToString();
     }
 
     private void HandleBaseDestruction()
@@ -113,8 +116,19 @@ public class TowerManager : MonoBehaviour
 
         towersPlaced.Clear();
 
+        baseDestroyCanvas.SetActive(true);
         currentMoneyAmount = startMoneyAmount;
-        moneyAmountText.text = currentMoneyAmount.ToString() + "$";
+        moneyAmountText.text = currentMoneyAmount.ToString();
+    }
+
+    public void SpawnNextWave()
+    {
+        baseDestroyCanvas.SetActive(false);
+        towersCanvas.SetActive(false);
+
+        mouseOverButton = false;
+        OnMouseButtonExit?.Invoke();
+        OnNextWaveButtonClicked?.Invoke();
     }
 
     public void mousceOverButtonEnter()
@@ -127,6 +141,12 @@ public class TowerManager : MonoBehaviour
     {
         mouseOverButton = false;
         OnMouseButtonExit?.Invoke();
+    }
+
+    public void TryAgainButton()
+    {
+        baseDestroyCanvas.SetActive(false);
+        towersCanvas.SetActive(true);
     }
 
 }
