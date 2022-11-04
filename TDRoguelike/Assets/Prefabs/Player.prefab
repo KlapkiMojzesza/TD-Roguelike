@@ -130,15 +130,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4305e881853d1c48bdf9f69db508fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 8186128799551546030}
   fireRate: 4
   projectileSpeed: 150
   playerDamage: 35
-  projectilePrefab: {fileID: 2547094118735421181, guid: 922be981fb8dae14290f62c11930cb89,
-    type: 3}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  pierceThroughEnemiesAmount: 1
+  firePoint: {fileID: 8186128799551546030}
+  projectilePrefab: {fileID: 2547094118735421181, guid: 922be981fb8dae14290f62c11930cb89,
+    type: 3}
 --- !u!1 &5646343309496383366
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8186128799551546030}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Fire Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}

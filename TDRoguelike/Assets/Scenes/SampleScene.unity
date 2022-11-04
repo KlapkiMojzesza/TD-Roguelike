@@ -2276,6 +2276,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8976999778618284689, guid: 7a2f41303b94d7f418ca8ff393860d21,
         type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976999778618284689, guid: 7a2f41303b94d7f418ca8ff393860d21,
+        type: 3}
       propertyPath: pierceThroughEnemiesAmount
       value: 1
       objectReference: {fileID: 0}
