@@ -69,6 +69,24 @@ public class TowerShooting : MonoBehaviour
         return FirstEnemy;
     }
 
+    private Transform GetLastEnemy(List<GameObject> enemies)
+    {
+        Transform LastEnemy = null;
+        int lastEnemyIndex = 0;
+        foreach (GameObject enemy in enemies)
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy <= towerRange)
+            {
+                int enemySpawnIndex = enemy.GetComponent<EnemyHealth>().enemyID;
+                if (enemySpawnIndex < lastEnemyIndex) continue;
+                lastEnemyIndex = enemySpawnIndex;
+                LastEnemy = enemy.transform;
+            }
+        }
+        return LastEnemy;
+    }
+
     private Transform GetStrongestEnemy(List<GameObject> enemies)
     {
         Transform strongestEnemy = null;
@@ -131,3 +149,5 @@ public class TowerShooting : MonoBehaviour
     }
 
 }
+
+public enum TargetPriority{First, Last, Strongest, Closest}
