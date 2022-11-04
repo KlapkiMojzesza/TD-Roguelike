@@ -46,15 +46,15 @@ public class WaveManager : MonoBehaviour
         EnemyHealth.OnEnemyDeath += HandleDeath;
     }
 
+    private void OnDestroy()
+    {
+        EnemyHealth.OnEnemyDeath -= HandleDeath;
+        PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
+    }
+
     public void SpawnNextWave()
     {
-        if (currentWaveIndex >= waves.Length)
-        {
-            //to move somewhere later
-            EnemyHealth.OnEnemyDeath -= HandleDeath;
-            PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
-            return;
-        }
+        if (currentWaveIndex >= waves.Length) return;
 
         baseDestroyCanvas.SetActive(false);
         waveEndCanvas.SetActive(false);

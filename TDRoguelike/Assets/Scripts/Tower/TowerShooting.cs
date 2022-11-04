@@ -10,6 +10,7 @@ public class TowerShooting : MonoBehaviour
     [SerializeField] float towerRange = 50f;
     [SerializeField] float projectileSpeed = 200f;
     [SerializeField] float towerDamage = 10f;
+    [SerializeField] TargetPriority targetPriority = TargetPriority.First;
 
     [Header("To Attach")]
     [SerializeField] Transform firePoint;
@@ -35,7 +36,21 @@ public class TowerShooting : MonoBehaviour
 
     private void UpdateTarget()
     {
-        target = GetStrongestEnemy(aliveEnemies);
+        switch (targetPriority)
+        {
+            case TargetPriority.First:
+                target = GetFirstEnemy(aliveEnemies);
+                break;
+            case TargetPriority.Last:
+                target = GetLastEnemy(aliveEnemies);
+                break;
+            case TargetPriority.Strongest:
+                target = GetStrongestEnemy(aliveEnemies);
+                break;
+            case TargetPriority.Closest:
+                target = GetClosestEnemy(aliveEnemies);
+                break;
+        }
     }
 
     private void Update()
