@@ -2387,6 +2387,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: waves.Array.data[0].miniWaves.Array.data[0].spawnRate
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: waves.Array.data[0].miniWaves.Array.data[1].spawnRate
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: waves.Array.data[0].miniWaves.Array.data[2].spawnRate
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: waves.Array.data[0].miniWaves.Array.data[0].timeAfterWave
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: waves.Array.data[0].miniWaves.Array.data[1].timeAfterWave
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: waves.Array.data[0].miniWaves.Array.data[2].timeAfterWave
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 5018614834388842343, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
       propertyPath: m_Name
