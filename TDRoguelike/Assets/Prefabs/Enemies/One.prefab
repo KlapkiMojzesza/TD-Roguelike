@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
-  speed: 70
+  speed: 30
   rotateSpeed: 0.1
   lookDirectionOffset: 90
 --- !u!114 &1338034353102245274
@@ -237,7 +237,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  enemyStrength: 1
   aimPoint: {fileID: 4865280893974307543}
+  enemyID: 0
 --- !u!1 &6302110206403120680
 GameObject:
   m_ObjectHideFlags: 0

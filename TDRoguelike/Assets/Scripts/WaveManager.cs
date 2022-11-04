@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,9 @@ public class WaveManager : MonoBehaviour
     //remove serialize
     [SerializeField] List<GameObject> aliveEnemies = new List<GameObject>();
 
+    public static event Action<int> OnWaveEnd;
+
+    int currentEnemySpawnIndex = 0;
     int currentWaveIndex = 0;
     int currentMiniWaveIndex = 0;
     bool waveCompleated = false;
@@ -46,7 +50,7 @@ public class WaveManager : MonoBehaviour
     {
         if (currentWaveIndex >= waves.Length)
         {
-            //to change later
+            //to move somewhere later
             EnemyHealth.OnEnemyDeath -= HandleDeath;
             PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
             return;
@@ -55,6 +59,7 @@ public class WaveManager : MonoBehaviour
         baseDestroyCanvas.SetActive(false);
         waveEndCanvas.SetActive(false);
         waveCompleated = false;
+        currentEnemySpawnIndex = 0;
         StartCoroutine(spawnWave(timeBeforeFirstWave));
     }
 
@@ -90,7 +95,9 @@ public class WaveManager : MonoBehaviour
     private void SpawnEnemy(GameObject enemy)
     {
         GameObject newEnemy = Instantiate(enemy, spawnPoint.position, Quaternion.identity);
+        newEnemy.GetComponent<EnemyHealth>().enemyID = currentEnemySpawnIndex;
         aliveEnemies.Add(newEnemy);
+        currentEnemySpawnIndex++;
         //Debug.Log(enemy.name);
     }
 
@@ -98,7 +105,7 @@ public class WaveManager : MonoBehaviour
     {
         if (waveCompleated && aliveEnemies.Count == 1)
         {
-            //elast enemy arrived
+            //last enemy arrived
             aliveEnemies.Remove(enemy);
             EndWave();
             return;
@@ -107,19 +114,19 @@ public class WaveManager : MonoBehaviour
         aliveEnemies.Remove(enemy);
         if (!waveCompleated) return;
         if (aliveEnemies.Count != 0) return;
-
+        //last enemy died from tower/player
         EndWave();
     }
 
     private void EndWave()
     {
+        OnWaveEnd?.Invoke(waves[currentWaveIndex - 1].goldForWaveCompleated);
         waveEndCanvas.SetActive(true);
-        GameObject.FindGameObjectWithTag("TowerManager").GetComponent<TowerManager>()
-              .GiveMoney(waves[currentWaveIndex - 1].goldForWaveCompleated);
     }
 
     private void HandleBaseDestruction()
     {
+        //reset everything
         StopAllCoroutines();
         foreach (GameObject enemy in aliveEnemies)
         {

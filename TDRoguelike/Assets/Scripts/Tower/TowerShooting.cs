@@ -10,41 +10,32 @@ public class TowerShooting : MonoBehaviour
     [SerializeField] float towerRange = 50f;
     [SerializeField] float projectileSpeed = 200f;
     [SerializeField] float towerDamage = 10f;
-    [SerializeField] string enemyTag = "Enemy";
 
     [Header("To Attach")]
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject projectilePrefab;
+
+    [SerializeField] List<GameObject> aliveEnemies = new List<GameObject>();
 
     Transform target;
     float fireCountdown = 0;
 
     private void Start()
     {
+        EnemyHealth.OnEnemySpawn += AddEnemyToList;
+        EnemyHealth.OnEnemyDeath += RemoveEnemyFromList;
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
+    }
+
+    private void OnDestroy()
+    {
+        EnemyHealth.OnEnemySpawn -= AddEnemyToList;
+        EnemyHealth.OnEnemyDeath -= RemoveEnemyFromList;
     }
 
     private void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        target = GetClosestEnemy(enemies);
-    }
-
-    private Transform GetClosestEnemy(GameObject[] enemies)
-    {
-        Transform closestEnemy = null;
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
-        foreach (GameObject enemy in enemies)
-        {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance && distanceToEnemy <= towerRange)
-            {
-                shortestDistance = distanceToEnemy;
-                closestEnemy = enemy.transform;
-            }
-        }
-        return closestEnemy;
+        target = GetStrongestEnemy(aliveEnemies);
     }
 
     private void Update()
@@ -60,6 +51,58 @@ public class TowerShooting : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
+    private Transform GetFirstEnemy(List<GameObject> enemies)
+    {
+        Transform FirstEnemy = null;
+        int mostAheadEnemyIndex = 100000000;
+        foreach (GameObject enemy in enemies)
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy <= towerRange)
+            {
+                int enemySpawnIndex = enemy.GetComponent<EnemyHealth>().enemyID;
+                if (enemySpawnIndex >= mostAheadEnemyIndex) continue;
+                mostAheadEnemyIndex = enemySpawnIndex;
+                FirstEnemy = enemy.transform;
+            }
+        }
+        return FirstEnemy;
+    }
+
+    private Transform GetStrongestEnemy(List<GameObject> enemies)
+    {
+        Transform strongestEnemy = null;
+        float strongestEnemyStrength = 0;
+        foreach (GameObject enemy in enemies)
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy <= towerRange)
+            {
+                float enemyStrength = enemy.GetComponent<EnemyHealth>().enemyStrength;
+                if (enemyStrength <= strongestEnemyStrength) continue;
+                strongestEnemyStrength = enemyStrength;
+                strongestEnemy = enemy.transform;
+            }
+        }
+        return strongestEnemy;
+    }
+
+    private Transform GetClosestEnemy(List<GameObject> enemies)
+    {
+        Transform closestEnemy = null;
+        float shortestDistance = Mathf.Infinity;
+        foreach (GameObject enemy in enemies)
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy < shortestDistance && distanceToEnemy <= towerRange)
+            {
+                shortestDistance = distanceToEnemy;
+                closestEnemy = enemy.transform;
+            }
+        }
+        return closestEnemy;
+    }
+
     private void Shoot()
     {
         GameObject projectileObject = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
@@ -69,6 +112,16 @@ public class TowerShooting : MonoBehaviour
         {
             projectile.Create(target.gameObject.GetComponent<EnemyHealth>().aimPoint, projectileSpeed, towerDamage);
         }
+    }
+
+    private void RemoveEnemyFromList(GameObject enemy)
+    {
+        aliveEnemies.Remove(enemy);
+    }
+
+    private void AddEnemyToList(GameObject enemy)
+    {
+        aliveEnemies.Add(enemy);
     }
 
     private void OnDrawGizmosSelected()

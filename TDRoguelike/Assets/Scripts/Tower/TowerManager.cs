@@ -20,17 +20,19 @@ public class TowerManager : MonoBehaviour
     private int currentMoneyAmount;
     private GameObject currentTowerPrefab;
     private Tower currentTower;
-    private bool mouseOnButton = true;
+    private bool mouseOverButton = true;
 
     private void Start()
     {
         currentMoneyAmount = startMoneyAmount;
         moneyAmountText.text = currentMoneyAmount.ToString() + "$";
         PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
+        WaveManager.OnWaveEnd += GiveMoney;
     }
 
     private void OnDestroy()
     {
+        WaveManager.OnWaveEnd -= GiveMoney;
         PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
     }
 
@@ -53,7 +55,7 @@ public class TowerManager : MonoBehaviour
 
         MoveTowerPrefab();
 
-        if (Input.GetMouseButtonDown(0) && currentTower.CanBePlaced() && !mouseOnButton)
+        if (Input.GetMouseButtonDown(0) && currentTower.CanBePlaced() && !mouseOverButton)
         {
             PlaceTower();
         }
@@ -64,7 +66,9 @@ public class TowerManager : MonoBehaviour
     {
         currentMoneyAmount -= currentTower.GetTowerPrize();
         moneyAmountText.text = currentMoneyAmount.ToString() + "$";
+
         currentTower.SetOrginalColor();
+
         currentTower.PlaceTower();
         towersPlaced.Add(currentTowerPrefab);
         currentTowerPrefab = null;
@@ -111,11 +115,11 @@ public class TowerManager : MonoBehaviour
 
     public void mousceOverButtonEnter()
     {
-        mouseOnButton = true;
+        mouseOverButton = true;
     }
 
     public void mousceOverButtonExit()
     {
-        mouseOnButton = false;
+        mouseOverButton = false;
     }
 }
