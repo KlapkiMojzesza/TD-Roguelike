@@ -29,7 +29,7 @@ public class Tower : MonoBehaviour
 
     public bool CanBePlaced()
     {
-        if (collisionsAmount == 0) return true;
+        if (collisionsAmount == 0 && canBePlaced) return true;
 
         return false;
     }

@@ -126,6 +126,9 @@ public class TowerManager : MonoBehaviour
         baseDestroyCanvas.SetActive(false);
         towersCanvas.SetActive(false);
 
+        Destroy(currentTowerPrefab);
+        OnTowerDeselect?.Invoke();
+
         mouseOverButton = false;
         OnMouseButtonExit?.Invoke();
         OnNextWaveButtonClicked?.Invoke();
