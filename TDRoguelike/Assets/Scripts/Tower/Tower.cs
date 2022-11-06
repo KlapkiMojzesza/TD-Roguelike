@@ -1,25 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private int towerPrize = 10;
+    [SerializeField] private string towerName = "TOWER";
+
 
     [Header("To Attach")]
     [SerializeField] Renderer renderer;
     [SerializeField] GameObject towerHitBox;
+    [SerializeField] GameObject towerInfoCanvas;
+    [SerializeField] TMP_Text towerStatsText;
+    [SerializeField] TMP_Text towernNameText;
 
     public bool canBePlaced = true;
     int collisionsAmount = 0;
     Color orginalColor;
     Material myMaterial;
+    TowerShooting towerShooting;
 
     private void Awake()
     {
         myMaterial = renderer.material;
         orginalColor = myMaterial.color;
+        towerShooting = GetComponent<TowerShooting>();
     }
 
     public int GetTowerPrize()
@@ -48,6 +56,19 @@ public class Tower : MonoBehaviour
     public void PlaceTower()
     {
         towerHitBox.SetActive(true);
+
+        UpdateTowerStatsUI();
+
+        towerInfoCanvas.SetActive(true);
+    }
+
+    private void UpdateTowerStatsUI()
+    {
+        towerStatsText.text = $"Damage: {towerShooting.towerDamage.ToString()}\n" +
+                              $"Range: {towerShooting.towerRange.ToString()}\n" +
+                              $"FireRate: {towerShooting.towerFireRate.ToString()}";
+
+        towernNameText.text = towerName;
     }
 
     private void OnCollisionExit(Collision collision)

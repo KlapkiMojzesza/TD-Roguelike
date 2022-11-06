@@ -2470,5 +2470,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 7844624545700020415, guid: c824c4a603e5cba49918df95bb9fd8f7,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162315060323431834, guid: c824c4a603e5cba49918df95bb9fd8f7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 776.2998
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162315060323431834, guid: c824c4a603e5cba49918df95bb9fd8f7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.016113281
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c824c4a603e5cba49918df95bb9fd8f7, type: 3}

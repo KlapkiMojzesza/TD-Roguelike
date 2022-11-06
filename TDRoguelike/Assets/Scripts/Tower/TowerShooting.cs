@@ -6,11 +6,11 @@ using UnityEngine;
 public class TowerShooting : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float fireRate = 1f;
-    [SerializeField] float towerRange = 50f;
+    public float towerFireRate = 1f;
+    public float towerRange = 50f;
     [SerializeField] float projectileSpeed = 200f;
-    [SerializeField] float towerDamage = 10f;
-    [SerializeField] TargetPriority targetPriority = TargetPriority.First;
+    public float towerDamage = 10f;
+    public TargetPriority targetPriority = TargetPriority.First;
 
     [Header("To Attach")]
     [SerializeField] Transform firePoint;
@@ -60,7 +60,7 @@ public class TowerShooting : MonoBehaviour
         if (fireCountdown <= 0f)
         {
             Shoot();
-            fireCountdown = 1f / fireRate;
+            fireCountdown = 1f / towerFireRate;
         }
 
         fireCountdown -= Time.deltaTime;
@@ -157,6 +157,26 @@ public class TowerShooting : MonoBehaviour
         aliveEnemies.Add(enemy);
     }
 
+    public void TowerTargetPrioritySwitch(int index)
+    {
+        switch(index)
+        {
+            case 0:
+                targetPriority = TargetPriority.First;
+                break;
+            case 1:
+                targetPriority = TargetPriority.Strongest;
+                break;
+            case 2:
+                targetPriority = TargetPriority.Closest;
+                break;
+            case 3:
+                targetPriority = TargetPriority.Last;
+                break;
+        }
+        //change sprites
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -165,4 +185,4 @@ public class TowerShooting : MonoBehaviour
 
 }
 
-public enum TargetPriority{First, Last, Strongest, Closest}
+public enum TargetPriority{First = 0, Last = 1, Strongest = 2, Closest = 3}

@@ -14,7 +14,6 @@ public class TowerManager : MonoBehaviour
     [SerializeField] TMP_Text moneyAmountText;
     [SerializeField] private GameObject[] towerPrefabs;
     [SerializeField] GameObject towersCanvas;
-    [SerializeField] GameObject baseDestroyCanvas;
 
     //remove serialize
     [SerializeField] List<GameObject> towersPlaced = new List<GameObject>();
@@ -114,16 +113,18 @@ public class TowerManager : MonoBehaviour
             Destroy(tower);
         }
 
-        towersPlaced.Clear();
+        EndLevel();
+    }
 
-        baseDestroyCanvas.SetActive(true);
+    private void EndLevel()
+    {
+        towersPlaced.Clear();
         currentMoneyAmount = startMoneyAmount;
         moneyAmountText.text = currentMoneyAmount.ToString();
     }
 
     public void SpawnNextWave()
     {
-        baseDestroyCanvas.SetActive(false);
         towersCanvas.SetActive(false);
 
         Destroy(currentTowerPrefab);
@@ -146,10 +147,16 @@ public class TowerManager : MonoBehaviour
         OnMouseButtonExit?.Invoke();
     }
 
-    public void TryAgainButton()
+    public void VillageButton()
     {
-        baseDestroyCanvas.SetActive(false);
         towersCanvas.SetActive(true);
+    }
+
+    public void ExitButton()
+    {
+        //todo
+        //tp between vilage nad level
+        //tower target choise
     }
 
 }
