@@ -23,6 +23,8 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
+        //UIManager.OnMouseEnterUI += MouseOnUI;
+        //UIManager.OnMouseEnterUI += MouseNotOnUI;
         TowerManager.OnTowerSelect += TowerSelected;
         TowerManager.OnTowerDeselect += TowerDeselected;
         TowerManager.OnMouseButtonEnter += MouseOnUI;
