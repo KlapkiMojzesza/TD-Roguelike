@@ -3,21 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private int towerPrize = 10;
     [SerializeField] private string towerName = "TOWER";
+    [SerializeField] private Texture towerIcon;
     [SerializeField] private float towerRangeVisualFactor = 0.041666f;
 
     [Header("To Attach")]
     [SerializeField] Renderer renderer;
+    [SerializeField] RawImage iconImage;
     [SerializeField] GameObject towerHitBox;
     [SerializeField] GameObject towerInfoCanvas;
+    [SerializeField] GameObject towerRangeVisual;
     [SerializeField] TMP_Text towerStatsText;
     [SerializeField] TMP_Text towernNameText;
-    [SerializeField] GameObject towerRangeVisual;
 
     TowerShooting towerShooting;
     Material myMaterial;
@@ -32,6 +35,7 @@ public class Tower : MonoBehaviour
         towerShooting = GetComponent<TowerShooting>();
         TowerManager.OnNextWaveButtonClicked += HandleStartWave;
         TowerManager.OnTowerSelect += HandleAnotherTowerSelected;
+        iconImage.texture = towerIcon;
         SetTowerRangeVisual();
     }
 
