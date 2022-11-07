@@ -56,7 +56,6 @@ MonoBehaviour:
   - {fileID: 2297097286232192416, guid: 94ce204abc0c2a043a7e273063c03699, type: 3}
   - {fileID: 2297097286232192416, guid: 29d073938ac1ae44898f1476d2a3dc1e, type: 3}
   - {fileID: 2297097286232192416, guid: 72afe53e38b03454b9bb50c4043a4c38, type: 3}
-  towersPlaced: []
 --- !u!114 &1035504923194178883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,13 +1438,28 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7701644492400215755}
+      objectReference: {fileID: 1035504923194178883}
     - target: {fileID: 6395997808387114733, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TryAgainButton
+      value: ReturnToVillageButton
       objectReference: {fileID: 0}
     - target: {fileID: 6395997808387114733, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579516923899986245, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1035504923194178883}
+    - target: {fileID: 7579516923899986245, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579516923899986245, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine

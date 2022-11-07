@@ -30,8 +30,20 @@ public class Tower : MonoBehaviour
         myMaterial = renderer.material;
         orginalColor = myMaterial.color;
         towerShooting = GetComponent<TowerShooting>();
+        TowerManager.OnNextWaveButtonClicked += HandleStartWave;
         TowerManager.OnTowerSelect += HandleAnotherTowerSelected;
         SetTowerRangeVisual();
+    }
+
+    private void OnDestroy()
+    {
+        TowerManager.OnNextWaveButtonClicked -= HandleStartWave;
+        TowerManager.OnTowerSelect -= HandleAnotherTowerSelected;
+    }
+
+    private void HandleStartWave()
+    {
+        towerInfoCanvas.SetActive(false);
     }
 
     private void SetTowerRangeVisual()
@@ -41,10 +53,7 @@ public class Tower : MonoBehaviour
                                                             0f);
     }
 
-    private void OnDestroy()
-    {
-        TowerManager.OnTowerSelect -= HandleAnotherTowerSelected;
-    }
+
 
     private void HandleAnotherTowerSelected()
     {
