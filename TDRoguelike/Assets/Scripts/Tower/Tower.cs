@@ -9,6 +9,7 @@ public class Tower : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int towerPrize = 10;
     [SerializeField] private string towerName = "TOWER";
+    [SerializeField] private float towerRangeVisualFactor = 0.041666f;
 
     [Header("To Attach")]
     [SerializeField] Renderer renderer;
@@ -16,6 +17,7 @@ public class Tower : MonoBehaviour
     [SerializeField] GameObject towerInfoCanvas;
     [SerializeField] TMP_Text towerStatsText;
     [SerializeField] TMP_Text towernNameText;
+    [SerializeField] GameObject towerRangeVisual;
 
     TowerShooting towerShooting;
     Material myMaterial;
@@ -29,6 +31,14 @@ public class Tower : MonoBehaviour
         orginalColor = myMaterial.color;
         towerShooting = GetComponent<TowerShooting>();
         TowerManager.OnTowerSelect += HandleAnotherTowerSelected;
+        SetTowerRangeVisual();
+    }
+
+    private void SetTowerRangeVisual()
+    {
+        towerRangeVisual.transform.localScale = new Vector3(towerShooting.towerRange * towerRangeVisualFactor,
+                                                            towerShooting.towerRange * towerRangeVisualFactor,
+                                                            0f);
     }
 
     private void OnDestroy()
