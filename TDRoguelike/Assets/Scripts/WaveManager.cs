@@ -12,11 +12,9 @@ public class WaveManager : MonoBehaviour
     [Header("To Attach")]
     [SerializeField] Transform spawnPoint;
 
-    //remove serialize
-    [SerializeField] List<GameObject> aliveEnemies = new List<GameObject>();
-
     public static event Action<int> OnWaveEnd;
 
+    List<GameObject> aliveEnemies = new List<GameObject>();
     int currentEnemySpawnIndex = 0;
     int currentWaveIndex = 0;
     int currentMiniWaveIndex = 0;

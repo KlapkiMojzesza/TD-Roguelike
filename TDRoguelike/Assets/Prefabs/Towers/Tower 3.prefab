@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerPrize: 50
-  towerName: TOWER
+  towerName: Tower 3
   renderer: {fileID: 4400322570426434597}
   towerHitBox: {fileID: 8499666728668952817}
   towerInfoCanvas: {fileID: 1301484171677153361}
@@ -272,6 +272,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower Info Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251830316638128896, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7581009845827761973, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
         type: 3}

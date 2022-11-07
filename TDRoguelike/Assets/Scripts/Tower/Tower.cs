@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,7 +10,6 @@ public class Tower : MonoBehaviour
     [SerializeField] private int towerPrize = 10;
     [SerializeField] private string towerName = "TOWER";
 
-
     [Header("To Attach")]
     [SerializeField] Renderer renderer;
     [SerializeField] GameObject towerHitBox;
@@ -17,17 +17,28 @@ public class Tower : MonoBehaviour
     [SerializeField] TMP_Text towerStatsText;
     [SerializeField] TMP_Text towernNameText;
 
-    public bool canBePlaced = true;
-    int collisionsAmount = 0;
-    Color orginalColor;
-    Material myMaterial;
     TowerShooting towerShooting;
+    Material myMaterial;
+    Color orginalColor;
+    int collisionsAmount = 0;
+    bool canBePlaced = true;
 
     private void Awake()
     {
         myMaterial = renderer.material;
         orginalColor = myMaterial.color;
         towerShooting = GetComponent<TowerShooting>();
+        TowerManager.OnTowerSelect += HandleAnotherTowerSelected;
+    }
+
+    private void OnDestroy()
+    {
+        TowerManager.OnTowerSelect -= HandleAnotherTowerSelected;
+    }
+
+    private void HandleAnotherTowerSelected()
+    {
+        towerInfoCanvas.SetActive(false);
     }
 
     public int GetTowerPrize()

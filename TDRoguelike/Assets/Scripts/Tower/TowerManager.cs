@@ -13,20 +13,16 @@ public class TowerManager : MonoBehaviour
     [Header("To Attach")]
     [SerializeField] TMP_Text moneyAmountText;
     [SerializeField] private GameObject[] towerPrefabs;
-    [SerializeField] GameObject towersCanvas;
-
-    //remove serialize
-    [SerializeField] List<GameObject> towersPlaced = new List<GameObject>();
 
     public static event Action OnTowerSelect;
     public static event Action OnTowerDeselect;
-    public static event Action OnMouseButtonEnter;
-    public static event Action OnMouseButtonExit;
+    public static event Action OnTowerPlaced;
     public static event Action OnNextWaveButtonClicked;
 
-    private int currentMoneyAmount;
+    private List<GameObject> towersPlaced = new List<GameObject>();
     private GameObject currentTowerPrefab;
     private Tower currentTower;
+    private int currentMoneyAmount;
     private bool mouseOverButton = true;
 
     private void Start()
@@ -34,12 +30,16 @@ public class TowerManager : MonoBehaviour
         currentMoneyAmount = startMoneyAmount;
         moneyAmountText.text = currentMoneyAmount.ToString();
 
+        UIMouseHoverManager.OnMouseButtonEnter += mouseOverButtonEnter;
+        UIMouseHoverManager.OnMouseButtonExit += mouseOverButtonExit;
         PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
         WaveManager.OnWaveEnd += HandleWaveEnd;
     }
 
     private void OnDestroy()
     {
+        UIMouseHoverManager.OnMouseButtonEnter -= mouseOverButtonEnter;
+        UIMouseHoverManager.OnMouseButtonExit -= mouseOverButtonExit;
         PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
         WaveManager.OnWaveEnd -= HandleWaveEnd;
     }
@@ -50,7 +50,14 @@ public class TowerManager : MonoBehaviour
 
         MoveTowerPrefab();
 
-        if (Input.GetMouseButtonUp(0) && currentTower.CanBePlaced() && !mouseOverButton)
+        if (Input.GetMouseButtonUp(1))
+        {
+            Destroy(currentTowerPrefab);
+            OnTowerDeselect?.Invoke();
+            return;
+        }
+
+        if (Input.GetMouseButtonDown(0) && currentTower.CanBePlaced() && !mouseOverButton)
         {
             PlaceTower();
         }
@@ -80,24 +87,18 @@ public class TowerManager : MonoBehaviour
         towersPlaced.Add(currentTowerPrefab);
         currentTowerPrefab = null;
         OnTowerDeselect?.Invoke();
+        OnTowerPlaced?.Invoke();
     }
 
     public void SwitchTowers(int towerIndex)
     {
         if (towerPrefabs[towerIndex].GetComponent<Tower>().GetTowerPrize() > currentMoneyAmount) return;
 
-        if (currentTowerPrefab != towerPrefabs[towerIndex])
-        {
-            Destroy(currentTowerPrefab);
-            currentTowerPrefab = Instantiate(towerPrefabs[towerIndex]);
-            currentTower = currentTowerPrefab.GetComponent<Tower>();
-            OnTowerSelect?.Invoke();
-        }
-        else
-        {
-            Destroy(currentTowerPrefab);
-            OnTowerDeselect?.Invoke();
-        }
+        currentTowerPrefab = Instantiate(towerPrefabs[towerIndex]);
+        currentTower = currentTowerPrefab.GetComponent<Tower>();
+        OnTowerSelect?.Invoke();
+        mouseOverButton = false;
+
     }
 
     public void HandleWaveEnd(int amount)
@@ -125,38 +126,23 @@ public class TowerManager : MonoBehaviour
 
     public void SpawnNextWave()
     {
-        towersCanvas.SetActive(false);
-
-        Destroy(currentTowerPrefab);
-        OnTowerDeselect?.Invoke();
-
         mouseOverButton = false;
-        OnMouseButtonExit?.Invoke();
         OnNextWaveButtonClicked?.Invoke();
     }
 
-    public void mousceOverButtonEnter()
+    public void CancelButtonClick()
+    {
+        Destroy(currentTowerPrefab);
+        OnTowerDeselect?.Invoke();
+    }
+
+    private void mouseOverButtonEnter()
     {
         mouseOverButton = true;
-        OnMouseButtonEnter?.Invoke();
     }
 
-    public void mousceOverButtonExit()
+    private void mouseOverButtonExit()
     {
         mouseOverButton = false;
-        OnMouseButtonExit?.Invoke();
     }
-
-    public void VillageButton()
-    {
-        towersCanvas.SetActive(true);
-    }
-
-    public void ExitButton()
-    {
-        //todo
-        //tp between vilage nad level
-        //tower target choise
-    }
-
 }

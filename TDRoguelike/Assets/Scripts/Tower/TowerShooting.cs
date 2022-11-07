@@ -174,7 +174,6 @@ public class TowerShooting : MonoBehaviour
                 targetPriority = TargetPriority.Last;
                 break;
         }
-        //change sprites
     }
 
     private void OnDrawGizmosSelected()

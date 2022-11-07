@@ -16,27 +16,25 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject projectilePrefab;
 
-    bool mouseOnUI = false;
-    bool towerSelected = false;
+    public bool mouseOnUI = false;
+    public bool towerSelected = false;
     Vector3 direction;
     float lastFired = 0f;
 
     private void Start()
     {
-        //UIManager.OnMouseEnterUI += MouseOnUI;
-        //UIManager.OnMouseEnterUI += MouseNotOnUI;
         TowerManager.OnTowerSelect += TowerSelected;
         TowerManager.OnTowerDeselect += TowerDeselected;
-        TowerManager.OnMouseButtonEnter += MouseOnUI;
-        TowerManager.OnMouseButtonExit += MouseNotOnUI;
+        UIMouseHoverManager.OnMouseButtonEnter += MouseOnUI;
+        UIMouseHoverManager.OnMouseButtonExit += MouseNotOnUI;
     }
 
     private void OnDestroy()
     {
         TowerManager.OnTowerSelect -= TowerSelected;
         TowerManager.OnTowerDeselect -= TowerDeselected;
-        TowerManager.OnMouseButtonEnter -= MouseOnUI;
-        TowerManager.OnMouseButtonExit -= MouseNotOnUI;
+        UIMouseHoverManager.OnMouseButtonEnter -= MouseOnUI;
+        UIMouseHoverManager.OnMouseButtonExit -= MouseNotOnUI;
     }
 
     private void Update()
@@ -81,6 +79,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void TowerSelected()
     {
+        mouseOnUI = false;
         towerSelected = true;
     }
 
