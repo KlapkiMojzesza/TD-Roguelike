@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TowerManager : MonoBehaviour
 {
@@ -23,23 +24,18 @@ public class TowerManager : MonoBehaviour
     private GameObject currentTowerPrefab;
     private Tower currentTower;
     private int currentMoneyAmount;
-    private bool mouseOverButton = true;
 
     private void Start()
     {
         currentMoneyAmount = startMoneyAmount;
         moneyAmountText.text = currentMoneyAmount.ToString();
 
-        UIMouseHoverManager.OnMouseButtonEnter += mouseOverButtonEnter;
-        UIMouseHoverManager.OnMouseButtonExit += mouseOverButtonExit;
         PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
         WaveManager.OnWaveEnd += HandleWaveEnd;
     }
 
     private void OnDestroy()
     {
-        UIMouseHoverManager.OnMouseButtonEnter -= mouseOverButtonEnter;
-        UIMouseHoverManager.OnMouseButtonExit -= mouseOverButtonExit;
         PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
         WaveManager.OnWaveEnd -= HandleWaveEnd;
     }
@@ -57,11 +53,16 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButtonDown(0) && currentTower.CanBePlaced() && !mouseOverButton)
+        if (Input.GetMouseButtonDown(0) && currentTower.CanBePlaced() && !IsMouseOverUI())
         {
             PlaceTower();
         }
 
+    }
+
+    private bool IsMouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
     }
 
     private void MoveTowerPrefab()
@@ -97,8 +98,6 @@ public class TowerManager : MonoBehaviour
         currentTowerPrefab = Instantiate(towerPrefabs[towerIndex]);
         currentTower = currentTowerPrefab.GetComponent<Tower>();
         OnTowerSelect?.Invoke();
-        mouseOverButton = false;
-
     }
 
     public void HandleWaveEnd(int amount)
@@ -126,7 +125,6 @@ public class TowerManager : MonoBehaviour
 
     public void SpawnNextWave()
     {
-        mouseOverButton = false;
         OnNextWaveButtonClicked?.Invoke();
     }
 
@@ -134,15 +132,5 @@ public class TowerManager : MonoBehaviour
     {
         Destroy(currentTowerPrefab);
         OnTowerDeselect?.Invoke();
-    }
-
-    private void mouseOverButtonEnter()
-    {
-        mouseOverButton = true;
-    }
-
-    private void mouseOverButtonExit()
-    {
-        mouseOverButton = false;
     }
 }

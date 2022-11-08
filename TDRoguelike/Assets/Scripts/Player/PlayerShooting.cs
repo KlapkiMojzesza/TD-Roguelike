@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -16,8 +17,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject projectilePrefab;
 
-    public bool mouseOnUI = false;
-    public bool towerSelected = false;
+    bool towerSelected = false;
     Vector3 direction;
     float lastFired = 0f;
 
@@ -25,16 +25,12 @@ public class PlayerShooting : MonoBehaviour
     {
         TowerManager.OnTowerSelect += TowerSelected;
         TowerManager.OnTowerDeselect += TowerDeselected;
-        UIMouseHoverManager.OnMouseButtonEnter += MouseOnUI;
-        UIMouseHoverManager.OnMouseButtonExit += MouseNotOnUI;
     }
 
     private void OnDestroy()
     {
         TowerManager.OnTowerSelect -= TowerSelected;
         TowerManager.OnTowerDeselect -= TowerDeselected;
-        UIMouseHoverManager.OnMouseButtonEnter -= MouseOnUI;
-        UIMouseHoverManager.OnMouseButtonExit -= MouseNotOnUI;
     }
 
     private void Update()
@@ -47,9 +43,14 @@ public class PlayerShooting : MonoBehaviour
 
     private bool CanShoot()
     {
-        if (!mouseOnUI && !towerSelected) return true;
+        if (!IsMouseOverUI() && !towerSelected) return true;
 
         return false;
+    }
+
+    private bool IsMouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
     }
 
     public void Shoot()
@@ -79,18 +80,6 @@ public class PlayerShooting : MonoBehaviour
 
     private void TowerSelected()
     {
-        mouseOnUI = false;
         towerSelected = true;
     }
-
-    private void MouseOnUI()
-    {
-        mouseOnUI = true;
-    }
-
-    private void MouseNotOnUI()
-    {
-        mouseOnUI = false;
-    }
-
 }

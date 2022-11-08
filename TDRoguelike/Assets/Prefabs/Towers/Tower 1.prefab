@@ -83,6 +83,9 @@ MonoBehaviour:
   towerPrize: 10
   towerName: Tower 1
   towerIcon: {fileID: 2800000, guid: ca7936278f8c7ef4c9a0a676b9036b77, type: 3}
+  towerLayer:
+    serializedVersion: 2
+    m_Bits: 512
   towerRangeVisualFactor: 0.041666
   renderer: {fileID: 2072018365752782548}
   iconImage: {fileID: 8440097043434922644}

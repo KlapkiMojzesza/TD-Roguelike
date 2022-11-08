@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
@@ -11,6 +13,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private int towerPrize = 10;
     [SerializeField] private string towerName = "TOWER";
     [SerializeField] private Texture towerIcon;
+    [SerializeField] private LayerMask towerLayer;
     [SerializeField] private float towerRangeVisualFactor = 0.041666f;
 
     [Header("To Attach")]
@@ -28,13 +31,20 @@ public class Tower : MonoBehaviour
     int collisionsAmount = 0;
     bool canBePlaced = true;
 
+    Controls controls;
+
     private void Awake()
     {
+        TowerManager.OnNextWaveButtonClicked += HandleStartWave;
+        TowerManager.OnTowerSelect += HandleAnotherTowerSelected;
+
+        controls = new Controls();
+        controls.Player.Enable();
+        controls.Player.Info.performed += HandlePlayerMouseInfo;
+
         myMaterial = renderer.material;
         orginalColor = myMaterial.color;
         towerShooting = GetComponent<TowerShooting>();
-        TowerManager.OnNextWaveButtonClicked += HandleStartWave;
-        TowerManager.OnTowerSelect += HandleAnotherTowerSelected;
         iconImage.texture = towerIcon;
         SetTowerRangeVisual();
     }
@@ -43,6 +53,29 @@ public class Tower : MonoBehaviour
     {
         TowerManager.OnNextWaveButtonClicked -= HandleStartWave;
         TowerManager.OnTowerSelect -= HandleAnotherTowerSelected;
+        controls.Player.Info.performed -= HandlePlayerMouseInfo;
+    }
+
+    private void HandlePlayerMouseInfo(InputAction.CallbackContext obj)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit towerHit;
+
+        if (!Physics.Raycast(ray, out towerHit, Mathf.Infinity, towerLayer))
+        {
+            towerInfoCanvas.SetActive(false);
+            return;
+        }
+
+        GameObject towerHitGameObject = towerHit.transform.gameObject;
+        if (towerHitGameObject != this.gameObject)
+        {
+            towerInfoCanvas.SetActive(false);
+            return;
+        }
+
+        towerInfoCanvas.SetActive(true);
+
     }
 
     private void HandleStartWave()
@@ -50,14 +83,13 @@ public class Tower : MonoBehaviour
         towerInfoCanvas.SetActive(false);
     }
 
+    //prototype change later (not work)
     private void SetTowerRangeVisual()
     {
         towerRangeVisual.transform.localScale = new Vector3(towerShooting.towerRange * towerRangeVisualFactor,
                                                             towerShooting.towerRange * towerRangeVisualFactor,
                                                             0f);
     }
-
-
 
     private void HandleAnotherTowerSelected()
     {
@@ -76,17 +108,6 @@ public class Tower : MonoBehaviour
         return false;
     }
 
-    public void SetTowerColor()
-    {
-        Color color = CanBePlaced() ? Color.green : Color.red;
-        myMaterial.color = color;
-    }
-
-    public void SetOrginalColor()
-    {
-        myMaterial.color = orginalColor;
-    }
-
     public void PlaceTower()
     {
         towerHitBox.SetActive(true);
@@ -103,6 +124,17 @@ public class Tower : MonoBehaviour
                               $"FireRate: {towerShooting.towerFireRate.ToString()}";
 
         towernNameText.text = towerName;
+    }
+
+    public void SetTowerColor()
+    {
+        Color color = CanBePlaced() ? Color.green : Color.red;
+        myMaterial.color = color;
+    }
+
+    public void SetOrginalColor()
+    {
+        myMaterial.color = orginalColor;
     }
 
     private void OnCollisionExit(Collision collision)
