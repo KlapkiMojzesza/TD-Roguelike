@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce44320d26a71384aad088791ddd170e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  damage: 20
   speed: 30
   rotateSpeed: 0.1
   lookDirectionOffset: 90

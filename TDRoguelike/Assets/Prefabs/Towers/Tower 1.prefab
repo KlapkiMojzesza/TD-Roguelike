@@ -106,10 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4070dc63727ae084397a3410baea02c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerFireRate: 1
-  towerRange: 60
+  towerFireRate: 3
+  towerRange: 40
   projectileSpeed: 250
-  towerDamage: 30
+  towerDamage: 20
   targetPriority: 0
   firePoint: {fileID: 2753105329104795647}
   projectilePrefab: {fileID: 2547094118735421181, guid: 82ec74c9fcd6d734e8268d496aeb3f3c,

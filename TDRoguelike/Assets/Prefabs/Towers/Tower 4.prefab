@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3643367639662998215}
   - component: {fileID: 4071774088349611471}
   m_Layer: 9
-  m_Name: Tower 3
+  m_Name: Tower 4
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2297097286232192416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 30, z: 10}
+  m_LocalScale: {x: 20, y: 10, z: 20}
   m_Children:
   - {fileID: 5738441287540992411}
   - {fileID: 5353035342041310943}
@@ -80,9 +80,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2d28ea6549b5d4ba960d9e5c192e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrize: 50
-  towerName: Tower 3
-  towerIcon: {fileID: 2800000, guid: 10ba2e1d3dc8a6b40a90ac20300b917c, type: 3}
+  towerPrize: 60
+  towerName: Thic Boy
+  towerIcon: {fileID: 2800000, guid: 8f106dff5cba08d4c91fdf29c5425c4f, type: 3}
   towerLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -106,13 +106,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4070dc63727ae084397a3410baea02c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerFireRate: 1
-  towerRange: 130
+  towerFireRate: 8
+  towerRange: 30
   projectileSpeed: 300
-  towerDamage: 150
+  towerDamage: 40
   targetPriority: 0
   firePoint: {fileID: 5353035342041310943}
-  projectilePrefab: {fileID: 2547094118735421181, guid: 813242f308e8f1b4dbbe569eb4ec3aa1,
+  projectilePrefab: {fileID: 2547094118735421181, guid: 714ff59649148fa458f7a08c67137c21,
     type: 3}
   aliveEnemies: []
 --- !u!1 &4144036885032542584
@@ -276,7 +276,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d28418b66c4c0943b9e1efce6e562c4, type: 2}
+  - {fileID: 2100000, guid: f7a04eeecc90d79468182fbd2d7190d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

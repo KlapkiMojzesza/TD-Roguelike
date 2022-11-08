@@ -56,6 +56,7 @@ MonoBehaviour:
   - {fileID: 2297097286232192416, guid: 94ce204abc0c2a043a7e273063c03699, type: 3}
   - {fileID: 2297097286232192416, guid: 29d073938ac1ae44898f1476d2a3dc1e, type: 3}
   - {fileID: 2297097286232192416, guid: 72afe53e38b03454b9bb50c4043a4c38, type: 3}
+  - {fileID: 2297097286232192416, guid: 42a68dbbebff27e488f89054adffedf9, type: 3}
 --- !u!114 &1035504923194178883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +83,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player Money Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964646685883969596, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
+        type: 3}
+      propertyPath: m_text
+      value: 60$
       objectReference: {fileID: 0}
     - target: {fileID: 2044569991787456241, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
         type: 3}
@@ -638,6 +644,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5705059164564643291, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 8f106dff5cba08d4c91fdf29c5425c4f, type: 3}
+    - target: {fileID: 5996877034620737899, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 10ba2e1d3dc8a6b40a90ac20300b917c, type: 3}
     - target: {fileID: 7007520183641015671, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -896,7 +912,7 @@ PrefabInstance:
     - target: {fileID: 8637792276735909865, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8637792276735909865, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
         type: 3}

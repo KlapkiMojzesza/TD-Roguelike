@@ -30,6 +30,7 @@ public class Tower : MonoBehaviour
     Color orginalColor;
     int collisionsAmount = 0;
     bool canBePlaced = true;
+    bool isPlaced = false;
 
     Controls controls;
 
@@ -56,8 +57,10 @@ public class Tower : MonoBehaviour
         controls.Player.Info.performed -= HandlePlayerMouseInfo;
     }
 
-    private void HandlePlayerMouseInfo(InputAction.CallbackContext obj)
+    private void HandlePlayerMouseInfo(InputAction.CallbackContext cpntext)
     {
+        if (!isPlaced) return;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit towerHit;
 
@@ -75,7 +78,6 @@ public class Tower : MonoBehaviour
         }
 
         towerInfoCanvas.SetActive(true);
-
     }
 
     private void HandleStartWave()
@@ -111,7 +113,7 @@ public class Tower : MonoBehaviour
     public void PlaceTower()
     {
         towerHitBox.SetActive(true);
-
+        isPlaced = true;
         UpdateTowerStatsUI();
 
         towerInfoCanvas.SetActive(true);
