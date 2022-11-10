@@ -15,5 +15,5 @@ MonoBehaviour:
   towerName: Normal
   towerFireRate: 5
   towerRange: 55
-  towerDamage: 55
+  towerDamage: 135
   towerIcon: {fileID: 2800000, guid: ca7936278f8c7ef4c9a0a676b9036b77, type: 3}

@@ -22,6 +22,11 @@ public class PlayerStructureInteract : MonoBehaviour
         controls.Player.Interact.performed += HandlePlayerInteract;
     }
 
+    private void OnDestroy()
+    {
+        controls.Player.Interact.performed -= HandlePlayerInteract;
+    }
+
     private void HandlePlayerInteract(InputAction.CallbackContext context)
     {
         Collider[] hitBuildings = Physics.OverlapSphere(transform.position, interactRange, buildingLayer);

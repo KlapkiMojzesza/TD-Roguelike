@@ -37,7 +37,7 @@ public class VillageBuilding : MonoBehaviour
     private void OnDestroy()
     {
         //controls.Player.Info.performed -= HandlePlayerMouseInfo;
-        PlayerStructureInteract.OnPlayerInteract += ShowUI;
+        PlayerStructureInteract.OnPlayerInteract -= ShowUI;
     }
 
     public void BoostDamage()
