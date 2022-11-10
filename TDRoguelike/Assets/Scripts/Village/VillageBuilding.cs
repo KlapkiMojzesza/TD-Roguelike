@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class VillageBuilding : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class VillageBuilding : MonoBehaviour
     [SerializeField] private LayerMask buildingLayer;
 
     [Header("To Attach")]
+    [SerializeField] RawImage iconImage;
     [SerializeField] GameObject buildingCanvas;
     [SerializeField] TowerScriptableObject towerData;
 
@@ -22,6 +24,7 @@ public class VillageBuilding : MonoBehaviour
         controls.Player.Info.performed += HandlePlayerMouseInfo;*/
 
         PlayerStructureInteract.OnPlayerInteract += ShowUI;
+        iconImage.texture = towerData.towerIcon;
     }
 
     private void ShowUI(GameObject wantedBuilding)

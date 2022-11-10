@@ -110,6 +110,7 @@ MonoBehaviour:
   buildingLayer:
     serializedVersion: 2
     m_Bits: 2048
+  iconImage: {fileID: 7813500034622639104}
   buildingCanvas: {fileID: 7493800979021648805}
   towerData: {fileID: 11400000, guid: 9d991a268a843934ba49083815d33139, type: 2}
 --- !u!1001 &4191573212758949493
@@ -329,6 +330,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8103077719876210172, guid: 9d9a977c549f00a4d9bba7c9dfe1b95a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8103077719876210172, guid: 9d9a977c549f00a4d9bba7c9dfe1b95a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7493800979021648805}
+    - target: {fileID: 8103077719876210172, guid: 9d9a977c549f00a4d9bba7c9dfe1b95a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 8103077719876210172, guid: 9d9a977c549f00a4d9bba7c9dfe1b95a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d9a977c549f00a4d9bba7c9dfe1b95a, type: 3}
 --- !u!1 &7493800979021648805 stripped
@@ -343,3 +364,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4191573212758949493}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7813500034622639104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6216187133215208053, guid: 9d9a977c549f00a4d9bba7c9dfe1b95a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4191573212758949493}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

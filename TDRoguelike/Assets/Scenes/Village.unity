@@ -876,7 +876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &729972802
 Transform:
   m_ObjectHideFlags: 0
@@ -968,6 +968,7 @@ MonoBehaviour:
   buildingLayer:
     serializedVersion: 2
     m_Bits: 2048
+  iconImage: {fileID: 0}
   buildingCanvas: {fileID: 211031062}
   towerData: {fileID: 0}
 --- !u!1 &763293169
@@ -1407,6 +1408,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3495685178134596540, guid: c3506432b1e65634bacd28b1f0d52fca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3495685179974007112, guid: c3506432b1e65634bacd28b1f0d52fca,
         type: 3}
       propertyPath: m_RootOrder
@@ -1610,6 +1616,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower 1 Village
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493800979021648801, guid: 972eeed1bf4201142aa2059aab9c7b27,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493800979021648805, guid: 972eeed1bf4201142aa2059aab9c7b27,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 972eeed1bf4201142aa2059aab9c7b27, type: 3}
