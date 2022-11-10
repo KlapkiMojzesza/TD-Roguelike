@@ -87,11 +87,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   towerRangeVisualFactor: 0.041666
+  towerData: {fileID: 11400000, guid: 9d991a268a843934ba49083815d33139, type: 2}
   renderer: {fileID: 2072018365752782548}
   iconImage: {fileID: 8440097043434922644}
   towerHitBox: {fileID: 6590460790067398709}
   towerInfoCanvas: {fileID: 5939002838576393590}
-  towerRangeVisual: {fileID: 5841171259662835769}
   towerStatsText: {fileID: 2210182002272348034}
   towernNameText: {fileID: 4702114086008702629}
 --- !u!114 &5403998834522446609
@@ -106,11 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4070dc63727ae084397a3410baea02c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerFireRate: 3
-  towerRange: 40
   projectileSpeed: 250
-  towerDamage: 20
   targetPriority: 0
+  towerData: {fileID: 11400000, guid: 9d991a268a843934ba49083815d33139, type: 2}
   firePoint: {fileID: 2753105329104795647}
   projectilePrefab: {fileID: 2547094118735421181, guid: 82ec74c9fcd6d734e8268d496aeb3f3c,
     type: 3}

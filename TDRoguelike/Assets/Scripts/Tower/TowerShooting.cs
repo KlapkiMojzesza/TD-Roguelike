@@ -6,13 +6,14 @@ using UnityEngine;
 public class TowerShooting : MonoBehaviour
 {
     [Header("Settings")]
-    public float towerFireRate = 1f;
-    public float towerRange = 50f;
+    //public float towerFireRate = 1f;
+    //public float towerRange = 50f;
     [SerializeField] float projectileSpeed = 200f;
-    public float towerDamage = 10f;
+    //public float towerDamage = 10f;
     public TargetPriority targetPriority = TargetPriority.First;
 
     [Header("To Attach")]
+    [SerializeField] TowerScriptableObject towerData;
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject projectilePrefab;
 
@@ -60,7 +61,7 @@ public class TowerShooting : MonoBehaviour
         if (fireCountdown <= 0f)
         {
             Shoot();
-            fireCountdown = 1f / towerFireRate;
+            fireCountdown = 1f / towerData.towerFireRate;
         }
 
         fireCountdown -= Time.deltaTime;
@@ -73,7 +74,7 @@ public class TowerShooting : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy <= towerRange)
+            if (distanceToEnemy <= towerData.towerRange)
             {
                 int enemySpawnIndex = enemy.GetComponent<EnemyHealth>().enemyID;
                 if (enemySpawnIndex >= mostAheadEnemyIndex) continue;
@@ -91,7 +92,7 @@ public class TowerShooting : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy <= towerRange)
+            if (distanceToEnemy <= towerData.towerRange)
             {
                 int enemySpawnIndex = enemy.GetComponent<EnemyHealth>().enemyID;
                 if (enemySpawnIndex < lastEnemyIndex) continue;
@@ -109,7 +110,7 @@ public class TowerShooting : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy <= towerRange)
+            if (distanceToEnemy <= towerData.towerRange)
             {
                 float enemyStrength = enemy.GetComponent<EnemyHealth>().enemyStrength;
                 if (enemyStrength <= strongestEnemyStrength) continue;
@@ -127,7 +128,7 @@ public class TowerShooting : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance && distanceToEnemy <= towerRange)
+            if (distanceToEnemy < shortestDistance && distanceToEnemy <= towerData.towerRange)
             {
                 shortestDistance = distanceToEnemy;
                 closestEnemy = enemy.transform;
@@ -143,7 +144,7 @@ public class TowerShooting : MonoBehaviour
 
         if (projectile != null)
         {
-            projectile.Create(target.gameObject.GetComponent<EnemyHealth>().aimPoint, projectileSpeed, towerDamage);
+            projectile.Create(target.gameObject.GetComponent<EnemyHealth>().aimPoint, projectileSpeed, towerData.towerDamage);
         }
     }
 
@@ -179,7 +180,7 @@ public class TowerShooting : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, towerRange);
+        Gizmos.DrawWireSphere(transform.position, towerData.towerRange);
     }
 
 }

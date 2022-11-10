@@ -220,8 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce44320d26a71384aad088791ddd170e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  speed: 60
+  damage: 50
+  speed: 50
   rotateSpeed: 0.1
   lookDirectionOffset: 90
 --- !u!114 &1338034353102245274

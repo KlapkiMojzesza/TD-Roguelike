@@ -81,17 +81,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerPrize: 60
-  towerName: Thic Boy
-  towerIcon: {fileID: 2800000, guid: 8f106dff5cba08d4c91fdf29c5425c4f, type: 3}
   towerLayer:
     serializedVersion: 2
     m_Bits: 512
   towerRangeVisualFactor: 0.041666
+  towerData: {fileID: 11400000, guid: 984ac8d9c3a78244099c5c5b45bc9e90, type: 2}
   renderer: {fileID: 4400322570426434597}
   iconImage: {fileID: 3838580789423814579}
   towerHitBox: {fileID: 8499666728668952817}
   towerInfoCanvas: {fileID: 1301484171677153361}
-  towerRangeVisual: {fileID: 7274099894931591316}
   towerStatsText: {fileID: 6829844877369045669}
   towernNameText: {fileID: 82503718353048450}
 --- !u!114 &4071774088349611471
@@ -106,11 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4070dc63727ae084397a3410baea02c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerFireRate: 8
-  towerRange: 30
   projectileSpeed: 300
-  towerDamage: 40
   targetPriority: 0
+  towerData: {fileID: 11400000, guid: 984ac8d9c3a78244099c5c5b45bc9e90, type: 2}
   firePoint: {fileID: 5353035342041310943}
   projectilePrefab: {fileID: 2547094118735421181, guid: 714ff59649148fa458f7a08c67137c21,
     type: 3}

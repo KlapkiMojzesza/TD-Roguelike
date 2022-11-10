@@ -11,21 +11,18 @@ public class Tower : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private int towerPrize = 10;
-    [SerializeField] private string towerName = "TOWER";
-    [SerializeField] private Texture towerIcon;
     [SerializeField] private LayerMask towerLayer;
     [SerializeField] private float towerRangeVisualFactor = 0.041666f;
 
     [Header("To Attach")]
+    [SerializeField] TowerScriptableObject towerData;
     [SerializeField] Renderer renderer;
     [SerializeField] RawImage iconImage;
     [SerializeField] GameObject towerHitBox;
     [SerializeField] GameObject towerInfoCanvas;
-    [SerializeField] GameObject towerRangeVisual;
     [SerializeField] TMP_Text towerStatsText;
     [SerializeField] TMP_Text towernNameText;
 
-    TowerShooting towerShooting;
     Material myMaterial;
     Color orginalColor;
     int collisionsAmount = 0;
@@ -45,9 +42,7 @@ public class Tower : MonoBehaviour
 
         myMaterial = renderer.material;
         orginalColor = myMaterial.color;
-        towerShooting = GetComponent<TowerShooting>();
-        iconImage.texture = towerIcon;
-        SetTowerRangeVisual();
+        iconImage.texture = towerData.towerIcon;
     }
 
     private void OnDestroy()
@@ -85,14 +80,6 @@ public class Tower : MonoBehaviour
         towerInfoCanvas.SetActive(false);
     }
 
-    //prototype change later (not work)
-    private void SetTowerRangeVisual()
-    {
-        towerRangeVisual.transform.localScale = new Vector3(towerShooting.towerRange * towerRangeVisualFactor,
-                                                            towerShooting.towerRange * towerRangeVisualFactor,
-                                                            0f);
-    }
-
     private void HandleAnotherTowerSelected()
     {
         towerInfoCanvas.SetActive(false);
@@ -121,11 +108,11 @@ public class Tower : MonoBehaviour
 
     private void UpdateTowerStatsUI()
     {
-        towerStatsText.text = $"Damage: {towerShooting.towerDamage.ToString()}\n" +
-                              $"Range: {towerShooting.towerRange.ToString()}\n" +
-                              $"FireRate: {towerShooting.towerFireRate.ToString()}";
+        towerStatsText.text = $"Damage: {towerData.towerDamage.ToString()}\n" +
+                              $"Range: {towerData.towerRange.ToString()}\n" +
+                              $"FireRate: {towerData.towerFireRate.ToString()}";
 
-        towernNameText.text = towerName;
+        towernNameText.text = towerData.towerName;
     }
 
     public void SetTowerColor()
