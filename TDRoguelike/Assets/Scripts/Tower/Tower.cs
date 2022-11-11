@@ -10,12 +10,10 @@ using UnityEngine.UI;
 public class Tower : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private int towerPrize = 10;
     [SerializeField] private LayerMask towerLayer;
-    [SerializeField] private float towerRangeVisualFactor = 0.041666f;
 
     [Header("To Attach")]
-    [SerializeField] TowerScriptableObject towerData;
+    public TowerScriptableObject towerData;
     [SerializeField] Renderer renderer;
     [SerializeField] RawImage iconImage;
     [SerializeField] GameObject towerHitBox;
@@ -85,11 +83,6 @@ public class Tower : MonoBehaviour
         towerInfoCanvas.SetActive(false);
     }
 
-    public int GetTowerPrize()
-    {
-        return towerPrize;
-    }
-
     public bool CanBePlaced()
     {
         if (collisionsAmount == 0 && canBePlaced) return true;
@@ -124,6 +117,11 @@ public class Tower : MonoBehaviour
     public void SetOrginalColor()
     {
         myMaterial.color = orginalColor;
+    }
+
+    public Texture GetTowerIcon()
+    {
+        return towerData.towerIcon;
     }
 
     private void OnCollisionExit(Collision collision)

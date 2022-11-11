@@ -13,7 +13,7 @@ public class TowerManager : MonoBehaviour
 
     [Header("To Attach")]
     [SerializeField] TMP_Text moneyAmountText;
-    [SerializeField] private GameObject[] towerPrefabs;
+    [SerializeField] public GameObject[] towerPrefabs;
 
     public static event Action OnTowerSelect;
     public static event Action OnTowerDeselect;
@@ -79,7 +79,7 @@ public class TowerManager : MonoBehaviour
 
     private void PlaceTower()
     {
-        currentMoneyAmount -= currentTower.GetTowerPrize();
+        currentMoneyAmount -= currentTower.towerData.towerPrice;
         moneyAmountText.text = currentMoneyAmount.ToString();
 
         currentTower.SetOrginalColor();
@@ -93,7 +93,7 @@ public class TowerManager : MonoBehaviour
 
     public void SwitchTowers(int towerIndex)
     {
-        if (towerPrefabs[towerIndex].GetComponent<Tower>().GetTowerPrize() > currentMoneyAmount) return;
+        if (towerPrefabs[towerIndex].GetComponent<Tower>().towerData.towerPrice > currentMoneyAmount) return;
 
         currentTowerPrefab = Instantiate(towerPrefabs[towerIndex]);
         currentTower = currentTowerPrefab.GetComponent<Tower>();
