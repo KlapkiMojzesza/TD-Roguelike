@@ -12,19 +12,28 @@ public class VillageBuilding : MonoBehaviour
     [SerializeField] private LayerMask buildingLayer;
 
     [Header("To Attach")]
-    [SerializeField] GameObject buildingCanvas;
     [SerializeField] TowerScriptableObject towerData;
+    [SerializeField] GameObject buildingCanvas;
+    [SerializeField] GameObject upgradeMenu;
+    [SerializeField] GameObject upgradeButton;
+    [SerializeField] GameObject upgradeButtonBlocked;
+    [SerializeField] GameObject upgradeButtonPurchased;
+    [Space(10)]
     [SerializeField] TMP_Text towerNameText;
     [SerializeField] TMP_Text towerInfoText;
     [SerializeField] TMP_Text towerStatsText;
     [SerializeField] RawImage towerIcon;
+    [Space(10)]
     [SerializeField] TMP_Text upgradeNameText;
     [SerializeField] RawImage upgradeIcon;
     [SerializeField] TMP_Text upgradeInfoText;
 
-    public List<UpgradeScriptableObject> upgradesPurchased;
+    public List<UpgradeButton> upgradesPurchased;
+
+    public static event Action<UpgradeButton> OnUpgradePurchased;
 
     UpgradeScriptableObject currentUpgradeData;
+    UpgradeButton currentUpgradeButtonLogic;
 
     Controls controls;
 
@@ -39,8 +48,8 @@ public class VillageBuilding : MonoBehaviour
 
         towerNameText.text = towerData.towerName;
         towerInfoText.text = towerData.towerInfo;
-        towerStatsText.text = "TO BE DONE";
         towerIcon.texture = towerData.towerIcon;
+        SetTowerStats();
     }
 
     private void OnDestroy()
@@ -50,19 +59,28 @@ public class VillageBuilding : MonoBehaviour
         UpgradeButton.OnUpgradeChoose -= HandleUpgradeChoose;
     }
 
-    private void HandleUpgradeChoose(UpgradeScriptableObject upgradeData)
+    private void HandleUpgradeChoose(UpgradeScriptableObject upgradeData, UpgradeButton upgradeButtonLogic)
     {
-        /*
-         if (previous purchased)
-         Upgrade button active
-         return
+        upgradeButton.SetActive(false);
+        upgradeButtonBlocked.SetActive(false);
+        upgradeButtonPurchased.SetActive(false);
 
-        Upgrade button false
+        if (upgradesPurchased.Contains(upgradeButtonLogic))
+        {
+            upgradeButtonPurchased.SetActive(true);
+        }
+        else if (upgradeButtonLogic.UpgradePossible())
+        {
+            upgradeButton.SetActive(true);
+        }
+        else
+        {
+            upgradeButtonBlocked.SetActive(true);
+        }
 
-         
-         */
-
+        currentUpgradeButtonLogic = upgradeButtonLogic;
         currentUpgradeData = upgradeData;
+
         upgradeNameText.text = upgradeData.upgradeName;
         upgradeInfoText.text = upgradeData.upgradeInfo;
         upgradeIcon.texture = upgradeData.upgradeIcon;
@@ -73,9 +91,13 @@ public class VillageBuilding : MonoBehaviour
         if (!buildingCanvas.activeSelf) return;
 
         //this will be different with seve system
-        if (upgradesPurchased.Contains(currentUpgradeData)) return;
+        if (upgradesPurchased.Contains(currentUpgradeButtonLogic)) return;
 
-        upgradesPurchased.Add(currentUpgradeData);
+        upgradeMenu.SetActive(false);
+
+        currentUpgradeButtonLogic.isPurchased = true;
+        OnUpgradePurchased?.Invoke(currentUpgradeButtonLogic);
+        upgradesPurchased.Add(currentUpgradeButtonLogic);
 
         UpgradeType upgradeType = currentUpgradeData.upgradeType;
         switch(upgradeType)
@@ -100,6 +122,8 @@ public class VillageBuilding : MonoBehaviour
 
                 break;
         }
+
+        SetTowerStats();
     }
 
     private void ShowUI(GameObject wantedBuilding)
@@ -110,6 +134,14 @@ public class VillageBuilding : MonoBehaviour
             return;
         }
         buildingCanvas.SetActive(false);       
+    }
+
+    private void SetTowerStats()
+    {
+        towerStatsText.text = $"Damage: {towerData.towerDamage.ToString()}\n" +
+                              $"FireRate: {towerData.towerFireRate.ToString()}\n" +
+                              $"Range: {towerData.towerRange.ToString()}\n" +
+                              $"Pierce: {towerData.towerEnemyPierce.ToString()}";
     }
 
     /*private void HandlePlayerMouseInfo(InputAction.CallbackContext cpntext)
