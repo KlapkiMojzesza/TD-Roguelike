@@ -968,9 +968,14 @@ MonoBehaviour:
   buildingLayer:
     serializedVersion: 2
     m_Bits: 2048
+  towerData: {fileID: 0}
   iconImage: {fileID: 0}
   buildingCanvas: {fileID: 211031062}
-  towerData: {fileID: 0}
+  towerNameText: {fileID: 0}
+  towerInfoText: {fileID: 0}
+  towerStatsText: {fileID: 0}
+  upgradeNameText: {fileID: 0}
+  upgradeInfoText: {fileID: 0}
 --- !u!1 &763293169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,6 +1344,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower 4 Village
       objectReference: {fileID: 0}
+    - target: {fileID: 7432320663004741780, guid: 4a3082346680c444baa9918436e9702a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7432320663004741783, guid: 4a3082346680c444baa9918436e9702a,
         type: 3}
       propertyPath: m_RootOrder
@@ -1473,6 +1483,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower 2 Village
       objectReference: {fileID: 0}
+    - target: {fileID: 3495685179974007115, guid: c3506432b1e65634bacd28b1f0d52fca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3506432b1e65634bacd28b1f0d52fca, type: 3}
 --- !u!4 &2352251622089225754 stripped
@@ -1492,6 +1507,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower 3 Village
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076425492254873589, guid: 54fc6d9eb508b424bbcacbea436514f7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4076425492254873590, guid: 54fc6d9eb508b424bbcacbea436514f7,
         type: 3}
@@ -1616,16 +1636,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower 1 Village
-      objectReference: {fileID: 0}
-    - target: {fileID: 7493800979021648801, guid: 972eeed1bf4201142aa2059aab9c7b27,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7493800979021648805, guid: 972eeed1bf4201142aa2059aab9c7b27,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 972eeed1bf4201142aa2059aab9c7b27, type: 3}

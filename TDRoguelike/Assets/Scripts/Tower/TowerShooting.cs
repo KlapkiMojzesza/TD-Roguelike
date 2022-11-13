@@ -6,10 +6,7 @@ using UnityEngine;
 public class TowerShooting : MonoBehaviour
 {
     [Header("Settings")]
-    //public float towerFireRate = 1f;
-    //public float towerRange = 50f;
     [SerializeField] float projectileSpeed = 200f;
-    //public float towerDamage = 10f;
     public TargetPriority targetPriority = TargetPriority.First;
 
     [Header("To Attach")]
@@ -144,7 +141,10 @@ public class TowerShooting : MonoBehaviour
 
         if (projectile != null)
         {
-            projectile.Create(target.gameObject.GetComponent<EnemyHealth>().aimPoint, projectileSpeed, towerData.towerDamage);
+            projectile.Create(target.gameObject.GetComponent<EnemyHealth>().aimPoint,
+                              projectileSpeed, 
+                              towerData.towerDamage,
+                              towerData.towerEnemyPierce);
         }
     }
 

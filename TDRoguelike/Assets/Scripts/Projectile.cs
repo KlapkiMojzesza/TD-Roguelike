@@ -9,13 +9,14 @@ public class Projectile : MonoBehaviour
     float speed;
     float damage;
     Vector3 lastKnownDirection;
-    int pierceThroughEnemiesAmount = 1;
+    int enemyPierce = 1;
 
-    public void Create(Transform target, float speed, float damage)
+    public void Create(Transform target, float speed, float damage, int enemyPierce)
     {
         this.target = target;
         this.speed = speed;
         this.damage = damage;
+        this.enemyPierce = enemyPierce;
         lastKnownDirection = target.position - transform.position;
     }
 
@@ -24,6 +25,7 @@ public class Projectile : MonoBehaviour
         if (target != null)
         {
             lastKnownDirection = target.position - transform.position;
+            if (Vector3.Distance(transform.position, target.position) > 0.01f) target = null;
         }
 
         transform.Translate(lastKnownDirection.normalized * speed * Time.deltaTime, Space.World);
@@ -33,12 +35,12 @@ public class Projectile : MonoBehaviour
     {
         if (collision.collider.CompareTag("Enemy"))
         {
-            if (pierceThroughEnemiesAmount > 0)
+            if (enemyPierce > 0)
             {
-                pierceThroughEnemiesAmount--;
+                enemyPierce--;
                 collision.gameObject.GetComponent<IDamegeable>().TakeDamage(damage);
             }
-            if (pierceThroughEnemiesAmount == 0)
+            if (enemyPierce == 0)
             {
                 Destroy(gameObject);
             }
