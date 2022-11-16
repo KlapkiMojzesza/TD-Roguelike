@@ -970,6 +970,7 @@ MonoBehaviour:
     m_Bits: 2048
   towerData: {fileID: 0}
   buildingCanvas: {fileID: 211031062}
+  upgradeMenu: {fileID: 0}
   upgradeButton: {fileID: 0}
   upgradeButtonBlocked: {fileID: 0}
   upgradeButtonPurchased: {fileID: 0}
@@ -1642,9 +1643,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower 1 Village
       objectReference: {fileID: 0}
+    - target: {fileID: 7493800978076033373, guid: 972eeed1bf4201142aa2059aab9c7b27,
+        type: 3}
+      propertyPath: towerData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7dec3082212782d4e94613bbd037e16d,
+        type: 2}
     - target: {fileID: 7493800979021648801, guid: 972eeed1bf4201142aa2059aab9c7b27,
         type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493800979021648805, guid: 972eeed1bf4201142aa2059aab9c7b27,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

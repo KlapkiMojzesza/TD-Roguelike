@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
         if (target != null)
         {
             lastKnownDirection = target.position - transform.position;
-            if (Vector3.Distance(transform.position, target.position) > 0.01f) target = null;
+            if (Vector3.Distance(transform.position, target.position) < 0.01f) target = null;
         }
 
         transform.Translate(lastKnownDirection.normalized * speed * Time.deltaTime, Space.World);

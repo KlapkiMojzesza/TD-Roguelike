@@ -10,6 +10,8 @@ public class TowerScriptableObject : ScriptableObject
     public float towerFireRate = 1f;
     public float towerRange = 50f;
     public float towerDamage = 10f;
+    public float projectileSpeed = 300f;
+    public GameObject projectilePrefab;
     public Texture towerIcon;
 }
 

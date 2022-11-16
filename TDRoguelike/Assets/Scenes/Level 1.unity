@@ -2319,26 +2319,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 429028754900695756, guid: c824c4a603e5cba49918df95bb9fd8f7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 979140695574155554, guid: c824c4a603e5cba49918df95bb9fd8f7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1979084892088192071, guid: c824c4a603e5cba49918df95bb9fd8f7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2990036917617913699, guid: c824c4a603e5cba49918df95bb9fd8f7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7701644492400215748, guid: c824c4a603e5cba49918df95bb9fd8f7,
         type: 3}
       propertyPath: m_RootOrder
@@ -2398,6 +2378,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701644492400215755, guid: c824c4a603e5cba49918df95bb9fd8f7,
+        type: 3}
+      propertyPath: startMoneyAmount
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c824c4a603e5cba49918df95bb9fd8f7, type: 3}

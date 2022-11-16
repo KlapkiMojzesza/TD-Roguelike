@@ -34,7 +34,7 @@ RectTransform:
   - {fileID: 4305891352042105374}
   - {fileID: 8020222779154841405}
   m_Father: {fileID: 6550279917149780904}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1252,8 +1252,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 15, y: 25.9}
-  m_SizeDelta: {x: 131.72498, y: 2.4318771}
+  m_AnchoredPosition: {x: 134.93, y: 44.4}
+  m_SizeDelta: {x: 496.64026, y: 2.4318771}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8439334503105079798
 CanvasRenderer:
@@ -1737,7 +1737,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Balista
+  m_text: Injustice Tower
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa8fc665034f3984f97ea672037619de, type: 2}
   m_sharedMaterial: {fileID: -7766223846823700964, guid: aa8fc665034f3984f97ea672037619de,
@@ -3196,7 +3196,7 @@ RectTransform:
   - {fileID: 3628841628993600527}
   - {fileID: 2885339127666384065}
   m_Father: {fileID: 6550279917149780904}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3879,8 +3879,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7868038057818549864}
-  - {fileID: 2805834839791346417}
   - {fileID: 8190863432383002913}
+  - {fileID: 2805834839791346417}
   - {fileID: 8910803034602774323}
   m_Father: {fileID: 7581009845827761973}
   m_RootOrder: 0

@@ -6,23 +6,23 @@ using UnityEngine;
 public class TowerShooting : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float projectileSpeed = 200f;
-    public TargetPriority targetPriority = TargetPriority.First;
+    [SerializeField] float rotationOffset;
 
     [Header("To Attach")]
-    [SerializeField] TowerScriptableObject towerData;
     [SerializeField] Transform firePoint;
-    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] GameObject rotationParts;
 
-    [SerializeField] List<GameObject> aliveEnemies = new List<GameObject>();
-
+    List<GameObject> aliveEnemies = new List<GameObject>();
+    TowerScriptableObject towerData;
     Transform target;
+    TargetPriority targetPriority = TargetPriority.First;
     float fireCountdown = 0;
 
     private void Start()
     {
         EnemyHealth.OnEnemySpawn += AddEnemyToList;
         EnemyHealth.OnEnemyDeath += RemoveEnemyFromList;
+        towerData = GetComponent<Tower>().towerData;
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
     }
 
@@ -55,6 +55,8 @@ public class TowerShooting : MonoBehaviour
     {
         if (target == null) return;
 
+        RotateToTarget();
+
         if (fireCountdown <= 0f)
         {
             Shoot();
@@ -62,6 +64,17 @@ public class TowerShooting : MonoBehaviour
         }
 
         fireCountdown -= Time.deltaTime;
+    }
+
+    private void RotateToTarget()
+    {
+        Vector3 lookDirection = target.position - transform.position;
+        float angle = Mathf.Atan2(lookDirection.x, lookDirection.z) *
+                      Mathf.Rad2Deg + rotationOffset;
+
+        rotationParts.transform.rotation = Quaternion.Lerp(rotationParts.transform.rotation,
+                                                           Quaternion.Euler(0, angle, 0), 
+                                                           0.05f);
     }
 
     private Transform GetFirstEnemy(List<GameObject> enemies)
@@ -136,13 +149,13 @@ public class TowerShooting : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject projectileObject = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        GameObject projectileObject = Instantiate(towerData.projectilePrefab, firePoint.position, firePoint.rotation);
         Projectile projectile = projectileObject.GetComponent<Projectile>();
 
         if (projectile != null)
         {
             projectile.Create(target.gameObject.GetComponent<EnemyHealth>().aimPoint,
-                              projectileSpeed, 
+                              towerData.projectileSpeed, 
                               towerData.towerDamage,
                               towerData.towerEnemyPierce);
         }
@@ -177,11 +190,11 @@ public class TowerShooting : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, towerData.towerRange);
-    }
+    }*/
 
 }
 

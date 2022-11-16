@@ -14,20 +14,19 @@ public class Tower : MonoBehaviour
 
     [Header("To Attach")]
     public TowerScriptableObject towerData;
-    [SerializeField] Renderer renderer;
+    [SerializeField] Renderer[] renderers;
     [SerializeField] RawImage iconImage;
     [SerializeField] GameObject towerHitBox;
     [SerializeField] GameObject towerInfoCanvas;
     [SerializeField] TMP_Text towerStatsText;
     [SerializeField] TMP_Text towernNameText;
 
-    Material myMaterial;
-    Color orginalColor;
     int collisionsAmount = 0;
     bool canBePlaced = true;
     bool isPlaced = false;
 
     Controls controls;
+    Dictionary<Material, Color> allObjects = new Dictionary<Material, Color>();
 
     private void Awake()
     {
@@ -38,8 +37,8 @@ public class Tower : MonoBehaviour
         controls.Player.Enable();
         controls.Player.Info.performed += HandlePlayerMouseInfo;
 
-        myMaterial = renderer.material;
-        orginalColor = myMaterial.color;
+        SetAllBuildingMaterials();
+
         iconImage.texture = towerData.towerIcon;
     }
 
@@ -48,6 +47,21 @@ public class Tower : MonoBehaviour
         TowerManager.OnNextWaveButtonClicked -= HandleStartWave;
         TowerManager.OnTowerSelect -= HandleAnotherTowerSelected;
         controls.Player.Info.performed -= HandlePlayerMouseInfo;
+    }
+
+    public void SetAllBuildingMaterials()
+    {
+        foreach (Renderer render in renderers)
+        {
+            Material[] materials = render.materials;
+            foreach (Material material in materials)
+            {
+                if (!allObjects.ContainsKey(material))
+                {
+                    allObjects.Add(material, material.color);
+                }
+            }
+        }
     }
 
     private void HandlePlayerMouseInfo(InputAction.CallbackContext cpntext)
@@ -111,12 +125,19 @@ public class Tower : MonoBehaviour
     public void SetTowerColor()
     {
         Color color = CanBePlaced() ? Color.green : Color.red;
-        myMaterial.color = color;
+
+        foreach(KeyValuePair<Material, Color> objectT in allObjects)
+        {
+            objectT.Key.color = color;
+        }
     }
 
     public void SetOrginalColor()
     {
-        myMaterial.color = orginalColor;
+        foreach (KeyValuePair<Material, Color> objectT in allObjects)
+        {
+            objectT.Key.color = objectT.Value;
+        }
     }
 
     public Texture GetTowerIcon()
