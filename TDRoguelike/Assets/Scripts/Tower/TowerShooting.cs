@@ -80,15 +80,24 @@ public class TowerShooting : MonoBehaviour
     private Transform GetFirstEnemy(List<GameObject> enemies)
     {
         Transform FirstEnemy = null;
-        int mostAheadEnemyIndex = 100000000;
+
+        int currentWaypoint = -1;
+        float distanceToWaypoint = Mathf.Infinity;
+
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy <= towerData.towerRange)
             {
-                int enemySpawnIndex = enemy.GetComponent<EnemyHealth>().enemyID;
-                if (enemySpawnIndex >= mostAheadEnemyIndex) continue;
-                mostAheadEnemyIndex = enemySpawnIndex;
+                int enemyCurrentWaypoint = enemy.GetComponent<EnemyMovement>().GetCurrentWaypoint();
+                float enemyDistanceToWaypoint = enemy.GetComponent<EnemyMovement>().GetDistanceToNextWaypoint();
+
+                if (enemyCurrentWaypoint < currentWaypoint) continue;
+                if (enemyDistanceToWaypoint >= distanceToWaypoint) continue;
+
+                currentWaypoint = enemyCurrentWaypoint;
+                distanceToWaypoint = enemyDistanceToWaypoint;
+
                 FirstEnemy = enemy.transform;
             }
         }
@@ -98,15 +107,24 @@ public class TowerShooting : MonoBehaviour
     private Transform GetLastEnemy(List<GameObject> enemies)
     {
         Transform LastEnemy = null;
-        int lastEnemyIndex = 0;
+
+        int currentWaypoint = 10000;
+        float distanceToWaypoint = 0;
+
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy <= towerData.towerRange)
             {
-                int enemySpawnIndex = enemy.GetComponent<EnemyHealth>().enemyID;
-                if (enemySpawnIndex < lastEnemyIndex) continue;
-                lastEnemyIndex = enemySpawnIndex;
+                int enemyCurrentWaypoint = enemy.GetComponent<EnemyMovement>().GetCurrentWaypoint();
+                float enemyDistanceToWaypoint = enemy.GetComponent<EnemyMovement>().GetDistanceToNextWaypoint();
+
+                if (enemyCurrentWaypoint > currentWaypoint) continue;
+                if (enemyDistanceToWaypoint <= distanceToWaypoint) continue;
+
+                currentWaypoint = enemyCurrentWaypoint;
+                distanceToWaypoint = enemyDistanceToWaypoint;
+
                 LastEnemy = enemy.transform;
             }
         }

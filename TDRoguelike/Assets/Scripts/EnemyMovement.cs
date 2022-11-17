@@ -11,9 +11,10 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float rotateSpeed = 1f;
     [SerializeField] float lookDirectionOffset = -90f;
 
-    private WaypointManager waypointManager;
     public static event Action<float> OnEnemyPathCompleate;
 
+    private WaypointManager waypointManager;
+    private float distanceToNextWaypoint = 0;
     private int currentWaypoint;
 
     private void Start()
@@ -31,7 +32,9 @@ public class EnemyMovement : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, waypointManager.waypoints[currentWaypoint].position, speed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, waypointManager.waypoints[currentWaypoint].position) < 0.01f)
+        distanceToNextWaypoint = Vector3.Distance(transform.position, waypointManager.waypoints[currentWaypoint].position);
+
+        if (distanceToNextWaypoint < 0.01f)
         {
             if (currentWaypoint < waypointManager.waypoints.Length - 1)
             {
@@ -50,5 +53,15 @@ public class EnemyMovement : MonoBehaviour
         Vector3 lookDirection = waypointManager.waypoints[currentWaypoint].position - transform.position;
         float angle = Mathf.Atan2(lookDirection.x, lookDirection.z) * Mathf.Rad2Deg - lookDirectionOffset;
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.up), rotateSpeed);
+    }
+
+    public int GetCurrentWaypoint()
+    {
+        return currentWaypoint;
+    }
+
+    public float GetDistanceToNextWaypoint()
+    {
+        return distanceToNextWaypoint;
     }
 }

@@ -115,7 +115,7 @@ public class VillageBuilding : MonoBehaviour
                 break;
 
             case UpgradeType.TowerEnemyPierce:
-                towerData.towerPrice += (int)currentUpgradeData.value;
+                towerData.towerEnemyPierce += (int)currentUpgradeData.value;
                 break;
 
             case UpgradeType.TowerCustom:
