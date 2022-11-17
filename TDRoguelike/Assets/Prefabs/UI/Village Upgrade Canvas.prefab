@@ -3352,7 +3352,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -471.6, y: 100}
-  m_SizeDelta: {x: 527.90796, y: 72.00052}
+  m_SizeDelta: {x: 626.26, y: 72.00052}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8522738844389218907
 CanvasRenderer:
@@ -3381,7 +3381,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Good Tower
+  m_text: Prospect Towert
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa8fc665034f3984f97ea672037619de, type: 2}
   m_sharedMaterial: {fileID: -7766223846823700964, guid: aa8fc665034f3984f97ea672037619de,
