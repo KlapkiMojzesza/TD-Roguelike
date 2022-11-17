@@ -117,7 +117,8 @@ public class Tower : MonoBehaviour
     {
         towerStatsText.text = $"Damage: {towerData.towerDamage.ToString()}\n" +
                               $"Range: {towerData.towerRange.ToString()}\n" +
-                              $"FireRate: {towerData.towerFireRate.ToString()}";
+                              $"FireRate: {towerData.towerFireRate.ToString()}\n" +
+                              $"Pierce: {towerData.towerEnemyPierce.ToString()}";
 
         towernNameText.text = towerData.towerName;
     }

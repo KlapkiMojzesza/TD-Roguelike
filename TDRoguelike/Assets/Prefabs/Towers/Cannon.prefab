@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1833814729364254367}
   - component: {fileID: 2557625548349177906}
   - component: {fileID: 2595618697250994490}
-  - component: {fileID: 2431693703040096287}
   m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
@@ -80,20 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &2431693703040096287
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 368209423443767056}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &2297097286232192416
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +198,6 @@ GameObject:
   - component: {fileID: 7770598316413208822}
   - component: {fileID: 6444011190861209873}
   - component: {fileID: 1822723503298887673}
-  - component: {fileID: 5614862006213225403}
   m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
@@ -282,20 +266,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &5614862006213225403
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3589329813114343210}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &4144036885032542584
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +307,6 @@ GameObject:
   - component: {fileID: 889942305346571102}
   - component: {fileID: 8835383808674926170}
   - component: {fileID: 6627248138230078347}
-  - component: {fileID: 4300703949968465413}
   m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -406,19 +375,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4300703949968465413
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4188497896881308926}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6885323520703024118
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +386,6 @@ GameObject:
   - component: {fileID: 3903038690700369503}
   - component: {fileID: 4384717580491699198}
   - component: {fileID: 7230934640272450956}
-  - component: {fileID: 8215307278680817164}
   m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
@@ -499,19 +454,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8215307278680817164
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6885323520703024118}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7274099894931591316
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,9 +888,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6829844877369045669 stripped
+--- !u!114 &82503718353048450 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6018969581222986228, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+  m_CorrespondingSourceObject: {fileID: 894751753694798035, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
     type: 3}
   m_PrefabInstance: {fileID: 959221964390003537}
   m_PrefabAsset: {fileID: 0}
@@ -958,9 +900,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &82503718353048450 stripped
+--- !u!114 &6829844877369045669 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 894751753694798035, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+  m_CorrespondingSourceObject: {fileID: 6018969581222986228, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
     type: 3}
   m_PrefabInstance: {fileID: 959221964390003537}
   m_PrefabAsset: {fileID: 0}
