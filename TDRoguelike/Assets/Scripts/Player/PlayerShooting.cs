@@ -70,6 +70,8 @@ public class PlayerShooting : MonoBehaviour
             }
 
             projectile.Create(direction, projectileSpeed, playerDamage, pierceThroughEnemiesAmount);
+
+            
         }
     }
 
