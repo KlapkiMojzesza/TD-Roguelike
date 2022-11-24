@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Projectile : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class Projectile : MonoBehaviour
     private float _speed;
     private float _damage;
     private int _enemyPierce = 1;
+
+    IObjectPool<Projectile> _pool;
+
+    public void SetPool(IObjectPool<Projectile> pool) => _pool = pool;
 
     public void Create(Transform target, float speed, float damage, int enemyPierce)
     {
@@ -42,8 +47,12 @@ public class Projectile : MonoBehaviour
             }
             if (_enemyPierce == 0)
             {
-                Destroy(gameObject);
+                _pool.Release(this);
             }
+        }
+        if (collision.collider.CompareTag("Ground"))
+        {
+            _pool.Release(this);
         }
     }
 }

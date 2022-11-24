@@ -63,14 +63,14 @@ public class PlayerShooting : MonoBehaviour
         return projectile;
     }
 
-    private void OnTakeProjectileFromPool(PlayerProjectile bullet)
+    private void OnTakeProjectileFromPool(PlayerProjectile projectile)
     {
-        bullet.gameObject.SetActive(true);
+        projectile.gameObject.SetActive(true);
     }
 
-    private void OnReturnProjectileToPool(PlayerProjectile bullet)
+    private void OnReturnProjectileToPool(PlayerProjectile projectile)
     {
-        bullet.gameObject.SetActive(false);
+        projectile.gameObject.SetActive(false);
     }
 
     private bool IsMouseOverUI()

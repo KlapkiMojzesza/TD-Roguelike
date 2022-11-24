@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class TowerShooting : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class TowerShooting : MonoBehaviour
 
     private List<GameObject> _aliveEnemies = new List<GameObject>();
     private TowerScriptableObject _towerData;
+    private ObjectPool<Projectile> _pool;
     private Transform _target;
     private TargetPriority _targetPriority = TargetPriority.First;
     private float _fireCountdown = 0;
@@ -24,6 +26,7 @@ public class TowerShooting : MonoBehaviour
         EnemyHealth.OnEnemyDeath += RemoveEnemyFromList;
 
         _towerData = GetComponent<Tower>().TowerData;
+        _pool = new ObjectPool<Projectile>(CreateProjectile, OnTakeProjectileFromPool, OnReturnProjectileToPool);
 
         InvokeRepeating("UpdateTarget", 0f, 0.01f);
     }
@@ -180,8 +183,8 @@ public class TowerShooting : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject projectileObject = Instantiate(_towerData.ProjectilePrefab, _firePoint.position, _firePoint.rotation);
-        Projectile projectile = projectileObject.GetComponent<Projectile>();
+        Projectile projectile = _pool.Get();
+        projectile.gameObject.transform.position = _firePoint.position;
 
         if (projectile != null)
         {
@@ -219,6 +222,23 @@ public class TowerShooting : MonoBehaviour
                 _targetPriority = TargetPriority.Last;
                 break;
         }
+    }
+
+    private Projectile CreateProjectile()
+    {
+        var projectile = Instantiate(_towerData.ProjectilePrefab);
+        projectile.SetPool(_pool);
+        return projectile;
+    }
+
+    private void OnTakeProjectileFromPool(Projectile projectile)
+    {
+        projectile.gameObject.SetActive(true);
+    }
+
+    private void OnReturnProjectileToPool(Projectile projectile)
+    {
+        projectile.gameObject.SetActive(false);
     }
 
     private void OnDrawGizmosSelected()
