@@ -6,30 +6,29 @@ using UnityEngine.InputSystem;
 
 public class PlayerStructureInteract : MonoBehaviour
 {
-
-    [SerializeField] float interactRange = 10f;
-
-    [SerializeField] LayerMask buildingLayer;
+    [Header("Settings")]
+    [SerializeField] private float _interactRange = 10f;
+    [SerializeField] private LayerMask _buildingLayer;
 
     public static event Action<GameObject> OnPlayerInteract;
 
-    Controls controls;
+    private Controls _controls;
 
     private void Start()
     {
-        controls = new Controls();
-        controls.Enable();
-        controls.Player.Interact.performed += HandlePlayerInteract;
+        _controls = new Controls();
+        _controls.Enable();
+        _controls.Player.Interact.performed += HandlePlayerInteract;
     }
 
     private void OnDestroy()
     {
-        controls.Player.Interact.performed -= HandlePlayerInteract;
+        _controls.Player.Interact.performed -= HandlePlayerInteract;
     }
 
     private void HandlePlayerInteract(InputAction.CallbackContext context)
     {
-        Collider[] hitBuildings = Physics.OverlapSphere(transform.position, interactRange, buildingLayer);
+        Collider[] hitBuildings = Physics.OverlapSphere(transform.position, _interactRange, _buildingLayer);
         GameObject closestBuilding = null;
 
         if (hitBuildings.Length == 0)

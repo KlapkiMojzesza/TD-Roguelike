@@ -115,9 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d97efd6703dea4c9f50e20f41b161e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 50
-  rotationOffset: -90
-  groundLayer:
+  _playerSpeed: 50
+  _rotationOffset: -90
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 256
 --- !u!114 &8976999778618284689
@@ -132,15 +132,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4305e881853d1c48bdf9f69db508fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 4
-  projectileSpeed: 150
-  playerDamage: 35
-  groundLayer:
+  _fireRate: 2
+  _projectileSpeed: 200
+  _playerDamage: 50
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  pierceThroughEnemiesAmount: 1
-  firePoint: {fileID: 8186128799551546030}
-  projectilePrefab: {fileID: 4861764028110779334, guid: 922be981fb8dae14290f62c11930cb89,
+  _pierceThroughEnemiesAmount: 1
+  _firePoint: {fileID: 8186128799551546030}
+  _projectilePrefab: {fileID: 4861764028110779334, guid: 922be981fb8dae14290f62c11930cb89,
     type: 3}
 --- !u!1 &5646343309496383366
 GameObject:

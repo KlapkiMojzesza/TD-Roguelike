@@ -7,17 +7,17 @@ using UnityEngine;
 
 public class PlayerBase : MonoBehaviour
 {
-    [SerializeField] float startBaseHealth = 100;
-    [SerializeField] TMP_Text damageText;
+    [SerializeField] private float _startBaseHealth = 100;
+    [SerializeField] private TMP_Text _baseHealthText;
 
-    float baseHealth;
+    private float _baseHealth;
     public static event Action OnBaseDestroyed;
 
     private void Start()
     {
         EnemyMovement.OnEnemyPathCompleate += TakeDamage;
-        baseHealth = startBaseHealth;
-        damageText.text = baseHealth.ToString();
+        _baseHealth = _startBaseHealth;
+        _baseHealthText.text = _baseHealth.ToString();
     }
 
     private void OnDestroy()
@@ -27,20 +27,20 @@ public class PlayerBase : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        baseHealth -= damage;
-        if (baseHealth <= 0)
+        _baseHealth -= damage;
+        if (_baseHealth <= 0)
         {
-            baseHealth = 0f;
+            _baseHealth = 0f;
             DestroyPlayerBase();
         }
 
-        damageText.text = baseHealth.ToString();
+        _baseHealthText.text = _baseHealth.ToString();
     }
 
     private void DestroyPlayerBase()
     {
         OnBaseDestroyed?.Invoke();
-        baseHealth = startBaseHealth;
-        damageText.text = baseHealth.ToString();
+        _baseHealth = _startBaseHealth;
+        _baseHealthText.text = _baseHealth.ToString();
     }
 }

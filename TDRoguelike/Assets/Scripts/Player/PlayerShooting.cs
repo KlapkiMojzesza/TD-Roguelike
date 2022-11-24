@@ -8,19 +8,19 @@ using UnityEngine.Pool;
 public class PlayerShooting : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float fireRate = 2f;
-    [SerializeField] float projectileSpeed = 20f;
-    [SerializeField] float playerDamage = 50f;
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] int pierceThroughEnemiesAmount = 1;
+    [SerializeField] private float _fireRate = 2f;
+    [SerializeField] private float _projectileSpeed = 200f;
+    [SerializeField] private float _playerDamage = 50f;
+    [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private int _pierceThroughEnemiesAmount = 1;
 
     [Header("To Attach")]
-    [SerializeField] Transform firePoint;
-    [SerializeField] PlayerProjectile projectilePrefab;
+    [SerializeField] private Transform _firePoint;
+    [SerializeField] private PlayerProjectile _projectilePrefab;
 
     private ObjectPool<PlayerProjectile> _pool;
-    Vector3 direction;
-    float lastFired = 0f;
+    private Vector3 _direction;
+    private float _lastFired = 0f;
 
     private void Start()
     {
@@ -37,28 +37,28 @@ public class PlayerShooting : MonoBehaviour
 
     public void Shoot()
     {
-        if (Time.time - lastFired > 1 / fireRate)
+        if (Time.time - _lastFired > 1 / _fireRate)
         {
-            lastFired = Time.time;
+            _lastFired = Time.time;
 
             PlayerProjectile projectile = _pool.Get();
-            projectile.gameObject.transform.position = firePoint.position;
+            projectile.gameObject.transform.position = _firePoint.position;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit groundHit;
-            if (Physics.Raycast(ray, out groundHit, Mathf.Infinity, groundLayer))
+            if (Physics.Raycast(ray, out groundHit, Mathf.Infinity, _groundLayer))
             {
-                direction = (groundHit.point - transform.position);
+                _direction = (groundHit.point - transform.position);
             }
 
-            projectile.Create(direction, projectileSpeed, playerDamage, pierceThroughEnemiesAmount);    
+            projectile.Create(_direction, _projectileSpeed, _playerDamage, _pierceThroughEnemiesAmount);    
         }
     }
 
     PlayerProjectile CreateProjectile()
     {
-        var projectile = Instantiate(projectilePrefab);
+        var projectile = Instantiate(_projectilePrefab);
         projectile.SetPool(_pool);
         return projectile;
     }

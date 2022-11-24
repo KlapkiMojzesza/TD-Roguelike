@@ -6,21 +6,21 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float playerSpeed = 10f;
-    [SerializeField] private float rotationOffset = -90f;
+    [SerializeField] private float _playerSpeed = 10f;
+    [SerializeField] private float _rotationOffset = -90f;
 
     [Header("To Attach")]
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask _groundLayer;
 
-    Vector3 mousePosition;
-    CharacterController controller;
-    Controls controls;
+    private Vector3 _mousePosition;
+    private CharacterController _controller;
+    private Controls _controls;
 
     private void Start()
     {
-        controls = new Controls();
-        controls.Player.Enable();  
-        controller = GetComponent<CharacterController>();
+        _controls = new Controls();
+        _controls.Player.Enable();  
+        _controller = GetComponent<CharacterController>();
     }
 
     private void Update()
@@ -31,9 +31,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector2 playerInputRaw = controls.Player.Movement.ReadValue<Vector2>();
+        Vector2 playerInputRaw = _controls.Player.Movement.ReadValue<Vector2>();
         Vector3 playerInput = new Vector3(playerInputRaw.x, 0f, playerInputRaw.y);
-        controller.Move(playerInput * playerSpeed * Time.deltaTime);
+        _controller.Move(playerInput * _playerSpeed * Time.deltaTime);
     }
 
     private void RotatePlayer()
@@ -41,14 +41,14 @@ public class PlayerMovement : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit groundHit;
-        if (Physics.Raycast(ray, out groundHit, Mathf.Infinity, groundLayer))
+        if (Physics.Raycast(ray, out groundHit, Mathf.Infinity, _groundLayer))
         {
-            mousePosition = groundHit.point;
+            _mousePosition = groundHit.point;
         }
 
-        Vector3 lookDirection = mousePosition - transform.position;
+        Vector3 lookDirection = _mousePosition - transform.position;
         float angle = Mathf.Atan2(lookDirection.x, lookDirection.z) *
-                      Mathf.Rad2Deg + rotationOffset;
+                      Mathf.Rad2Deg + _rotationOffset;
         transform.rotation = Quaternion.Euler(0, angle, 0);
     }
 }

@@ -5,10 +5,10 @@ using UnityEngine.Pool;
 
 public class PlayerProjectile : MonoBehaviour
 {
-    float speed;
-    float damage;
-    int pierceThroughEnemiesAmount;
-    Vector3 direction;
+    private float _speed;
+    private float _damage;
+    private int _pierceThroughEnemiesAmount;
+    private Vector3 _direction;
 
     IObjectPool<PlayerProjectile> _pool;
 
@@ -16,35 +16,35 @@ public class PlayerProjectile : MonoBehaviour
 
     public void Create(Vector3 direction, float speed, float damage, int pierceThroughEnemiesAmount)
     {
-        this.direction = new Vector3(direction.x, 0f, direction.z).normalized;
-        this.speed = speed;
-        this.damage = damage;
-        this.pierceThroughEnemiesAmount = pierceThroughEnemiesAmount;
+        _direction = new Vector3(direction.x, 0f, direction.z).normalized;
+        _speed = speed;
+        _damage = damage;
+        _pierceThroughEnemiesAmount = pierceThroughEnemiesAmount;
     }
 
     private void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime, Space.World);
+        transform.Translate(_direction * _speed * Time.deltaTime, Space.World);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Enemy"))
         {
-            if (pierceThroughEnemiesAmount > 0)
+            if (_pierceThroughEnemiesAmount > 0)
             {
-                pierceThroughEnemiesAmount--;
-                collision.gameObject.GetComponent<IDamegeable>().TakeDamage(damage);
+                _pierceThroughEnemiesAmount--;
+                collision.gameObject.GetComponent<IDamegeable>().TakeDamage(_damage);
             }
-            if (pierceThroughEnemiesAmount == 0)
+            if (_pierceThroughEnemiesAmount == 0)
             {
                 _pool.Release(this);
             }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider collider)
     {
-        if (other.CompareTag("Wall")) _pool.Release(this);
+        if (collider.CompareTag("Wall")) _pool.Release(this);
     }
 }
