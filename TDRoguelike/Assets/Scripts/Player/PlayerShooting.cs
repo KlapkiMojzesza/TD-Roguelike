@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Pool;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -15,42 +16,23 @@ public class PlayerShooting : MonoBehaviour
 
     [Header("To Attach")]
     [SerializeField] Transform firePoint;
-    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] PlayerProjectile projectilePrefab;
 
-    bool towerSelected = false;
+    private ObjectPool<PlayerProjectile> _pool;
     Vector3 direction;
     float lastFired = 0f;
 
     private void Start()
     {
-        TowerManager.OnTowerSelect += TowerSelected;
-        TowerManager.OnTowerDeselect += TowerDeselected;
-    }
-
-    private void OnDestroy()
-    {
-        TowerManager.OnTowerSelect -= TowerSelected;
-        TowerManager.OnTowerDeselect -= TowerDeselected;
+        _pool = new ObjectPool<PlayerProjectile>(CreateProjectile, OnTakeProjectileFromPool, OnReturnProjectileToPool);
     }
 
     private void Update()
     {
         if (Input.GetMouseButton(0))
         {
-            if (CanShoot()) Shoot();
+            if (!IsMouseOverUI()) Shoot();
         }
-    }
-
-    private bool CanShoot()
-    {
-        if (!IsMouseOverUI() && !towerSelected) return true;
-
-        return false;
-    }
-
-    private bool IsMouseOverUI()
-    {
-        return EventSystem.current.IsPointerOverGameObject();
     }
 
     public void Shoot()
@@ -58,8 +40,9 @@ public class PlayerShooting : MonoBehaviour
         if (Time.time - lastFired > 1 / fireRate)
         {
             lastFired = Time.time;
-            GameObject projectileObject = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-            PlayerProjectile projectile = projectileObject.GetComponent<PlayerProjectile>();
+
+            PlayerProjectile projectile = _pool.Get();
+            projectile.gameObject.transform.position = firePoint.position;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -69,19 +52,29 @@ public class PlayerShooting : MonoBehaviour
                 direction = (groundHit.point - transform.position);
             }
 
-            projectile.Create(direction, projectileSpeed, playerDamage, pierceThroughEnemiesAmount);
-
-            
+            projectile.Create(direction, projectileSpeed, playerDamage, pierceThroughEnemiesAmount);    
         }
     }
 
-    private void TowerDeselected()
+    PlayerProjectile CreateProjectile()
     {
-        towerSelected = false;
+        var projectile = Instantiate(projectilePrefab);
+        projectile.SetPool(_pool);
+        return projectile;
     }
 
-    private void TowerSelected()
+    private void OnTakeProjectileFromPool(PlayerProjectile bullet)
     {
-        towerSelected = true;
+        bullet.gameObject.SetActive(true);
+    }
+
+    private void OnReturnProjectileToPool(PlayerProjectile bullet)
+    {
+        bullet.gameObject.SetActive(false);
+    }
+
+    private bool IsMouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
     }
 }
