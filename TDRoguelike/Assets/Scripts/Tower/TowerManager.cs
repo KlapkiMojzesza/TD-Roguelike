@@ -8,27 +8,27 @@ using UnityEngine.EventSystems;
 public class TowerManager : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private int startMoneyAmount = 100;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private int _startMoneyAmount = 100;
+    [SerializeField] private LayerMask _groundLayer;
 
     [Header("To Attach")]
-    [SerializeField] TMP_Text moneyAmountText;
-    [SerializeField] public GameObject[] towerPrefabs;
+    [SerializeField] private TMP_Text _moneyAmountText;
+    [SerializeField] public GameObject[] TowerPrefabs;
 
     public static event Action OnTowerSelect;
     public static event Action OnTowerDeselect;
     public static event Action OnTowerPlaced;
     public static event Action OnNextWaveButtonClicked;
 
-    private List<GameObject> towersPlaced = new List<GameObject>();
-    private GameObject currentTowerPrefab;
-    private Tower currentTower;
-    private int currentMoneyAmount;
+    private List<GameObject> _towersPlaced = new List<GameObject>();
+    private GameObject _currentTowerPrefab;
+    private Tower _currentTower;
+    private int _currentMoneyAmount;
 
     private void Start()
     {
-        currentMoneyAmount = startMoneyAmount;
-        moneyAmountText.text = currentMoneyAmount.ToString();
+        _currentMoneyAmount = _startMoneyAmount;
+        _moneyAmountText.text = _currentMoneyAmount.ToString();
 
         PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
         WaveManager.OnWaveEnd += HandleWaveEnd;
@@ -42,18 +42,18 @@ public class TowerManager : MonoBehaviour
 
     void Update()
     {
-        if (currentTowerPrefab == null) return;
+        if (_currentTowerPrefab == null) return;
 
         MoveTowerPrefab();
 
         if (Input.GetMouseButtonUp(1))
         {
-            Destroy(currentTowerPrefab);
+            Destroy(_currentTowerPrefab);
             OnTowerDeselect?.Invoke();
             return;
         }
 
-        if (Input.GetMouseButtonDown(0) && currentTower.CanBePlaced() && !IsMouseOverUI())
+        if (Input.GetMouseButtonDown(0) && _currentTower.CanBePlaced() && !IsMouseOverUI())
         {
             PlaceTower();
         }
@@ -70,45 +70,45 @@ public class TowerManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit groundHit;
-        if (Physics.Raycast(ray, out groundHit, Mathf.Infinity, groundLayer))
+        if (Physics.Raycast(ray, out groundHit, Mathf.Infinity, _groundLayer))
         {
-            currentTowerPrefab.transform.position = groundHit.point;
+            _currentTowerPrefab.transform.position = groundHit.point;
         }
-        currentTower.SetTowerColor();
+        _currentTower.SetTowerColor();
     }
 
     private void PlaceTower()
     {
-        currentMoneyAmount -= currentTower.towerData.towerPrice;
-        moneyAmountText.text = currentMoneyAmount.ToString();
+        _currentMoneyAmount -= _currentTower.TowerData.TowerPrice;
+        _moneyAmountText.text = _currentMoneyAmount.ToString();
 
-        currentTower.SetOrginalColor();
+        _currentTower.SetOrginalColor();
 
-        currentTower.PlaceTower();
-        towersPlaced.Add(currentTowerPrefab);
-        currentTowerPrefab = null;
+        _currentTower.PlaceTower();
+        _towersPlaced.Add(_currentTowerPrefab);
+        _currentTowerPrefab = null;
         OnTowerDeselect?.Invoke();
         OnTowerPlaced?.Invoke();
     }
 
     public void SwitchTowers(int towerIndex)
     {
-        if (towerPrefabs[towerIndex].GetComponent<Tower>().towerData.towerPrice > currentMoneyAmount) return;
+        if (TowerPrefabs[towerIndex].GetComponent<Tower>().TowerData.TowerPrice > _currentMoneyAmount) return;
 
-        currentTowerPrefab = Instantiate(towerPrefabs[towerIndex]);
-        currentTower = currentTowerPrefab.GetComponent<Tower>();
+        _currentTowerPrefab = Instantiate(TowerPrefabs[towerIndex]);
+        _currentTower = _currentTowerPrefab.GetComponent<Tower>();
         OnTowerSelect?.Invoke();
     }
 
     public void HandleWaveEnd(int amount)
     {
-        currentMoneyAmount += amount;
-        moneyAmountText.text = currentMoneyAmount.ToString();
+        _currentMoneyAmount += amount;
+        _moneyAmountText.text = _currentMoneyAmount.ToString();
     }
 
     private void HandleBaseDestruction()
     {
-        foreach (GameObject tower in towersPlaced)
+        foreach (GameObject tower in _towersPlaced)
         {
             Destroy(tower);
         }
@@ -118,9 +118,9 @@ public class TowerManager : MonoBehaviour
 
     private void EndLevel()
     {
-        towersPlaced.Clear();
-        currentMoneyAmount = startMoneyAmount;
-        moneyAmountText.text = currentMoneyAmount.ToString();
+        _towersPlaced.Clear();
+        _currentMoneyAmount = _startMoneyAmount;
+        _moneyAmountText.text = _currentMoneyAmount.ToString();
     }
 
     public void SpawnNextWave()
@@ -130,7 +130,7 @@ public class TowerManager : MonoBehaviour
 
     public void CancelButtonClick()
     {
-        Destroy(currentTowerPrefab);
+        Destroy(_currentTowerPrefab);
         OnTowerDeselect?.Invoke();
     }
 }

@@ -9,33 +9,33 @@ using UnityEngine.UI;
 public class VillageBuilding : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private LayerMask buildingLayer;
+    [SerializeField] private LayerMask _buildingLayer;
 
     [Header("To Attach")]
-    [SerializeField] TowerScriptableObject towerData;
-    [SerializeField] GameObject buildingCanvas;
-    [SerializeField] GameObject upgradeMenu;
-    [SerializeField] GameObject upgradeButton;
-    [SerializeField] GameObject upgradeButtonBlocked;
-    [SerializeField] GameObject upgradeButtonPurchased;
+    [SerializeField] private TowerScriptableObject _towerData;
+    [SerializeField] private GameObject _buildingCanvas;
+    [SerializeField] private GameObject _upgradeInfoMenu;
+    [SerializeField] private GameObject _upgradeButton;
+    [SerializeField] private GameObject _upgradeButtonBlocked;
+    [SerializeField] private GameObject _upgradeButtonPurchased;
     [Space(10)]
-    [SerializeField] TMP_Text towerNameText;
-    [SerializeField] TMP_Text towerInfoText;
-    [SerializeField] TMP_Text towerStatsText;
-    [SerializeField] RawImage towerIcon;
+    [SerializeField] private TMP_Text _towerNameText;
+    [SerializeField] private TMP_Text _towerInfoText;
+    [SerializeField] private TMP_Text _towerStatsText;
+    [SerializeField] private RawImage _towerIcon;
     [Space(10)]
-    [SerializeField] TMP_Text upgradeNameText;
-    [SerializeField] RawImage upgradeIcon;
-    [SerializeField] TMP_Text upgradeInfoText;
+    [SerializeField] private TMP_Text _upgradeNameText;
+    [SerializeField] private RawImage _upgradeIcon;
+    [SerializeField] private TMP_Text _upgradeInfoText;
 
-    public List<UpgradeButton> upgradesPurchased;
+    private List<UpgradeButton> _upgradesPurchased;
 
     public static event Action<UpgradeButton> OnUpgradePurchased;
 
-    UpgradeScriptableObject currentUpgradeData;
-    UpgradeButton currentUpgradeButtonLogic;
+    private UpgradeScriptableObject _currentUpgradeData;
+    private UpgradeButton _currentUpgradeButtonLogic;
 
-    Controls controls;
+    private Controls _controls;
 
     private void Start()
     {
@@ -46,9 +46,9 @@ public class VillageBuilding : MonoBehaviour
         PlayerStructureInteract.OnPlayerInteract += ShowUI;
         UpgradeButton.OnUpgradeChoose += HandleUpgradeChoose;
 
-        towerNameText.text = towerData.towerName;
-        towerInfoText.text = towerData.towerInfo;
-        towerIcon.texture = towerData.towerIcon;
+        _towerNameText.text = _towerData.TowerName;
+        _towerInfoText.text = _towerData.TowerInfo;
+        _towerIcon.texture = _towerData.TowerIcon;
         SetTowerStats();
     }
 
@@ -61,61 +61,61 @@ public class VillageBuilding : MonoBehaviour
 
     private void HandleUpgradeChoose(UpgradeScriptableObject upgradeData, UpgradeButton upgradeButtonLogic)
     {
-        upgradeButton.SetActive(false);
-        upgradeButtonBlocked.SetActive(false);
-        upgradeButtonPurchased.SetActive(false);
+        _upgradeButton.SetActive(false);
+        _upgradeButtonBlocked.SetActive(false);
+        _upgradeButtonPurchased.SetActive(false);
 
-        if (upgradesPurchased.Contains(upgradeButtonLogic))
+        if (_upgradesPurchased.Contains(upgradeButtonLogic))
         {
-            upgradeButtonPurchased.SetActive(true);
+            _upgradeButtonPurchased.SetActive(true);
         }
         else if (upgradeButtonLogic.UpgradePossible())
         {
-            upgradeButton.SetActive(true);
+            _upgradeButton.SetActive(true);
         }
         else
         {
-            upgradeButtonBlocked.SetActive(true);
+            _upgradeButtonBlocked.SetActive(true);
         }
 
-        currentUpgradeButtonLogic = upgradeButtonLogic;
-        currentUpgradeData = upgradeData;
+        _currentUpgradeButtonLogic = upgradeButtonLogic;
+        _currentUpgradeData = upgradeData;
 
-        upgradeNameText.text = upgradeData.upgradeName;
-        upgradeInfoText.text = upgradeData.upgradeInfo;
-        upgradeIcon.texture = upgradeData.upgradeIcon;
+        _upgradeNameText.text = upgradeData.UpgradeName;
+        _upgradeInfoText.text = upgradeData.UpgradeInfo;
+        _upgradeIcon.texture = upgradeData.UpgradeIcon;
     }
 
     public void HandleUpgradeClicked()
     {
-        if (!buildingCanvas.activeSelf) return;
+        if (!_buildingCanvas.activeSelf) return;
 
         //this will be different with seve system
-        if (upgradesPurchased.Contains(currentUpgradeButtonLogic)) return;
+        if (_upgradesPurchased.Contains(_currentUpgradeButtonLogic)) return;
 
-        upgradeMenu.SetActive(false);
+        _upgradeInfoMenu.SetActive(false);
 
-        currentUpgradeButtonLogic.isPurchased = true;
-        OnUpgradePurchased?.Invoke(currentUpgradeButtonLogic);
-        upgradesPurchased.Add(currentUpgradeButtonLogic);
+        _currentUpgradeButtonLogic.IsPurchased = true;
+        OnUpgradePurchased?.Invoke(_currentUpgradeButtonLogic);
+        _upgradesPurchased.Add(_currentUpgradeButtonLogic);
 
-        UpgradeType upgradeType = currentUpgradeData.upgradeType;
+        UpgradeType upgradeType = _currentUpgradeData.UpgradeType;
         switch(upgradeType)
         {
             case UpgradeType.TowerDamage:
-                towerData.towerDamage += currentUpgradeData.value;
+                _towerData.TowerDamage += _currentUpgradeData.Value;
                 break;
 
             case UpgradeType.TowerRange:
-                towerData.towerRange += currentUpgradeData.value;
+                _towerData.TowerRange += _currentUpgradeData.Value;
                 break;
 
             case UpgradeType.TowerFireRate:
-                towerData.towerFireRate += currentUpgradeData.value;
+                _towerData.TowerFireRate += _currentUpgradeData.Value;
                 break;
 
             case UpgradeType.TowerEnemyPierce:
-                towerData.towerEnemyPierce += (int)currentUpgradeData.value;
+                _towerData.TowerEnemyPierce += (int)_currentUpgradeData.Value;
                 break;
 
             case UpgradeType.TowerCustom:
@@ -130,18 +130,18 @@ public class VillageBuilding : MonoBehaviour
     {
         if (wantedBuilding == this.gameObject)
         {
-            buildingCanvas.SetActive(true);
+            _buildingCanvas.SetActive(true);
             return;
         }
-        buildingCanvas.SetActive(false);       
+        _buildingCanvas.SetActive(false);       
     }
 
     private void SetTowerStats()
     {
-        towerStatsText.text = $"Damage: {towerData.towerDamage.ToString()}\n" +
-                              $"FireRate: {towerData.towerFireRate.ToString()}\n" +
-                              $"Range: {towerData.towerRange.ToString()}\n" +
-                              $"Pierce: {towerData.towerEnemyPierce.ToString()}";
+        _towerStatsText.text = $"Damage: {_towerData.TowerDamage.ToString()}\n" +
+                              $"FireRate: {_towerData.TowerFireRate.ToString()}\n" +
+                              $"Range: {_towerData.TowerRange.ToString()}\n" +
+                              $"Pierce: {_towerData.TowerEnemyPierce.ToString()}";
     }
 
     /*private void HandlePlayerMouseInfo(InputAction.CallbackContext cpntext)

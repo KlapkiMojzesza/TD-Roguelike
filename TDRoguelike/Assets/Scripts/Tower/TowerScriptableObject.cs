@@ -3,15 +3,15 @@
 [CreateAssetMenu(fileName = "TowerData", menuName = "New Tower/Create Tower", order = 1)]
 public class TowerScriptableObject : ScriptableObject
 {
-    public string towerName = "Tower";
-    public string towerInfo = "Very good tower";
-    public int towerPrice = 50;
-    public int towerEnemyPierce = 1;
-    public float towerFireRate = 1f;
-    public float towerRange = 50f;
-    public float towerDamage = 10f;
-    public float projectileSpeed = 300f;
-    public GameObject projectilePrefab;
-    public Texture towerIcon;
+    public string TowerName = "Tower";
+    public string TowerInfo = "Very good tower";
+    public int TowerPrice = 50;
+    public int TowerEnemyPierce = 1;
+    public float TowerFireRate = 1f;
+    public float TowerRange = 50f;
+    public float TowerDamage = 10f;
+    public float ProjectileSpeed = 300f;
+    public GameObject ProjectilePrefab;
+    public Texture TowerIcon;
 }
 

@@ -10,55 +10,55 @@ using UnityEngine.UI;
 public class Tower : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private LayerMask towerLayer;
+    [SerializeField] private LayerMask _towerLayer;
 
     [Header("To Attach")]
-    public TowerScriptableObject towerData;
-    [SerializeField] Renderer[] renderers;
-    [SerializeField] RawImage iconImage;
-    [SerializeField] GameObject towerHitBox;
-    [SerializeField] GameObject towerInfoCanvas;
-    [SerializeField] TMP_Text towerStatsText;
-    [SerializeField] TMP_Text towernNameText;
+    public TowerScriptableObject TowerData;
+    [SerializeField] private Renderer[] _renderers;
+    [SerializeField] private RawImage _iconImage;
+    [SerializeField] private GameObject _towerHitBox;
+    [SerializeField] private GameObject _towerInfoCanvas;
+    [SerializeField] private TMP_Text _towerStatsText;
+    [SerializeField] private TMP_Text _towerNameText;
 
-    int collisionsAmount = 0;
-    bool canBePlaced = true;
-    bool isPlaced = false;
+    private int _collisionsAmount = 0;
+    private bool _canBePlaced = true;
+    private bool _isPlaced = false;
 
-    Controls controls;
-    Dictionary<Material, Color> allObjects = new Dictionary<Material, Color>();
+    private Controls _controls;
+    private Dictionary<Material, Color> _allObjects = new Dictionary<Material, Color>();
 
     private void Awake()
     {
         TowerManager.OnNextWaveButtonClicked += HandleStartWave;
         TowerManager.OnTowerSelect += HandleAnotherTowerSelected;
 
-        controls = new Controls();
-        controls.Player.Enable();
-        controls.Player.Info.performed += HandlePlayerMouseInfo;
+        _controls = new Controls();
+        _controls.Player.Enable();
+        _controls.Player.Info.performed += HandlePlayerMouseInfo;
 
         SetAllBuildingMaterials();
 
-        iconImage.texture = towerData.towerIcon;
+        _iconImage.texture = TowerData.TowerIcon;
     }
 
     private void OnDestroy()
     {
         TowerManager.OnNextWaveButtonClicked -= HandleStartWave;
         TowerManager.OnTowerSelect -= HandleAnotherTowerSelected;
-        controls.Player.Info.performed -= HandlePlayerMouseInfo;
+        _controls.Player.Info.performed -= HandlePlayerMouseInfo;
     }
 
     public void SetAllBuildingMaterials()
     {
-        foreach (Renderer render in renderers)
+        foreach (Renderer render in _renderers)
         {
             Material[] materials = render.materials;
             foreach (Material material in materials)
             {
-                if (!allObjects.ContainsKey(material))
+                if (!_allObjects.ContainsKey(material))
                 {
-                    allObjects.Add(material, material.color);
+                    _allObjects.Add(material, material.color);
                 }
             }
         }
@@ -66,68 +66,68 @@ public class Tower : MonoBehaviour
 
     private void HandlePlayerMouseInfo(InputAction.CallbackContext cpntext)
     {
-        if (!isPlaced) return;
+        if (!_isPlaced) return;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit towerHit;
 
-        if (!Physics.Raycast(ray, out towerHit, Mathf.Infinity, towerLayer))
+        if (!Physics.Raycast(ray, out towerHit, Mathf.Infinity, _towerLayer))
         {
-            towerInfoCanvas.SetActive(false);
+            _towerInfoCanvas.SetActive(false);
             return;
         }
 
         GameObject towerHitGameObject = towerHit.transform.gameObject;
         if (towerHitGameObject != this.gameObject)
         {
-            towerInfoCanvas.SetActive(false);
+            _towerInfoCanvas.SetActive(false);
             return;
         }
 
-        towerInfoCanvas.SetActive(true);
+        _towerInfoCanvas.SetActive(true);
     }
 
     private void HandleStartWave()
     {
-        towerInfoCanvas.SetActive(false);
+        _towerInfoCanvas.SetActive(false);
     }
 
     private void HandleAnotherTowerSelected()
     {
-        towerInfoCanvas.SetActive(false);
+        _towerInfoCanvas.SetActive(false);
     }
 
     public bool CanBePlaced()
     {
-        if (collisionsAmount == 0 && canBePlaced) return true;
+        if (_collisionsAmount == 0 && _canBePlaced) return true;
 
         return false;
     }
 
     public void PlaceTower()
     {
-        towerHitBox.SetActive(true);
-        isPlaced = true;
+        _towerHitBox.SetActive(true);
+        _isPlaced = true;
         UpdateTowerStatsUI();
 
-        towerInfoCanvas.SetActive(true);
+        _towerInfoCanvas.SetActive(true);
     }
 
     private void UpdateTowerStatsUI()
     {
-        towerStatsText.text = $"Damage: {towerData.towerDamage.ToString()}\n" +
-                              $"Range: {towerData.towerRange.ToString()}\n" +
-                              $"FireRate: {towerData.towerFireRate.ToString()}\n" +
-                              $"Pierce: {towerData.towerEnemyPierce.ToString()}";
+        _towerStatsText.text = $"Damage: {TowerData.TowerDamage.ToString()}\n" +
+                              $"Range: {TowerData.TowerRange.ToString()}\n" +
+                              $"FireRate: {TowerData.TowerFireRate.ToString()}\n" +
+                              $"Pierce: {TowerData.TowerEnemyPierce.ToString()}";
 
-        towernNameText.text = towerData.towerName;
+        _towerNameText.text = TowerData.TowerName;
     }
 
     public void SetTowerColor()
     {
         Color color = CanBePlaced() ? Color.green : Color.red;
 
-        foreach(KeyValuePair<Material, Color> objectT in allObjects)
+        foreach(KeyValuePair<Material, Color> objectT in _allObjects)
         {
             objectT.Key.color = color;
         }
@@ -135,7 +135,7 @@ public class Tower : MonoBehaviour
 
     public void SetOrginalColor()
     {
-        foreach (KeyValuePair<Material, Color> objectT in allObjects)
+        foreach (KeyValuePair<Material, Color> objectT in _allObjects)
         {
             objectT.Key.color = objectT.Value;
         }
@@ -143,14 +143,14 @@ public class Tower : MonoBehaviour
 
     public Texture GetTowerIcon()
     {
-        return towerData.towerIcon;
+        return TowerData.TowerIcon;
     }
 
     private void OnCollisionExit(Collision collision)
     {
         if (collision.collider.CompareTag("Obstacle"))
         {
-            collisionsAmount--;
+            _collisionsAmount--;
         }
     }
 
@@ -158,7 +158,7 @@ public class Tower : MonoBehaviour
     {
         if (collision.collider.CompareTag("Obstacle"))
         {
-            collisionsAmount++;
+            _collisionsAmount++;
         }
     }
 
@@ -166,7 +166,7 @@ public class Tower : MonoBehaviour
     {
         if (other.CompareTag("Obstacle"))
         {
-            canBePlaced = false;
+            _canBePlaced = false;
         }
     }
 
@@ -174,7 +174,7 @@ public class Tower : MonoBehaviour
     {
         if (other.CompareTag("Obstacle"))
         {
-            canBePlaced = true;
+            _canBePlaced = true;
         }
     }
 }

@@ -6,21 +6,20 @@ using UnityEngine.UI;
 
 public class UpgradeButton : MonoBehaviour
 {
-    [SerializeField] RawImage upgradeIcon;
-    [SerializeField] GameObject blockedIcon;
-    [SerializeField] GameObject purchasedIcon;
-    [SerializeField] UpgradeScriptableObject upgradeData;
-    [SerializeField] UpgradeButton requiredUpgrade;
-    public Vector2Int buttonPosition = Vector2Int.zero;
-    public bool isPurchased = false;
+    [SerializeField] private RawImage _upgradeIcon;
+    [SerializeField] private GameObject _blockedIcon;
+    [SerializeField] private GameObject _purchasedIcon;
+    [SerializeField] private UpgradeScriptableObject _upgradeData;
+    [SerializeField] private UpgradeButton _requiredUpgrade;
 
     public static event Action<UpgradeScriptableObject, UpgradeButton> OnUpgradeChoose;
 
+    public bool IsPurchased = false;
 
     public bool UpgradePossible()
     {
-        if (requiredUpgrade == null) return true;
-        if (requiredUpgrade.isPurchased) return true;
+        if (_requiredUpgrade == null) return true;
+        if (_requiredUpgrade.IsPurchased) return true;
 
         return false;
     }
@@ -29,7 +28,7 @@ public class UpgradeButton : MonoBehaviour
     {
         VillageBuilding.OnUpgradePurchased += HandlePurchase;
 
-        upgradeIcon.texture = upgradeData.upgradeIcon;
+        _upgradeIcon.texture = _upgradeData.UpgradeIcon;
     }
 
     private void OnDestroy()
@@ -39,19 +38,19 @@ public class UpgradeButton : MonoBehaviour
 
     private void HandlePurchase(UpgradeButton upgradeButton)
     {
-        if (upgradeButton == this) purchasedIcon.SetActive(true);
+        if (upgradeButton == this) _purchasedIcon.SetActive(true);
 
-        if (requiredUpgrade == null) return;
+        if (_requiredUpgrade == null) return;
 
-        if (!requiredUpgrade.isPurchased) return;
+        if (!_requiredUpgrade.IsPurchased) return;
 
-        if (blockedIcon == null) return;
+        if (_blockedIcon == null) return;
 
-        blockedIcon.SetActive(false);
+        _blockedIcon.SetActive(false);
     }
 
     public void Upgrade()
     {
-        OnUpgradeChoose?.Invoke(upgradeData, this);
+        OnUpgradeChoose?.Invoke(_upgradeData, this);
     }
 }

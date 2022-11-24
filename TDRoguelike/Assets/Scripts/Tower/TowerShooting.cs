@@ -6,23 +6,25 @@ using UnityEngine;
 public class TowerShooting : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float rotationOffset;
+    [SerializeField] private float _rotationOffset;
 
     [Header("To Attach")]
-    [SerializeField] Transform firePoint;
-    [SerializeField] GameObject rotationParts;
+    [SerializeField] private Transform _firePoint;
+    [SerializeField] private GameObject _rotatingParts;
 
-    List<GameObject> aliveEnemies = new List<GameObject>();
-    TowerScriptableObject towerData;
-    Transform target;
-    TargetPriority targetPriority = TargetPriority.First;
-    float fireCountdown = 0;
+    private List<GameObject> _aliveEnemies = new List<GameObject>();
+    private TowerScriptableObject _towerData;
+    private Transform _target;
+    private TargetPriority _targetPriority = TargetPriority.First;
+    private float _fireCountdown = 0;
 
     private void Start()
     {
         EnemyHealth.OnEnemySpawn += AddEnemyToList;
         EnemyHealth.OnEnemyDeath += RemoveEnemyFromList;
-        towerData = GetComponent<Tower>().towerData;
+
+        _towerData = GetComponent<Tower>().TowerData;
+
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
     }
 
@@ -34,45 +36,45 @@ public class TowerShooting : MonoBehaviour
 
     private void UpdateTarget()
     {
-        switch (targetPriority)
+        switch (_targetPriority)
         {
             case TargetPriority.First:
-                target = GetFirstEnemy(aliveEnemies);
+                _target = GetFirstEnemy(_aliveEnemies);
                 break;
             case TargetPriority.Last:
-                target = GetLastEnemy(aliveEnemies);
+                _target = GetLastEnemy(_aliveEnemies);
                 break;
             case TargetPriority.Strongest:
-                target = GetStrongestEnemy(aliveEnemies);
+                _target = GetStrongestEnemy(_aliveEnemies);
                 break;
             case TargetPriority.Closest:
-                target = GetClosestEnemy(aliveEnemies);
+                _target = GetClosestEnemy(_aliveEnemies);
                 break;
         }
     }
 
     private void Update()
     {
-        if (target == null) return;
+        if (_target == null) return;
 
         RotateToTarget();
 
-        if (fireCountdown <= 0f)
+        if (_fireCountdown <= 0f)
         {
             Shoot();
-            fireCountdown = 1f / towerData.towerFireRate;
+            _fireCountdown = 1f / _towerData.TowerFireRate;
         }
 
-        fireCountdown -= Time.deltaTime;
+        _fireCountdown -= Time.deltaTime;
     }
 
     private void RotateToTarget()
     {
-        Vector3 lookDirection = target.position - transform.position;
+        Vector3 lookDirection = _target.position - transform.position;
         float angle = Mathf.Atan2(lookDirection.x, lookDirection.z) *
-                      Mathf.Rad2Deg + rotationOffset;
+                      Mathf.Rad2Deg + _rotationOffset;
 
-        rotationParts.transform.rotation = Quaternion.Lerp(rotationParts.transform.rotation,
+        _rotatingParts.transform.rotation = Quaternion.Lerp(_rotatingParts.transform.rotation,
                                                            Quaternion.Euler(0, angle, 0), 
                                                            0.05f);
     }
@@ -87,7 +89,7 @@ public class TowerShooting : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy <= towerData.towerRange)
+            if (distanceToEnemy <= _towerData.TowerRange)
             {
                 int enemyCurrentWaypoint = enemy.GetComponent<EnemyMovement>().GetCurrentWaypoint();
                 float enemyDistanceToWaypoint = enemy.GetComponent<EnemyMovement>().GetDistanceToNextWaypoint();
@@ -114,7 +116,7 @@ public class TowerShooting : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy <= towerData.towerRange)
+            if (distanceToEnemy <= _towerData.TowerRange)
             {
                 int enemyCurrentWaypoint = enemy.GetComponent<EnemyMovement>().GetCurrentWaypoint();
                 float enemyDistanceToWaypoint = enemy.GetComponent<EnemyMovement>().GetDistanceToNextWaypoint();
@@ -138,7 +140,7 @@ public class TowerShooting : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy <= towerData.towerRange)
+            if (distanceToEnemy <= _towerData.TowerRange)
             {
                 float enemyStrength = enemy.GetComponent<EnemyHealth>().enemyStrength;
                 if (enemyStrength <= strongestEnemyStrength) continue;
@@ -156,7 +158,7 @@ public class TowerShooting : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance && distanceToEnemy <= towerData.towerRange)
+            if (distanceToEnemy < shortestDistance && distanceToEnemy <= _towerData.TowerRange)
             {
                 shortestDistance = distanceToEnemy;
                 closestEnemy = enemy.transform;
@@ -167,26 +169,26 @@ public class TowerShooting : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject projectileObject = Instantiate(towerData.projectilePrefab, firePoint.position, firePoint.rotation);
+        GameObject projectileObject = Instantiate(_towerData.ProjectilePrefab, _firePoint.position, _firePoint.rotation);
         Projectile projectile = projectileObject.GetComponent<Projectile>();
 
         if (projectile != null)
         {
-            projectile.Create(target.gameObject.GetComponent<EnemyHealth>().aimPoint,
-                              towerData.projectileSpeed, 
-                              towerData.towerDamage,
-                              towerData.towerEnemyPierce);
+            projectile.Create(_target.gameObject.GetComponent<EnemyHealth>().aimPoint,
+                              _towerData.ProjectileSpeed, 
+                              _towerData.TowerDamage,
+                              _towerData.TowerEnemyPierce);
         }
     }
 
     private void RemoveEnemyFromList(GameObject enemy)
     {
-        aliveEnemies.Remove(enemy);
+        _aliveEnemies.Remove(enemy);
     }
 
     private void AddEnemyToList(GameObject enemy)
     {
-        aliveEnemies.Add(enemy);
+        _aliveEnemies.Add(enemy);
     }
 
     public void TowerTargetPrioritySwitch(int index)
@@ -194,16 +196,16 @@ public class TowerShooting : MonoBehaviour
         switch(index)
         {
             case 0:
-                targetPriority = TargetPriority.First;
+                _targetPriority = TargetPriority.First;
                 break;
             case 1:
-                targetPriority = TargetPriority.Strongest;
+                _targetPriority = TargetPriority.Strongest;
                 break;
             case 2:
-                targetPriority = TargetPriority.Closest;
+                _targetPriority = TargetPriority.Closest;
                 break;
             case 3:
-                targetPriority = TargetPriority.Last;
+                _targetPriority = TargetPriority.Last;
                 break;
         }
     }
