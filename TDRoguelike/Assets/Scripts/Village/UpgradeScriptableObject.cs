@@ -3,10 +3,10 @@
 [CreateAssetMenu(fileName = "UpgradeData", menuName = "New Upgrade/Create Upgrade", order = 2)]
 public class UpgradeScriptableObject : ScriptableObject
 {
-    public string UpgradeName;
-    public string UpgradeInfo;
+    public string UpgradeName = "Good Upgrade";
+    public string UpgradeInfo = "Very Good Upgrade";
     public UpgradeType UpgradeType;
-    public float Value;
+    public float Value = 1;
     public Texture UpgradeIcon;
 }
 

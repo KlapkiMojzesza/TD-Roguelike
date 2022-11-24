@@ -747,7 +747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2694840436894050601
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1408,7 +1408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6515356597752896886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2696,7 +2696,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4204422246998408495
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5166,7 +5166,18 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 1860619996325489676, guid: 74dcc4ad9ec781148a40a6bff2bbcbac,
         type: 3}
+      propertyPath: _upgradeData
+      value: 
+      objectReference: {fileID: 11400000, guid: a42b8fb24f75e5c458b164336e02dd52,
+        type: 2}
+    - target: {fileID: 1860619996325489676, guid: 74dcc4ad9ec781148a40a6bff2bbcbac,
+        type: 3}
       propertyPath: requiredUpgrade
+      value: 
+      objectReference: {fileID: 7988683391022856597}
+    - target: {fileID: 1860619996325489676, guid: 74dcc4ad9ec781148a40a6bff2bbcbac,
+        type: 3}
+      propertyPath: _requiredUpgrade
       value: 
       objectReference: {fileID: 7988683391022856597}
     - target: {fileID: 1860619996325489676, guid: 74dcc4ad9ec781148a40a6bff2bbcbac,
@@ -5788,7 +5799,18 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 1860619996325489676, guid: 74dcc4ad9ec781148a40a6bff2bbcbac,
         type: 3}
+      propertyPath: _upgradeData
+      value: 
+      objectReference: {fileID: 11400000, guid: 49ba5723901779e48a41d65551115880,
+        type: 2}
+    - target: {fileID: 1860619996325489676, guid: 74dcc4ad9ec781148a40a6bff2bbcbac,
+        type: 3}
       propertyPath: requiredUpgrade
+      value: 
+      objectReference: {fileID: 2076339258051434393}
+    - target: {fileID: 1860619996325489676, guid: 74dcc4ad9ec781148a40a6bff2bbcbac,
+        type: 3}
+      propertyPath: _requiredUpgrade
       value: 
       objectReference: {fileID: 2076339258051434393}
     - target: {fileID: 1860619996325489676, guid: 74dcc4ad9ec781148a40a6bff2bbcbac,
@@ -6452,7 +6474,18 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 1860619996325489676, guid: 74dcc4ad9ec781148a40a6bff2bbcbac,
         type: 3}
+      propertyPath: _upgradeData
+      value: 
+      objectReference: {fileID: 11400000, guid: cdfbc49bfd1fd624abd3a4e61a8374db,
+        type: 2}
+    - target: {fileID: 1860619996325489676, guid: 74dcc4ad9ec781148a40a6bff2bbcbac,
+        type: 3}
       propertyPath: requiredUpgrade
+      value: 
+      objectReference: {fileID: 1091927932645004371}
+    - target: {fileID: 1860619996325489676, guid: 74dcc4ad9ec781148a40a6bff2bbcbac,
+        type: 3}
+      propertyPath: _requiredUpgrade
       value: 
       objectReference: {fileID: 1091927932645004371}
     - target: {fileID: 1860619996325489676, guid: 74dcc4ad9ec781148a40a6bff2bbcbac,
@@ -7500,6 +7533,12 @@ PrefabInstance:
       propertyPath: upgradeData
       value: 
       objectReference: {fileID: 11400000, guid: fd8807709952cdf49b95aed5dafe1d74,
+        type: 2}
+    - target: {fileID: 4189386328476561489, guid: 8ffcdc63f474a744283d9d9322f406bf,
+        type: 3}
+      propertyPath: _upgradeData
+      value: 
+      objectReference: {fileID: 11400000, guid: bf0fe46a9f253a542afbf00a0a24f1e5,
         type: 2}
     - target: {fileID: 6010022961053043472, guid: 8ffcdc63f474a744283d9d9322f406bf,
         type: 3}

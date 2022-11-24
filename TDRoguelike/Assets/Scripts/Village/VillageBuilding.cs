@@ -28,7 +28,7 @@ public class VillageBuilding : MonoBehaviour
     [SerializeField] private RawImage _upgradeIcon;
     [SerializeField] private TMP_Text _upgradeInfoText;
 
-    private List<UpgradeButton> _upgradesPurchased;
+    public List<UpgradeButton> UpgradesPurchased;
 
     public static event Action<UpgradeButton> OnUpgradePurchased;
 
@@ -65,7 +65,7 @@ public class VillageBuilding : MonoBehaviour
         _upgradeButtonBlocked.SetActive(false);
         _upgradeButtonPurchased.SetActive(false);
 
-        if (_upgradesPurchased.Contains(upgradeButtonLogic))
+        if (UpgradesPurchased.Contains(upgradeButtonLogic))
         {
             _upgradeButtonPurchased.SetActive(true);
         }
@@ -91,13 +91,13 @@ public class VillageBuilding : MonoBehaviour
         if (!_buildingCanvas.activeSelf) return;
 
         //this will be different with seve system
-        if (_upgradesPurchased.Contains(_currentUpgradeButtonLogic)) return;
+        if (UpgradesPurchased.Contains(_currentUpgradeButtonLogic)) return;
 
         _upgradeInfoMenu.SetActive(false);
 
         _currentUpgradeButtonLogic.IsPurchased = true;
         OnUpgradePurchased?.Invoke(_currentUpgradeButtonLogic);
-        _upgradesPurchased.Add(_currentUpgradeButtonLogic);
+        UpgradesPurchased.Add(_currentUpgradeButtonLogic);
 
         UpgradeType upgradeType = _currentUpgradeData.UpgradeType;
         switch(upgradeType)
