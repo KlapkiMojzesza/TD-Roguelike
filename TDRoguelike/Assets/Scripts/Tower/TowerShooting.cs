@@ -153,7 +153,7 @@ public class TowerShooting : MonoBehaviour
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy <= _towerData.TowerRange)
             {
-                float enemyStrength = enemy.GetComponent<EnemyHealth>().enemyStrength;
+                float enemyStrength = enemy.GetComponent<EnemyHealth>().EnemyStrength;
                 if (enemyStrength <= strongestEnemyStrength) continue;
                 strongestEnemyStrength = enemyStrength;
                 strongestEnemy = enemy.transform;
@@ -185,7 +185,7 @@ public class TowerShooting : MonoBehaviour
 
         if (projectile != null)
         {
-            projectile.Create(_target.gameObject.GetComponent<EnemyHealth>().aimPoint,
+            projectile.Create(_target.gameObject.GetComponent<EnemyHealth>().AimPoint,
                               _towerData.ProjectileSpeed, 
                               _towerData.TowerDamage,
                               _towerData.TowerEnemyPierce);

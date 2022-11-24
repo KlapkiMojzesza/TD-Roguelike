@@ -6,13 +6,11 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour, IDamegeable
 {
     [Header("Settings")]
-    [SerializeField] float health;
-    public float enemyStrength = 1f;
+    [SerializeField] private float _health = 100f;
+    public float EnemyStrength = 1f;
 
     [Header("To Attach")]
-    public Transform aimPoint;
-
-    public int enemyID;
+    public Transform AimPoint;
 
     public static event Action<GameObject> OnEnemySpawn;
     public static event Action<GameObject> OnEnemyDeath;
@@ -24,8 +22,8 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        if (health <= 0)
+        _health -= damage;
+        if (_health <= 0)
         {
             Destroy(gameObject);
         }

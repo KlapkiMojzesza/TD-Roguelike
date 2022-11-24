@@ -16,9 +16,9 @@ MonoBehaviour:
   TowerInfo: Very good tower
   TowerPrice: 50
   TowerEnemyPierce: 1
-  TowerFireRate: 1
-  TowerRange: 50
-  TowerDamage: 10
+  TowerFireRate: 8
+  TowerRange: 70
+  TowerDamage: 1
   ProjectileSpeed: 300
   ProjectilePrefab: {fileID: 2547094118735421181, guid: 82ec74c9fcd6d734e8268d496aeb3f3c,
     type: 3}

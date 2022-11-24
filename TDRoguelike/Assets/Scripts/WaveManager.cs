@@ -6,34 +6,33 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] Wave[] waves;
-    [SerializeField] float timeBeforeFirstWave = 2f;
+    [SerializeField] private Wave[] _waves;
+    [SerializeField] private float _timeBeforeFirstWave = 2f;
 
     [Header("To Attach")]
-    [SerializeField] Transform spawnPoint;
+    [SerializeField] private Transform _spawnPoint;
 
     public static event Action<int> OnWaveEnd;
 
-    List<GameObject> aliveEnemies = new List<GameObject>();
-    int currentEnemySpawnIndex = 0;
-    int currentWaveIndex = 0;
-    int currentMiniWaveIndex = 0;
-    bool waveCompleated = false;
+    private List<GameObject> _aliveEnemies = new List<GameObject>();
+    private int _currentWaveIndex = 0;
+    private int _currentMiniWaveIndex = 0;
+    private bool _waveCompleated = false;
 
     [System.Serializable]
     public class Wave
     {
-        public MiniWave[] miniWaves;
-        public int goldForWaveCompleated = 10;
+        public MiniWave[] MiniWaves;
+        public int GoldForWaveCompleated = 10;
     }
 
     [System.Serializable]
     public class MiniWave
     {
-        public GameObject enemyPrefab;
-        public int amount;
-        public float spawnRate;
-        public float timeAfterWave;
+        public GameObject EnemyPrefab;
+        public int Amount;
+        public float SpawnRate;
+        public float TimeAfterWave;
     }
 
     private void Start()
@@ -52,85 +51,82 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnNextWave()
     {
-        if (currentWaveIndex >= waves.Length) return;
-        waveCompleated = false;
-        currentEnemySpawnIndex = 0;
-        StartCoroutine(spawnWave(timeBeforeFirstWave));
+        if (_currentWaveIndex >= _waves.Length) return;
+        _waveCompleated = false;
+        StartCoroutine(spawnWave(_timeBeforeFirstWave));
     }
 
     private IEnumerator spawnWave(float timeBeforeSpawn)
     {
-        if (currentMiniWaveIndex < waves[currentWaveIndex].miniWaves.Length)
+        if (_currentMiniWaveIndex < _waves[_currentWaveIndex].MiniWaves.Length)
         { 
             yield return new WaitForSeconds(timeBeforeSpawn);
-            MiniWave currentMiniWave = waves[currentWaveIndex].miniWaves[currentMiniWaveIndex];
-            StartCoroutine(spawnMiniWave(currentMiniWave.spawnRate, currentMiniWave));
-            currentMiniWaveIndex++;
+            MiniWave currentMiniWave = _waves[_currentWaveIndex].MiniWaves[_currentMiniWaveIndex];
+            StartCoroutine(spawnMiniWave(currentMiniWave.SpawnRate, currentMiniWave));
+            _currentMiniWaveIndex++;
         }
         else
         {
             //Debug.Log("end of big wave");
-            waveCompleated = true;
-            currentMiniWaveIndex = 0;
-            currentWaveIndex++;
+            _waveCompleated = true;
+            _currentMiniWaveIndex = 0;
+            _currentWaveIndex++;
         }
     }
 
     private IEnumerator spawnMiniWave(float spawnRate, MiniWave miniWave)
     {
-        for (int i = 0; i < miniWave.amount; i++)
+        for (int i = 0; i < miniWave.Amount; i++)
         {
-            yield return new WaitForSeconds(1f / miniWave.spawnRate);
-            SpawnEnemy(miniWave.enemyPrefab);
+            yield return new WaitForSeconds(1f / miniWave.SpawnRate);
+            SpawnEnemy(miniWave.EnemyPrefab);
         }
         //Debug.Log("end of miniWave");
-        StartCoroutine(spawnWave(miniWave.timeAfterWave));
+        StartCoroutine(spawnWave(miniWave.TimeAfterWave));
     }
 
     private void SpawnEnemy(GameObject enemy)
     {
-        GameObject newEnemy = Instantiate(enemy, spawnPoint.position, Quaternion.identity);
-        newEnemy.GetComponent<EnemyHealth>().enemyID = currentEnemySpawnIndex;
-        aliveEnemies.Add(newEnemy);
-        currentEnemySpawnIndex++;
+        GameObject newEnemy = Instantiate(enemy, _spawnPoint.position, Quaternion.identity);
+        _aliveEnemies.Add(newEnemy);
         //Debug.Log(enemy.name);
     }
 
     private void HandleDeath(GameObject enemy)
     {
-        if (waveCompleated && aliveEnemies.Count == 1)
+        if (_waveCompleated && _aliveEnemies.Count == 1)
         {
             //last enemy arrived
-            aliveEnemies.Remove(enemy);
+            _aliveEnemies.Remove(enemy);
             EndWave();
             return;
         }
 
-        aliveEnemies.Remove(enemy);
-        if (!waveCompleated) return;
-        if (aliveEnemies.Count != 0) return;
+        _aliveEnemies.Remove(enemy);
+        if (!_waveCompleated) return;
+        if (_aliveEnemies.Count != 0) return;
         //last enemy died from tower/player
         EndWave();
     }
 
     private void EndWave()
     {
-        OnWaveEnd?.Invoke(waves[currentWaveIndex - 1].goldForWaveCompleated);
+        OnWaveEnd?.Invoke(_waves[_currentWaveIndex - 1].GoldForWaveCompleated);
     }
 
     private void HandleBaseDestruction()
     {
         //reset everything
         StopAllCoroutines();
-        foreach (GameObject enemy in aliveEnemies)
+        foreach (GameObject enemy in _aliveEnemies)
         {
             Destroy(enemy);
         }
 
-        aliveEnemies.Clear();
+        _aliveEnemies.Clear();
 
-        currentWaveIndex = 0;
-        currentMiniWaveIndex = 0;
-        waveCompleated = false;
+        _currentWaveIndex = 0;
+        _currentMiniWaveIndex = 0;
+        _waveCompleated = false;
     }
 }

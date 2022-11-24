@@ -6,20 +6,20 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float damage = 25;
-    [SerializeField] float speed;
-    [SerializeField] float rotateSpeed = 1f;
-    [SerializeField] float lookDirectionOffset = -90f;
+    [SerializeField] private float _damage = 25f;
+    [SerializeField] private float _speed = 50f;
+    [SerializeField] private float _rotateSpeed = 0.1f;
+    [SerializeField] private float _lookDirectionOffset = 90f;
 
     public static event Action<float> OnEnemyPathCompleate;
 
-    private WaypointManager waypointManager;
-    [SerializeField] private float distanceToNextWaypoint = 0;
-    [SerializeField] private int currentWaypoint;
+    private WaypointManager _waypointManager;
+    private float _distanceToNextWaypoint = 0f;
+    private int _currentWaypoint;
 
     private void Start()
     {
-        waypointManager = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaypointManager>();
+        _waypointManager = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaypointManager>();
     }
 
     private void Update()
@@ -30,20 +30,20 @@ public class EnemyMovement : MonoBehaviour
 
     private void MoveTowardsNextWaypoint()
     {
-        transform.position = Vector3.MoveTowards(transform.position, waypointManager.waypoints[currentWaypoint].position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _waypointManager.Waypoints[_currentWaypoint].position, _speed * Time.deltaTime);
 
-        distanceToNextWaypoint = Vector3.Distance(transform.position, waypointManager.waypoints[currentWaypoint].position);
+        _distanceToNextWaypoint = Vector3.Distance(transform.position, _waypointManager.Waypoints[_currentWaypoint].position);
 
-        if (distanceToNextWaypoint < 0.01f)
+        if (_distanceToNextWaypoint < 0.01f)
         {
-            if (currentWaypoint < waypointManager.waypoints.Length - 1)
+            if (_currentWaypoint < _waypointManager.Waypoints.Length - 1)
             {
-                currentWaypoint++;
-                distanceToNextWaypoint = Vector3.Distance(transform.position, waypointManager.waypoints[currentWaypoint].position);
+                _currentWaypoint++;
+                _distanceToNextWaypoint = Vector3.Distance(transform.position, _waypointManager.Waypoints[_currentWaypoint].position);
             }
             else
             {
-                OnEnemyPathCompleate?.Invoke(damage);
+                OnEnemyPathCompleate?.Invoke(_damage);
                 Destroy(gameObject);
             }
         }
@@ -51,18 +51,18 @@ public class EnemyMovement : MonoBehaviour
 
     private void RotateTowardsNextWaypoint()
     {
-        Vector3 lookDirection = waypointManager.waypoints[currentWaypoint].position - transform.position;
-        float angle = Mathf.Atan2(lookDirection.x, lookDirection.z) * Mathf.Rad2Deg - lookDirectionOffset;
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.up), rotateSpeed);
+        Vector3 lookDirection = _waypointManager.Waypoints[_currentWaypoint].position - transform.position;
+        float angle = Mathf.Atan2(lookDirection.x, lookDirection.z) * Mathf.Rad2Deg - _lookDirectionOffset;
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.up), _rotateSpeed);
     }
 
     public int GetCurrentWaypoint()
     {
-        return currentWaypoint;
+        return _currentWaypoint;
     }
 
     public float GetDistanceToNextWaypoint()
     {
-        return distanceToNextWaypoint;
+        return _distanceToNextWaypoint;
     }
 }
