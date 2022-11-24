@@ -25,7 +25,7 @@ public class TowerShooting : MonoBehaviour
 
         _towerData = GetComponent<Tower>().TowerData;
 
-        InvokeRepeating("UpdateTarget", 0f, 0.1f);
+        InvokeRepeating("UpdateTarget", 0f, 0.01f);
     }
 
     private void OnDestroy()
@@ -81,7 +81,7 @@ public class TowerShooting : MonoBehaviour
 
     private Transform GetFirstEnemy(List<GameObject> enemies)
     {
-        Transform FirstEnemy = null;
+        Transform firstEnemy = null;
 
         int currentWaypoint = -1;
         float distanceToWaypoint = Mathf.Infinity;
@@ -100,15 +100,15 @@ public class TowerShooting : MonoBehaviour
                 currentWaypoint = enemyCurrentWaypoint;
                 distanceToWaypoint = enemyDistanceToWaypoint;
 
-                FirstEnemy = enemy.transform;
+                firstEnemy = enemy.transform;
             }
         }
-        return FirstEnemy;
+        return firstEnemy;
     }
 
     private Transform GetLastEnemy(List<GameObject> enemies)
     {
-        Transform LastEnemy = null;
+        Transform lastEnemy = null;
 
         int currentWaypoint = 10000;
         float distanceToWaypoint = 0;
@@ -119,18 +119,29 @@ public class TowerShooting : MonoBehaviour
             if (distanceToEnemy <= _towerData.TowerRange)
             {
                 int enemyCurrentWaypoint = enemy.GetComponent<EnemyMovement>().GetCurrentWaypoint();
-                float enemyDistanceToWaypoint = enemy.GetComponent<EnemyMovement>().GetDistanceToNextWaypoint();
 
-                if (enemyCurrentWaypoint > currentWaypoint) continue;
-                if (enemyDistanceToWaypoint <= distanceToWaypoint) continue;
+                if (enemyCurrentWaypoint < currentWaypoint)
+                {
+                    currentWaypoint = enemyCurrentWaypoint;
 
-                currentWaypoint = enemyCurrentWaypoint;
-                distanceToWaypoint = enemyDistanceToWaypoint;
+                    float enemyDistanceToWaypoint = enemy.GetComponent<EnemyMovement>().GetDistanceToNextWaypoint();
+                    distanceToWaypoint = enemyDistanceToWaypoint;
 
-                LastEnemy = enemy.transform;
+                    lastEnemy = enemy.transform;
+                }
+                else if (enemyCurrentWaypoint == currentWaypoint)
+                {
+                    float enemyDistanceToWaypoint = enemy.GetComponent<EnemyMovement>().GetDistanceToNextWaypoint();
+                    if (enemyDistanceToWaypoint > distanceToWaypoint)
+                    {
+                        distanceToWaypoint = enemyDistanceToWaypoint;
+                        lastEnemy = enemy.transform;
+                    }
+                }
+                else continue;   
             }
         }
-        return LastEnemy;
+        return lastEnemy;
     }
 
     private Transform GetStrongestEnemy(List<GameObject> enemies)
@@ -210,11 +221,11 @@ public class TowerShooting : MonoBehaviour
         }
     }
 
-    /*private void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, towerData.towerRange);
-    }*/
+        Gizmos.DrawWireSphere(transform.position, _towerData.TowerRange);
+    }
 
 }
 

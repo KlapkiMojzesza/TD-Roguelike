@@ -14,8 +14,8 @@ public class EnemyMovement : MonoBehaviour
     public static event Action<float> OnEnemyPathCompleate;
 
     private WaypointManager waypointManager;
-    private float distanceToNextWaypoint = 0;
-    private int currentWaypoint;
+    [SerializeField] private float distanceToNextWaypoint = 0;
+    [SerializeField] private int currentWaypoint;
 
     private void Start()
     {
@@ -39,6 +39,7 @@ public class EnemyMovement : MonoBehaviour
             if (currentWaypoint < waypointManager.waypoints.Length - 1)
             {
                 currentWaypoint++;
+                distanceToNextWaypoint = Vector3.Distance(transform.position, waypointManager.waypoints[currentWaypoint].position);
             }
             else
             {

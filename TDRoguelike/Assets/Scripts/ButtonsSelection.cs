@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class ButtonsSelection : MonoBehaviour
 {
-    [SerializeField] GameObject[] icons;
-    [SerializeField] GameObject[] iconsSelection;
+    [SerializeField] private GameObject[] _icons;
+    [SerializeField] private GameObject[] _iconsSelection;
 
     public void SwitchTower(int iconIndex)
     {
-        for (int i = 0; i < icons.Length; i++)
+        for (int i = 0; i < _icons.Length; i++)
         {
-            if (icons[i] == icons[iconIndex])
+            if (_icons[i] == _icons[iconIndex])
             {
-                iconsSelection[i].SetActive(true);
-                icons[i].SetActive(false);
+                _iconsSelection[i].SetActive(true);
+                _icons[i].SetActive(false);
             }
             else
             {
-                iconsSelection[i].SetActive(false);
-                icons[i].SetActive(true);
+                _iconsSelection[i].SetActive(false);
+                _icons[i].SetActive(true);
             }
         }
     }
