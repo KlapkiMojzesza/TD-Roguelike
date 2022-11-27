@@ -21,17 +21,27 @@ public class PlayerShooting : MonoBehaviour
     private ObjectPool<PlayerProjectile> _pool;
     private Vector3 _direction;
     private float _lastFired = 0f;
+    private bool _towerSelected = false;
 
     private void Start()
     {
+        TowerManager.OnTowerSelect += TowerSelected;
+        TowerManager.OnTowerDeselect += TowerDeselect;
+
         _pool = new ObjectPool<PlayerProjectile>(CreateProjectile, OnTakeProjectileFromPool, OnReturnProjectileToPool);
+    }
+
+    private void OnDestroy()
+    {
+        TowerManager.OnTowerSelect -= TowerSelected;
+        TowerManager.OnTowerDeselect -= TowerDeselect;
     }
 
     private void Update()
     {
         if (Input.GetMouseButton(0))
         {
-            if (!IsMouseOverUI()) Shoot();
+            if (!IsMouseOverUI() && !_towerSelected) Shoot();
         }
     }
 
@@ -76,5 +86,15 @@ public class PlayerShooting : MonoBehaviour
     private bool IsMouseOverUI()
     {
         return EventSystem.current.IsPointerOverGameObject();
+    }
+
+    private void TowerDeselect()
+    {
+        _towerSelected = false;
+    }
+
+    private void TowerSelected()
+    {
+        _towerSelected = true;
     }
 }
