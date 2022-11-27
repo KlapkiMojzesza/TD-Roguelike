@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7024050496549638709}
   - component: {fileID: 5088654161502775039}
   - component: {fileID: 1613897185109060408}
-  - component: {fileID: 4087724116683913214}
   m_Layer: 8
   m_Name: Tarrain
   m_TagString: Ground
@@ -63,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6985128602231052403, guid: a4d7964338b82a942a66555ebaa5b1c0, type: 3}
+  - {fileID: 2100000, guid: 7ab91a600c4d825468b967fa6cb78aea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,19 +96,5 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2441658414131813105, guid: a4d7964338b82a942a66555ebaa5b1c0, type: 3}
---- !u!64 &4087724116683913214
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6745965150110484266}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2441658414131813105, guid: a4d7964338b82a942a66555ebaa5b1c0, type: 3}
