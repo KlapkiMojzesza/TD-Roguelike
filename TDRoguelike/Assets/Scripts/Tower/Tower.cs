@@ -11,6 +11,8 @@ public class Tower : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private LayerMask _towerLayer;
+    [SerializeField] private Color _canBePlacedColor = new Color(0.003921569f, 0.5568628f, 0.09411765f); //nice looking green
+    [SerializeField] private Color _canNotBePlacedColor = new Color(0.7019608f, 0.05098039f, 0.05098039f); //nice looking red
 
     [Header("To Attach")]
     public TowerScriptableObject TowerData;
@@ -125,7 +127,7 @@ public class Tower : MonoBehaviour
 
     public void SetTowerColor()
     {
-        Color color = CanBePlaced() ? Color.green : Color.red;
+        Color color = CanBePlaced() ? _canBePlacedColor : _canNotBePlacedColor;
 
         foreach(KeyValuePair<Material, Color> objectT in _allObjects)
         {
@@ -166,7 +168,7 @@ public class Tower : MonoBehaviour
     {
         if (other.CompareTag("Obstacle"))
         {
-            _canBePlaced = false;
+            _collisionsAmount++;
         }
     }
 
@@ -174,7 +176,7 @@ public class Tower : MonoBehaviour
     {
         if (other.CompareTag("Obstacle"))
         {
-            _canBePlaced = true;
+            _collisionsAmount--;
         }
     }
 }
