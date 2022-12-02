@@ -13,6 +13,7 @@ public class TowerShooting : MonoBehaviour
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _rotatingParts;
 
+    private Animator _animator;
     private List<GameObject> _aliveEnemies = new List<GameObject>();
     private TowerScriptableObject _towerData;
     private ObjectPool<Projectile> _pool;
@@ -24,6 +25,8 @@ public class TowerShooting : MonoBehaviour
     {
         EnemyHealth.OnEnemySpawn += AddEnemyToList;
         EnemyHealth.OnEnemyDeath += RemoveEnemyFromList;
+
+        _animator = GetComponent<Animator>();
 
         _towerData = GetComponent<Tower>().TowerData;
         _pool = new ObjectPool<Projectile>(CreateProjectile, OnTakeProjectileFromPool, OnReturnProjectileToPool);
@@ -193,6 +196,8 @@ public class TowerShooting : MonoBehaviour
                               _towerData.TowerDamage,
                               _towerData.TowerEnemyPierce);
         }
+
+        _animator.SetTrigger("shoot");
     }
 
     private void RemoveEnemyFromList(GameObject enemy)
@@ -241,11 +246,11 @@ public class TowerShooting : MonoBehaviour
         projectile.gameObject.SetActive(false);
     }
 
-    private void OnDrawGizmosSelected()
+   /* private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _towerData.TowerRange);
-    }
+    }*/
 
 }
 

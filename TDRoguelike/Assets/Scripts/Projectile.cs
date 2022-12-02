@@ -38,6 +38,13 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
+        if (collision.collider.CompareTag("Ground"))
+        {
+            _pool.Release(this);
+            return;
+        }
+
         if (collision.collider.CompareTag("Enemy"))
         {
             if (_enemyPierce > 0)
@@ -50,9 +57,6 @@ public class Projectile : MonoBehaviour
                 _pool.Release(this);
             }
         }
-        if (collision.collider.CompareTag("Ground"))
-        {
-            _pool.Release(this);
-        }
+
     }
 }
