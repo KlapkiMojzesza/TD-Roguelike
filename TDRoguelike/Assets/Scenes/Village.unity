@@ -1161,6 +1161,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Animus Tower Village
       objectReference: {fileID: 0}
+    - target: {fileID: 7493800978076033373, guid: 7132713dd71e801468876fd96db5b067,
+        type: 3}
+      propertyPath: _towerData
+      value: 
+      objectReference: {fileID: 11400000, guid: 602e51e182e38c74e8048acc6ba88b66,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7132713dd71e801468876fd96db5b067, type: 3}
 --- !u!4 &1457448698 stripped

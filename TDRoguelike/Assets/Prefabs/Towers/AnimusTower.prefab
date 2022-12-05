@@ -92,8 +92,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4482887671162836468}
-  - component: {fileID: 8878740092170067426}
   - component: {fileID: -6673747475480135083}
+  - component: {fileID: 8878740092170067426}
+  - component: {fileID: 7866596736984780943}
   - component: {fileID: 3643367639662998215}
   - component: {fileID: 4071774088349611471}
   m_Layer: 9
@@ -122,19 +123,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8878740092170067426
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2297097286232192416}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 3.7, z: 0}
 --- !u!54 &-6673747475480135083
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,6 +139,39 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!65 &8878740092170067426
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297097286232192416}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 3.7, z: 0}
+--- !u!95 &7866596736984780943
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297097286232192416}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &3643367639662998215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +187,8 @@ MonoBehaviour:
   _towerLayer:
     serializedVersion: 2
     m_Bits: 512
+  _canBePlacedColor: {r: 0.003921569, g: 0.5568628, b: 0.09411765, a: 1}
+  _canNotBePlacedColor: {r: 1, g: 0, b: 0, a: 1}
   TowerData: {fileID: 11400000, guid: 2d9ab8dbb2dbc4747a6306d9c434db1d, type: 2}
   _renderers:
   - {fileID: 7230934640272450956}

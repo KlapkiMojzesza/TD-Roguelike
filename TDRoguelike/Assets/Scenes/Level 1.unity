@@ -17612,7 +17612,7 @@ PrefabInstance:
     - target: {fileID: 3023863652597661764, guid: 7a2f41303b94d7f418ca8ff393860d21,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 3023863652597661764, guid: 7a2f41303b94d7f418ca8ff393860d21,
         type: 3}
@@ -18092,21 +18092,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
+      propertyPath: _waves.Array.data[0].MiniWaves.Array.data[0].Amount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: _waves.Array.data[0].MiniWaves.Array.data[0].SpawnRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: _waves.Array.data[0].MiniWaves.Array.data[2].SpawnRate
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
       propertyPath: _waves.Array.data[0].MiniWaves.Array.data[0].EnemyPrefab
       value: 
-      objectReference: {fileID: 2590124447293004177, guid: fe325315545902d47a5c18f0fc17ae54,
+      objectReference: {fileID: 961444833417097064, guid: 2eeaad9f62c0a274b9eca98fa1a5cd6f,
         type: 3}
     - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
       propertyPath: _waves.Array.data[0].MiniWaves.Array.data[1].EnemyPrefab
       value: 
-      objectReference: {fileID: 2590124447293004177, guid: fe325315545902d47a5c18f0fc17ae54,
+      objectReference: {fileID: 2756241929110736850, guid: 88b6aea29bdc7e94e804c267465b862e,
         type: 3}
     - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
       propertyPath: _waves.Array.data[0].MiniWaves.Array.data[2].EnemyPrefab
       value: 
-      objectReference: {fileID: 2590124447293004177, guid: fe325315545902d47a5c18f0fc17ae54,
+      objectReference: {fileID: 3295161404839182595, guid: 51cb00f00a01162489af0659b8c1f361,
         type: 3}
     - target: {fileID: 5018614834388842343, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
@@ -18334,9 +18349,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7701644492400215755, guid: c824c4a603e5cba49918df95bb9fd8f7,
         type: 3}
+      propertyPath: TowerPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701644492400215755, guid: c824c4a603e5cba49918df95bb9fd8f7,
+        type: 3}
       propertyPath: TowerPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 9154128754830370453, guid: 087f41c738c2933499bbb82eb9f4f99b,
+        type: 3}
+    - target: {fileID: 7701644492400215755, guid: c824c4a603e5cba49918df95bb9fd8f7,
+        type: 3}
+      propertyPath: TowerPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 4769767586024751121, guid: 6e3740f2545bb824d9673d9929292ea8,
+        type: 3}
+    - target: {fileID: 7701644492400215755, guid: c824c4a603e5cba49918df95bb9fd8f7,
+        type: 3}
+      propertyPath: TowerPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 2297097286232192416, guid: 6658b1894da6b014da30763f73bfbf48,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c824c4a603e5cba49918df95bb9fd8f7, type: 3}

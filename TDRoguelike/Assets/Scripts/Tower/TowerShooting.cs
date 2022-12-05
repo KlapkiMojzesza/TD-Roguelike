@@ -188,6 +188,7 @@ public class TowerShooting : MonoBehaviour
     {
         Projectile projectile = _pool.Get();
         projectile.gameObject.transform.position = _firePoint.position;
+        projectile.gameObject.transform.rotation = _firePoint.rotation;
 
         if (projectile != null)
         {

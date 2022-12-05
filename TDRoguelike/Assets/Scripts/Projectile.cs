@@ -27,11 +27,11 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        if (_target != null)
+        /*if (_target != null)
         {
             _lastKnownDirection = _target.position - transform.position;
-            if (Vector3.Distance(transform.position, _target.position) < 0.01f) _target = null;
-        }
+            if (Vector3.Distance(transform.position, _target.position) < 0.1f) _target = null;
+        }*/
 
         transform.Translate(_lastKnownDirection.normalized * _speed * Time.deltaTime, Space.World);
     }
@@ -41,7 +41,8 @@ public class Projectile : MonoBehaviour
 
         if (collision.collider.CompareTag("Ground"))
         {
-            _pool.Release(this);
+            if (gameObject.activeSelf) _pool.Release(this);
+            gameObject.SetActive(false);
             return;
         }
 
@@ -54,7 +55,8 @@ public class Projectile : MonoBehaviour
             }
             if (_enemyPierce == 0)
             {
-                _pool.Release(this);
+                if (gameObject.activeSelf) _pool.Release(this);
+                gameObject.SetActive(false);
             }
         }
 
