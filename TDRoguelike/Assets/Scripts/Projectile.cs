@@ -6,6 +6,8 @@ using UnityEngine.Pool;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private bool _lookAtTarget = false;
+
     private Transform _target;
     private Vector3 _lastKnownDirection;
     private float _speed;
@@ -27,13 +29,16 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        /*if (_target != null)
+        if (_target != null)
         {
             _lastKnownDirection = _target.position - transform.position;
             if (Vector3.Distance(transform.position, _target.position) < 0.1f) _target = null;
-        }*/
+            if (_lookAtTarget) transform.LookAt(_target);
+        }
 
         transform.Translate(_lastKnownDirection.normalized * _speed * Time.deltaTime, Space.World);
+
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -48,6 +53,7 @@ public class Projectile : MonoBehaviour
 
         if (collision.collider.CompareTag("Enemy"))
         {
+            _target = null;
             if (_enemyPierce > 0)
             {
                 _enemyPierce--;
