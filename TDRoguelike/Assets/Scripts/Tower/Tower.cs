@@ -16,6 +16,7 @@ public class Tower : MonoBehaviour
 
     [Header("To Attach")]
     public TowerScriptableObject TowerData;
+    [SerializeField] private Transform _towerRangeSprite;
     [SerializeField] private Renderer[] _renderers;
     [SerializeField] private RawImage _iconImage;
     [SerializeField] private GameObject _towerHitBox;
@@ -42,6 +43,7 @@ public class Tower : MonoBehaviour
         SetAllBuildingMaterials();
 
         _iconImage.texture = TowerData.TowerIcon;
+        _towerRangeSprite.localScale = new Vector3(TowerData.TowerRange, TowerData.TowerRange, 1f);
     }
 
     private void OnDestroy()
@@ -76,6 +78,7 @@ public class Tower : MonoBehaviour
         if (!Physics.Raycast(ray, out towerHit, Mathf.Infinity, _towerLayer))
         {
             _towerInfoCanvas.SetActive(false);
+            _towerRangeSprite.gameObject.SetActive(false);
             return;
         }
 
@@ -83,20 +86,25 @@ public class Tower : MonoBehaviour
         if (towerHitGameObject != this.gameObject)
         {
             _towerInfoCanvas.SetActive(false);
+            _towerRangeSprite.gameObject.SetActive(false);
             return;
         }
 
+        _towerRangeSprite.gameObject.SetActive(true);
         _towerInfoCanvas.SetActive(true);
     }
 
     private void HandleStartWave()
     {
         _towerInfoCanvas.SetActive(false);
+        _towerRangeSprite.gameObject.SetActive(false);
     }
 
-    private void HandleAnotherTowerSelected()
+    //another tower button was clicked
+    private void HandleAnotherTowerSelected(Tower selectedTower)
     {
         _towerInfoCanvas.SetActive(false);
+        if (selectedTower != this) _towerRangeSprite.gameObject.SetActive(false);   
     }
 
     public bool CanBePlaced()
@@ -118,9 +126,9 @@ public class Tower : MonoBehaviour
     private void UpdateTowerStatsUI()
     {
         _towerStatsText.text = $"Damage: {TowerData.TowerDamage.ToString()}\n" +
-                              $"Range: {TowerData.TowerRange.ToString()}\n" +
-                              $"FireRate: {TowerData.TowerFireRate.ToString()}\n" +
-                              $"Pierce: {TowerData.TowerEnemyPierce.ToString()}";
+                               $"Range: {TowerData.TowerRange.ToString()}\n" +
+                               $"FireRate: {TowerData.TowerFireRate.ToString()}\n" +
+                               $"Pierce: {TowerData.TowerEnemyPierce.ToString()}";
 
         _towerNameText.text = TowerData.TowerName;
     }

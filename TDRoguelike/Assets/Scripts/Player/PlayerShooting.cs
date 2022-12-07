@@ -93,7 +93,7 @@ public class PlayerShooting : MonoBehaviour
         _towerSelected = false;
     }
 
-    private void TowerSelected()
+    private void TowerSelected(Tower selectedTower)
     {
         _towerSelected = true;
     }

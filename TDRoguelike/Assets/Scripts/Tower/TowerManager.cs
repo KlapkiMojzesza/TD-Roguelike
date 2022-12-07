@@ -16,7 +16,7 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private TMP_Text _healthAmountText;
     [SerializeField] public GameObject[] TowerPrefabs;
 
-    public static event Action OnTowerSelect;
+    public static event Action<Tower> OnTowerSelect;
     public static event Action OnTowerDeselect;
     public static event Action OnTowerPlaced;
     public static event Action OnNextWaveButtonClicked;
@@ -100,7 +100,7 @@ public class TowerManager : MonoBehaviour
 
         _currentTowerPrefab = Instantiate(TowerPrefabs[towerIndex]);
         _currentTower = _currentTowerPrefab.GetComponent<Tower>();
-        OnTowerSelect?.Invoke();
+        OnTowerSelect?.Invoke(_currentTower);
     }
 
     public void HandleWaveEnd(int amount)

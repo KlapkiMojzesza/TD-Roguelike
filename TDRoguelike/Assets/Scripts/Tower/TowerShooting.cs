@@ -252,7 +252,7 @@ public class TowerShooting : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _towerData.TowerRange);
     }
-
+    
 }
 
 public enum TargetPriority{First = 0, Last = 1, Strongest = 2, Closest = 3}

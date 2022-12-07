@@ -50,7 +50,7 @@ public class TowerUIManager : MonoBehaviour
         _towersCanvas.SetActive(true);
     }
 
-    private void HandleTowerSelect()
+    private void HandleTowerSelect(Tower selectedTower)
     {
         _towersCanvas.SetActive(false);
         _placingCanvas.SetActive(true);
