@@ -17710,6 +17710,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4227866992572174335, guid: 47f16f52bac76294988323c40f976b4f,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6257095425945263504, guid: 47f16f52bac76294988323c40f976b4f,
         type: 3}
       propertyPath: m_RootOrder
