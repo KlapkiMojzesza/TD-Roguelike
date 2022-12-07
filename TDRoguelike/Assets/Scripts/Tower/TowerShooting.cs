@@ -61,6 +61,8 @@ public class TowerShooting : MonoBehaviour
 
     private void Update()
     {
+        _fireCountdown -= Time.deltaTime;
+
         if (_target == null) return;
 
         RotateToTarget();
@@ -71,7 +73,6 @@ public class TowerShooting : MonoBehaviour
             _fireCountdown = 1f / _towerData.TowerFireRate;
         }
 
-        _fireCountdown -= Time.deltaTime;
     }
 
     private void RotateToTarget()
@@ -188,7 +189,6 @@ public class TowerShooting : MonoBehaviour
     {
         Projectile projectile = _pool.Get();
         projectile.gameObject.transform.position = _firePoint.position;
-       // projectile.gameObject.transform.rotation = _firePoint.rotation;
 
         if (projectile != null)
         {
@@ -247,11 +247,11 @@ public class TowerShooting : MonoBehaviour
         projectile.gameObject.SetActive(false);
     }
 
-   /* private void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _towerData.TowerRange);
-    }*/
+    }
 
 }
 

@@ -8,16 +8,17 @@ using UnityEngine;
 public class PlayerBase : MonoBehaviour
 {
     [SerializeField] private float _startBaseHealth = 100;
-    [SerializeField] private TMP_Text _baseHealthText;
 
     private float _baseHealth;
+
     public static event Action OnBaseDestroyed;
+    public static event Action<float> OnBaseTakeDamage;
 
     private void Start()
     {
         EnemyMovement.OnEnemyPathCompleate += TakeDamage;
         _baseHealth = _startBaseHealth;
-        _baseHealthText.text = _baseHealth.ToString();
+        TakeDamage(0); //tower manager set player base health start value
     }
 
     private void OnDestroy()
@@ -34,13 +35,12 @@ public class PlayerBase : MonoBehaviour
             DestroyPlayerBase();
         }
 
-        _baseHealthText.text = _baseHealth.ToString();
+        OnBaseTakeDamage?.Invoke(_baseHealth);
     }
 
     private void DestroyPlayerBase()
     {
         OnBaseDestroyed?.Invoke();
         _baseHealth = _startBaseHealth;
-        _baseHealthText.text = _baseHealth.ToString();
     }
 }

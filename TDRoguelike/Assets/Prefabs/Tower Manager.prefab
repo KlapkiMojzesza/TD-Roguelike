@@ -53,6 +53,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _moneyAmountText: {fileID: 4772320796385941933}
+  _healthAmountText: {fileID: 2162318185053951095}
   TowerPrefabs:
   - {fileID: 2297097286232192416, guid: 6658b1894da6b014da30763f73bfbf48, type: 3}
 --- !u!114 &1035504923194178883
@@ -1178,6 +1179,18 @@ MonoBehaviour:
 --- !u!114 &2038558202596034506 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1964646685883969596, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
+    type: 3}
+  m_PrefabInstance: {fileID: 507141088296908790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2162318185053951095 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1804715076195918721, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
     type: 3}
   m_PrefabInstance: {fileID: 507141088296908790}
   m_PrefabAsset: {fileID: 0}
