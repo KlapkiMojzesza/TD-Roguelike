@@ -247,11 +247,11 @@ public class TowerShooting : MonoBehaviour
         projectile.gameObject.SetActive(false);
     }
 
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _towerData.TowerRange);
-    }
+    }*/
     
 }
 
