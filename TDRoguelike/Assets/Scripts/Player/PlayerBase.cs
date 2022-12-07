@@ -7,18 +7,21 @@ using UnityEngine;
 
 public class PlayerBase : MonoBehaviour
 {
+    [Header("Settings")]
     [SerializeField] private float _startBaseHealth = 100;
 
-    private float _baseHealth;
+    [Header("To Attach")]
+    [SerializeField] private TMP_Text _healthAmountText;
+
+    private float _currentBaseHealth;
 
     public static event Action OnBaseDestroyed;
-    public static event Action<float> OnBaseTakeDamage;
 
     private void Start()
     {
         EnemyMovement.OnEnemyPathCompleate += TakeDamage;
-        _baseHealth = _startBaseHealth;
-        TakeDamage(0); //tower manager set player base health start value
+        _currentBaseHealth = _startBaseHealth;
+        UpdatePlayerBaseHealthUI(_currentBaseHealth);
     }
 
     private void OnDestroy()
@@ -28,19 +31,23 @@ public class PlayerBase : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        _baseHealth -= damage;
-        if (_baseHealth <= 0)
+        _currentBaseHealth -= damage;
+        if (_currentBaseHealth <= 0)
         {
-            _baseHealth = 0f;
+            _currentBaseHealth = 0f;
             DestroyPlayerBase();
         }
-
-        OnBaseTakeDamage?.Invoke(_baseHealth);
+        UpdatePlayerBaseHealthUI(_currentBaseHealth);
     }
 
     private void DestroyPlayerBase()
     {
         OnBaseDestroyed?.Invoke();
-        _baseHealth = _startBaseHealth;
+        _currentBaseHealth = _startBaseHealth;
+    }
+
+    private void UpdatePlayerBaseHealthUI(float value)
+    {
+        _healthAmountText.text = value.ToString();
     }
 }

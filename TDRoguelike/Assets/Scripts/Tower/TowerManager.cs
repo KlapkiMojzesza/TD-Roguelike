@@ -13,7 +13,6 @@ public class TowerManager : MonoBehaviour
 
     [Header("To Attach")]
     [SerializeField] private TMP_Text _moneyAmountText;
-    [SerializeField] private TMP_Text _healthAmountText;
     [SerializeField] public GameObject[] TowerPrefabs;
 
     public static event Action<Tower> OnTowerSelect;
@@ -32,14 +31,12 @@ public class TowerManager : MonoBehaviour
         _moneyAmountText.text = _currentMoneyAmount.ToString();
 
         PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
-        PlayerBase.OnBaseTakeDamage += UpdatePlayerBaseHealth;
         WaveManager.OnWaveEnd += HandleWaveEnd;
     }
 
     private void OnDestroy()
     {
         PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
-        PlayerBase.OnBaseTakeDamage -= UpdatePlayerBaseHealth;
         WaveManager.OnWaveEnd -= HandleWaveEnd;
     }
 
@@ -135,9 +132,5 @@ public class TowerManager : MonoBehaviour
     {
         Destroy(_currentTowerPrefab);
         OnTowerDeselect?.Invoke();
-    }
-    private void UpdatePlayerBaseHealth(float value)
-    {
-        _healthAmountText.text = value.ToString();
     }
 }
