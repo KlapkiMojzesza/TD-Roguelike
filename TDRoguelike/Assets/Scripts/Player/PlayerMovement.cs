@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         Vector2 playerInputRaw = _controls.Player.Movement.ReadValue<Vector2>();
-        Vector3 playerInput = new Vector3(playerInputRaw.x, 0f, playerInputRaw.y);
+        Vector3 playerInput = new Vector3(playerInputRaw.x, -1f, playerInputRaw.y);
         _controller.Move(playerInput * _playerSpeed * Time.deltaTime);
     }
 

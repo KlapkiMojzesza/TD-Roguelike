@@ -68,7 +68,7 @@ public class Tower : MonoBehaviour
         }
     }
 
-    private void HandlePlayerMouseInfo(InputAction.CallbackContext cpntext)
+    private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
     {
         if (!_isPlaced) return;
 

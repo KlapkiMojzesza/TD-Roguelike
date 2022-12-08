@@ -39,6 +39,7 @@ public class PlayerProjectile : MonoBehaviour
             if (_pierceThroughEnemiesAmount == 0)
             {
                 _pool.Release(this);
+                _pierceThroughEnemiesAmount--;
             }
         }
     }
