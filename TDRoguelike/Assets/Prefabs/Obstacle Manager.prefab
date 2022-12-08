@@ -49,8 +49,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _obstacleInfoCanvas: {fileID: 6822443117865310684}
+  _buyButton: {fileID: 5214739050254449494}
   _obstacleNameText: {fileID: 5585870478228238863}
-  _obstaclePriceText: {fileID: 2070711686552970707}
+  _obstaclePriceTexts:
+  - {fileID: 2070711686552970707}
+  - {fileID: 2034374281092317630}
   _iconImage: {fileID: 8783290072088254014}
 --- !u!1001 &4750792245605585628
 PrefabInstance:
@@ -63,6 +66,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle Info Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251830316638128896, guid: 18b5a17da47836244a8590927446ad7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4900790367614319265, guid: 18b5a17da47836244a8590927446ad7c,
         type: 3}
@@ -176,6 +184,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18b5a17da47836244a8590927446ad7c, type: 3}
+--- !u!114 &2034374281092317630 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6761513555267326818, guid: 18b5a17da47836244a8590927446ad7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4750792245605585628}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2070711686552970707 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6724596823127570191, guid: 18b5a17da47836244a8590927446ad7c,
@@ -191,6 +211,12 @@ MonoBehaviour:
 --- !u!224 &2943977746424735209 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7581009845827761973, guid: 18b5a17da47836244a8590927446ad7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4750792245605585628}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5214739050254449494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 698143609253685642, guid: 18b5a17da47836244a8590927446ad7c,
     type: 3}
   m_PrefabInstance: {fileID: 4750792245605585628}
   m_PrefabAsset: {fileID: 0}

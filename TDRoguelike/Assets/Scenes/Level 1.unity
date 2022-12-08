@@ -2477,6 +2477,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 448029156}
     m_Modifications:
+    - target: {fileID: -7293632052852585104, guid: c7f1d0f28a7715142bca98098d61986e,
+        type: 3}
+      propertyPath: removePriceAdjuster
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8220704470414835700, guid: c7f1d0f28a7715142bca98098d61986e,
         type: 3}
       propertyPath: m_RootOrder
@@ -17715,6 +17720,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822443117865310684, guid: 7ad2be2c61bf8d944b42cabab7c676ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ad2be2c61bf8d944b42cabab7c676ad, type: 3}

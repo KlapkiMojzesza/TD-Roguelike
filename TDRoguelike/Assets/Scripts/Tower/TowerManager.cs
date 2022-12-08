@@ -146,4 +146,15 @@ public class TowerManager : MonoBehaviour
         Destroy(_currentTowerPrefab);
         OnTowerDeselect?.Invoke();
     }
+
+    public int GetCurrentMoneyAmount()
+    {
+        return _currentMoneyAmount;
+    }
+
+    public void RemoveObstacle(int removePrice)
+    {
+        _currentMoneyAmount -= removePrice;
+        _moneyAmountText.text = _currentMoneyAmount.ToString();
+    }
 }

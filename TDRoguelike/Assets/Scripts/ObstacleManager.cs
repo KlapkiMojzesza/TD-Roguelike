@@ -13,10 +13,12 @@ public class ObstacleManager : MonoBehaviour
 
     [Header("To Attach")]
     [SerializeField] private GameObject _obstacleInfoCanvas;
+    [SerializeField] private GameObject _buyButton;
     [SerializeField] private TMP_Text _obstacleNameText;
-    [SerializeField] private TMP_Text _obstaclePriceText;
+    [SerializeField] private TMP_Text[] _obstaclePriceTexts;
     [SerializeField] private RawImage _iconImage;
 
+    private TowerManager _towerManager;
     private Controls _controls;
     private Obstacle _currentObstacle;
 
@@ -24,6 +26,9 @@ public class ObstacleManager : MonoBehaviour
     {
         _controls = new Controls();
         _controls.Player.Enable();
+
+        _towerManager = GameObject.FindGameObjectWithTag("TowerManager").GetComponent<TowerManager>();
+
         _controls.Player.Info.performed += HandlePlayerMouseInfo;
         TowerManager.OnTowerPlaced += HideUI;
     }
@@ -46,7 +51,11 @@ public class ObstacleManager : MonoBehaviour
 
             if (obstacle != null)
             {
-                UpdateCanvasInfo(obstacle.GetObstacleData());
+                UpdateCanvasInfo(obstacle);
+
+                if (obstacle.GetRemovePrice() <= _towerManager.GetCurrentMoneyAmount()) _buyButton.SetActive(true);
+                else _buyButton.SetActive(false);
+
                 _obstacleInfoCanvas.SetActive(true);
                 _currentObstacle = obstacle;
                 return;
@@ -57,11 +66,15 @@ public class ObstacleManager : MonoBehaviour
             _obstacleInfoCanvas.SetActive(false);
     }
 
-    private void UpdateCanvasInfo(ObstacleScriptableObject obstacleData)
+    private void UpdateCanvasInfo(Obstacle obstacle)
     {
-        _obstacleNameText.text = obstacleData.ObstacleName;
-        _obstaclePriceText.text = obstacleData.RemovePrice.ToString();
-        _iconImage.texture = obstacleData.ObstacleIcon;
+        _obstacleNameText.text = obstacle.GetObstacleData().ObstacleName;
+        _iconImage.texture = obstacle.GetObstacleData().ObstacleIcon;
+
+        foreach (TMP_Text priceText in _obstaclePriceTexts)
+        {
+            priceText.text = obstacle.GetRemovePrice().ToString();
+        }
     }
 
     private void HideUI()
@@ -73,6 +86,7 @@ public class ObstacleManager : MonoBehaviour
     {
         if (_currentObstacle != null)
         {
+            _towerManager.RemoveObstacle(_currentObstacle.GetRemovePrice());
             _currentObstacle.Remove();
             _currentObstacle = null;
             _obstacleInfoCanvas.SetActive(false);

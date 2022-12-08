@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ObstacleDataTree
   m_EditorClassIdentifier: 
   ObstacleName: Tree
-  RemovePrice: 15
+  RemovePrice: 15000
   ObstacleIcon: {fileID: 2800000, guid: ffcd4f0cbc88aa749a5e69363b2f00ab, type: 3}
