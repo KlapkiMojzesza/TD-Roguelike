@@ -25,7 +25,6 @@ public class Tower : MonoBehaviour
     [SerializeField] private TMP_Text _towerNameText;
 
     private int _collisionsAmount = 0;
-    private bool _canBePlaced = true;
     private bool _isPlaced = false;
 
     private Controls _controls;
@@ -109,7 +108,7 @@ public class Tower : MonoBehaviour
 
     public bool CanBePlaced()
     {
-        if (_collisionsAmount == 0 && _canBePlaced) return true;
+        if (_collisionsAmount == 0) return true;
 
         return false;
     }

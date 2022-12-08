@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -24,11 +25,13 @@ public class ObstacleManager : MonoBehaviour
         _controls = new Controls();
         _controls.Player.Enable();
         _controls.Player.Info.performed += HandlePlayerMouseInfo;
+        TowerManager.OnTowerPlaced += HideUI;
     }
 
     private void OnDestroy()
     {
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
+        TowerManager.OnTowerPlaced -= HideUI;
     }
 
     private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
@@ -59,6 +62,11 @@ public class ObstacleManager : MonoBehaviour
         _obstacleNameText.text = obstacleData.ObstacleName;
         _obstaclePriceText.text = obstacleData.RemovePrice.ToString();
         _iconImage.texture = obstacleData.ObstacleIcon;
+    }
+
+    private void HideUI()
+    {
+        _obstacleInfoCanvas.SetActive(false);
     }
 
     public void DestroyObstacle()

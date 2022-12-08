@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class TowerManager : MonoBehaviour
 {
@@ -25,17 +26,26 @@ public class TowerManager : MonoBehaviour
     private Tower _currentTower;
     private int _currentMoneyAmount;
 
+    private Controls _controls;
+
     private void Start()
     {
         _currentMoneyAmount = _startMoneyAmount;
         _moneyAmountText.text = _currentMoneyAmount.ToString();
 
+        _controls = new Controls();
+        _controls.Player.Enable();
+
+        _controls.Player.Info.performed += HandlePlayerMouseInfo;
+        _controls.Player.Shoot.performed += HandlePlayerMouseClick;
         PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
         WaveManager.OnWaveEnd += HandleWaveEnd;
     }
 
     private void OnDestroy()
     {
+        _controls.Player.Info.performed -= HandlePlayerMouseInfo;
+        _controls.Player.Shoot.performed -= HandlePlayerMouseClick;
         PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
         WaveManager.OnWaveEnd -= HandleWaveEnd;
     }
@@ -45,19 +55,22 @@ public class TowerManager : MonoBehaviour
         if (_currentTowerPrefab == null) return;
 
         MoveTowerPrefab();
+    }
 
-        if (Input.GetMouseButtonUp(1))
-        {
-            Destroy(_currentTowerPrefab);
-            OnTowerDeselect?.Invoke();
-            return;
-        }
+    private void HandlePlayerMouseClick(InputAction.CallbackContext context)
+    {
+        if (IsMouseOverUI()) return;
+        if (_currentTowerPrefab == null) return;
+        if (!_currentTower.CanBePlaced()) return;
 
-        if (Input.GetMouseButtonDown(0) && _currentTower.CanBePlaced() && !IsMouseOverUI())
-        {
-            PlaceTower();
-        }
+        PlaceTower();
+    }
 
+    private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
+    {
+        if (_currentTowerPrefab == null) return;
+        Destroy(_currentTowerPrefab);
+        OnTowerDeselect?.Invoke();
     }
 
     private bool IsMouseOverUI()
