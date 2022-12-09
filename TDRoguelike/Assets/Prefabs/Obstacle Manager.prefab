@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obstacleLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 8192
   _obstacleInfoCanvas: {fileID: 6822443117865310684}
   _buyButton: {fileID: 5214739050254449494}
   _obstacleNameText: {fileID: 5585870478228238863}

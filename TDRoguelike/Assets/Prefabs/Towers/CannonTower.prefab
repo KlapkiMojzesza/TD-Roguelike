@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 6850520632877298049}
   - component: {fileID: 2647583910127561856}
   - component: {fileID: 970012704689910869}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: CannonTower
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9154128754830370453}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _towerLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 8192
   _canBePlacedColor: {r: 0.003921569, g: 0.5568628, b: 0.09411765, a: 1}
   _canNotBePlacedColor: {r: 0.7019608, g: 0.05098039, b: 0.05098039, a: 1}
   TowerData: {fileID: 11400000, guid: 602e51e182e38c74e8048acc6ba88b66, type: 2}

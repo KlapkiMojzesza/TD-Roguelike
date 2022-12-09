@@ -155,7 +155,7 @@ public class Tower : MonoBehaviour
         return TowerData.TowerIcon;
     }
 
-    private void OnCollisionExit(Collision collision)
+    /*private void OnCollisionExit(Collision collision)
     {
         if (collision.collider.CompareTag("Obstacle"))
         {
@@ -169,7 +169,7 @@ public class Tower : MonoBehaviour
         {
             _collisionsAmount++;
         }
-    }
+    }*/
 
     private void OnTriggerEnter(Collider other)
     {

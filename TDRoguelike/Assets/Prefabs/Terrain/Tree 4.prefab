@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7112484149808344509}
   - component: {fileID: 2781005351994468075}
   - component: {fileID: 2377674957737502309}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Tree 4
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -112,4 +112,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f7fb8b87203e9946bb726ff4202db9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  removePriceAdjuster: 0
   _obstacleData: {fileID: 11400000, guid: 9af719b4b4648b7468b81bfc3c6d2c15, type: 2}

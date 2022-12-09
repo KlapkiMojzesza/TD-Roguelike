@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -41,6 +42,8 @@ public class ObstacleManager : MonoBehaviour
 
     private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
     {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit obstacleHit;
 

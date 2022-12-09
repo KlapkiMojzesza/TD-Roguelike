@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4372881703733557583}
   - component: {fileID: 4502931416527625454}
   - component: {fileID: -8934800203436810488}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Rock 2
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -111,4 +111,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f7fb8b87203e9946bb726ff4202db9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  removePriceAdjuster: 0
   _obstacleData: {fileID: 11400000, guid: 979add937e456234d82c25ccf1f497a3, type: 2}

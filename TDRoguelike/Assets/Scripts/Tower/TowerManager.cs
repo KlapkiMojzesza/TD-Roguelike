@@ -143,6 +143,7 @@ public class TowerManager : MonoBehaviour
 
     public void CancelButtonClick()
     {
+        if (_currentTowerPrefab == null) return;
         Destroy(_currentTowerPrefab);
         OnTowerDeselect?.Invoke();
     }

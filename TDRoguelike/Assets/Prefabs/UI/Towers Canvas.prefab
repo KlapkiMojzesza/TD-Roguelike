@@ -24,7 +24,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294861108591797362}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35,10 +35,10 @@ RectTransform:
   m_Father: {fileID: 8712023377524387705}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 776.3, y: -0.016235352}
-  m_SizeDelta: {x: -1552.54, y: 0.032470703}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 776.2998, y: -0.016113281}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4029163981214713388
 MonoBehaviour:
@@ -53,6 +53,139 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
+--- !u!1 &384959010748906010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6615484007832315582}
+  - component: {fileID: 1783920530796461485}
+  - component: {fileID: 4979135026754536550}
+  - component: {fileID: 625435217762378217}
+  m_Layer: 5
+  m_Name: Show UI Toggle Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6615484007832315582
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384959010748906010}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6767074055079246476}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 604.74, y: -12}
+  m_SizeDelta: {x: 104.7594, y: 114.5788}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1783920530796461485
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384959010748906010}
+  m_CullTransparentMesh: 1
+--- !u!114 &4979135026754536550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384959010748906010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e7ade18af8ab7814b8bb69414d5d26f5, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &625435217762378217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384959010748906010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 0
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.8773585, g: 0.8210356, b: 0.5752492, a: 1}
+    m_PressedColor: {r: 0.754717, g: 0.65923905, b: 0.26699895, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 4979135026754536550}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &558708245909361939
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,6 +216,7 @@ RectTransform:
   m_Children:
   - {fileID: 6567653397172160484}
   - {fileID: 1485791392602342392}
+  - {fileID: 6615484007832315582}
   - {fileID: 1528020712838908148}
   - {fileID: 5072270268751087329}
   m_Father: {fileID: 8660051697671537260}
@@ -168,7 +302,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6767074055079246476}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -241,7 +375,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6767074055079246476}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -368,6 +502,7 @@ GameObject:
   - component: {fileID: 1286627015280499921}
   - component: {fileID: 6776479064059480529}
   - component: {fileID: 8652069254061295970}
+  - component: {fileID: 5754679370624625453}
   m_Layer: 5
   m_Name: Towers Canvas
   m_TagString: Untagged
@@ -457,6 +592,26 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!95 &5754679370624625453
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3294128602751882085}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b71b81d1d8a5e5945a9a3168c6e302a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3672335450456701984
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,7 +860,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16.05011, y: -462.98376}
+  m_AnchoredPosition: {x: 16.050323, y: -462.98376}
   m_SizeDelta: {x: 267.30017, y: 110.284996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9091924741857156768
@@ -792,11 +947,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
-        m_MethodName: 
+        m_MethodName: SpawnNextWave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -806,6 +961,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: 
         m_MethodName: mousceOverButtonExit
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3294128602751882085}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -824,7 +991,9 @@ PrefabInstance:
     - target: {fileID: 1683647599827386055, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
       propertyPath: m_text
-      value: 60$
+      value: '10
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 2007104053433132582, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
@@ -935,11 +1104,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 8f106dff5cba08d4c91fdf29c5425c4f, type: 3}
+      objectReference: {fileID: 2800000, guid: ca7936278f8c7ef4c9a0a676b9036b77, type: 3}
     - target: {fileID: 6152604909978005598, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
       propertyPath: m_Name
       value: Tower 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchTowers
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca94a54bc1314a24690a7e2713b968a3, type: 3}
@@ -1065,11 +1254,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 10ba2e1d3dc8a6b40a90ac20300b917c, type: 3}
+      objectReference: {fileID: 2800000, guid: ca7936278f8c7ef4c9a0a676b9036b77, type: 3}
     - target: {fileID: 6152604909978005598, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
       propertyPath: m_Name
       value: Tower 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchTowers
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca94a54bc1314a24690a7e2713b968a3, type: 3}
@@ -1089,7 +1298,7 @@ PrefabInstance:
     - target: {fileID: 1683647599827386055, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
       propertyPath: m_text
-      value: 20$
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2007104053433132582, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
@@ -1200,11 +1409,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 248b18c1c1b38a24291e3a2c219c3106, type: 3}
+      objectReference: {fileID: 2800000, guid: ca7936278f8c7ef4c9a0a676b9036b77, type: 3}
     - target: {fileID: 6152604909978005598, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
       propertyPath: m_Name
       value: Tower 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchTowers
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca94a54bc1314a24690a7e2713b968a3, type: 3}
@@ -1224,7 +1453,7 @@ PrefabInstance:
     - target: {fileID: 1683647599827386055, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
       propertyPath: m_text
-      value: 10$
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2007104053433132582, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
@@ -1342,6 +1571,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: a75e6b718be9b5c419a90ac4a6bd3c65,
         type: 3}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchTowers
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca94a54bc1314a24690a7e2713b968a3, type: 3}
 --- !u!224 &2646459864324767899 stripped
@@ -1466,6 +1710,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchTowers
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca94a54bc1314a24690a7e2713b968a3, type: 3}
@@ -1592,6 +1856,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchTowers
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca94a54bc1314a24690a7e2713b968a3, type: 3}
 --- !u!224 &5822639553524565098 stripped
@@ -1717,6 +2001,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchTowers
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca94a54bc1314a24690a7e2713b968a3, type: 3}
 --- !u!224 &5642169805343716065 stripped
@@ -1841,6 +2145,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchTowers
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917634264788472082, guid: ca94a54bc1314a24690a7e2713b968a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca94a54bc1314a24690a7e2713b968a3, type: 3}
