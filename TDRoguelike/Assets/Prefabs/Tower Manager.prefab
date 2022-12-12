@@ -343,9 +343,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c11589ab219fc4791227d6884e5689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towersCanvas: {fileID: 3080078006896288915}
   _placingCanvas: {fileID: 7284906541220415027}
   _levelEndCanvas: {fileID: 1339063268209779336}
+  _showTowerMenuButton: {fileID: 170604674862747116}
   _iconsImage:
   - {fileID: 8888746514817139307}
   - {fileID: 6829118406034075827}
@@ -510,6 +510,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7701644492400215755}
+    - target: {fileID: 3234115520442005452, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1035504923194178883}
+    - target: {fileID: 3234115520442005452, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: NextWaveButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234115520442005452, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: TowerUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3294128602751882085, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
         type: 3}
       propertyPath: m_Name
@@ -669,6 +684,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &170604674862747116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 384959010748906010, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
+    type: 3}
+  m_PrefabInstance: {fileID: 507141088296908790}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &526271420379000180 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 19152614399695490, guid: 7dd8962c349e25a40b6f58fbe0d8c132,

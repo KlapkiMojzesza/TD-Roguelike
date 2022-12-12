@@ -79,7 +79,6 @@ public class Tower : MonoBehaviour
 
         if (!Physics.Raycast(ray, out towerHit, Mathf.Infinity, _towerLayer))
         {
-            //_towerInfoCanvas.SetActive(false);
             _canvasAnimator.SetBool("shown", false);
             _towerRangeSprite.gameObject.SetActive(false);
             return;
@@ -88,7 +87,6 @@ public class Tower : MonoBehaviour
         GameObject towerHitGameObject = towerHit.transform.gameObject;
         if (towerHitGameObject != this.gameObject)
         {
-            //_towerInfoCanvas.SetActive(false);
             _canvasAnimator.SetBool("shown", false);
             _towerRangeSprite.gameObject.SetActive(false);
             return;
@@ -96,12 +94,10 @@ public class Tower : MonoBehaviour
 
         _towerRangeSprite.gameObject.SetActive(true);
         _canvasAnimator.SetBool("shown", true);
-       // _towerInfoCanvas.SetActive(true);
     }
 
     private void HandleStartWave()
     {
-       // _towerInfoCanvas.SetActive(false);
         _canvasAnimator.SetBool("shown", false);
         _towerRangeSprite.gameObject.SetActive(false);
     }
@@ -109,7 +105,6 @@ public class Tower : MonoBehaviour
     //another tower button was clicked
     private void HandleAnotherTowerSelected(Tower selectedTower)
     {
-        //_towerInfoCanvas.SetActive(false);
         _canvasAnimator.SetBool("shown", false);
         if (selectedTower != this) _towerRangeSprite.gameObject.SetActive(false);   
     }

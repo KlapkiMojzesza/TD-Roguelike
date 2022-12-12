@@ -9,9 +9,9 @@ using UnityEngine.UI;
 public class TowerUIManager : MonoBehaviour
 {
     [Header("To Attach")]
-    [SerializeField] private GameObject _towersCanvas;
     [SerializeField] private GameObject _placingCanvas;
     [SerializeField] private GameObject _levelEndCanvas;
+    [SerializeField] private GameObject _showTowerMenuButton;
     [SerializeField] private RawImage[] _iconsImage;
     [SerializeField] private TMP_Text[] _towersPriceText;
     [SerializeField] private Animator _towersCanvasAnimator;
@@ -49,20 +49,18 @@ public class TowerUIManager : MonoBehaviour
 
     private void HandleWaveEnd(int enmpy)
     {
-        //_towersCanvas.SetActive(true);
+        _showTowerMenuButton.SetActive(true);
         ShowTowersUI();
     }
 
     private void HandleTowerSelect(Tower selectedTower)
     {
         HideTowersUI();
-        //_towersCanvas.SetActive(false);
         _placingCanvas.SetActive(true);
     }
 
     private void HandleTowerDeselect()
     {
-        //_towersCanvas.SetActive(true);
         ShowTowersUI();
         _placingCanvas.SetActive(false);
     }
@@ -70,7 +68,6 @@ public class TowerUIManager : MonoBehaviour
     private void HandleBaseDestoryed()
     {
         HideTowersUI();
-        //_towersCanvas.SetActive(false);
         _placingCanvas.SetActive(false);
         _levelEndCanvas.SetActive(true);
     }
@@ -78,7 +75,6 @@ public class TowerUIManager : MonoBehaviour
     public void ReturnToVillageButton()
     {
         HideTowersUI();
-        //_towersCanvas.SetActive(false);
         _placingCanvas.SetActive(false);
         _levelEndCanvas.SetActive(false);
 
@@ -92,6 +88,12 @@ public class TowerUIManager : MonoBehaviour
 
     private void HideTowersUI()
     {
+        _towersCanvasAnimator.SetBool("shown", false);
+    }
+
+    public void NextWaveButton()
+    {
+        _showTowerMenuButton.SetActive(false);
         _towersCanvasAnimator.SetBool("shown", false);
     }
 
