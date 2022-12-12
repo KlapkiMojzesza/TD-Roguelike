@@ -55,6 +55,7 @@ public class TowerUIManager : MonoBehaviour
 
     private void HandleTowerSelect(Tower selectedTower)
     {
+        //another tower selected
         HideTowersUI();
         _placingCanvas.SetActive(true);
     }

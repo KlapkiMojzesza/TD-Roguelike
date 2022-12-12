@@ -32,12 +32,14 @@ public class ObstacleManager : MonoBehaviour
 
         _controls.Player.Info.performed += HandlePlayerMouseInfo;
         TowerManager.OnTowerPlaced += HideUI;
+        TowerManager.OnTowerSelect += HandleTowerSelect;
     }
 
     private void OnDestroy()
     {
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
         TowerManager.OnTowerPlaced -= HideUI;
+        TowerManager.OnTowerSelect += HandleTowerSelect;
     }
 
     private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
@@ -83,6 +85,11 @@ public class ObstacleManager : MonoBehaviour
     }
 
     public void HideUI()
+    {
+        _animator.SetBool("shown", false);
+    }
+
+    private void HandleTowerSelect(Tower tower)
     {
         _animator.SetBool("shown", false);
     }
