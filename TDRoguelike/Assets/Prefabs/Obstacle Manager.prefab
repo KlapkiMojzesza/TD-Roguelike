@@ -48,6 +48,7 @@ MonoBehaviour:
   _obstacleLayer:
     serializedVersion: 2
     m_Bits: 8192
+  _animator: {fileID: 736732084901474004}
   _obstacleInfoCanvas: {fileID: 6822443117865310684}
   _buyButton: {fileID: 5214739050254449494}
   _obstacleNameText: {fileID: 5585870478228238863}
@@ -77,6 +78,36 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4750792244598769452}
+    - target: {fileID: 5847428196059083335, guid: 18b5a17da47836244a8590927446ad7c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847428196059083335, guid: 18b5a17da47836244a8590927446ad7c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847428196059083335, guid: 18b5a17da47836244a8590927446ad7c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4750792244598769452}
+    - target: {fileID: 5847428196059083335, guid: 18b5a17da47836244a8590927446ad7c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847428196059083335, guid: 18b5a17da47836244a8590927446ad7c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ObstacleManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847428196059083335, guid: 18b5a17da47836244a8590927446ad7c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7581009845827761973, guid: 18b5a17da47836244a8590927446ad7c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -184,6 +215,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18b5a17da47836244a8590927446ad7c, type: 3}
+--- !u!95 &736732084901474004 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5464926342865697800, guid: 18b5a17da47836244a8590927446ad7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4750792245605585628}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2034374281092317630 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6761513555267326818, guid: 18b5a17da47836244a8590927446ad7c,

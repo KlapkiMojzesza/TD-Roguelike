@@ -31,12 +31,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7581009845827761973}
-  m_RootOrder: 1
+  m_Father: {fileID: 6550279917149780904}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -518.7999, y: 515.8}
+  m_AnchoredPosition: {x: 213.97015, y: 180.5899}
   m_SizeDelta: {x: 43.630287, y: 44.793762}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7386761889113199753
@@ -165,12 +165,12 @@ RectTransform:
   m_Children:
   - {fileID: 4978054910761216800}
   - {fileID: 3044830422185858383}
-  m_Father: {fileID: 7581009845827761973}
-  m_RootOrder: 2
+  m_Father: {fileID: 6550279917149780904}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -674.07, y: 371.21}
+  m_AnchoredPosition: {x: 58.700134, y: 36.00003}
   m_SizeDelta: {x: 197.64, y: 59.908}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7096451732470818887
@@ -244,12 +244,12 @@ RectTransform:
   m_Children:
   - {fileID: 4962209813865045942}
   - {fileID: 7636796518454001190}
-  m_Father: {fileID: 7581009845827761973}
-  m_RootOrder: 3
+  m_Father: {fileID: 6550279917149780904}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -674.07, y: 371.21}
+  m_AnchoredPosition: {x: 58.700134, y: 36.00003}
   m_SizeDelta: {x: 197.6428, y: 59.9076}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3930772251553713643
@@ -577,6 +577,7 @@ GameObject:
   - component: {fileID: 765107152509301509}
   - component: {fileID: 7929527013545348766}
   - component: {fileID: 8263847430427167492}
+  - component: {fileID: 5464926342865697800}
   m_Layer: 0
   m_Name: Obstacle Info Canvas
   m_TagString: Untagged
@@ -597,9 +598,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6550279917149780904}
-  - {fileID: 1831092966935495077}
-  - {fileID: 5903567593911357185}
-  - {fileID: 4843918317797778894}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -669,6 +667,26 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!95 &5464926342865697800
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2251830316638128896}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7b3a2c282d4f824f89978e9473eaa16, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2982115308016325128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,6 +1928,9 @@ RectTransform:
   - {fileID: 7868038057818549864}
   - {fileID: 8190863432383002913}
   - {fileID: 2885339127666384065}
+  - {fileID: 1831092966935495077}
+  - {fileID: 5903567593911357185}
+  - {fileID: 4843918317797778894}
   m_Father: {fileID: 7581009845827761973}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -287,7 +287,6 @@ GameObject:
   - component: {fileID: 7701644492400215748}
   - component: {fileID: 7701644492400215755}
   - component: {fileID: 1035504923194178883}
-  - component: {fileID: 3237379109263099635}
   m_Layer: 0
   m_Name: Tower Manager
   m_TagString: TowerManager
@@ -368,26 +367,6 @@ MonoBehaviour:
   - {fileID: 6575466441910201213}
   - {fileID: 5027028441133080054}
   _towersCanvasAnimator: {fileID: 5248101249481989339}
---- !u!95 &3237379109263099635
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7701644492400215754}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7750679260171945517
 GameObject:
   m_ObjectHideFlags: 0

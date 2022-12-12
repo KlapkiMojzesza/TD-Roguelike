@@ -13,7 +13,7 @@ public class ObstacleManager : MonoBehaviour
     [SerializeField] private LayerMask _obstacleLayer;
 
     [Header("To Attach")]
-    [SerializeField] private GameObject _obstacleInfoCanvas;
+    [SerializeField] private Animator _animator;
     [SerializeField] private GameObject _buyButton;
     [SerializeField] private TMP_Text _obstacleNameText;
     [SerializeField] private TMP_Text[] _obstaclePriceTexts;
@@ -27,7 +27,7 @@ public class ObstacleManager : MonoBehaviour
     {
         _controls = new Controls();
         _controls.Player.Enable();
-
+        
         _towerManager = GameObject.FindGameObjectWithTag("TowerManager").GetComponent<TowerManager>();
 
         _controls.Player.Info.performed += HandlePlayerMouseInfo;
@@ -59,14 +59,16 @@ public class ObstacleManager : MonoBehaviour
                 if (obstacle.GetRemovePrice() <= _towerManager.GetCurrentMoneyAmount()) _buyButton.SetActive(true);
                 else _buyButton.SetActive(false);
 
-                _obstacleInfoCanvas.SetActive(true);
+                _animator.Play("ObstacleMenuHidden", 0);
+                _animator.SetBool("shown", true);
                 _currentObstacle = obstacle;
                 return;
             }
 
         }
-            _currentObstacle = null;
-            _obstacleInfoCanvas.SetActive(false);
+            
+        _currentObstacle = null;
+        _animator.SetBool("shown", false);
     }
 
     private void UpdateCanvasInfo(Obstacle obstacle)
@@ -80,9 +82,9 @@ public class ObstacleManager : MonoBehaviour
         }
     }
 
-    private void HideUI()
+    public void HideUI()
     {
-        _obstacleInfoCanvas.SetActive(false);
+        _animator.SetBool("shown", false);
     }
 
     public void DestroyObstacle()
@@ -92,7 +94,7 @@ public class ObstacleManager : MonoBehaviour
             _towerManager.RemoveObstacle(_currentObstacle.GetRemovePrice());
             _currentObstacle.Remove();
             _currentObstacle = null;
-            _obstacleInfoCanvas.SetActive(false);
+            _animator.SetBool("shown", false);
         }
     }
 }
