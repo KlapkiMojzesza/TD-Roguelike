@@ -24,6 +24,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private TMP_Text _towerStatsText;
     [SerializeField] private TMP_Text _towerNameText;
 
+    private Animator _canvasAnimator;
     private int _collisionsAmount = 0;
     private bool _isPlaced = false;
 
@@ -43,6 +44,8 @@ public class Tower : MonoBehaviour
 
         _iconImage.texture = TowerData.TowerIcon;
         _towerRangeSprite.localScale = new Vector3(TowerData.TowerRange, TowerData.TowerRange, 1f);
+
+        _canvasAnimator = _towerInfoCanvas.GetComponent<Animator>();
     }
 
     private void OnDestroy()
@@ -76,7 +79,8 @@ public class Tower : MonoBehaviour
 
         if (!Physics.Raycast(ray, out towerHit, Mathf.Infinity, _towerLayer))
         {
-            _towerInfoCanvas.SetActive(false);
+            //_towerInfoCanvas.SetActive(false);
+            _canvasAnimator.SetBool("shown", false);
             _towerRangeSprite.gameObject.SetActive(false);
             return;
         }
@@ -84,25 +88,29 @@ public class Tower : MonoBehaviour
         GameObject towerHitGameObject = towerHit.transform.gameObject;
         if (towerHitGameObject != this.gameObject)
         {
-            _towerInfoCanvas.SetActive(false);
+            //_towerInfoCanvas.SetActive(false);
+            _canvasAnimator.SetBool("shown", false);
             _towerRangeSprite.gameObject.SetActive(false);
             return;
         }
 
         _towerRangeSprite.gameObject.SetActive(true);
-        _towerInfoCanvas.SetActive(true);
+        _canvasAnimator.SetBool("shown", true);
+       // _towerInfoCanvas.SetActive(true);
     }
 
     private void HandleStartWave()
     {
-        _towerInfoCanvas.SetActive(false);
+       // _towerInfoCanvas.SetActive(false);
+        _canvasAnimator.SetBool("shown", false);
         _towerRangeSprite.gameObject.SetActive(false);
     }
 
     //another tower button was clicked
     private void HandleAnotherTowerSelected(Tower selectedTower)
     {
-        _towerInfoCanvas.SetActive(false);
+        //_towerInfoCanvas.SetActive(false);
+        _canvasAnimator.SetBool("shown", false);
         if (selectedTower != this) _towerRangeSprite.gameObject.SetActive(false);   
     }
 
@@ -120,6 +128,7 @@ public class Tower : MonoBehaviour
         UpdateTowerStatsUI();
 
         _towerInfoCanvas.SetActive(true);
+        _canvasAnimator.SetBool("shown", true);
     }
 
     private void UpdateTowerStatsUI()
@@ -150,26 +159,15 @@ public class Tower : MonoBehaviour
         }
     }
 
+    public void HideInfoUI()
+    {
+        _canvasAnimator.SetBool("shown", false);
+    }
+
     public Texture GetTowerIcon()
     {
         return TowerData.TowerIcon;
     }
-
-    /*private void OnCollisionExit(Collision collision)
-    {
-        if (collision.collider.CompareTag("Obstacle"))
-        {
-            _collisionsAmount--;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("Obstacle"))
-        {
-            _collisionsAmount++;
-        }
-    }*/
 
     private void OnTriggerEnter(Collider other)
     {
