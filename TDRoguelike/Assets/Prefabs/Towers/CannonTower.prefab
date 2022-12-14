@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 6850520632877298049}
   - component: {fileID: 2647583910127561856}
   - component: {fileID: 970012704689910869}
+  - component: {fileID: 4561971700145528793}
   m_Layer: 13
   m_Name: CannonTower
   m_TagString: Obstacle
@@ -386,7 +387,6 @@ MonoBehaviour:
   _canBePlacedColor: {r: 0.003921569, g: 0.5568628, b: 0.09411765, a: 1}
   _canNotBePlacedColor: {r: 0.7019608, g: 0.05098039, b: 0.05098039, a: 1}
   TowerData: {fileID: 11400000, guid: 602e51e182e38c74e8048acc6ba88b66, type: 2}
-  _canvasAnimator: {fileID: 3259942238149760573}
   _towerRangeSprite: {fileID: 5571351949332452782}
   _renderers:
   - {fileID: 4875772897964647538}
@@ -412,6 +412,18 @@ MonoBehaviour:
   _rotationOffset: 180
   _firePoint: {fileID: 7510321199220279699}
   _rotatingParts: {fileID: 8183596713101826679}
+--- !u!114 &4561971700145528793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9154128754830370453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489207ddb5c98f642a3a5206ab05f92e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &355479462795310618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -455,6 +467,36 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3383513715819880100, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454825239924601152, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454825239924601152, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4561971700145528793}
+    - target: {fileID: 3454825239924601152, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BoostDamageButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454825239924601152, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TowerUpgradeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454825239924601152, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454825239924601152, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
@@ -701,12 +743,6 @@ MonoBehaviour:
 --- !u!1 &1994796728032148762 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2251830316638128896, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
-    type: 3}
-  m_PrefabInstance: {fileID: 355479462795310618}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &3259942238149760573 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3013838894650695719, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
     type: 3}
   m_PrefabInstance: {fileID: 355479462795310618}
   m_PrefabAsset: {fileID: 0}

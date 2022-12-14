@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 8416723953350421648}
   - component: {fileID: 9030311959556364649}
   - component: {fileID: 1820589221487568309}
+  - component: {fileID: 7358294965479059010}
   m_Layer: 13
   m_Name: BalistaTower
   m_TagString: Obstacle
@@ -470,7 +471,6 @@ MonoBehaviour:
   _canBePlacedColor: {r: 0.003921569, g: 0.5568628, b: 0.09411765, a: 1}
   _canNotBePlacedColor: {r: 0.7019608, g: 0.05098039, b: 0.05098039, a: 1}
   TowerData: {fileID: 11400000, guid: 2a19ba02b6a1e32428cbd38bdbc42d71, type: 2}
-  _canvasAnimator: {fileID: 28220290224656915}
   _towerRangeSprite: {fileID: 2539170432227832155}
   _renderers:
   - {fileID: 7789165947651299119}
@@ -515,6 +515,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileVisual: {fileID: 5222270563748774013}
+--- !u!114 &7358294965479059010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769767586024751121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee3c27304321a84c8b03ba131e9ec66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5870222798831241881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,6 +1090,36 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3454825239924601152, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454825239924601152, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7358294965479059010}
+    - target: {fileID: 3454825239924601152, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BoostDamageButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454825239924601152, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BalistaUpgradesInGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454825239924601152, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454825239924601152, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5282471409773830842, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1305,12 +1347,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdfb9645aafdc5e4890d22e27c2a6de2, type: 3}
---- !u!95 &28220290224656915 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3013838894650695719, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
-    type: 3}
-  m_PrefabInstance: {fileID: 3005885251640996404}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1278383604227700438 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4038241950406100194, guid: bdfb9645aafdc5e4890d22e27c2a6de2,

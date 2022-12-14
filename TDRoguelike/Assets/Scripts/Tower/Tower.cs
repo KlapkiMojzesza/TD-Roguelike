@@ -105,8 +105,11 @@ public class Tower : MonoBehaviour
     //another tower button was clicked
     private void HandleAnotherTowerSelected(Tower selectedTower)
     {
-        _canvasAnimator.SetBool("shown", false);
-        if (selectedTower != this) _towerRangeSprite.gameObject.SetActive(false);   
+        if (selectedTower != this)
+        {
+            _towerRangeSprite.gameObject.SetActive(false);
+            _canvasAnimator.SetBool("shown", false);
+        }
     }
 
     public bool CanBePlaced()

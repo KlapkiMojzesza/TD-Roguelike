@@ -13,6 +13,7 @@ public class TowerShooting : MonoBehaviour
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _rotatingParts;
 
+    private IUpgradeable _towerUpgrades;
     private Animator _animator;
     private List<GameObject> _aliveEnemies = new List<GameObject>();
     private TowerScriptableObject _towerData;
@@ -26,6 +27,7 @@ public class TowerShooting : MonoBehaviour
         EnemyHealth.OnEnemySpawn += AddEnemyToList;
         EnemyHealth.OnEnemyDeath += RemoveEnemyFromList;
 
+        _towerUpgrades = GetComponent<IUpgradeable>();
         _animator = GetComponent<Animator>();
 
         _towerData = GetComponent<Tower>().TowerData;
@@ -42,6 +44,7 @@ public class TowerShooting : MonoBehaviour
 
     private void UpdateTarget()
     {
+
         switch (_targetPriority)
         {
             case TargetPriority.First:
@@ -70,7 +73,7 @@ public class TowerShooting : MonoBehaviour
         if (_fireCountdown <= 0f)
         {
             Shoot();
-            _fireCountdown = 1f / _towerData.TowerFireRate;
+            _fireCountdown = 1f / _towerData.TowerFireRate + _towerUpgrades.GetBonusFireRate();
         }
 
     }
@@ -96,7 +99,7 @@ public class TowerShooting : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy <= _towerData.TowerRange)
+            if (distanceToEnemy <= _towerData.TowerRange + _towerUpgrades.GetBonusRange())
             {
                 int enemyCurrentWaypoint = enemy.GetComponent<EnemyMovement>().GetCurrentWaypoint();
                 float enemyDistanceToWaypoint = enemy.GetComponent<EnemyMovement>().GetDistanceToNextWaypoint();
@@ -123,7 +126,7 @@ public class TowerShooting : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy <= _towerData.TowerRange)
+            if (distanceToEnemy <= _towerData.TowerRange + _towerUpgrades.GetBonusRange())
             {
                 int enemyCurrentWaypoint = enemy.GetComponent<EnemyMovement>().GetCurrentWaypoint();
 
@@ -158,7 +161,7 @@ public class TowerShooting : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy <= _towerData.TowerRange)
+            if (distanceToEnemy <= _towerData.TowerRange + _towerUpgrades.GetBonusRange())
             {
                 float enemyStrength = enemy.GetComponent<EnemyHealth>().EnemyStrength;
                 if (enemyStrength <= strongestEnemyStrength) continue;
@@ -176,7 +179,7 @@ public class TowerShooting : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance && distanceToEnemy <= _towerData.TowerRange)
+            if (distanceToEnemy < shortestDistance && distanceToEnemy <= _towerData.TowerRange + _towerUpgrades.GetBonusRange())
             {
                 shortestDistance = distanceToEnemy;
                 closestEnemy = enemy.transform;
@@ -194,8 +197,8 @@ public class TowerShooting : MonoBehaviour
         {
             projectile.Create(_target.gameObject.GetComponent<EnemyHealth>().AimPoint,
                               _towerData.ProjectileSpeed, 
-                              _towerData.TowerDamage,
-                              _towerData.TowerEnemyPierce);
+                              _towerData.TowerDamage + _towerUpgrades.GetBonusDamage(),
+                              _towerData.TowerEnemyPierce + _towerUpgrades.GetBonusPierce());
         }
 
         _animator.SetTrigger("shoot");
@@ -253,6 +256,15 @@ public class TowerShooting : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, _towerData.TowerRange);
     }*/
     
+}
+
+public interface IUpgradeable
+{
+    //getters for TowerShooting
+    public float GetBonusDamage();
+    public float GetBonusRange();
+    public float GetBonusFireRate();
+    public int GetBonusPierce();
 }
 
 public enum TargetPriority{First = 0, Last = 1, Strongest = 2, Closest = 3}

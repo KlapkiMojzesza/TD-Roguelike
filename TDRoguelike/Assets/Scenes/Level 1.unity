@@ -17721,6 +17721,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4750792244598769455, guid: 7ad2be2c61bf8d944b42cabab7c676ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6822443117865310684, guid: 7ad2be2c61bf8d944b42cabab7c676ad,
         type: 3}
       propertyPath: m_IsActive
