@@ -158,4 +158,10 @@ public class TowerManager : MonoBehaviour
         _currentMoneyAmount -= removePrice;
         _moneyAmountText.text = _currentMoneyAmount.ToString();
     }
+
+    public void BuyUpgrade(int upgradePrice)
+    {
+        _currentMoneyAmount -= upgradePrice;
+        _moneyAmountText.text = _currentMoneyAmount.ToString();
+    }
 }

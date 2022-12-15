@@ -8,6 +8,7 @@ public class UpgradeScriptableObject : ScriptableObject
     public UpgradeType UpgradeType;
     public float Value = 1;
     public Texture UpgradeIcon;
+    public int UpgradePrice = 10;
 }
 
 public enum UpgradeType { TowerDamage, TowerRange, TowerFireRate, TowerEnemyPierce, TowerCustom }

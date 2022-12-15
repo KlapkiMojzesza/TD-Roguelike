@@ -73,7 +73,7 @@ public class TowerShooting : MonoBehaviour
         if (_fireCountdown <= 0f)
         {
             Shoot();
-            _fireCountdown = 1f / _towerData.TowerFireRate + _towerUpgrades.GetBonusFireRate();
+            _fireCountdown = 1f / (_towerData.TowerFireRate + _towerUpgrades.GetBonusFireRate());
         }
 
     }

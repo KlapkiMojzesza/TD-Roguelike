@@ -94,6 +94,7 @@ public class Tower : MonoBehaviour
 
         _towerRangeSprite.gameObject.SetActive(true);
         _canvasAnimator.SetBool("shown", true);
+        //here upgrade canvas needs to update money amount
     }
 
     private void HandleStartWave()

@@ -25,6 +25,7 @@ public class Projectile : MonoBehaviour
         _damage = damage;
         _enemyPierce = enemyPierce;
         _lastKnownDirection = target.position - transform.position;
+        if (_lookAtTarget) transform.LookAt(_target);
     }
 
     private void Update()
