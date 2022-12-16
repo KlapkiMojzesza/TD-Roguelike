@@ -13,7 +13,7 @@ public class TowerShooting : MonoBehaviour
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _rotatingParts;
 
-    private IUpgradeable _towerUpgrades;
+    private TowerInGameUpgrades _towerUpgrades;
     private Animator _animator;
     private List<GameObject> _aliveEnemies = new List<GameObject>();
     private TowerScriptableObject _towerData;
@@ -27,7 +27,7 @@ public class TowerShooting : MonoBehaviour
         EnemyHealth.OnEnemySpawn += AddEnemyToList;
         EnemyHealth.OnEnemyDeath += RemoveEnemyFromList;
 
-        _towerUpgrades = GetComponent<IUpgradeable>();
+        _towerUpgrades = GetComponent<TowerInGameUpgrades>();
         _animator = GetComponent<Animator>();
 
         _towerData = GetComponent<Tower>().TowerData;
@@ -256,15 +256,6 @@ public class TowerShooting : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, _towerData.TowerRange);
     }*/
     
-}
-
-public interface IUpgradeable
-{
-    //getters for TowerShooting
-    public float GetBonusDamage();
-    public float GetBonusRange();
-    public float GetBonusFireRate();
-    public int GetBonusPierce();
 }
 
 public enum TargetPriority{First = 0, Last = 1, Strongest = 2, Closest = 3}
