@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TowerInGameUpgrades : MonoBehaviour
+public abstract class TowerInGameUpgrades : MonoBehaviour
 {
     [Header("To Attach")]
     [SerializeField] private GameObject _upgradeButton;

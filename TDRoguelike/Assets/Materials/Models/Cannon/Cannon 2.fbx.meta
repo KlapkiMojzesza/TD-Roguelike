@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5e17fd2c358d04c45a9290dafbd8ae9f
+guid: 491b7ddf8d8e1fb41bf6f059e206dd3c
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -12,18 +12,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Cannon.DarkGrey
-    second: {fileID: 2100000, guid: 77fe8a34d396d41409c933aaef36ad25, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Cannon.Grey
-    second: {fileID: 2100000, guid: f8908296324687448b8e9291e7f4f8a8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: CannonHolder.Wood
-    second: {fileID: 2100000, guid: b986eb9bbc6311a41b787f967b12b732, type: 2}
+      name: Cannon.Stripes
+    second: {fileID: 2100000, guid: a08074bf329e0b242a5d29095a610666, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

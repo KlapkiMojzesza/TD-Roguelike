@@ -22,4 +22,4 @@ MonoBehaviour:
   ProjectileSpeed: 250
   ProjectilePrefab: {fileID: 733019051710086716, guid: 8fbdcca2c2d36994c8adb27405f71c0b,
     type: 3}
-  TowerIcon: {fileID: 2800000, guid: d2534eb0676afb0428c2781449edcf91, type: 3}
+  TowerIcon: {fileID: 2800000, guid: cf8e0324ae00346468ffb082225de9aa, type: 3}
