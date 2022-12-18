@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CannonTowerOverrideController lvl1
+  m_Name: CannonOverrideController lvl1
   m_Controller: {fileID: 9100000, guid: fdf725e8b3a59494ead2e577aae9fac8, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: fe7baacad753b1247a9c9e584c22cb24, type: 2}
