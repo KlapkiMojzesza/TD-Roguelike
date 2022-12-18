@@ -104,13 +104,18 @@ public class TowerShooting : MonoBehaviour
                 int enemyCurrentWaypoint = enemy.GetComponent<EnemyMovement>().GetCurrentWaypoint();
                 float enemyDistanceToWaypoint = enemy.GetComponent<EnemyMovement>().GetDistanceToNextWaypoint();
 
-                if (enemyCurrentWaypoint < currentWaypoint) continue;
-                if (enemyDistanceToWaypoint >= distanceToWaypoint) continue;
+                if (enemyCurrentWaypoint > currentWaypoint)
+                {
+                    currentWaypoint = enemyCurrentWaypoint;
+                    distanceToWaypoint = enemyDistanceToWaypoint;
+                    firstEnemy = enemy.transform;
 
-                currentWaypoint = enemyCurrentWaypoint;
-                distanceToWaypoint = enemyDistanceToWaypoint;
-
-                firstEnemy = enemy.transform;
+                } else if (enemyCurrentWaypoint == currentWaypoint && enemyDistanceToWaypoint < distanceToWaypoint)
+                {          
+                    currentWaypoint = enemyCurrentWaypoint;                       
+                    distanceToWaypoint = enemyDistanceToWaypoint;
+                    firstEnemy = enemy.transform;                       
+                }
             }
         }
         return firstEnemy;

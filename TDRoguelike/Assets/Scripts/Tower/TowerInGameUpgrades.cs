@@ -33,10 +33,11 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     private ChosenUpgradeSide _currentUpgradeChosen = ChosenUpgradeSide.Left;
 
 
-    private void Start()
+    protected virtual void Start()
     {
         _towerManager = GameObject.FindGameObjectWithTag("TowerManager").GetComponent<TowerManager>();
         SetUpgradeInfo();
+        UpdateTowerStatsText();
     }
 
     private void SetUpgradeInfo()
@@ -74,10 +75,6 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
 
     public void UpgradeButton()
     {
-        //update upgrade visual
-        //take money from player
-
-
         if (_currentUpgradeChosen == ChosenUpgradeSide.Left)
         {
             UpgradeScriptableObject currentLeftUpgrade = _towerUpgradesLeft[_leftUpgradesPurchased];
@@ -86,8 +83,8 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
 
             _towerManager.BuyUpgrade(currentLeftUpgrade.UpgradePrice);
             UpgradeTower(currentLeftUpgrade);
-            UpgradeVisual(_leftUpgradesPurchased, _currentUpgradeChosen);
             _leftUpgradesPurchased++;
+            UpgradeVisual(_leftUpgradesPurchased, _rightUpgradesPurchased);
 
             if (_leftUpgradesPurchased < _towerUpgradesLeft.Length)
             {
@@ -107,8 +104,8 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
 
             _towerManager.BuyUpgrade(currentRightUpgrade.UpgradePrice);
             UpgradeTower(currentRightUpgrade);
-            UpgradeVisual(_rightUpgradesPurchased, _currentUpgradeChosen);
             _rightUpgradesPurchased++;
+            UpgradeVisual(_leftUpgradesPurchased, _rightUpgradesPurchased);
 
             if (_rightUpgradesPurchased < _towerUpgradesRight.Length)
             {
@@ -125,7 +122,7 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     }
 
     //for overriding
-    public virtual void UpgradeVisual(int upgradePurchasedIndex, ChosenUpgradeSide upgradeSide)
+    public virtual void UpgradeVisual(int leftUpgradesPurchased, int rightUpgradesPurchased)
     {
         //do something different for each tower
     }
@@ -161,10 +158,20 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
 
     private void UpdateTowerStatsText()
     {
-        _towerBonusStatsText.text = $"+ {_bonusTowerDamage.ToString()}\n" +
-                                    $"+ {_bonusTowerRange.ToString()}\n" +
-                                    $"+ {_bonusFireRate.ToString()}\n" +
-                                    $"+ {_bonusEnemyPierce.ToString()}";
+        string bonusDamageText = "";
+        string bonusRangeText = "";
+        string bonusFireRateText = "";
+        string bonusPierceText = "";
+
+        if (_bonusTowerDamage > 0) bonusDamageText = $"+ {_bonusTowerDamage.ToString()}";
+        if (_bonusTowerRange > 0) bonusRangeText = $"+ {_bonusTowerRange.ToString()}";
+        if (_bonusFireRate > 0) bonusFireRateText = $"+ {_bonusFireRate.ToString()}";
+        if (_bonusEnemyPierce > 0) bonusPierceText = $"+ {_bonusEnemyPierce.ToString()}";
+
+        _towerBonusStatsText.text = $"{bonusDamageText}\n" +
+                                    $"{bonusRangeText}\n" +
+                                    $"{bonusFireRateText}\n" +
+                                    $"{bonusPierceText}";
     }
 
     //Getters for TowerShooting

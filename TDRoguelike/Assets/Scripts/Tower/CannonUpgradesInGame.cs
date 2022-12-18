@@ -4,39 +4,53 @@ using UnityEngine;
 
 public class CannonUpgradesInGame : TowerInGameUpgrades
 {
-    [SerializeField] private Stripes[] _rightUpgradesStripes;
+    [SerializeField] private RightUpgrades[] _rightUpgradesStripes;
+    [SerializeField] private LeftUpgrades[] _leftUpgrades;
 
-    [System.Serializable]
-    private class Stripes
+    private Animator _animator;
+
+    protected override void Start()
     {
-        public GameObject[] stripes;
+        base.Start();
+        _animator = GetComponent<Animator>();
     }
 
-    [SerializeField] private GameObject[] _leftUpgradesGameObjects;
-    [SerializeField] private GameObject[] _rightUpgradesGameObjects;
-
-    public override void UpgradeVisual(int upgradePurchasedIndex, ChosenUpgradeSide upgradeSide)
+    [System.Serializable]
+    private class RightUpgrades
     {
-        if (upgradeSide == ChosenUpgradeSide.Left)
-        {
-            for (int i = 0; i < _leftUpgradesGameObjects.Length ; i++)
-            {
-                if (i == upgradePurchasedIndex + 1) _leftUpgradesGameObjects[i].SetActive(true);
-                else _leftUpgradesGameObjects[i].SetActive(false);
-            }
-        }
-        else if (upgradeSide == ChosenUpgradeSide.Right)
-        {
-            for (int i = 0; i < _rightUpgradesStripes.Length; i++)
-            {
-                //if ()
-                for (int j = 0; j < _rightUpgradesStripes.Length; j++)
-                {
+        public GameObject[] UpgradeStripes;
+    }
 
+    [System.Serializable]
+    private class LeftUpgrades
+    {
+        public GameObject UpgradeVisual;
+        public AnimatorOverrideController visualOverride;
+    }
+
+    public override void UpgradeVisual(int leftUpgradesPurchased, int rightUpgradesPurchased)
+    {          
+        for (int i = 0; i < _leftUpgrades.Length ; i++)           
+        {
+            if (i == leftUpgradesPurchased)
+            {
+                _leftUpgrades[i].UpgradeVisual.SetActive(true);
+                _animator.runtimeAnimatorController = _leftUpgrades[i].visualOverride;
+
+                for (int j = 0; j < rightUpgradesPurchased; j++)
+                {
+                    _rightUpgradesStripes[i].UpgradeStripes[j].SetActive(true);
+                }
+            } 
+            else
+            {
+                _leftUpgrades[i].UpgradeVisual.SetActive(false);
+                for (int j = 0; j < _rightUpgradesStripes[i].UpgradeStripes.Length; j++)
+                {
+                    _rightUpgradesStripes[i].UpgradeStripes[j].SetActive(false);
                 }
             }
-        }
+        }       
 
-        Debug.Log("index: " + upgradePurchasedIndex + " side: " + upgradeSide);
     }
 }

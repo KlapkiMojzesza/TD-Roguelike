@@ -9,7 +9,7 @@ public class BalistaUpgradesInGame : TowerInGameUpgrades
 {
 
 
-    public override void UpgradeVisual(int upgradePurchasedIndex, ChosenUpgradeSide upgradeSide)
+    public override void UpgradeVisual(int upgradePurchasedIndex, int upgradeSide)
     {
         Debug.Log("index: " + upgradePurchasedIndex + " side: " + upgradeSide);
     }
