@@ -42,14 +42,7 @@ public class CannonUpgradesInGame : TowerInGameUpgrades
                     _rightUpgradesStripes[i].UpgradeStripes[j].SetActive(true);
                 }
             } 
-            else
-            {
-                _leftUpgrades[i].UpgradeVisual.SetActive(false);
-                for (int j = 0; j < _rightUpgradesStripes[i].UpgradeStripes.Length; j++)
-                {
-                    _rightUpgradesStripes[i].UpgradeStripes[j].SetActive(false);
-                }
-            }
+            else _leftUpgrades[i].UpgradeVisual.SetActive(false);          
         }       
 
     }

@@ -8,12 +8,15 @@ using UnityEngine.UI;
 public class BalistaUpgradesInGame : TowerInGameUpgrades
 {
     [SerializeField] private LeftUpgrades[] _leftUpgrades;
-    //[SerializeField] private GameObject[]
+    [SerializeField] private RightUpgrades[] _rightUpgrades;
+
+    private TowerShooting _towerShooting;
 
     [System.Serializable]
     private class RightUpgrades
     {
-        public GameObject[] TowerProjectile;
+        public Projectile[] TowerProjectile;
+        public GameObject[] ProjectileVisual;
     }
 
     [System.Serializable]
@@ -21,6 +24,7 @@ public class BalistaUpgradesInGame : TowerInGameUpgrades
     {
         public GameObject UpgradeVisual;
         public AnimatorOverrideController AnimatorOverride;
+        public Transform FirePoint;
     }
 
     private Animator _animator;
@@ -30,6 +34,9 @@ public class BalistaUpgradesInGame : TowerInGameUpgrades
         base.Start();
         _animator = GetComponent<Animator>();
         _animator.runtimeAnimatorController = _leftUpgrades[0].AnimatorOverride;
+        _rightUpgrades[0].ProjectileVisual[0].SetActive(true);
+
+        _towerShooting = GetComponent<TowerShooting>();
     }
 
     public override void UpgradeVisual(int leftUpgradesPurchased, int rightUpgradesPurchased)
@@ -40,18 +47,21 @@ public class BalistaUpgradesInGame : TowerInGameUpgrades
             {
                 _leftUpgrades[i].UpgradeVisual.SetActive(true);
                 _animator.runtimeAnimatorController = _leftUpgrades[i].AnimatorOverride;
+                for (int j = 0; j < _rightUpgrades[i].ProjectileVisual.Length; j++)
+                {
+                    if (j == rightUpgradesPurchased)
+                    {
+                        _rightUpgrades[i].ProjectileVisual[j].SetActive(true);
+                        _towerShooting.ChangeProjectile(_rightUpgrades[i].TowerProjectile[j], _leftUpgrades[i].FirePoint);
+                       
+                    }
+                    else _rightUpgrades[i].ProjectileVisual[j].SetActive(false);
+                }
+               
             }
             else _leftUpgrades[i].UpgradeVisual.SetActive(false);
         }
     }
 
-    public void ShowProjectileModel()
-    {
-
-    }
-
-    public void HideProjectileModel()
-    {
-
-    }
+    
 }

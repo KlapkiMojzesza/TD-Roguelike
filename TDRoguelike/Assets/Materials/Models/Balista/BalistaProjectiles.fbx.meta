@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c89200d40b7b2a641a3d2f900a062a98
+guid: b9d31b76b7264fe47820227583955460
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,13 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Arrow.Tail
+    second: {fileID: 2100000, guid: 103bcea5d7a694b4fae61ae4f1626ac0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: ArrowBody
-    second: {fileID: 2100000, guid: b986eb9bbc6311a41b787f967b12b732, type: 2}
+    second: {fileID: 2100000, guid: 2503b7e40e9e2654c84fce70b9b1f4b3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ArrowHead
-    second: {fileID: 2100000, guid: 9b516fc3f3c5f5944878fd2c32a31c27, type: 2}
+    second: {fileID: 2100000, guid: 40b3236f2d24eae4bb067e7475ff846e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

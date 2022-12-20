@@ -21,6 +21,8 @@ public class TowerShooting : MonoBehaviour
     private Transform _target;
     private TargetPriority _targetPriority = TargetPriority.First;
     private float _fireCountdown = 0;
+    private Projectile _currentProjectile;
+    private Transform _currentFirePoint;
 
     private void Start()
     {
@@ -31,6 +33,8 @@ public class TowerShooting : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         _towerData = GetComponent<Tower>().TowerData;
+        _currentProjectile = _towerData.ProjectilePrefab;
+        _currentFirePoint = _firePoint;
         _pool = new ObjectPool<Projectile>(CreateProjectile, OnTakeProjectileFromPool, OnReturnProjectileToPool);
 
         InvokeRepeating("UpdateTarget", 0f, 0.01f);
@@ -196,7 +200,7 @@ public class TowerShooting : MonoBehaviour
     private void Shoot()
     {
         Projectile projectile = _pool.Get();
-        projectile.gameObject.transform.position = _firePoint.position;
+        projectile.gameObject.transform.position = _currentFirePoint.position;
 
         if (projectile != null)
         {
@@ -240,7 +244,7 @@ public class TowerShooting : MonoBehaviour
 
     private Projectile CreateProjectile()
     {
-        var projectile = Instantiate(_towerData.ProjectilePrefab);
+        Projectile projectile = Instantiate(_currentProjectile);
         projectile.SetPool(_pool);
         return projectile;
     }
@@ -253,6 +257,14 @@ public class TowerShooting : MonoBehaviour
     private void OnReturnProjectileToPool(Projectile projectile)
     {
         projectile.gameObject.SetActive(false);
+    }
+
+    public void ChangeProjectile(Projectile newProjectile, Transform newFirePoint)
+    {
+        if (newProjectile == _currentProjectile) return;
+        _pool.Dispose();
+        _currentProjectile = newProjectile;
+        if (newFirePoint != null) _currentFirePoint = newFirePoint;
     }
 
     /*private void OnDrawGizmosSelected()
