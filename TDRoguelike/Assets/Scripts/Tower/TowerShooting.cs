@@ -12,6 +12,7 @@ public class TowerShooting : MonoBehaviour
     [Header("To Attach")]
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _rotatingParts;
+    //audio clip
 
     private TowerInGameUpgrades _towerUpgrades;
     private Animator _animator;

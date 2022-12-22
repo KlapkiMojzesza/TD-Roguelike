@@ -10,6 +10,7 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     [SerializeField] private GameObject _upgradeButton;
     [SerializeField] private TMP_Text _upgradeInfo;
     [SerializeField] private TMP_Text _towerBonusStatsText;
+    [SerializeField] private AudioClip _upgradeSound;
     [Header("To Attach: LEFT")]
     [SerializeField] UpgradeScriptableObject[] _towerUpgradesLeft;
     [SerializeField] private TMP_Text _upgradePriceLeft;
@@ -19,6 +20,7 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     [SerializeField] private TMP_Text _upgradePriceRight;
     [SerializeField] private RawImage _upgradeIconImageRight;
 
+    private AudioSource _audioSource;
     private TowerManager _towerManager;
 
     private float _bonusTowerDamage = 0;
@@ -36,6 +38,8 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     protected virtual void Start()
     {
         _towerManager = GameObject.FindGameObjectWithTag("TowerManager").GetComponent<TowerManager>();
+        _audioSource = GetComponent<AudioSource>();
+
         SetUpgradeInfo();
         UpdateTowerStatsText();
     }
@@ -153,6 +157,7 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
                 break;
         }
 
+        _audioSource.PlayOneShot(_upgradeSound);
         UpdateTowerStatsText();
     }
 

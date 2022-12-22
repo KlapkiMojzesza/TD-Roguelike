@@ -19,6 +19,12 @@ public class ObstacleManager : MonoBehaviour
     [SerializeField] private TMP_Text[] _obstaclePriceTexts;
     [SerializeField] private RawImage _iconImage;
 
+    [Header("To Attach")]
+    [SerializeField] private AudioClip _removeObstacleSound;
+    [SerializeField] private AudioClip _showUISound;
+
+
+    private AudioSource _audioSource;
     private TowerManager _towerManager;
     private Controls _controls;
     private Obstacle _currentObstacle;
@@ -29,6 +35,7 @@ public class ObstacleManager : MonoBehaviour
         _controls.Player.Enable();
         
         _towerManager = GameObject.FindGameObjectWithTag("TowerManager").GetComponent<TowerManager>();
+        _audioSource = GetComponent<AudioSource>();
 
         _controls.Player.Info.performed += HandlePlayerMouseInfo;
         TowerManager.OnTowerPlaced += HideUI;
@@ -61,8 +68,10 @@ public class ObstacleManager : MonoBehaviour
                 if (obstacle.GetRemovePrice() <= _towerManager.GetCurrentMoneyAmount()) _buyButton.SetActive(true);
                 else _buyButton.SetActive(false);
 
+                if (_currentObstacle == obstacle) return;
                 _animator.Play("ObstacleMenuHidden", 0);
                 _animator.SetBool("shown", true);
+                _audioSource.PlayOneShot(_showUISound);
                 _currentObstacle = obstacle;
                 return;
             }
@@ -102,6 +111,7 @@ public class ObstacleManager : MonoBehaviour
             _currentObstacle.Remove();
             _currentObstacle = null;
             _animator.SetBool("shown", false);
+            _audioSource.PlayOneShot(_removeObstacleSound);
         }
     }
 }

@@ -15,6 +15,12 @@ public class TowerUIManager : MonoBehaviour
     [SerializeField] private RawImage[] _iconsImage;
     [SerializeField] private TMP_Text[] _towersPriceText;
     [SerializeField] private Animator _towersCanvasAnimator;
+    [SerializeField] private AudioClip _showUISound;
+    [SerializeField] private AudioClip _hideUISound;
+    [SerializeField] private AudioClip _startWaveSound;
+
+    
+    private AudioSource _audioSource;
 
     private void Start()
     {
@@ -23,7 +29,8 @@ public class TowerUIManager : MonoBehaviour
         TowerManager.OnTowerSelect += HandleTowerSelect;
         PlayerBase.OnBaseDestroyed += HandleBaseDestoryed;
         WaveManager.OnWaveEnd += HandleWaveEnd;
-       
+
+        _audioSource = GetComponent<AudioSource>();
         SetTowerUI();
     }
 
@@ -94,14 +101,23 @@ public class TowerUIManager : MonoBehaviour
 
     public void NextWaveButton()
     {
+        _audioSource.PlayOneShot(_startWaveSound);
         _showTowerMenuButton.SetActive(false);
         _towersCanvasAnimator.SetBool("shown", false);
     }
 
     public void ManageTowersUI()
     {
-        if (_towersCanvasAnimator.GetBool("shown") == true) _towersCanvasAnimator.SetBool("shown", false);
-        else _towersCanvasAnimator.SetBool("shown", true);
+        if (_towersCanvasAnimator.GetBool("shown") == true)
+        {
+            _towersCanvasAnimator.SetBool("shown", false);
+            _audioSource.PlayOneShot(_hideUISound);
+        }
+        else
+        {
+            _towersCanvasAnimator.SetBool("shown", true);
+            _audioSource.PlayOneShot(_showUISound);
+        }
     }
 
     public void ExitGame()

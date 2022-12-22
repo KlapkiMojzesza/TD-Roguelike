@@ -23,7 +23,12 @@ public class Tower : MonoBehaviour
     [SerializeField] private GameObject _towerInfoCanvas;
     [SerializeField] private TMP_Text _towerStatsText;
     [SerializeField] private TMP_Text _towerNameText;
+    [SerializeField] private AudioClip _showUISound;
+    [SerializeField] private AudioClip _hideUISound;
+    [SerializeField] private AudioClip _towerPlaceSound; 
+    [SerializeField] private AudioClip _towerSelectionSound;
 
+    private AudioSource _audioSource;
     private Animator _canvasAnimator;
     private int _collisionsAmount = 0;
     private bool _isPlaced = false;
@@ -45,6 +50,7 @@ public class Tower : MonoBehaviour
         _iconImage.texture = TowerData.TowerIcon;
         _towerRangeSprite.localScale = new Vector3(TowerData.TowerRange, TowerData.TowerRange, 1f);
 
+        _audioSource = GetComponent<AudioSource>();
         _canvasAnimator = _towerInfoCanvas.GetComponent<Animator>();
     }
 
@@ -79,8 +85,7 @@ public class Tower : MonoBehaviour
 
         if (!Physics.Raycast(ray, out towerHit, Mathf.Infinity, _towerLayer))
         {
-            _canvasAnimator.SetBool("shown", false);
-            _towerRangeSprite.gameObject.SetActive(false);
+            HideInfoUI();        
             return;
         }
 
@@ -93,13 +98,16 @@ public class Tower : MonoBehaviour
         }
 
         _towerRangeSprite.gameObject.SetActive(true);
+
+        if (_canvasAnimator.GetBool("shown")) return;
         _canvasAnimator.SetBool("shown", true);
+        _audioSource.PlayOneShot(_showUISound);
         //here upgrade canvas needs to update money amount
     }
 
     private void HandleStartWave()
     {
-        _canvasAnimator.SetBool("shown", false);
+        HideInfoUI();
         _towerRangeSprite.gameObject.SetActive(false);
     }
 
@@ -108,9 +116,10 @@ public class Tower : MonoBehaviour
     {
         if (selectedTower != this)
         {
-            _towerRangeSprite.gameObject.SetActive(false);
-            _canvasAnimator.SetBool("shown", false);
+            HideInfoUI();
+            return;
         }
+        _audioSource.PlayOneShot(_towerSelectionSound);
     }
 
     public bool CanBePlaced()
@@ -128,6 +137,7 @@ public class Tower : MonoBehaviour
 
         _towerInfoCanvas.SetActive(true);
         _canvasAnimator.SetBool("shown", true);
+        _audioSource.PlayOneShot(_towerPlaceSound);
     }
 
     private void UpdateTowerStatsUI()
@@ -160,7 +170,12 @@ public class Tower : MonoBehaviour
 
     public void HideInfoUI()
     {
-        _canvasAnimator.SetBool("shown", false);
+        if (_canvasAnimator.GetBool("shown"))
+        {
+            _canvasAnimator.SetBool("shown", false);
+            _audioSource.PlayOneShot(_hideUISound);
+        }
+        _towerRangeSprite.gameObject.SetActive(false);
     }
 
     public Texture GetTowerIcon()
