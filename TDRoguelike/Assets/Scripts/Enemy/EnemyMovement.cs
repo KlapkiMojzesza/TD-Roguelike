@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _damage = 25f;
     [SerializeField] private float _speed = 50f;
-    [SerializeField] private float _rotateSpeed = 0.1f;
+    [SerializeField] private float _rotateSpeed = 0.05f;
     [SerializeField] private float _lookDirectionOffset = 90f;
 
     public static event Action<float> OnEnemyPathCompleate;
@@ -53,7 +53,7 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector3 lookDirection = _waypointManager.Waypoints[_currentWaypoint].position - transform.position;
         float angle = Mathf.Atan2(lookDirection.x, lookDirection.z) * Mathf.Rad2Deg - _lookDirectionOffset;
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.up), _rotateSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.up), Time.deltaTime / _rotateSpeed);
     }
 
     public int GetCurrentWaypoint()

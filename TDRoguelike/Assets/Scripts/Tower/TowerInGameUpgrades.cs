@@ -13,15 +13,20 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     [SerializeField] private AudioClip _upgradeSound;
     [Header("To Attach: LEFT")]
     [SerializeField] UpgradeScriptableObject[] _towerUpgradesLeft;
+    [SerializeField] private TMP_Text _upgradeNameLeft;
     [SerializeField] private TMP_Text _upgradePriceLeft;
     [SerializeField] private RawImage _upgradeIconImageLeft;
+    [SerializeField] private Image _leftProgresImage;
     [Header("To Attach RIGHT")]
     [SerializeField] UpgradeScriptableObject[] _towerUpgradesRight;
+    [SerializeField] private TMP_Text _upgradeNameRight;
     [SerializeField] private TMP_Text _upgradePriceRight;
     [SerializeField] private RawImage _upgradeIconImageRight;
+    [SerializeField] private Image _rightProgresImage;
 
     private AudioSource _audioSource;
     private TowerManager _towerManager;
+    private Tower _tower;
 
     private float _bonusTowerDamage = 0;
     private float _bonusTowerRange = 0;
@@ -39,17 +44,22 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     {
         _towerManager = GameObject.FindGameObjectWithTag("TowerManager").GetComponent<TowerManager>();
         _audioSource = GetComponent<AudioSource>();
+        _tower = GetComponent<Tower>();
 
         SetUpgradeInfo();
         UpdateTowerStatsText();
+        _leftProgresImage.fillAmount = _leftUpgradesPurchased / _towerUpgradesLeft.Length;
+        _rightProgresImage.fillAmount = _rightUpgradesPurchased / _towerUpgradesRight.Length;
     }
 
     private void SetUpgradeInfo()
     {
+        _upgradeNameLeft.text = _towerUpgradesLeft[0].UpgradeName;
         _upgradeIconImageLeft.texture = _towerUpgradesLeft[0].UpgradeIcon;
         _upgradePriceLeft.text = _towerUpgradesLeft[0].UpgradePrice.ToString();
         _upgradeInfo.text = _towerUpgradesLeft[0].UpgradeInfo;
 
+        _upgradeNameRight.text = _towerUpgradesRight[0].UpgradeName;
         _upgradeIconImageRight.texture = _towerUpgradesRight[0].UpgradeIcon;
         _upgradePriceRight.text = _towerUpgradesRight[0].UpgradePrice.ToString();
     }
@@ -88,12 +98,14 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
             _towerManager.BuyUpgrade(currentLeftUpgrade.UpgradePrice);
             UpgradeTower(currentLeftUpgrade);
             _leftUpgradesPurchased++;
+            _leftProgresImage.fillAmount = (float)_leftUpgradesPurchased / (float)_towerUpgradesLeft.Length;
             UpgradeVisual(_leftUpgradesPurchased, _rightUpgradesPurchased);
 
             if (_leftUpgradesPurchased < _towerUpgradesLeft.Length)
             {
                 //this happends when next upgrade exist
                 currentLeftUpgrade = _towerUpgradesLeft[_leftUpgradesPurchased];
+                _upgradeNameLeft.text = _towerUpgradesLeft[_leftUpgradesPurchased].UpgradeName;
                 _upgradeIconImageLeft.texture = currentLeftUpgrade.UpgradeIcon;
                 _upgradePriceLeft.text = currentLeftUpgrade.UpgradePrice.ToString();
                 _upgradeInfo.text = currentLeftUpgrade.UpgradeInfo;
@@ -109,12 +121,14 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
             _towerManager.BuyUpgrade(currentRightUpgrade.UpgradePrice);
             UpgradeTower(currentRightUpgrade);
             _rightUpgradesPurchased++;
+            _rightProgresImage.fillAmount = (float)_rightUpgradesPurchased / (float)_towerUpgradesRight.Length;
             UpgradeVisual(_leftUpgradesPurchased, _rightUpgradesPurchased);
 
             if (_rightUpgradesPurchased < _towerUpgradesRight.Length)
             {
                 //this happends when next upgrade exist
                 currentRightUpgrade = _towerUpgradesRight[_rightUpgradesPurchased];
+                _upgradeNameRight.text = _towerUpgradesRight[_rightUpgradesPurchased].UpgradeName;
                 _upgradeIconImageRight.texture = currentRightUpgrade.UpgradeIcon;
                 _upgradePriceRight.text = currentRightUpgrade.UpgradePrice.ToString();
                 _upgradeInfo.text = currentRightUpgrade.UpgradeInfo;
@@ -142,6 +156,7 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
 
             case UpgradeType.TowerRange:
                 _bonusTowerRange += upgradeData.Value;
+                _tower.UpdateTowerRangeVisual(_bonusTowerRange);
                 break;
 
             case UpgradeType.TowerFireRate:

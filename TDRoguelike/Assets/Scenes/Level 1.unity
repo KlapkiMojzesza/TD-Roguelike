@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.131
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.09564192, g: 0.23963869, b: 0.3964731, a: 0.131}
+  m_IndirectSpecularColor: {r: 0.095625944, g: 0.23964587, b: 0.39628622, a: 0.131}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5845,7 +5845,7 @@ PrefabInstance:
     - target: {fileID: 7284157041792791894, guid: d66f8a51f3d68a341a16ffef88cf6e90,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 7284157041792791894, guid: d66f8a51f3d68a341a16ffef88cf6e90,
         type: 3}
@@ -8538,7 +8538,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9e95eee14264c54469867ac23460e5e4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.85
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -9467,11 +9467,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2704897126139479337, guid: a50a2ffbab83d904e9d3f345712786eb,
-        type: 3}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3338650445892485762, guid: a50a2ffbab83d904e9d3f345712786eb,
         type: 3}
       propertyPath: m_RootOrder
@@ -9500,7 +9495,7 @@ PrefabInstance:
     - target: {fileID: 3338650445892485762, guid: a50a2ffbab83d904e9d3f345712786eb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 3338650445892485762, guid: a50a2ffbab83d904e9d3f345712786eb,
         type: 3}
@@ -18070,6 +18065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4087724116683913214, guid: 47f16f52bac76294988323c40f976b4f, type: 3}
+    - {fileID: 862399191499655118, guid: 47f16f52bac76294988323c40f976b4f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 47f16f52bac76294988323c40f976b4f, type: 3}
 --- !u!1001 &5018614834530130360
 PrefabInstance:
@@ -18363,6 +18359,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: _waves.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b7f8f36be090d1409631a4869505e78,
+        type: 2}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: _waves.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: da46abe8be02184418c1f48bffd23aaa,
+        type: 2}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: _waves.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: da46abe8be02184418c1f48bffd23aaa,
+        type: 2}
     - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
       propertyPath: waves.Array.data[0].miniWaves.Array.size

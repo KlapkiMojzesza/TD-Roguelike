@@ -183,6 +183,13 @@ public class Tower : MonoBehaviour
         return TowerData.TowerIcon;
     }
 
+    public void UpdateTowerRangeVisual(float bonusTowerRange)
+    {
+        _towerRangeSprite.localScale = new Vector3(TowerData.TowerRange + bonusTowerRange, 
+                                                   TowerData.TowerRange + bonusTowerRange,
+                                                   1f);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Obstacle"))

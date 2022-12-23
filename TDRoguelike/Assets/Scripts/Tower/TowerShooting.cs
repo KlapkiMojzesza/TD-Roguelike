@@ -8,10 +8,12 @@ public class TowerShooting : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float _rotationOffset;
+    [SerializeField] private float _rotationSpeed = 0.5f;
 
     [Header("To Attach")]
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _rotatingParts;
+    [SerializeField] private AudioClip _shootSound;
     //audio clip
 
     private TowerInGameUpgrades _towerUpgrades;
@@ -24,6 +26,7 @@ public class TowerShooting : MonoBehaviour
     private float _fireCountdown = 0;
     private Projectile _currentProjectile;
     private Transform _currentFirePoint;
+    private AudioSource _audioSource;
 
     private void Start()
     {
@@ -32,6 +35,7 @@ public class TowerShooting : MonoBehaviour
 
         _towerUpgrades = GetComponent<TowerInGameUpgrades>();
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
 
         _towerData = GetComponent<Tower>().TowerData;
         _currentProjectile = _towerData.ProjectilePrefab;
@@ -70,6 +74,7 @@ public class TowerShooting : MonoBehaviour
     private void Update()
     {
         _fireCountdown -= Time.deltaTime;
+        //_rotationSpeed += Time.deltaTime;
 
         if (_target == null) return;
 
@@ -91,7 +96,8 @@ public class TowerShooting : MonoBehaviour
 
         _rotatingParts.transform.rotation = Quaternion.Lerp(_rotatingParts.transform.rotation,
                                                            Quaternion.Euler(0, angle, 0), 
-                                                           0.05f);
+                                                           Time.deltaTime/_rotationSpeed);
+        //_rotationSpeed += Time.deltaTime;
     }
 
     private Transform GetFirstEnemy(List<GameObject> enemies)
@@ -211,6 +217,7 @@ public class TowerShooting : MonoBehaviour
                               _towerData.TowerEnemyPierce + _towerUpgrades.GetBonusPierce());
         }
 
+        _audioSource.PlayOneShot(_shootSound);
         _animator.SetTrigger("shoot");
     }
 

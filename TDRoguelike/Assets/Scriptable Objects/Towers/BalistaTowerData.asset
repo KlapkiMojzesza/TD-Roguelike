@@ -15,11 +15,11 @@ MonoBehaviour:
   TowerName: Balista
   TowerInfo: Very good tower
   TowerPrice: 20
-  TowerEnemyPierce: 2
-  TowerFireRate: 2
-  TowerRange: 60
+  TowerEnemyPierce: 1
+  TowerFireRate: 1.3
+  TowerRange: 45
   TowerDamage: 50
-  ProjectileSpeed: 250
+  ProjectileSpeed: 270
   ProjectilePrefab: {fileID: 4478281411257946053, guid: 245448eeab2fe8b41bd79e52fa7be974,
     type: 3}
   TowerIcon: {fileID: 2800000, guid: cf8e0324ae00346468ffb082225de9aa, type: 3}

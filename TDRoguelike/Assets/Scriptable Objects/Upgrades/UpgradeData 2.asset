@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf56e65ec703cf4db09f6e73f69efa4, type: 3}
   m_Name: UpgradeData 2
   m_EditorClassIdentifier: 
-  UpgradeName: Good Upgrade 1
+  UpgradeName: Upgrade 2
   UpgradeInfo: Very Good Upgrade 1
   UpgradeType: 2
   Value: 4
   UpgradeIcon: {fileID: 2800000, guid: af3052140e06538449e620f49d820c42, type: 3}
+  UpgradePrice: 10

@@ -6,7 +6,7 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private Wave[] _waves;
+    [SerializeField] private WaveScriptableObject[] _waves;
     [SerializeField] private float _timeBeforeFirstWave = 2f;
 
     [Header("To Attach")]
@@ -18,22 +18,6 @@ public class WaveManager : MonoBehaviour
     private int _currentWaveIndex = 0;
     private int _currentMiniWaveIndex = 0;
     private bool _waveCompleated = false;
-
-    [System.Serializable]
-    public class Wave
-    {
-        public MiniWave[] MiniWaves;
-        public int GoldForWaveCompleated = 10;
-    }
-
-    [System.Serializable]
-    public class MiniWave
-    {
-        public GameObject EnemyPrefab;
-        public int Amount;
-        public float SpawnRate;
-        public float TimeAfterWave;
-    }
 
     private void Start()
     {

@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 10
-  _speed: 80
+  _speed: 60
   _rotateSpeed: 0.1
   _lookDirectionOffset: 0
 --- !u!1 &3422119721537789613

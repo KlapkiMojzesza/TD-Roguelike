@@ -295,8 +295,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 25
-  _speed: 50
-  _rotateSpeed: 0.04
+  _speed: 40
+  _rotateSpeed: 0.15
   _lookDirectionOffset: 0
 --- !u!1 &3072510403469780861
 GameObject:
