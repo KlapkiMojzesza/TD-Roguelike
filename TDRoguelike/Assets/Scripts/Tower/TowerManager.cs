@@ -20,6 +20,7 @@ public class TowerManager : MonoBehaviour
     public static event Action OnTowerDeselect;
     public static event Action OnTowerPlaced;
     public static event Action OnNextWaveButtonClicked;
+    public static event Action<int> OnMoneyAmountChanged;
 
     private List<GameObject> _towersPlaced = new List<GameObject>();
     private GameObject _currentTowerPrefab;
@@ -32,6 +33,7 @@ public class TowerManager : MonoBehaviour
     {
         _currentMoneyAmount = _startMoneyAmount;
         _moneyAmountText.text = _currentMoneyAmount.ToString();
+        OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
 
         _controls = new Controls();
         _controls.Player.Enable();
@@ -94,6 +96,7 @@ public class TowerManager : MonoBehaviour
     {
         _currentMoneyAmount -= _currentTower.TowerData.TowerPrice;
         _moneyAmountText.text = _currentMoneyAmount.ToString();
+        OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
 
         _currentTower.SetOrginalColor();
 
@@ -117,6 +120,7 @@ public class TowerManager : MonoBehaviour
     {
         _currentMoneyAmount += amount;
         _moneyAmountText.text = _currentMoneyAmount.ToString();
+        OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
     }
 
     private void HandleBaseDestruction()
@@ -134,6 +138,7 @@ public class TowerManager : MonoBehaviour
         _towersPlaced.Clear();
         _currentMoneyAmount = _startMoneyAmount;
         _moneyAmountText.text = _currentMoneyAmount.ToString();
+        OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
     }
 
     public void SpawnNextWave()
@@ -157,11 +162,13 @@ public class TowerManager : MonoBehaviour
     {
         _currentMoneyAmount -= removePrice;
         _moneyAmountText.text = _currentMoneyAmount.ToString();
+        OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
     }
 
     public void BuyUpgrade(int upgradePrice)
     {
         _currentMoneyAmount -= upgradePrice;
         _moneyAmountText.text = _currentMoneyAmount.ToString();
+        OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
     }
 }

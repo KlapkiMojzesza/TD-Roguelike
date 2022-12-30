@@ -12,13 +12,15 @@ public class TowerUIManager : MonoBehaviour
     [SerializeField] private GameObject _placingCanvas;
     [SerializeField] private GameObject _levelEndCanvas;
     [SerializeField] private GameObject _showTowerMenuButton;
+    [SerializeField] private GameObject[] _towersBuyButtons;
     [SerializeField] private RawImage[] _iconsImage;
     [SerializeField] private TMP_Text[] _towersPriceText;
     [SerializeField] private Animator _towersCanvasAnimator;
     [SerializeField] private AudioClip _showUISound;
     [SerializeField] private AudioClip _hideUISound;
     [SerializeField] private AudioClip _startWaveSound;
-   
+
+    private TowerManager _towermanager;
     private AudioSource _audioSource;
 
     private void Start()
@@ -26,10 +28,13 @@ public class TowerUIManager : MonoBehaviour
         TowerManager.OnTowerPlaced += HandleTowerDeselect;
         TowerManager.OnTowerDeselect += HandleTowerDeselect;
         TowerManager.OnTowerSelect += HandleTowerSelect;
+        TowerManager.OnMoneyAmountChanged += HandleMoneyAmountChanged;
         PlayerBase.OnBaseDestroyed += HandleBaseDestoryed;
         WaveManager.OnWaveEnd += HandleWaveEnd;
 
         _audioSource = GetComponent<AudioSource>();
+        _towermanager = GetComponent<TowerManager>();
+
         SetTowerUI();
     }
 
@@ -38,16 +43,26 @@ public class TowerUIManager : MonoBehaviour
         TowerManager.OnTowerPlaced -= HandleTowerDeselect;
         TowerManager.OnTowerDeselect -= HandleTowerDeselect;
         TowerManager.OnTowerSelect -= HandleTowerSelect;
+        TowerManager.OnMoneyAmountChanged -= HandleMoneyAmountChanged;
         PlayerBase.OnBaseDestroyed -= HandleBaseDestoryed;
         WaveManager.OnWaveEnd -= HandleWaveEnd;
     }
 
+    private void HandleMoneyAmountChanged(int newMoneyAmount)
+    {
+        for (int i = 0; i < _towermanager.TowerPrefabs.Length; i++)
+        {
+            Tower tower = _towermanager.TowerPrefabs[i].GetComponent<Tower>();
+            if (newMoneyAmount < tower.TowerData.TowerPrice) _towersBuyButtons[i].SetActive(false);
+            else _towersBuyButtons[i].SetActive(true);
+        }
+    }
+
     private void SetTowerUI()
     {
-        TowerManager towermanager = GetComponent<TowerManager>();
-        for (int i = 0; i < towermanager.TowerPrefabs.Length; i++)
+        for (int i = 0; i < _towermanager.TowerPrefabs.Length; i++)
         {
-            Tower tower = towermanager.TowerPrefabs[i].GetComponent<Tower>();
+            Tower tower = _towermanager.TowerPrefabs[i].GetComponent<Tower>();
             _iconsImage[i].texture = tower.TowerData.TowerIcon;
             _towersPriceText[i].text = tower.TowerData.TowerPrice.ToString();
         }
