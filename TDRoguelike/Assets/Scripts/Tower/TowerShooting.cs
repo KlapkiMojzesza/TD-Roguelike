@@ -14,7 +14,6 @@ public class TowerShooting : MonoBehaviour
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _rotatingParts;
     [SerializeField] private AudioClip _shootSound;
-    //audio clip
 
     private TowerInGameUpgrades _towerUpgrades;
     private Animator _animator;
@@ -74,7 +73,6 @@ public class TowerShooting : MonoBehaviour
     private void Update()
     {
         _fireCountdown -= Time.deltaTime;
-        //_rotationSpeed += Time.deltaTime;
 
         if (_target == null) return;
 
@@ -97,7 +95,6 @@ public class TowerShooting : MonoBehaviour
         _rotatingParts.transform.rotation = Quaternion.Lerp(_rotatingParts.transform.rotation,
                                                            Quaternion.Euler(0, angle, 0), 
                                                            Time.deltaTime/_rotationSpeed);
-        //_rotationSpeed += Time.deltaTime;
     }
 
     private Transform GetFirstEnemy(List<GameObject> enemies)

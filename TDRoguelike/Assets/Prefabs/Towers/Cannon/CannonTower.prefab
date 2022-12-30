@@ -309,17 +309,17 @@ MonoBehaviour:
   _towerBonusStatsText: {fileID: 7608246836576891485}
   _upgradeSound: {fileID: 8300000, guid: 16d129155f2825644bf06fd4693fced4, type: 3}
   _towerUpgradesLeft:
-  - {fileID: 11400000, guid: bf0fe46a9f253a542afbf00a0a24f1e5, type: 2}
-  - {fileID: 11400000, guid: a42b8fb24f75e5c458b164336e02dd52, type: 2}
-  - {fileID: 11400000, guid: 49ba5723901779e48a41d65551115880, type: 2}
+  - {fileID: 11400000, guid: 2678afd70f6135a4d86432631c66f89e, type: 2}
+  - {fileID: 11400000, guid: de497480ffb30494497790da77f8c36c, type: 2}
+  - {fileID: 11400000, guid: 1a3a6a0bab9adf74a8e651a1f8b4afde, type: 2}
   _upgradeNameLeft: {fileID: 8115731223558201401}
   _upgradePriceLeft: {fileID: 3759382268401164448}
   _upgradeIconImageLeft: {fileID: 7165833917515942941}
   _leftProgresImage: {fileID: 7210914277721478668}
   _towerUpgradesRight:
-  - {fileID: 11400000, guid: a42b8fb24f75e5c458b164336e02dd52, type: 2}
-  - {fileID: 11400000, guid: 49ba5723901779e48a41d65551115880, type: 2}
-  - {fileID: 11400000, guid: 49ba5723901779e48a41d65551115880, type: 2}
+  - {fileID: 11400000, guid: 9d6b8203fdaeaf84c8135e263f922a79, type: 2}
+  - {fileID: 11400000, guid: 60db15063ddee154ea0a4e878a08027c, type: 2}
+  - {fileID: 11400000, guid: fe72bfeafa987774db845926052965b8, type: 2}
   _upgradeNameRight: {fileID: 5048675416438265312}
   _upgradePriceRight: {fileID: 3232371189263100501}
   _upgradeIconImageRight: {fileID: 1655282127211432378}

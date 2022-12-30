@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44bab933eacd5b41b2d9160baa8d1d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMoneyAmount: 1000
+  _startMoneyAmount: 30
   _groundLayer:
     serializedVersion: 2
     m_Bits: 256

@@ -60,13 +60,20 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator spawnMiniWave(float spawnRate, MiniWave miniWave)
     {
+        bool dontWaitForNextWave = miniWave.dontWaitWithNextWave;
+
         for (int i = 0; i < miniWave.Amount; i++)
         {
             yield return new WaitForSeconds(1f / miniWave.SpawnRate);
             SpawnEnemy(miniWave.EnemyPrefab);
+            if (dontWaitForNextWave)
+            {
+                StartCoroutine(spawnWave(miniWave.TimeAfterWave));
+                dontWaitForNextWave = false;
+            }
         }
         //Debug.Log("end of miniWave");
-        StartCoroutine(spawnWave(miniWave.TimeAfterWave));
+        if (!miniWave.dontWaitWithNextWave) StartCoroutine(spawnWave(miniWave.TimeAfterWave));
     }
 
     private void SpawnEnemy(GameObject enemy)

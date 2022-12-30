@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -24,6 +25,8 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     [SerializeField] private RawImage _upgradeIconImageRight;
     [SerializeField] private Image _rightProgresImage;
 
+    UpgradeScriptableObject currentLeftUpgrade;
+    UpgradeScriptableObject currentRightUpgrade;
     private AudioSource _audioSource;
     private TowerManager _towerManager;
     private Tower _tower;
@@ -46,43 +49,85 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _tower = GetComponent<Tower>();
 
-        SetUpgradeInfo();
+        SetUpgradeInfo(_currentUpgradeChosen);
         UpdateTowerStatsText();
+
         _leftProgresImage.fillAmount = _leftUpgradesPurchased / _towerUpgradesLeft.Length;
         _rightProgresImage.fillAmount = _rightUpgradesPurchased / _towerUpgradesRight.Length;
+
+        Tower.OnTowerInfoShow += UpdateInfoCanvas;
     }
 
-    private void SetUpgradeInfo()
+    private void OnDestroy()
     {
-        _upgradeNameLeft.text = _towerUpgradesLeft[0].UpgradeName;
-        _upgradeIconImageLeft.texture = _towerUpgradesLeft[0].UpgradeIcon;
-        _upgradePriceLeft.text = _towerUpgradesLeft[0].UpgradePrice.ToString();
-        _upgradeInfo.text = _towerUpgradesLeft[0].UpgradeInfo;
+        Tower.OnTowerInfoShow -= UpdateInfoCanvas;
+    }
 
-        _upgradeNameRight.text = _towerUpgradesRight[0].UpgradeName;
-        _upgradeIconImageRight.texture = _towerUpgradesRight[0].UpgradeIcon;
-        _upgradePriceRight.text = _towerUpgradesRight[0].UpgradePrice.ToString();
+    private void UpdateInfoCanvas()
+    {
+        switch (_currentUpgradeChosen)
+        {
+            case ChosenUpgradeSide.Left:
+
+                currentLeftUpgrade = _towerUpgradesLeft[_leftUpgradesPurchased];
+                if (_towerManager.GetCurrentMoneyAmount() < currentLeftUpgrade.UpgradePrice) _upgradeButton.SetActive(false);
+
+                return;
+
+            case ChosenUpgradeSide.Right:
+
+                currentRightUpgrade = _towerUpgradesRight[_rightUpgradesPurchased];
+                if (_towerManager.GetCurrentMoneyAmount() < currentRightUpgrade.UpgradePrice) _upgradeButton.SetActive(false);
+
+                return;
+        }
+
+        _upgradeButton.SetActive(true);       
+    }
+
+    private void SetUpgradeInfo(ChosenUpgradeSide chosenSide)
+    {
+        _upgradeNameLeft.text = _towerUpgradesLeft[_leftUpgradesPurchased].UpgradeName;
+        _upgradeIconImageLeft.texture = _towerUpgradesLeft[_leftUpgradesPurchased].UpgradeIcon;
+        _upgradePriceLeft.text = _towerUpgradesLeft[_leftUpgradesPurchased].UpgradePrice.ToString();
+
+        _upgradeNameRight.text = _towerUpgradesRight[_rightUpgradesPurchased].UpgradeName;
+        _upgradeIconImageRight.texture = _towerUpgradesRight[_rightUpgradesPurchased].UpgradeIcon;
+        _upgradePriceRight.text = _towerUpgradesRight[_rightUpgradesPurchased].UpgradePrice.ToString();
+
+        if (chosenSide == ChosenUpgradeSide.Left) _upgradeInfo.text = _towerUpgradesLeft[_leftUpgradesPurchased].UpgradeInfo;
+        if (chosenSide == ChosenUpgradeSide.Right) _upgradeInfo.text = _towerUpgradesRight[_rightUpgradesPurchased].UpgradeInfo;
     }
 
     public void SwitchUpgradeButton(int chosenUpgradeIndex)
     {
         _currentUpgradeChosen = (ChosenUpgradeSide)chosenUpgradeIndex;
-        if (_currentUpgradeChosen == ChosenUpgradeSide.Left && _leftUpgradesPurchased < _towerUpgradesLeft.Length)
+
+        if (_currentUpgradeChosen == ChosenUpgradeSide.Left &&
+            _leftUpgradesPurchased < _towerUpgradesLeft.Length)
         {
             //this happends when upgrade exist
-            _upgradeButton.SetActive(true);
-            UpgradeScriptableObject upgradeData = _towerUpgradesLeft[_leftUpgradesPurchased];
-            _upgradeInfo.text = upgradeData.UpgradeInfo;
+            currentLeftUpgrade = _towerUpgradesLeft[_leftUpgradesPurchased];
+
+            if (_towerManager.GetCurrentMoneyAmount() >= currentLeftUpgrade.UpgradePrice) _upgradeButton.SetActive(true);
+            else _upgradeButton.SetActive(false);
+
+            SetUpgradeInfo(ChosenUpgradeSide.Left);
             return;
         }
-        else if (_currentUpgradeChosen == ChosenUpgradeSide.Right && _rightUpgradesPurchased < _towerUpgradesRight.Length)
+        else if (_currentUpgradeChosen == ChosenUpgradeSide.Right &&
+            _rightUpgradesPurchased < _towerUpgradesRight.Length)
         {
             //this happends when upgrade exist
-            _upgradeButton.SetActive(true);
-            UpgradeScriptableObject upgradeData = _towerUpgradesRight[_rightUpgradesPurchased];
-            _upgradeInfo.text = upgradeData.UpgradeInfo;
+            currentRightUpgrade = _towerUpgradesRight[_rightUpgradesPurchased];
+
+            if (_towerManager.GetCurrentMoneyAmount() >= currentRightUpgrade.UpgradePrice) _upgradeButton.SetActive(true);
+            else _upgradeButton.SetActive(false);
+
+            SetUpgradeInfo(ChosenUpgradeSide.Right);
             return;
         }
+        //this happends when there are no upgrades left
         _upgradeButton.SetActive(false);
         _upgradeInfo.text = "MAX LEVEL";
     }
@@ -91,9 +136,9 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     {
         if (_currentUpgradeChosen == ChosenUpgradeSide.Left)
         {
-            UpgradeScriptableObject currentLeftUpgrade = _towerUpgradesLeft[_leftUpgradesPurchased];
+            currentLeftUpgrade = _towerUpgradesLeft[_leftUpgradesPurchased];
 
-            if (_towerManager.GetCurrentMoneyAmount() < currentLeftUpgrade.UpgradePrice) return;
+            //if (_towerManager.GetCurrentMoneyAmount() < currentLeftUpgrade.UpgradePrice) return;
 
             _towerManager.BuyUpgrade(currentLeftUpgrade.UpgradePrice);
             UpgradeTower(currentLeftUpgrade);
@@ -105,18 +150,16 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
             {
                 //this happends when next upgrade exist
                 currentLeftUpgrade = _towerUpgradesLeft[_leftUpgradesPurchased];
-                _upgradeNameLeft.text = _towerUpgradesLeft[_leftUpgradesPurchased].UpgradeName;
-                _upgradeIconImageLeft.texture = currentLeftUpgrade.UpgradeIcon;
-                _upgradePriceLeft.text = currentLeftUpgrade.UpgradePrice.ToString();
-                _upgradeInfo.text = currentLeftUpgrade.UpgradeInfo;
+                SetUpgradeInfo(ChosenUpgradeSide.Left);
+                if (_towerManager.GetCurrentMoneyAmount() < currentLeftUpgrade.UpgradePrice) _upgradeButton.SetActive(false);
                 return;
             }
         }
         else if (_currentUpgradeChosen == ChosenUpgradeSide.Right)
         {
-            UpgradeScriptableObject currentRightUpgrade = _towerUpgradesRight[_rightUpgradesPurchased];
+            currentRightUpgrade = _towerUpgradesRight[_rightUpgradesPurchased];
 
-            if (_towerManager.GetCurrentMoneyAmount() < currentRightUpgrade.UpgradePrice) return;
+            //if (_towerManager.GetCurrentMoneyAmount() < currentRightUpgrade.UpgradePrice) return;
 
             _towerManager.BuyUpgrade(currentRightUpgrade.UpgradePrice);
             UpgradeTower(currentRightUpgrade);
@@ -128,10 +171,8 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
             {
                 //this happends when next upgrade exist
                 currentRightUpgrade = _towerUpgradesRight[_rightUpgradesPurchased];
-                _upgradeNameRight.text = _towerUpgradesRight[_rightUpgradesPurchased].UpgradeName;
-                _upgradeIconImageRight.texture = currentRightUpgrade.UpgradeIcon;
-                _upgradePriceRight.text = currentRightUpgrade.UpgradePrice.ToString();
-                _upgradeInfo.text = currentRightUpgrade.UpgradeInfo;
+                SetUpgradeInfo(ChosenUpgradeSide.Right);
+                if (_towerManager.GetCurrentMoneyAmount() < currentRightUpgrade.UpgradePrice) _upgradeButton.SetActive(false);
                 return;
             }
         }

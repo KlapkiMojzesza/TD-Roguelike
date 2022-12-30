@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.131
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.095625944, g: 0.23964587, b: 0.39628622, a: 0.131}
+  m_IndirectSpecularColor: {r: 0.09564192, g: 0.23963869, b: 0.3964731, a: 0.131}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18361,6 +18361,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
+      propertyPath: _waves.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
       propertyPath: _waves.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 4b7f8f36be090d1409631a4869505e78,
@@ -18369,13 +18374,31 @@ PrefabInstance:
         type: 3}
       propertyPath: _waves.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: da46abe8be02184418c1f48bffd23aaa,
+      objectReference: {fileID: 11400000, guid: b298bb3873bc40e48aeba34bbe35ee34,
         type: 2}
     - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
       propertyPath: _waves.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: da46abe8be02184418c1f48bffd23aaa,
+      objectReference: {fileID: 11400000, guid: 3be2b8f54fc841b49bbc88d2c3983fdb,
+        type: 2}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: _waves.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: afbc99d54917f174aa28b31824c93047,
+        type: 2}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: _waves.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 32b720e1ceea15e4cbb6481867d92a3e,
+        type: 2}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
+      propertyPath: _waves.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 42c914be2325cf7488686abf26478576,
         type: 2}
     - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
@@ -18628,6 +18651,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701644492400215755, guid: c824c4a603e5cba49918df95bb9fd8f7,
+        type: 3}
+      propertyPath: _startMoneyAmount
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c824c4a603e5cba49918df95bb9fd8f7, type: 3}

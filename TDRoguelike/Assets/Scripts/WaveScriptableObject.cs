@@ -14,4 +14,5 @@ public class MiniWave
     public int Amount;
     public float SpawnRate;
     public float TimeAfterWave;
+    public bool dontWaitWithNextWave = false;
 }

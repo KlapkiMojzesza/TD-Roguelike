@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 061d4f40547bd1a45b19ee63e540f275, type: 3}
-  m_Name: Wave 1
+  m_Script: {fileID: 11500000, guid: 4bf56e65ec703cf4db09f6e73f69efa4, type: 3}
+  m_Name: CannonUpgradeL 3
   m_EditorClassIdentifier: 
-  MiniWaves:
-  - EnemyPrefab: {fileID: 2756241929110736850, guid: 88b6aea29bdc7e94e804c267465b862e,
-      type: 3}
-    Amount: 5
-    SpawnRate: 2
-    TimeAfterWave: 1
-  GoldForWaveCompleated: 10
+  UpgradeName: Muzzle
+  UpgradeInfo: Increase damage by 60
+  UpgradeType: 0
+  Value: 60
+  UpgradeIcon: {fileID: 2800000, guid: 248b18c1c1b38a24291e3a2c219c3106, type: 3}
+  UpgradePrice: 50

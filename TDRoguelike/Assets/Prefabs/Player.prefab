@@ -132,9 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4305e881853d1c48bdf9f69db508fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireRate: 6.26
+  _fireRate: 6
   _projectileSpeed: 200
-  _playerDamage: 50
+  _playerDamage: 5
   _groundLayer:
     serializedVersion: 2
     m_Bits: 256

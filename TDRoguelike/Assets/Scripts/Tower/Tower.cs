@@ -28,6 +28,8 @@ public class Tower : MonoBehaviour
     [SerializeField] private AudioClip _towerPlaceSound; 
     [SerializeField] private AudioClip _towerSelectionSound;
 
+    public static event Action OnTowerInfoShow;
+
     private AudioSource _audioSource;
     private Animator _canvasAnimator;
     private int _collisionsAmount = 0;
@@ -102,6 +104,7 @@ public class Tower : MonoBehaviour
         if (_canvasAnimator.GetBool("shown")) return;
         _canvasAnimator.SetBool("shown", true);
         _audioSource.PlayOneShot(_showUISound);
+        OnTowerInfoShow?.Invoke();
         //here upgrade canvas needs to update money amount
     }
 
@@ -138,6 +141,7 @@ public class Tower : MonoBehaviour
         _towerInfoCanvas.SetActive(true);
         _canvasAnimator.SetBool("shown", true);
         _audioSource.PlayOneShot(_towerPlaceSound);
+        OnTowerInfoShow?.Invoke();
     }
 
     private void UpdateTowerStatsUI()
