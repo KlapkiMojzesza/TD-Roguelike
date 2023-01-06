@@ -13,6 +13,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private Transform _spawnPoint;
 
     public static event Action<int> OnWaveEnd;
+    public static event Action<EnemyHealth> OnMiniWaveStart;
 
     private List<GameObject> _aliveEnemies = new List<GameObject>();
     private int _currentWaveIndex = 0;
@@ -60,6 +61,8 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator spawnMiniWave(float spawnRate, MiniWave miniWave)
     {
+        OnMiniWaveStart?.Invoke(miniWave.EnemyPrefab.GetComponent<EnemyHealth>());
+
         bool dontWaitForNextWave = miniWave.dontWaitWithNextWave;
 
         for (int i = 0; i < miniWave.Amount; i++)
@@ -83,17 +86,17 @@ public class WaveManager : MonoBehaviour
         //Debug.Log(enemy.name);
     }
 
-    private void HandleDeath(GameObject enemy)
+    private void HandleDeath(EnemyHealth enemy)
     {
         if (_waveCompleated && _aliveEnemies.Count == 1)
         {
             //last enemy arrived
-            _aliveEnemies.Remove(enemy);
+            _aliveEnemies.Remove(enemy.gameObject);
             EndWave();
             return;
         }
 
-        _aliveEnemies.Remove(enemy);
+        _aliveEnemies.Remove(enemy.gameObject);
         if (!_waveCompleated) return;
         if (_aliveEnemies.Count != 0) return;
         //last enemy died from tower/player

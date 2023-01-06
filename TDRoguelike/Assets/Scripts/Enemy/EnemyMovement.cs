@@ -65,4 +65,10 @@ public class EnemyMovement : MonoBehaviour
     {
         return _distanceToNextWaypoint;
     }
+
+    //Minotaur Special
+    public void UpgradeSpeed(float amount)
+    {
+        _speed *= amount;
+    }
 }

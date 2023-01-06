@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf56e65ec703cf4db09f6e73f69efa4, type: 3}
   m_Name: CannonUpgradeL 2
   m_EditorClassIdentifier: 
-  UpgradeName: Barrel
+  UpgradeName: Barrel 2
   UpgradeInfo: Increase range by 15
   UpgradeType: 1
   Value: 15
-  UpgradeIcon: {fileID: 2800000, guid: 4fbce480ede5f134b921dc1c26852630, type: 3}
+  UpgradeIcon: {fileID: 2800000, guid: 3eac0e86632d66242a3fe20d105873a8, type: 3}
   UpgradePrice: 20

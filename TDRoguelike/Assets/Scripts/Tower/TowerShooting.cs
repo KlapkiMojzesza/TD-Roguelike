@@ -218,14 +218,14 @@ public class TowerShooting : MonoBehaviour
         _animator.SetTrigger("shoot");
     }
 
-    private void RemoveEnemyFromList(GameObject enemy)
+    private void RemoveEnemyFromList(EnemyHealth enemy)
     {
-        _aliveEnemies.Remove(enemy);
+        _aliveEnemies.Remove(enemy.gameObject);
     }
 
-    private void AddEnemyToList(GameObject enemy)
+    private void AddEnemyToList(EnemyHealth enemy)
     {
-        _aliveEnemies.Add(enemy);
+        _aliveEnemies.Add(enemy.gameObject);
     }
 
     public void TowerTargetPrioritySwitch(int index)

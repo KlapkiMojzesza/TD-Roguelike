@@ -46,7 +46,7 @@ public class ObstacleManager : MonoBehaviour
     {
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
         TowerManager.OnTowerPlaced -= HideUI;
-        TowerManager.OnTowerSelect += HandleTowerSelect;
+        TowerManager.OnTowerSelect -= HandleTowerSelect;
     }
 
     private void HandlePlayerMouseInfo(InputAction.CallbackContext context)

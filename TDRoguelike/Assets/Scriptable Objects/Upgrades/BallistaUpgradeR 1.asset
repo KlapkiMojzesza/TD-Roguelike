@@ -16,5 +16,5 @@ MonoBehaviour:
   UpgradeInfo: Increase enemy pierce by 1
   UpgradeType: 3
   Value: 1
-  UpgradeIcon: {fileID: 2800000, guid: ca7936278f8c7ef4c9a0a676b9036b77, type: 3}
+  UpgradeIcon: {fileID: 2800000, guid: b7ae07447ea6da34ba7784794ae26310, type: 3}
   UpgradePrice: 30

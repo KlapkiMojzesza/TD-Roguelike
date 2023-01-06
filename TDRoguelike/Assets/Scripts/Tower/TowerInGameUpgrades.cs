@@ -69,15 +69,21 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
         {
             case ChosenUpgradeSide.Left:
 
-                currentLeftUpgrade = _towerUpgradesLeft[_leftUpgradesPurchased];
-                if (_towerManager.GetCurrentMoneyAmount() < currentLeftUpgrade.UpgradePrice) _upgradeButton.SetActive(false);
+                if (_leftUpgradesPurchased < _towerUpgradesLeft.Length)
+                {
+                    currentLeftUpgrade = _towerUpgradesLeft[_leftUpgradesPurchased];
+                    if (_towerManager.GetCurrentMoneyAmount() < currentLeftUpgrade.UpgradePrice) _upgradeButton.SetActive(false);
+                }
 
                 return;
 
             case ChosenUpgradeSide.Right:
 
-                currentRightUpgrade = _towerUpgradesRight[_rightUpgradesPurchased];
-                if (_towerManager.GetCurrentMoneyAmount() < currentRightUpgrade.UpgradePrice) _upgradeButton.SetActive(false);
+                if (_rightUpgradesPurchased < _towerUpgradesRight.Length)
+                {
+                    currentRightUpgrade = _towerUpgradesRight[_rightUpgradesPurchased];
+                    if (_towerManager.GetCurrentMoneyAmount() < currentRightUpgrade.UpgradePrice) _upgradeButton.SetActive(false);
+                }
 
                 return;
         }
@@ -87,13 +93,18 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
 
     private void SetUpgradeInfo(ChosenUpgradeSide chosenSide)
     {
-        _upgradeNameLeft.text = _towerUpgradesLeft[_leftUpgradesPurchased].UpgradeName;
-        _upgradeIconImageLeft.texture = _towerUpgradesLeft[_leftUpgradesPurchased].UpgradeIcon;
-        _upgradePriceLeft.text = _towerUpgradesLeft[_leftUpgradesPurchased].UpgradePrice.ToString();
-
-        _upgradeNameRight.text = _towerUpgradesRight[_rightUpgradesPurchased].UpgradeName;
-        _upgradeIconImageRight.texture = _towerUpgradesRight[_rightUpgradesPurchased].UpgradeIcon;
-        _upgradePriceRight.text = _towerUpgradesRight[_rightUpgradesPurchased].UpgradePrice.ToString();
+        if (_leftUpgradesPurchased < _towerUpgradesLeft.Length)
+        {
+            _upgradeNameLeft.text = _towerUpgradesLeft[_leftUpgradesPurchased].UpgradeName;
+            _upgradeIconImageLeft.texture = _towerUpgradesLeft[_leftUpgradesPurchased].UpgradeIcon;
+            _upgradePriceLeft.text = _towerUpgradesLeft[_leftUpgradesPurchased].UpgradePrice.ToString();
+        }
+        if (_rightUpgradesPurchased < _towerUpgradesRight.Length)
+        {
+            _upgradeNameRight.text = _towerUpgradesRight[_rightUpgradesPurchased].UpgradeName;
+            _upgradeIconImageRight.texture = _towerUpgradesRight[_rightUpgradesPurchased].UpgradeIcon;
+            _upgradePriceRight.text = _towerUpgradesRight[_rightUpgradesPurchased].UpgradePrice.ToString();
+        }
 
         if (chosenSide == ChosenUpgradeSide.Left) _upgradeInfo.text = _towerUpgradesLeft[_leftUpgradesPurchased].UpgradeInfo;
         if (chosenSide == ChosenUpgradeSide.Right) _upgradeInfo.text = _towerUpgradesRight[_rightUpgradesPurchased].UpgradeInfo;

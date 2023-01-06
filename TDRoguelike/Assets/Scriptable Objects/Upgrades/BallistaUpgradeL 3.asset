@@ -16,5 +16,5 @@ MonoBehaviour:
   UpgradeInfo: Increase damage by 50
   UpgradeType: 0
   Value: 50
-  UpgradeIcon: {fileID: 2800000, guid: 9663b2867676dac4aaa79c0a949ceba6, type: 3}
+  UpgradeIcon: {fileID: 2800000, guid: 3b7a011a1c715e74b82585cd9510c43c, type: 3}
   UpgradePrice: 50

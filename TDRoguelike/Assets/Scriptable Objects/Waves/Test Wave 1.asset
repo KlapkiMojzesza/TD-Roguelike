@@ -13,14 +13,28 @@ MonoBehaviour:
   m_Name: Test Wave 1
   m_EditorClassIdentifier: 
   MiniWaves:
+  - EnemyPrefab: {fileID: 3794939104383789673, guid: d17e4ceb640eab34eb3dbd474430f6a7,
+      type: 3}
+    Amount: 3
+    SpawnRate: 2
+    TimeAfterWave: 0
+    dontWaitWithNextWave: 0
   - EnemyPrefab: {fileID: 2756241929110736850, guid: 88b6aea29bdc7e94e804c267465b862e,
       type: 3}
     Amount: 3
     SpawnRate: 2
-    TimeAfterWave: 3
+    TimeAfterWave: 4.02
+    dontWaitWithNextWave: 0
+  - EnemyPrefab: {fileID: 3295161404839182595, guid: 51cb00f00a01162489af0659b8c1f361,
+      type: 3}
+    Amount: 3
+    SpawnRate: 3
+    TimeAfterWave: 1
+    dontWaitWithNextWave: 0
   - EnemyPrefab: {fileID: 961444833417097064, guid: 2eeaad9f62c0a274b9eca98fa1a5cd6f,
       type: 3}
-    Amount: 2
-    SpawnRate: 1
-    TimeAfterWave: 10
+    Amount: 3
+    SpawnRate: 2
+    TimeAfterWave: 1
+    dontWaitWithNextWave: 0
   GoldForWaveCompleated: 10

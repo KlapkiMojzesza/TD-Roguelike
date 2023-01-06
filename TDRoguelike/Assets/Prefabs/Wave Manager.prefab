@@ -48,51 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waves:
-  - MiniWaves:
-    - EnemyPrefab: {fileID: 781780417796994703, guid: 6aa9e3642d6110540967cfd9ff2e3a81,
-        type: 3}
-      Amount: 10
-      SpawnRate: 3
-      TimeAfterWave: 1
-    - EnemyPrefab: {fileID: 781780417796994703, guid: 795d8602e819e5a46ba4b3f991cb1a14,
-        type: 3}
-      Amount: 5
-      SpawnRate: 4
-      TimeAfterWave: 1
-    - EnemyPrefab: {fileID: 781780417796994703, guid: 3073bf0f72017c14b972411de88bf837,
-        type: 3}
-      Amount: 10
-      SpawnRate: 4
-      TimeAfterWave: 1
-    GoldForWaveCompleated: 100
-  - MiniWaves:
-    - EnemyPrefab: {fileID: 0}
-      Amount: 0
-      SpawnRate: 0
-      TimeAfterWave: 0
-    - EnemyPrefab: {fileID: 0}
-      Amount: 0
-      SpawnRate: 0
-      TimeAfterWave: 0
-    - EnemyPrefab: {fileID: 0}
-      Amount: 0
-      SpawnRate: 0
-      TimeAfterWave: 0
-    GoldForWaveCompleated: 200
-  - MiniWaves:
-    - EnemyPrefab: {fileID: 0}
-      Amount: 0
-      SpawnRate: 0
-      TimeAfterWave: 0
-    - EnemyPrefab: {fileID: 0}
-      Amount: 0
-      SpawnRate: 0
-      TimeAfterWave: 0
-    - EnemyPrefab: {fileID: 0}
-      Amount: 0
-      SpawnRate: 0
-      TimeAfterWave: 0
-    GoldForWaveCompleated: 300
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _timeBeforeFirstWave: 2
   _spawnPoint: {fileID: 5018614835240930846}
 --- !u!114 &5018614834388842328

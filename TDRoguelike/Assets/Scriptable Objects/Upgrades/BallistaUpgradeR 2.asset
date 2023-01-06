@@ -16,5 +16,5 @@ MonoBehaviour:
   UpgradeInfo: Increase tower range by 20
   UpgradeType: 1
   Value: 20
-  UpgradeIcon: {fileID: 2800000, guid: f8e9e22b8c8cbad46be4db23d3acb73c, type: 3}
+  UpgradeIcon: {fileID: 2800000, guid: b2ba20daae66a7b429855f8fd3f71cbf, type: 3}
   UpgradePrice: 40

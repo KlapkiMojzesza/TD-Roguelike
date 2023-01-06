@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf56e65ec703cf4db09f6e73f69efa4, type: 3}
   m_Name: CannonUpgradeL 1
   m_EditorClassIdentifier: 
-  UpgradeName: Muzzle
+  UpgradeName: Barrel
   UpgradeInfo: Increase damage by 20
   UpgradeType: 0
   Value: 20
-  UpgradeIcon: {fileID: 2800000, guid: 25538a005233736408fdad70af41b1f8, type: 3}
+  UpgradeIcon: {fileID: 2800000, guid: 3bfbd26c52a75e4428e4e6265f7162e4, type: 3}
   UpgradePrice: 15
