@@ -16,5 +16,5 @@ MonoBehaviour:
   UpgradeInfo: Increase firerate by 0.4
   UpgradeType: 2
   Value: 0.4
-  UpgradeIcon: {fileID: 2800000, guid: 2db76dd1497f4d8438e1d7c9f3608ad1, type: 3}
+  UpgradeIcon: {fileID: 2800000, guid: 13aef67518e20354189f7aa77bd05058, type: 3}
   UpgradePrice: 30

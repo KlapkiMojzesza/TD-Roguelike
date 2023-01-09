@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: Cannon
   TowerInfo: Very Slow With High Damage
-  TowerPrice: 30
+  TowerPrice: 50
   TowerEnemyPierce: 1
   TowerFireRate: 1
   TowerRange: 40

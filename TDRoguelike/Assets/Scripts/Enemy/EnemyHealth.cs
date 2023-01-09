@@ -18,11 +18,12 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
 
     [Header("Audio")]
     [SerializeField] public AudioClip StartWaveSound;
-    [SerializeField] private AudioClip _hitSound;
+    [SerializeField] public AudioClip HitSound;
     [SerializeField] public AudioClip DeathSound;
 
     public static event Action<EnemyHealth> OnEnemySpawn;
     public static event Action<EnemyHealth> OnEnemyDeath;
+    public static event Action<EnemyHealth> OnEnemyKilled;
 
     private AudioSource _audioSource;
     private Camera _camera;
@@ -59,12 +60,12 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
         if (_currentHealth <= 0)
         {
             //if (DeathSound != null) _audioSource.PlayOneShot(DeathSound);
+            OnEnemyKilled?.Invoke(this);
             Destroy(gameObject);
             return;
         }
-        else if (_hitSound != null) _audioSource.PlayOneShot(_hitSound);
 
-
+        if (HitSound != null) _audioSource.PlayOneShot(HitSound);
         UpdateHealthbar(_maxHealth, _currentHealth);
     }
 

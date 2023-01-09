@@ -19,4 +19,4 @@ MonoBehaviour:
     SpawnRate: 2
     TimeAfterWave: 1
     dontWaitWithNextWave: 0
-  GoldForWaveCompleated: 10
+  GoldForWaveCompleated: 20

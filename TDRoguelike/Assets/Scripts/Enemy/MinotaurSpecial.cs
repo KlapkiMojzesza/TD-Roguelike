@@ -15,11 +15,15 @@ public class MinotaurSpecial : MonoBehaviour
     [SerializeField] private Image _specialImage;
     [SerializeField] private Transform _specialRangeVisual;
     [SerializeField] private Animator _specialVisualAnimator;
+    [SerializeField] private AudioClip _specialSound;
 
+    private AudioSource _audioSource;
     private float _timer;
 
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+
         _specialBar.SetActive(true);
         _specialRangeVisual.localScale = new Vector3(_specialRange, _specialRange, 1f);
     }
@@ -39,6 +43,7 @@ public class MinotaurSpecial : MonoBehaviour
     private void PerformSpecial()
     {
         _specialVisualAnimator.SetTrigger("special");
+        _audioSource.PlayOneShot(_specialSound);
 
         Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, _specialRange, enemyLayers);
         foreach (Collider enemy in enemiesInRange)

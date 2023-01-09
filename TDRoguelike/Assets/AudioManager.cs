@@ -11,13 +11,13 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
 
-        EnemyHealth.OnEnemyDeath += HandleEnemyDeath;
+        EnemyHealth.OnEnemyKilled += HandleEnemyDeath;
         WaveManager.OnMiniWaveStart += HandleStartWave;
     }
 
     private void OnDestroy()
     {
-        EnemyHealth.OnEnemyDeath -= HandleEnemyDeath;
+        EnemyHealth.OnEnemyKilled -= HandleEnemyDeath;
         WaveManager.OnMiniWaveStart -= HandleStartWave;
     }
 
@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour
 
     private void HandleEnemyDeath(EnemyHealth enemy)
     {
+        _audioSource.PlayOneShot(enemy.HitSound);
         _audioSource.PlayOneShot(enemy.DeathSound);
     }
 

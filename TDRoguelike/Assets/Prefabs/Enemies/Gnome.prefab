@@ -587,7 +587,7 @@ MonoBehaviour:
   _healthbarImage: {fileID: 5352745606943757333}
   AimPoint: {fileID: 2351303013237079102}
   StartWaveSound: {fileID: 8300000, guid: 127022714f9ea4845b0051eea9989a4e, type: 3}
-  _hitSound: {fileID: 8300000, guid: c053d54699c9fa647a0aef94a90fffa3, type: 3}
+  HitSound: {fileID: 8300000, guid: c053d54699c9fa647a0aef94a90fffa3, type: 3}
   DeathSound: {fileID: 8300000, guid: b16f182bc7f185943ac4a5aa8fb0cea6, type: 3}
 --- !u!114 &7305555451590293056
 MonoBehaviour:

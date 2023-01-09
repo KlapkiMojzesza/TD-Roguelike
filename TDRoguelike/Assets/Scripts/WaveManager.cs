@@ -36,7 +36,24 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnNextWave()
     {
-        if (_currentWaveIndex >= _waves.Length) return;
+        if (_currentWaveIndex >= _waves.Length)
+        {
+            _currentWaveIndex--;
+
+            WaveScriptableObject infiniteWave = _waves[_currentWaveIndex];
+            infiniteWave.GoldForWaveCompleated += 50;
+            MiniWave[] infiniteMiniWaves = infiniteWave.MiniWaves;
+
+            foreach (MiniWave infiniteMiniWave in infiniteMiniWaves)
+            {
+                infiniteMiniWave.Amount += 20;
+                infiniteMiniWave.SpawnRate += 0.2f;
+                infiniteMiniWave.TimeAfterWave *= 0.9f;
+            }
+
+            _waves[_currentWaveIndex] = infiniteWave;
+        }
+
         _waveCompleated = false;
         StartCoroutine(spawnWave(_timeBeforeFirstWave));
     }

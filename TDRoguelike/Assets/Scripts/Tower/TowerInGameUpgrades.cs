@@ -56,11 +56,18 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
         _rightProgresImage.fillAmount = _rightUpgradesPurchased / _towerUpgradesRight.Length;
 
         Tower.OnTowerInfoShow += UpdateInfoCanvas;
+        TowerManager.OnMoneyAmountChanged += CheckIfHaveEnoughMoney;
     }
 
     private void OnDestroy()
     {
         Tower.OnTowerInfoShow -= UpdateInfoCanvas;
+        TowerManager.OnMoneyAmountChanged -= CheckIfHaveEnoughMoney;
+    }
+
+    private void CheckIfHaveEnoughMoney(int moneyAmount)
+    {
+        UpdateInfoCanvas();
     }
 
     private void UpdateInfoCanvas()
@@ -72,20 +79,28 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
                 if (_leftUpgradesPurchased < _towerUpgradesLeft.Length)
                 {
                     currentLeftUpgrade = _towerUpgradesLeft[_leftUpgradesPurchased];
-                    if (_towerManager.GetCurrentMoneyAmount() < currentLeftUpgrade.UpgradePrice) _upgradeButton.SetActive(false);
+                    if (_towerManager.GetCurrentMoneyAmount() < currentLeftUpgrade.UpgradePrice)
+                    {
+                        _upgradeButton.SetActive(false);
+                        return;
+                    }
                 }
 
-                return;
+                break;
 
             case ChosenUpgradeSide.Right:
 
                 if (_rightUpgradesPurchased < _towerUpgradesRight.Length)
                 {
                     currentRightUpgrade = _towerUpgradesRight[_rightUpgradesPurchased];
-                    if (_towerManager.GetCurrentMoneyAmount() < currentRightUpgrade.UpgradePrice) _upgradeButton.SetActive(false);
+                    if (_towerManager.GetCurrentMoneyAmount() < currentRightUpgrade.UpgradePrice)
+                    {
+                        _upgradeButton.SetActive(false);
+                        return;
+                    }
                 }
 
-                return;
+                break;
         }
 
         _upgradeButton.SetActive(true);       
