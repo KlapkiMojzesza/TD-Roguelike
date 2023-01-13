@@ -77,7 +77,7 @@ public class TowerManager : MonoBehaviour
 
     private bool IsMouseOverUI()
     {
-        return EventSystem.current.IsPointerOverGameObject();
+        return EventSystem.current.IsPointerOverGameObject(PointerInputModule.kMouseLeftId);
     }
 
     private void MoveTowerPrefab()

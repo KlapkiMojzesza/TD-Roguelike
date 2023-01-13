@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BalistaUpgradesInGame : TowerInGameUpgrades
 {
+    [Space(20)]
     [SerializeField] private LeftUpgrades[] _leftUpgrades;
     [SerializeField] private RightUpgrades[] _rightUpgrades;
 

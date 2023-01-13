@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class CannonUpgradesInGame : TowerInGameUpgrades
 {
-    [SerializeField] private RightUpgrades[] _rightUpgradesStripes;
+    [Space(20)]
     [SerializeField] private LeftUpgrades[] _leftUpgrades;
+    [SerializeField] private Projectile[] _rightUpgradesProjectiles;
 
+    private TowerShooting _towerShooting;
     private Animator _animator;
 
     protected override void Start()
     {
         base.Start();
         _animator = GetComponent<Animator>();
-    }
 
-    [System.Serializable]
-    private class RightUpgrades
-    {
-        public GameObject[] UpgradeStripes;
+        _towerShooting = GetComponent<TowerShooting>();
     }
 
     [System.Serializable]
@@ -35,15 +33,12 @@ public class CannonUpgradesInGame : TowerInGameUpgrades
             if (i == leftUpgradesPurchased)
             {
                 _leftUpgrades[i].UpgradeVisual.SetActive(true);
-                _animator.runtimeAnimatorController = _leftUpgrades[i].visualOverride;
-
-                for (int j = 0; j < rightUpgradesPurchased; j++)
-                {
-                    _rightUpgradesStripes[i].UpgradeStripes[j].SetActive(true);
-                }
+                _animator.runtimeAnimatorController = _leftUpgrades[i].visualOverride;             
             } 
             else _leftUpgrades[i].UpgradeVisual.SetActive(false);          
-        }       
+        }
+
+        _towerShooting.ChangeProjectile(_rightUpgradesProjectiles[rightUpgradesPurchased], null);
 
     }
 }

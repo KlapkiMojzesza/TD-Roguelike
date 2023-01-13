@@ -8615,6 +8615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startBaseHealth: 100
+  _gameOverSound: {fileID: 8300000, guid: d21484b4d7e07d7468e5d0512e4b69f4, type: 3}
   _healthAmountText: {fileID: 1881640496}
 --- !u!4 &919583479
 Transform:

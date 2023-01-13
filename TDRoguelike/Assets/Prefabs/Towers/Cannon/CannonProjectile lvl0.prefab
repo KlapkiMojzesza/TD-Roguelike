@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7723327270195908405}
   - component: {fileID: 3083323610156047584}
   - component: {fileID: -8302143905132975432}
-  - component: {fileID: 1018036864844718400}
+  - component: {fileID: 5924342677543725132}
   m_Layer: 0
-  m_Name: CannonProjectile
+  m_Name: CannonProjectile lvl0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 126
   m_CollisionDetection: 2
---- !u!114 &1018036864844718400
+--- !u!114 &5924342677543725132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,6 +124,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8083461376782298848}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd71c54e7cf73547959dd2a22624cc1, type: 3}
+  m_Script: {fileID: 11500000, guid: d5bd8790ab807fd419b828626cdbcfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _splashDamageLevel2: 30
+  _splashRangeLevel2: 5
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  _projectileLevfel: 0
+  _rotationSpeed: 0
+  _objectToRotate: {fileID: 0}

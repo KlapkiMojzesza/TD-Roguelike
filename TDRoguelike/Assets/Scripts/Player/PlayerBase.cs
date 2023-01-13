@@ -11,15 +11,20 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private float _startBaseHealth = 100;
 
     [Header("To Attach")]
+    [SerializeField] private AudioClip _gameOverSound;
     [SerializeField] private TMP_Text _healthAmountText;
 
+    private AudioSource _audioSource;
     private float _currentBaseHealth;
 
     public static event Action OnBaseDestroyed;
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+
         EnemyMovement.OnEnemyPathCompleate += TakeDamage;
+
         _currentBaseHealth = _startBaseHealth;
         UpdatePlayerBaseHealthUI(_currentBaseHealth);
     }
@@ -42,6 +47,8 @@ public class PlayerBase : MonoBehaviour
 
     private void DestroyPlayerBase()
     {
+        _audioSource.Stop();
+        _audioSource.PlayOneShot(_gameOverSound);
         OnBaseDestroyed?.Invoke();
         _currentBaseHealth = _startBaseHealth;
     }

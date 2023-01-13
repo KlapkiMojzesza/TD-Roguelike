@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObstacleName: Trunk
   RemovePrice: 10
-  ObstacleIcon: {fileID: 2800000, guid: 16966d466f467ab418a67f44d8e97670, type: 3}
+  ObstacleIcon: {fileID: 2800000, guid: 30f52a9c2332644478b4bc9b364c86c2, type: 3}

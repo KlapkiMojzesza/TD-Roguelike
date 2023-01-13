@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf56e65ec703cf4db09f6e73f69efa4, type: 3}
   m_Name: CannonUpgradeR 2
   m_EditorClassIdentifier: 
-  UpgradeName: Ring 2
+  UpgradeName: Bomb
   UpgradeInfo: Increase firerate by 0.4
   UpgradeType: 2
   Value: 0.4

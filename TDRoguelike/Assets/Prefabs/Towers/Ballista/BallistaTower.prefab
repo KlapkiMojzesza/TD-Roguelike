@@ -2104,40 +2104,40 @@ MonoBehaviour:
     FirePoint: {fileID: 5746035445802884558}
   _rightUpgrades:
   - TowerProjectile:
-    - {fileID: 4478281411257946053, guid: 245448eeab2fe8b41bd79e52fa7be974, type: 3}
-    - {fileID: 3521732549964504443, guid: dec9449750fb8824fb93dda967c108b5, type: 3}
-    - {fileID: -3128801043973932168, guid: f4714f3eefd6b3f469867f7267932e4a, type: 3}
-    - {fileID: -8378509620612129084, guid: a1b0c173ca834f048959aeeb590f5913, type: 3}
+    - {fileID: 4946507660383248473, guid: 245448eeab2fe8b41bd79e52fa7be974, type: 3}
+    - {fileID: 6750892464513821104, guid: dec9449750fb8824fb93dda967c108b5, type: 3}
+    - {fileID: 5222454657412696624, guid: f4714f3eefd6b3f469867f7267932e4a, type: 3}
+    - {fileID: 8012513938536932729, guid: a1b0c173ca834f048959aeeb590f5913, type: 3}
     ProjectileVisual:
     - {fileID: 8207594599700693741}
     - {fileID: 5923099133284886488}
     - {fileID: 383256503700704233}
     - {fileID: 4598188579398995265}
   - TowerProjectile:
-    - {fileID: 4478281411257946053, guid: 245448eeab2fe8b41bd79e52fa7be974, type: 3}
-    - {fileID: 3521732549964504443, guid: dec9449750fb8824fb93dda967c108b5, type: 3}
-    - {fileID: -3128801043973932168, guid: f4714f3eefd6b3f469867f7267932e4a, type: 3}
-    - {fileID: -8378509620612129084, guid: a1b0c173ca834f048959aeeb590f5913, type: 3}
+    - {fileID: 4946507660383248473, guid: 245448eeab2fe8b41bd79e52fa7be974, type: 3}
+    - {fileID: 6750892464513821104, guid: dec9449750fb8824fb93dda967c108b5, type: 3}
+    - {fileID: 5222454657412696624, guid: f4714f3eefd6b3f469867f7267932e4a, type: 3}
+    - {fileID: 8012513938536932729, guid: a1b0c173ca834f048959aeeb590f5913, type: 3}
     ProjectileVisual:
     - {fileID: 6689014867613186534}
     - {fileID: 9151331072228613331}
     - {fileID: 2910035205806928098}
     - {fileID: 1360949649567200842}
   - TowerProjectile:
-    - {fileID: 4478281411257946053, guid: 769230f0eb24d3d41843663be55f4707, type: 3}
-    - {fileID: 3521732549964504443, guid: 0c9b0e27196053b4aaa86044dd21087b, type: 3}
-    - {fileID: -3128801043973932168, guid: f8f03ba11c82d9e4ab581805cdcf885d, type: 3}
-    - {fileID: -8378509620612129084, guid: acb928d7c23d0e049a534ad622002e70, type: 3}
+    - {fileID: 7965025816599950757, guid: 769230f0eb24d3d41843663be55f4707, type: 3}
+    - {fileID: -8415387332368140760, guid: 0c9b0e27196053b4aaa86044dd21087b, type: 3}
+    - {fileID: -4184013432917498742, guid: f8f03ba11c82d9e4ab581805cdcf885d, type: 3}
+    - {fileID: 210856384056821874, guid: acb928d7c23d0e049a534ad622002e70, type: 3}
     ProjectileVisual:
     - {fileID: 1171462561858906883}
     - {fileID: 3717148048024489526}
     - {fileID: 7275421098712736263}
     - {fileID: 6806884165930329263}
   - TowerProjectile:
-    - {fileID: -8378509620612129084, guid: 9a4edd3277fc76b40a296a65cf9df364, type: 3}
-    - {fileID: -8378509620612129084, guid: 432363516a139124ab2005e7329ac823, type: 3}
-    - {fileID: -8378509620612129084, guid: dc7ba3852c455b2479fe77e0ac1bd161, type: 3}
-    - {fileID: -8378509620612129084, guid: 07a008a5cef27734892c64548eaa2a76, type: 3}
+    - {fileID: -1877154324051815462, guid: 9a4edd3277fc76b40a296a65cf9df364, type: 3}
+    - {fileID: 1958830977633971102, guid: 432363516a139124ab2005e7329ac823, type: 3}
+    - {fileID: 947169338831909854, guid: dc7ba3852c455b2479fe77e0ac1bd161, type: 3}
+    - {fileID: -6968242523761614980, guid: 07a008a5cef27734892c64548eaa2a76, type: 3}
     ProjectileVisual:
     - {fileID: 4810970037270401354}
     - {fileID: 6996297253598098559}

@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7165362867890370864}
   - component: {fileID: 4851553053907177238}
   - component: {fileID: -2524525216524048837}
-  - component: {fileID: -8378509620612129084}
+  - component: {fileID: 8012513938536932729}
   m_Layer: 0
   m_Name: BallistaProjectie lvl3
   m_TagString: Untagged
@@ -149,7 +149,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 126
   m_CollisionDetection: 2
---- !u!114 &-8378509620612129084
+--- !u!114 &8012513938536932729
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,7 +158,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2574862510552323993}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd71c54e7cf73547959dd2a22624cc1, type: 3}
+  m_Script: {fileID: 11500000, guid: d088e1e923909774bb62f3f6eb614ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lookAtTarget: 1

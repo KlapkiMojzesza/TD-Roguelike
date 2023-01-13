@@ -20,6 +20,6 @@ MonoBehaviour:
   TowerRange: 40
   TowerDamage: 150
   ProjectileSpeed: 200
-  ProjectilePrefab: {fileID: 1018036864844718400, guid: b2092f98c0f4f6640ab5e4a85711563f,
+  ProjectilePrefab: {fileID: 5924342677543725132, guid: b2092f98c0f4f6640ab5e4a85711563f,
     type: 3}
   TowerIcon: {fileID: 2800000, guid: 31f25142bf1ec70419df31c3555e9ae7, type: 3}

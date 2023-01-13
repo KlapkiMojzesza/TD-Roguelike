@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObstacleName: Log
   RemovePrice: 5
-  ObstacleIcon: {fileID: 2800000, guid: 87a78e8d73bf29a42bf50b68c5d7e5b6, type: 3}
+  ObstacleIcon: {fileID: 2800000, guid: 3568eeb61d0f5f34c8b048b02889f475, type: 3}

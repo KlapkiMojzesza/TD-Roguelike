@@ -51,7 +51,7 @@ public class ObstacleManager : MonoBehaviour
 
     private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
     {
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (EventSystem.current.IsPointerOverGameObject(PointerInputModule.kMouseLeftId)) return;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit obstacleHit;

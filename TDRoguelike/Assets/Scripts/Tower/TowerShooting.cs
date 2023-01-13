@@ -267,6 +267,7 @@ public class TowerShooting : MonoBehaviour
     public void ChangeProjectile(Projectile newProjectile, Transform newFirePoint)
     {
         if (newProjectile == _currentProjectile) return;
+        _pool.Clear();
         _pool.Dispose();
         _currentProjectile = newProjectile;
         if (newFirePoint != null) _currentFirePoint = newFirePoint;

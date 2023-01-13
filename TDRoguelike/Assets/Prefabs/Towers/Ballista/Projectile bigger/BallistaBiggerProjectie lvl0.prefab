@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 951603486547471504}
   - component: {fileID: 2510173852769025504}
   - component: {fileID: -8180973474491445262}
-  - component: {fileID: 4478281411257946053}
+  - component: {fileID: 7965025816599950757}
   m_Layer: 0
   m_Name: BallistaBiggerProjectie lvl0
   m_TagString: Untagged
@@ -147,7 +147,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 126
   m_CollisionDetection: 2
---- !u!114 &4478281411257946053
+--- !u!114 &7965025816599950757
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,7 +156,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6418510498960928194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd71c54e7cf73547959dd2a22624cc1, type: 3}
+  m_Script: {fileID: 11500000, guid: d088e1e923909774bb62f3f6eb614ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lookAtTarget: 1
