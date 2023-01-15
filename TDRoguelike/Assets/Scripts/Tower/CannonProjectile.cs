@@ -18,7 +18,7 @@ public class CannonProjectile : Projectile
     {
         base.Create(target, speed, damage, enemyPierce);
         _randomRotation = new Vector3(Random.Range(0f, 180f), Random.Range(0f, 180f), Random.Range(0f, 180f)).normalized * _rotationSpeed;
-
+        hitSomething = false;
     }
 
     protected override void Update()
@@ -34,15 +34,14 @@ public class CannonProjectile : Projectile
 
     protected override void OnCollisionEnter(Collision collision)
     {
-        //if (!gameObject.activeSelf) return;
-        //if (hitSomething) return;
+        if (hitSomething) return;
 
         if (collision.collider.CompareTag("Ground"))
         {
             HandleProjectileHit(null);
             gameObject.SetActive(false);
             _pool.Release(this);
-            //hitSomething = true;
+            hitSomething = true;
             return;
         }
 
@@ -53,7 +52,7 @@ public class CannonProjectile : Projectile
             HandleProjectileHit(collision.collider);
             gameObject.SetActive(false);
             _pool.Release(this);
-            //hitSomething = true;
+            hitSomething = true;
         }
     }
 

@@ -2053,10 +2053,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationOffset: 180
-  _rotationSpeed: 0.05
+  _rotationSpeed: 0.03
   _firePoint: {fileID: 1014333582052573780}
   _rotatingParts: {fileID: 8739865720788482801}
   _shootSound: {fileID: 8300000, guid: 1f5e263812fc132469b5e51a12cb816e, type: 3}
+  _shootParticle: {fileID: 0}
+  _rotatedTowardsTarget: 0
 --- !u!114 &7358294965479059010
 MonoBehaviour:
   m_ObjectHideFlags: 0

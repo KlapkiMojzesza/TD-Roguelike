@@ -14,6 +14,7 @@ public class TowerShooting : MonoBehaviour
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _rotatingParts;
     [SerializeField] private AudioClip _shootSound;
+    [SerializeField] private ParticleSystem _shootParticle;
 
     private TowerInGameUpgrades _towerUpgrades;
     private Animator _animator;
@@ -26,6 +27,7 @@ public class TowerShooting : MonoBehaviour
     private Projectile _currentProjectile;
     private Transform _currentFirePoint;
     private AudioSource _audioSource;
+    public bool _rotatedTowardsTarget = false;
 
     private void Start()
     {
@@ -78,7 +80,7 @@ public class TowerShooting : MonoBehaviour
 
         RotateToTarget();
 
-        if (_fireCountdown <= 0f)
+        if (_fireCountdown <= 0f && _rotatedTowardsTarget)
         {
             Shoot();
             _fireCountdown = 1f / (_towerData.TowerFireRate + _towerUpgrades.GetBonusFireRate());
@@ -95,6 +97,15 @@ public class TowerShooting : MonoBehaviour
         _rotatingParts.transform.rotation = Quaternion.Lerp(_rotatingParts.transform.rotation,
                                                            Quaternion.Euler(0, angle, 0), 
                                                            Time.deltaTime/_rotationSpeed);
+
+        //checks if is rotated towards Target
+        float distance = Mathf.Abs(angle - _rotatingParts.transform.eulerAngles.y);
+
+        if (distance <= 3f) //3 degrees deviation
+        {
+            _rotatedTowardsTarget = true;
+        }
+        else _rotatedTowardsTarget = false;
     }
 
     private Transform GetFirstEnemy(List<GameObject> enemies)
@@ -214,6 +225,7 @@ public class TowerShooting : MonoBehaviour
                               _towerData.TowerEnemyPierce + _towerUpgrades.GetBonusPierce());
         }
 
+        if (_shootParticle != null) _shootParticle.Play();
         _audioSource.PlayOneShot(_shootSound);
         _animator.SetTrigger("shoot");
     }

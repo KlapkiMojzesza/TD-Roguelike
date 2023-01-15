@@ -18,7 +18,7 @@ MonoBehaviour:
   TowerEnemyPierce: 1
   TowerFireRate: 1
   TowerRange: 40
-  TowerDamage: 150
+  TowerDamage: 20
   ProjectileSpeed: 200
   ProjectilePrefab: {fileID: 5924342677543725132, guid: b2092f98c0f4f6640ab5e4a85711563f,
     type: 3}
