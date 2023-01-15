@@ -15,6 +15,9 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
     [SerializeField] private GameObject _healthBar;
     [SerializeField] private Image _healthbarImage;
     public Transform AimPoint;
+    [SerializeField] private ParticleSystem _hitParticle;
+    [SerializeField] private ParticleSystem _deathParticle;
+    [SerializeField] private Transform _deathParticleSpawn;
 
     [Header("Audio")]
     [SerializeField] public AudioClip StartWaveSound;
@@ -59,12 +62,13 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
         _currentHealth -= damage;
         if (_currentHealth <= 0)
         {
-            //if (DeathSound != null) _audioSource.PlayOneShot(DeathSound);
+            if (_deathParticle != null) Instantiate(_deathParticle, _deathParticleSpawn.position, Quaternion.identity);
             OnEnemyKilled?.Invoke(this);
             Destroy(gameObject);
             return;
         }
 
+        if (_hitParticle != null) _hitParticle.Play();
         if (HitSound != null) _audioSource.PlayOneShot(HitSound);
         UpdateHealthbar(_maxHealth, _currentHealth);
     }

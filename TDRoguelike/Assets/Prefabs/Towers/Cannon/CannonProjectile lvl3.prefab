@@ -46,7 +46,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.0438893
+  m_Radius: 0.49
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-8080151641128920381
 Rigidbody:
@@ -76,14 +76,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5bd8790ab807fd419b828626cdbcfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _splashDamageLevel2: 30
-  _splashRangeLevel2: 5
+  _projectileLevel: 2
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 4096
-  _projectileLevel: 2
   _rotationSpeed: 400
+  _splashRange: 20
   _objectToRotate: {fileID: 8594800980439094277}
+  _explosionParticle: {fileID: 4561158667534754522, guid: 090ccad17500eb24fa1207c67ae69626,
+    type: 3}
+  _explosionSound: {fileID: 8300000, guid: c35390c7f35cb02419334b605a11b0a4, type: 3}
 --- !u!1 &5198928610865533592
 GameObject:
   m_ObjectHideFlags: 0

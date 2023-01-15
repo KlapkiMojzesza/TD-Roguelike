@@ -9390,7 +9390,7 @@ GameObject:
   - component: {fileID: 198355779183106702}
   - component: {fileID: 199298478915647496}
   m_Layer: 0
-  m_Name: FX_Explosion_Body_Bloody_01
+  m_Name: ParticleExplosionBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9424,7 +9424,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 3
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}

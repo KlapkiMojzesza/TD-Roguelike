@@ -13,12 +13,18 @@ public class AudioManager : MonoBehaviour
 
         EnemyHealth.OnEnemyKilled += HandleEnemyDeath;
         WaveManager.OnMiniWaveStart += HandleStartWave;
+        CannonProjectile.OnExplosion += PlayBoomSound;
     }
 
     private void OnDestroy()
     {
         EnemyHealth.OnEnemyKilled -= HandleEnemyDeath;
         WaveManager.OnMiniWaveStart -= HandleStartWave;
+        CannonProjectile.OnExplosion -= PlayBoomSound;
+    }
+    private void PlayBoomSound(AudioClip boomSound)
+    {
+        _audioSource.PlayOneShot(boomSound);
     }
 
     private void HandleStartWave(EnemyHealth enemy)

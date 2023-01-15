@@ -11,6 +11,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _rotateSpeed = 0.05f;
     [SerializeField] private float _lookDirectionOffset = 90f;
 
+    [Header("To Attach")]
+    [SerializeField] private ParticleSystem _footstepParticle;
+
     public static event Action<float> OnEnemyPathCompleate;
 
     private WaypointManager _waypointManager;
@@ -70,5 +73,11 @@ public class EnemyMovement : MonoBehaviour
     public void UpgradeSpeed(float amount)
     {
         _speed *= amount;
+    }
+
+    //From animation
+    public void Footstep()
+    {
+        _footstepParticle.Play();
     }
 }

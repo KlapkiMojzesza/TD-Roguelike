@@ -1,15 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CannonProjectile : Projectile
 {
-    [SerializeField] private float _splashDamageLevel2 = 30f;
-    [SerializeField] private float _splashRangeLevel2 = 5f;
-    [SerializeField] private LayerMask _enemyLayer;
+    [Header("Settings")]
     [SerializeField] private CannonProjectileLevel _projectileLevel = CannonProjectileLevel.FirstLevel;
+    [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private float _rotationSpeed;
+    [SerializeField] private float _splashRange = 5f;
+
+    [Header("To Attach")]
     [SerializeField] Transform _objectToRotate;
+    [SerializeField] private ParticleSystem _explosionParticle;
+    [SerializeField] private AudioClip _explosionSound;
+
+    public static event Action<AudioClip> OnExplosion;
 
     private Vector3 _randomRotation;
     private bool hitSomething = false;
@@ -17,7 +24,9 @@ public class CannonProjectile : Projectile
     public override void Create(Transform target, float speed, float damage, int enemyPierce)
     {
         base.Create(target, speed, damage, enemyPierce);
-        _randomRotation = new Vector3(Random.Range(0f, 180f), Random.Range(0f, 180f), Random.Range(0f, 180f)).normalized * _rotationSpeed;
+        _randomRotation = new Vector3(UnityEngine.Random.Range(0f, 180f), 
+                                      UnityEngine.Random.Range(0f, 180f),
+                                      UnityEngine.Random.Range(0f, 180f)).normalized * _rotationSpeed;
         hitSomething = false;
     }
 
@@ -58,32 +67,23 @@ public class CannonProjectile : Projectile
 
     private void HandleProjectileHit(Collider enemyCollider)
     {
-        switch (_projectileLevel)
+        if (_projectileLevel == CannonProjectileLevel.SecondLevel ||
+            _projectileLevel == CannonProjectileLevel.ThirdLevel)
         {
-            case CannonProjectileLevel.FirstLevel:
-                Debug.Log("Level 1 hit");
-                //nothing
-                break;
-            case CannonProjectileLevel.SecondLevel:
-
-                Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, _splashRangeLevel2, _enemyLayer);
-                foreach (Collider enemy in enemiesInRange)
-                {
-                    if (enemy != enemyCollider) enemy.GetComponent<IDamegeable>().TakeDamage(_damage);
-                }
-
-                //splash damage
-                break;
-            case CannonProjectileLevel.ThirdLevel:
-                Debug.Log("Level 3 hit");
-                //more bombs
-                break;
+            Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, _splashRange, _enemyLayer);
+            foreach (Collider enemy in enemiesInRange)
+            {
+                if (enemy != enemyCollider) enemy.GetComponent<IDamegeable>().TakeDamage(_damage);
+            }
         }
+        if (_explosionParticle != null) Instantiate(_explosionParticle, transform.position, Quaternion.identity);
+        if (_explosionSound != null) OnExplosion?.Invoke(_explosionSound);
+
     }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _splashRangeLevel2);
+        Gizmos.DrawWireSphere(transform.position, _splashRange);
     }
 }
 

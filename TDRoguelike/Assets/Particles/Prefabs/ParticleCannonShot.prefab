@@ -14369,7 +14369,7 @@ GameObject:
   - component: {fileID: 198575456473079836}
   - component: {fileID: 199399342436014006}
   m_Layer: 0
-  m_Name: FX_CannonShot_01
+  m_Name: ParticleCannonShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

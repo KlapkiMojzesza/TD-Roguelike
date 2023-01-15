@@ -1798,7 +1798,7 @@ PrefabInstance:
     - target: {fileID: 7284157041792791894, guid: d66f8a51f3d68a341a16ffef88cf6e90,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 7284157041792791894, guid: d66f8a51f3d68a341a16ffef88cf6e90,
         type: 3}
@@ -10662,7 +10662,7 @@ PrefabInstance:
     - target: {fileID: 3338650445892485762, guid: a50a2ffbab83d904e9d3f345712786eb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.84
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 3338650445892485762, guid: a50a2ffbab83d904e9d3f345712786eb,
         type: 3}
@@ -12808,7 +12808,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 53
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -16754,7 +16754,7 @@ PrefabInstance:
     - target: {fileID: 3338650445892485762, guid: a50a2ffbab83d904e9d3f345712786eb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.84
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: 3338650445892485762, guid: a50a2ffbab83d904e9d3f345712786eb,
         type: 3}
@@ -18620,9 +18620,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}
+      propertyPath: _timeBeforeFirstWave
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
+        type: 3}
       propertyPath: _waves.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 4b7f8f36be090d1409631a4869505e78,
+      objectReference: {fileID: 11400000, guid: da46abe8be02184418c1f48bffd23aaa,
         type: 2}
     - target: {fileID: 5018614834388842330, guid: e132ca63e657ffa42965472d670fff31,
         type: 3}

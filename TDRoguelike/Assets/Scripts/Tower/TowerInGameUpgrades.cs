@@ -85,6 +85,11 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
                         return;
                     }
                 }
+                else
+                {
+                    _upgradeButton.SetActive(false);
+                    return;
+                }
 
                 break;
 
@@ -98,6 +103,11 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
                         _upgradeButton.SetActive(false);
                         return;
                     }
+                } 
+                else
+                {
+                    _upgradeButton.SetActive(false);
+                    return;
                 }
 
                 break;
