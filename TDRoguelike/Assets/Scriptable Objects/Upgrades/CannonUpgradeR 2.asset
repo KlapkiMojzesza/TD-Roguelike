@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CannonUpgradeR 2
   m_EditorClassIdentifier: 
   UpgradeName: Bomb
-  UpgradeInfo: Increase firerate by 0.4
+  UpgradeInfo: Deals area damage on explosion
   UpgradeType: 0
-  Value: 0.4
+  Value: 0
   UpgradeIcon: {fileID: 2800000, guid: 13aef67518e20354189f7aa77bd05058, type: 3}
   UpgradePrice: 30

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf56e65ec703cf4db09f6e73f69efa4, type: 3}
   m_Name: CannonUpgradeR 3
   m_EditorClassIdentifier: 
-  UpgradeName: More Bombs
-  UpgradeInfo: Increase firerate by 0.5
+  UpgradeName: Bigger Blast
+  UpgradeInfo: Bigger area of blast
   UpgradeType: 0
-  Value: 0.5
+  Value: 0
   UpgradeIcon: {fileID: 2800000, guid: 7998f035e1d9aea4ebf32197dc9bfca4, type: 3}
-  UpgradePrice: 35
+  UpgradePrice: 40
