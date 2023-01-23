@@ -101,7 +101,7 @@ public class TowerShooting : MonoBehaviour
         //checks if is rotated towards Target
         float distance = Mathf.Abs(angle - _rotatingParts.transform.eulerAngles.y);
 
-        if (distance <= 3f) //3 degrees deviation
+        if (distance <= 10f) //10 degrees deviation
         {
             _rotatedTowardsTarget = true;
         }
@@ -283,6 +283,11 @@ public class TowerShooting : MonoBehaviour
         _pool.Dispose();
         _currentProjectile = newProjectile;
         if (newFirePoint != null) _currentFirePoint = newFirePoint;
+    }
+
+    public void ChangeShootParticle(ParticleSystem shootParticle)
+    {
+        _shootParticle = shootParticle;
     }
 
     /*private void OnDrawGizmosSelected()

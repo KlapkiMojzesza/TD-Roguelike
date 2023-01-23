@@ -12,12 +12,16 @@ public class PlayerMovement : MonoBehaviour
     [Header("To Attach")]
     [SerializeField] private LayerMask _groundLayer;
 
+    private Animator _animator;
     private Vector3 _mousePosition;
     private CharacterController _controller;
     private Controls _controls;
+    private float _animatorVelocityX = 0f;
+    private float _animatorVelocityY = 0f;
 
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         _controls = new Controls();
         _controls.Player.Enable();  
         _controller = GetComponent<CharacterController>();
@@ -32,7 +36,29 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         Vector2 playerInputRaw = _controls.Player.Movement.ReadValue<Vector2>();
-        Vector3 playerInput = new Vector3(playerInputRaw.x, -1f, playerInputRaw.y);
+        Vector3 playerInput = new Vector3(playerInputRaw.x, 0f, playerInputRaw.y).normalized;
+
+        float animAngle = SignedAngleBetween((_mousePosition - transform.position).normalized, playerInput, Vector3.up);
+
+
+        if (playerInput.magnitude > 0.1f)
+        {
+            //-1 left; 1 right
+            _animatorVelocityX = Mathf.Lerp(_animatorVelocityX, Mathf.Sin(animAngle * Mathf.PI / 180), 0.04f);
+            //-1 backward; 1 forward
+            _animatorVelocityY = Mathf.Lerp(_animatorVelocityY, Mathf.Cos(animAngle * Mathf.PI / 180), 0.04f);
+
+            _animator.SetFloat("velocityX", _animatorVelocityX);
+            _animator.SetFloat("velocityY", _animatorVelocityY);
+        }
+        else
+        {
+            _animator.SetFloat("velocityX", 0f);
+            _animator.SetFloat("velocityY", 0f);
+        }
+        //add gravity
+        playerInput.y = -1f;
+
         _controller.Move(playerInput * _playerSpeed * Time.deltaTime);
     }
 
@@ -50,5 +76,15 @@ public class PlayerMovement : MonoBehaviour
         float angle = Mathf.Atan2(lookDirection.x, lookDirection.z) *
                       Mathf.Rad2Deg + _rotationOffset;
         transform.rotation = Quaternion.Euler(0, angle, 0);
+    }
+
+    private float SignedAngleBetween(Vector3 a, Vector3 b, Vector3 n)
+    {
+        float angle = Vector3.Angle(a, b);
+        float sign = Mathf.Sign(Vector3.Dot(n, Vector3.Cross(a, b)));
+
+        float signed_angle = angle * sign;
+
+        return signed_angle;
     }
 }

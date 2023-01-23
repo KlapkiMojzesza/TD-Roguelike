@@ -24,6 +24,7 @@ public class CannonUpgradesInGame : TowerInGameUpgrades
     {
         public GameObject UpgradeVisual;
         public AnimatorOverrideController visualOverride;
+        public ParticleSystem ShootParticle;
     }
 
     public override void UpgradeVisual(int leftUpgradesPurchased, int rightUpgradesPurchased)
@@ -39,6 +40,6 @@ public class CannonUpgradesInGame : TowerInGameUpgrades
         }
 
         _towerShooting.ChangeProjectile(_rightUpgradesProjectiles[rightUpgradesPurchased], null);
-
+        _towerShooting.ChangeShootParticle(_leftUpgrades[leftUpgradesPurchased].ShootParticle);
     }
 }

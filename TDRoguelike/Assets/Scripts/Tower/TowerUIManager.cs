@@ -84,6 +84,7 @@ public class TowerUIManager : MonoBehaviour
     private void HandleTowerDeselect()
     {
         ShowTowersUI();
+        _audioSource.PlayOneShot(_showUISound);
         _placingCanvas.SetActive(false);
     }
 
