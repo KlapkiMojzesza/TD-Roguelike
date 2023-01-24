@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2961286670703170684}
   - component: {fileID: -8080151641128920381}
   - component: {fileID: 3401356861123779349}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CannonProjectile lvl3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

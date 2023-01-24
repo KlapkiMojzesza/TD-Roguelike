@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2553131532033839644}
   - component: {fileID: 6610574163868323810}
   - component: {fileID: -4184013432917498742}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BallistaBiggerProjectie lvl2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

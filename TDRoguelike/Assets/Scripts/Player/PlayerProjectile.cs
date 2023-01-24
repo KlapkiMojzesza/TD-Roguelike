@@ -5,10 +5,14 @@ using UnityEngine.Pool;
 
 public class PlayerProjectile : MonoBehaviour
 {
+    [SerializeField] private GameObject _particle;
+
     private float _speed;
     private float _damage;
     private int _pierceThroughEnemiesAmount;
     private Vector3 _direction;
+    private bool _hitSomething = false;
+    private GameObject _projectileParticle;
 
     IObjectPool<PlayerProjectile> _pool;
 
@@ -20,6 +24,12 @@ public class PlayerProjectile : MonoBehaviour
         _speed = speed;
         _damage = damage;
         _pierceThroughEnemiesAmount = pierceThroughEnemiesAmount;
+        _hitSomething = false;
+        _projectileParticle = Instantiate(_particle, transform.position, Quaternion.identity);
+        _projectileParticle.transform.parent = this.gameObject.transform;
+
+        //create particle system
+        //set parent
     }
 
     private void Update()
@@ -29,6 +39,18 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (_hitSomething) return;
+
+        if (collision.collider.CompareTag("Obstacle"))
+        {
+            _projectileParticle.GetComponent<ParticleSystem>().Stop();
+            _projectileParticle.transform.parent = null;
+
+            _pool.Release(this);
+            //relese particle parent
+            _hitSomething = true;
+            return;
+        }
         if (collision.collider.CompareTag("Enemy"))
         {
             if (_pierceThroughEnemiesAmount > 0)
@@ -38,14 +60,25 @@ public class PlayerProjectile : MonoBehaviour
             }
             if (_pierceThroughEnemiesAmount == 0)
             {
+                _projectileParticle.GetComponent<ParticleSystem>().Stop();
+                _projectileParticle.transform.parent = null;
+
                 _pool.Release(this);
+                //relese particle parent
                 _pierceThroughEnemiesAmount--;
+                _hitSomething = true;
             }
         }
     }
 
     private void OnTriggerExit(Collider collider)
     {
-        if (collider.CompareTag("Wall")) _pool.Release(this);
-    }
+        if (collider.CompareTag("Wall"))
+        {
+            _projectileParticle.GetComponent<ParticleSystem>().Stop();
+            _projectileParticle.transform.parent = null;
+            _pool.Release(this);
+        }
+            //relese particle parent
+        }
 }

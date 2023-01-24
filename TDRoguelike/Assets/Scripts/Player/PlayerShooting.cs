@@ -17,17 +17,23 @@ public class PlayerShooting : MonoBehaviour
     [Header("To Attach")]
     [SerializeField] private Transform _firePoint;
     [SerializeField] private PlayerProjectile _projectilePrefab;
+    [SerializeField] private GameObject _projectileVisual;
+    [SerializeField] private AudioClip[] _shootSounds;
 
     private ObjectPool<PlayerProjectile> _pool;
     private Vector3 _direction;
     private float _lastFired = 0f;
     private bool _towerSelected = false;
+    private Animator _animator;
+    private AudioSource _audioSource;
 
     private void Start()
     {
         TowerManager.OnTowerSelect += TowerSelected;
         TowerManager.OnTowerDeselect += TowerDeselect;
 
+        _audioSource = GetComponent<AudioSource>();
+        _animator = GetComponent<Animator>();
         _pool = new ObjectPool<PlayerProjectile>(CreateProjectile, OnTakeProjectileFromPool, OnReturnProjectileToPool);
     }
 
@@ -39,6 +45,8 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
+        if (CanShoot() && !_projectileVisual.activeSelf) _projectileVisual.SetActive(true);
+
         if (Input.GetMouseButton(0))
         {
             if (!IsMouseOverUI() && !_towerSelected) Shoot();
@@ -50,6 +58,9 @@ public class PlayerShooting : MonoBehaviour
         if (Time.time - _lastFired > 1 / _fireRate)
         {
             _lastFired = Time.time;
+            _animator.SetTrigger("shoot");
+            _projectileVisual.SetActive(false);
+            _audioSource.PlayOneShot(_shootSounds[UnityEngine.Random.Range(0, _shootSounds.Length - 1)]);
 
             PlayerProjectile projectile = _pool.Get();
             projectile.gameObject.transform.position = _firePoint.position;
@@ -73,6 +84,10 @@ public class PlayerShooting : MonoBehaviour
         return projectile;
     }
 
+    private bool CanShoot()
+    {
+        return Time.time - _lastFired > 1 / _fireRate;
+    }
     private void OnTakeProjectileFromPool(PlayerProjectile projectile)
     {
         projectile.gameObject.SetActive(true);
@@ -89,6 +104,11 @@ public class PlayerShooting : MonoBehaviour
     }
 
     private void TowerDeselect()
+    {
+        Invoke("ChangeTowerSelection", 0.2f);
+    }
+
+    private void ChangeTowerSelection()
     {
         _towerSelected = false;
     }

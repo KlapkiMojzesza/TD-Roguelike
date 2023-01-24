@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 4851553053907177238}
   - component: {fileID: -2524525216524048837}
   - component: {fileID: 1958830977633971102}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BallistaDoubleProjectie lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

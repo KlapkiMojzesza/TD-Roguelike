@@ -137,6 +137,6 @@ public class TowerUIManager : MonoBehaviour
 
     public void ExitGame()
     {
-        
+        Application.Quit();
     }
 }

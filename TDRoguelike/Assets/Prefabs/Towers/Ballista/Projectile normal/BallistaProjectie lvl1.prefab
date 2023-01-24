@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -5094417606609146640}
   - component: {fileID: -8252857651306583637}
   - component: {fileID: 6750892464513821104}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BallistaProjectie lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d088e1e923909774bb62f3f6eb614ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lookAtTarget: 1
 --- !u!1 &7367989327482367398
 GameObject:
   m_ObjectHideFlags: 0

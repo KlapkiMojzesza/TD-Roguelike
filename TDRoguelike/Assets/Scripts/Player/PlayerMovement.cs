@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _playerSpeed = 10f;
     [SerializeField] private float _rotationOffset = -90f;
+    [SerializeField] private float _animationSmoothFactor = 0.07f;
+    [SerializeField] private float _animationSmoothMultiplier = 1.15f;
 
     [Header("To Attach")]
     [SerializeField] private LayerMask _groundLayer;
@@ -44,12 +46,12 @@ public class PlayerMovement : MonoBehaviour
         if (playerInput.magnitude > 0.1f)
         {
             //-1 left; 1 right
-            _animatorVelocityX = Mathf.Lerp(_animatorVelocityX, Mathf.Sin(animAngle * Mathf.PI / 180), 0.04f);
+            _animatorVelocityX = Mathf.Lerp(_animatorVelocityX, Mathf.Sin(animAngle * Mathf.PI / 180), _animationSmoothFactor);
             //-1 backward; 1 forward
-            _animatorVelocityY = Mathf.Lerp(_animatorVelocityY, Mathf.Cos(animAngle * Mathf.PI / 180), 0.04f);
+            _animatorVelocityY = Mathf.Lerp(_animatorVelocityY, Mathf.Cos(animAngle * Mathf.PI / 180), _animationSmoothFactor);
 
-            _animator.SetFloat("velocityX", _animatorVelocityX);
-            _animator.SetFloat("velocityY", _animatorVelocityY);
+            _animator.SetFloat("velocityX", _animatorVelocityX * _animationSmoothMultiplier);
+            _animator.SetFloat("velocityY", _animatorVelocityY * _animationSmoothMultiplier);
         }
         else
         {

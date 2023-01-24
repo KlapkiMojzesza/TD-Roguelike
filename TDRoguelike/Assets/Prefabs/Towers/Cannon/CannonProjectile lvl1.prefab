@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -8170093066240019928}
   - component: {fileID: 4113550209402617466}
   - component: {fileID: -8167489031318582969}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CannonProjectile lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,11 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5bd8790ab807fd419b828626cdbcfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _splashDamageLevel2: 30
-  _splashRangeLevel2: 5
+  _projectileLevel: 0
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 4096
-  _projectileLevfel: 0
   _rotationSpeed: 0
+  _splashRange: 5
   _objectToRotate: {fileID: 0}
+  _explosionParticle: {fileID: 0}
+  _explosionSound: {fileID: 0}

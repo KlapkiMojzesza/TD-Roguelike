@@ -639,10 +639,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 4.57
-  m_Height: 17.434809
+  m_Radius: 4.92
+  m_Height: 20.5
   m_Direction: 1
-  m_Center: {x: 0.027930303, y: 8.217405, z: 0}
+  m_Center: {x: 0.027930303, y: 9.1, z: 0}
 --- !u!82 &-8022212056749285245
 AudioSource:
   m_ObjectHideFlags: 0
