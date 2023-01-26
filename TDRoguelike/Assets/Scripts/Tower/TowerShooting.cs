@@ -282,6 +282,7 @@ public class TowerShooting : MonoBehaviour
         _pool.Clear();
         _pool.Dispose();
         _currentProjectile = newProjectile;
+        _pool = new ObjectPool<Projectile>(CreateProjectile, OnTakeProjectileFromPool, OnReturnProjectileToPool);
         if (newFirePoint != null) _currentFirePoint = newFirePoint;
     }
 
