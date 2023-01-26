@@ -988,13 +988,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5463111753284767817}
     m_Modifications:
-    - target: {fileID: 1683647599827386055, guid: ca94a54bc1314a24690a7e2713b968a3,
-        type: 3}
-      propertyPath: m_text
-      value: '10
-
-'
-      objectReference: {fileID: 0}
     - target: {fileID: 2007104053433132582, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1105,11 +1098,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.000030517578
       objectReference: {fileID: 0}
-    - target: {fileID: 4841974637532484384, guid: ca94a54bc1314a24690a7e2713b968a3,
-        type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 2800000, guid: ca7936278f8c7ef4c9a0a676b9036b77, type: 3}
     - target: {fileID: 6152604909978005598, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
       propertyPath: m_Name
@@ -1275,11 +1263,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.000030517578
       objectReference: {fileID: 0}
-    - target: {fileID: 4841974637532484384, guid: ca94a54bc1314a24690a7e2713b968a3,
-        type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 2800000, guid: ca7936278f8c7ef4c9a0a676b9036b77, type: 3}
     - target: {fileID: 6152604909978005598, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
       propertyPath: m_Name
@@ -1335,11 +1318,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5463111753284767817}
     m_Modifications:
-    - target: {fileID: 1683647599827386055, guid: ca94a54bc1314a24690a7e2713b968a3,
-        type: 3}
-      propertyPath: m_text
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2007104053433132582, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1450,11 +1428,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.000030517578
       objectReference: {fileID: 0}
-    - target: {fileID: 4841974637532484384, guid: ca94a54bc1314a24690a7e2713b968a3,
-        type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 2800000, guid: ca7936278f8c7ef4c9a0a676b9036b77, type: 3}
     - target: {fileID: 6152604909978005598, guid: ca94a54bc1314a24690a7e2713b968a3,
         type: 3}
       propertyPath: m_Name

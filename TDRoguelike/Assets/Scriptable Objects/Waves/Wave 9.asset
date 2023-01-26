@@ -43,4 +43,10 @@ MonoBehaviour:
     SpawnRate: 2
     TimeAfterWave: 1
     dontWaitWithNextWave: 0
+  - EnemyPrefab: {fileID: 3295161404839182595, guid: 51cb00f00a01162489af0659b8c1f361,
+      type: 3}
+    Amount: 1
+    SpawnRate: 2
+    TimeAfterWave: 10
+    dontWaitWithNextWave: 0
   GoldForWaveCompleated: 100

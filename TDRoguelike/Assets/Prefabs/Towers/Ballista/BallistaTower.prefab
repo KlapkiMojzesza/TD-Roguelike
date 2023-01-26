@@ -2075,6 +2075,7 @@ MonoBehaviour:
   _upgradeInfo: {fileID: 4340671408203771242}
   _towerBonusStatsText: {fileID: 4957348515981194867}
   _upgradeSound: {fileID: 8300000, guid: 16d129155f2825644bf06fd4693fced4, type: 3}
+  _maxLevelIcon: {fileID: 2800000, guid: b8e66c6e341dc6942b3c6b3b6cff5069, type: 3}
   _towerUpgradesLeft:
   - {fileID: 11400000, guid: 52bc6e1671da4fe41bdddfee38118357, type: 2}
   - {fileID: 11400000, guid: 2a0e2d5f8467c394c812e7bf814b371b, type: 2}
@@ -2083,6 +2084,7 @@ MonoBehaviour:
   _upgradePriceLeft: {fileID: 1834623406240031886}
   _upgradeIconImageLeft: {fileID: 5632809058164672563}
   _leftProgresImage: {fileID: 5281515448609296930}
+  _coinsIconImageLeft: {fileID: 3696762982157863217}
   _towerUpgradesRight:
   - {fileID: 11400000, guid: fab531b64b2fdc74ebcd17c8e134b17a, type: 2}
   - {fileID: 11400000, guid: 71a5ee8bf9844f649b2b09d143fffb7f, type: 2}
@@ -2091,6 +2093,7 @@ MonoBehaviour:
   _upgradePriceRight: {fileID: 108744437043179131}
   _upgradeIconImageRight: {fileID: 4296812649502756244}
   _rightProgresImage: {fileID: 4876496270853945436}
+  _coinsIconImageRight: {fileID: 3568598240165573083}
   _leftUpgrades:
   - UpgradeVisual: {fileID: 1760370233998723263}
     AnimatorOverride: {fileID: 22100000, guid: 76499a6979c8fa74da0ae1c56ff354ee, type: 2}
@@ -4588,6 +4591,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3568598240165573083 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1743237773365773295, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3005885251640996404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3696762982157863217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1944014543540779781, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3005885251640996404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3960659737167427892 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2251830316638128896, guid: bdfb9645aafdc5e4890d22e27c2a6de2,

@@ -46,9 +46,9 @@ public class PlayerMovement : MonoBehaviour
         if (playerInput.magnitude > 0.1f)
         {
             //-1 left; 1 right
-            _animatorVelocityX = Mathf.Lerp(_animatorVelocityX, Mathf.Sin(animAngle * Mathf.PI / 180), _animationSmoothFactor);
+            _animatorVelocityX = Mathf.Lerp(_animatorVelocityX, Mathf.Sin(animAngle * Mathf.PI / 180), _animationSmoothFactor * Time.deltaTime);
             //-1 backward; 1 forward
-            _animatorVelocityY = Mathf.Lerp(_animatorVelocityY, Mathf.Cos(animAngle * Mathf.PI / 180), _animationSmoothFactor);
+            _animatorVelocityY = Mathf.Lerp(_animatorVelocityY, Mathf.Cos(animAngle * Mathf.PI / 180), _animationSmoothFactor * Time.deltaTime);
 
             _animator.SetFloat("velocityX", _animatorVelocityX * _animationSmoothMultiplier);
             _animator.SetFloat("velocityY", _animatorVelocityY * _animationSmoothMultiplier);

@@ -12,18 +12,21 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     [SerializeField] private TMP_Text _upgradeInfo;
     [SerializeField] private TMP_Text _towerBonusStatsText;
     [SerializeField] private AudioClip _upgradeSound;
+    [SerializeField] private Texture _maxLevelIcon;
     [Header("To Attach: LEFT")]
     [SerializeField] UpgradeScriptableObject[] _towerUpgradesLeft;
     [SerializeField] private TMP_Text _upgradeNameLeft;
     [SerializeField] private TMP_Text _upgradePriceLeft;
     [SerializeField] private RawImage _upgradeIconImageLeft;
     [SerializeField] private Image _leftProgresImage;
+    [SerializeField] private GameObject _coinsIconImageLeft;
     [Header("To Attach RIGHT")]
     [SerializeField] UpgradeScriptableObject[] _towerUpgradesRight;
     [SerializeField] private TMP_Text _upgradeNameRight;
     [SerializeField] private TMP_Text _upgradePriceRight;
     [SerializeField] private RawImage _upgradeIconImageRight;
     [SerializeField] private Image _rightProgresImage;
+    [SerializeField] private GameObject _coinsIconImageRight;
 
     UpgradeScriptableObject currentLeftUpgrade;
     UpgradeScriptableObject currentRightUpgrade;
@@ -190,6 +193,11 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
                 if (_towerManager.GetCurrentMoneyAmount() < currentLeftUpgrade.UpgradePrice) _upgradeButton.SetActive(false);
                 return;
             }
+            //this happends when next upgrade doesnt exist
+            _upgradeIconImageLeft.texture = _maxLevelIcon;
+            _upgradePriceLeft.text = "";
+            _coinsIconImageLeft.SetActive(false);
+
         }
         else if (_currentUpgradeChosen == ChosenUpgradeSide.Right)
         {
@@ -211,7 +219,12 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
                 if (_towerManager.GetCurrentMoneyAmount() < currentRightUpgrade.UpgradePrice) _upgradeButton.SetActive(false);
                 return;
             }
+            //this happends when next upgrade doesnt exist
+            _upgradeIconImageRight.texture = _maxLevelIcon;
+            _upgradePriceRight.text = "";
+            _coinsIconImageRight.SetActive(false);
         }
+
         _upgradeButton.SetActive(false);
         _upgradeInfo.text = "MAX LEVEL";
     }

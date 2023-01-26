@@ -35,6 +35,6 @@ MonoBehaviour:
       type: 3}
     Amount: 50
     SpawnRate: 1
-    TimeAfterWave: 0
+    TimeAfterWave: 8
     dontWaitWithNextWave: 0
   GoldForWaveCompleated: 75

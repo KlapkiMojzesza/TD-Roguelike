@@ -801,7 +801,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 9.8
   m_Radius: 1.79
-  m_SlopeLimit: 25
+  m_SlopeLimit: 30
   m_StepOffset: 0.1
   m_SkinWidth: 0.06
   m_MinMoveDistance: 0.001
@@ -916,7 +916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSpeed: 50
   _rotationOffset: 0
-  _animationSmoothFactor: 0.07
+  _animationSmoothFactor: 9
   _animationSmoothMultiplier: 1.15
   _groundLayer:
     serializedVersion: 2

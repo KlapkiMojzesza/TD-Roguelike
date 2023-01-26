@@ -314,6 +314,7 @@ MonoBehaviour:
   _upgradeInfo: {fileID: 1253354882951801156}
   _towerBonusStatsText: {fileID: 7608246836576891485}
   _upgradeSound: {fileID: 8300000, guid: 16d129155f2825644bf06fd4693fced4, type: 3}
+  _maxLevelIcon: {fileID: 2800000, guid: b8e66c6e341dc6942b3c6b3b6cff5069, type: 3}
   _towerUpgradesLeft:
   - {fileID: 11400000, guid: 2678afd70f6135a4d86432631c66f89e, type: 2}
   - {fileID: 11400000, guid: de497480ffb30494497790da77f8c36c, type: 2}
@@ -322,6 +323,7 @@ MonoBehaviour:
   _upgradePriceLeft: {fileID: 3759382268401164448}
   _upgradeIconImageLeft: {fileID: 7165833917515942941}
   _leftProgresImage: {fileID: 7210914277721478668}
+  _coinsIconImageLeft: {fileID: 2167476468721683743}
   _towerUpgradesRight:
   - {fileID: 11400000, guid: 9d6b8203fdaeaf84c8135e263f922a79, type: 2}
   - {fileID: 11400000, guid: 60db15063ddee154ea0a4e878a08027c, type: 2}
@@ -330,6 +332,7 @@ MonoBehaviour:
   _upgradePriceRight: {fileID: 3232371189263100501}
   _upgradeIconImageRight: {fileID: 1655282127211432378}
   _rightProgresImage: {fileID: 7995346742448880754}
+  _coinsIconImageRight: {fileID: 2080613777192973813}
   _leftUpgrades:
   - UpgradeVisual: {fileID: 549900985589105539}
     visualOverride: {fileID: 22100000, guid: a2f8b1e0203762f4ebc81f47869226c7, type: 2}
@@ -792,6 +795,18 @@ GameObject:
 --- !u!1 &1994796728032148762 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2251830316638128896, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+    type: 3}
+  m_PrefabInstance: {fileID: 355479462795310618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2080613777192973813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1743237773365773295, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+    type: 3}
+  m_PrefabInstance: {fileID: 355479462795310618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2167476468721683743 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1944014543540779781, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
     type: 3}
   m_PrefabInstance: {fileID: 355479462795310618}
   m_PrefabAsset: {fileID: 0}
