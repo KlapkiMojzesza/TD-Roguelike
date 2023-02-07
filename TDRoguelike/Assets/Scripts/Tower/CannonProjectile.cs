@@ -45,7 +45,8 @@ public class CannonProjectile : Projectile
     {
         if (hitSomething) return;
 
-        if (collision.collider.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground") ||
+            collision.collider.CompareTag("Obstacle"))
         {
             HandleProjectileHit(null);
             gameObject.SetActive(false);

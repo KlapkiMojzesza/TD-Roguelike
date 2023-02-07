@@ -17,7 +17,8 @@ public class BallistaProjectile : Projectile
 
     protected override void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground") ||
+            collision.collider.CompareTag("Obstacle"))
         {
             if (gameObject.activeSelf) _pool.Release(this);
             gameObject.SetActive(false);
