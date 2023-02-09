@@ -47,9 +47,9 @@ public class PlayerShooting : MonoBehaviour
     {
         if (CanShoot() && !_projectileVisual.activeSelf) _projectileVisual.SetActive(true);
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)) //change to inputsystem later
         {
-            if (!IsMouseOverUI() && !_towerSelected) Shoot();
+            if (!IsMouseOverUI() && !_towerSelected && Time.timeScale != 0) Shoot();
         }
     }
 

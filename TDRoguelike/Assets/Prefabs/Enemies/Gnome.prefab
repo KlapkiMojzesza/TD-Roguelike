@@ -1346,8 +1346,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2922878959422961485, guid: b3c1e2766d3f5b64d87b376a7c2d3923,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2922878959422961485, guid: b3c1e2766d3f5b64d87b376a7c2d3923,
+        type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.00615384
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 2922878959422961485, guid: b3c1e2766d3f5b64d87b376a7c2d3923,
         type: 3}
@@ -1413,11 +1418,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Healthbar Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 4150083359890220998, guid: b3c1e2766d3f5b64d87b376a7c2d3923,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4752735671213634081, guid: b3c1e2766d3f5b64d87b376a7c2d3923,
         type: 3}

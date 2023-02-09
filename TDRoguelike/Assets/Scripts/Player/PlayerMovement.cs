@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,9 +16,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
 
     private Animator _animator;
+    private Vector3 _playerInput;
     private Vector3 _mousePosition;
     private CharacterController _controller;
     private Controls _controls;
+    private float _animAngle;
+    private float _angle;
     private float _animatorVelocityX = 0f;
     private float _animatorVelocityY = 0f;
 
@@ -31,24 +35,43 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        MovePlayer();
+        ReadInput();
+    }
+
+    private void FixedUpdate()
+    {
         RotatePlayer();
+        MovePlayer();
+    }
+
+    private void ReadInput()
+    {
+        Vector2 playerInputRaw = _controls.Player.Movement.ReadValue<Vector2>();
+        _playerInput = new Vector3(playerInputRaw.x, 0f, playerInputRaw.y).normalized;
+
+        _animAngle = SignedAngleBetween((_mousePosition - transform.position).normalized, _playerInput, Vector3.up);
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit groundHit;
+        if (Physics.Raycast(ray, out groundHit, Mathf.Infinity, _groundLayer))
+        {
+            _mousePosition = groundHit.point;
+        }
+
+        Vector3 lookDirection = _mousePosition - transform.position;
+        _angle = Mathf.Atan2(lookDirection.x, lookDirection.z) *
+                             Mathf.Rad2Deg + _rotationOffset;
     }
 
     private void MovePlayer()
     {
-        Vector2 playerInputRaw = _controls.Player.Movement.ReadValue<Vector2>();
-        Vector3 playerInput = new Vector3(playerInputRaw.x, 0f, playerInputRaw.y).normalized;
-
-        float animAngle = SignedAngleBetween((_mousePosition - transform.position).normalized, playerInput, Vector3.up);
-
-
-        if (playerInput.magnitude > 0.1f)
+        if (_playerInput.magnitude > 0.1f)
         {
             //-1 left; 1 right
-            _animatorVelocityX = Mathf.Lerp(_animatorVelocityX, Mathf.Sin(animAngle * Mathf.PI / 180), _animationSmoothFactor * Time.deltaTime);
+            _animatorVelocityX = Mathf.Lerp(_animatorVelocityX, Mathf.Sin(_animAngle * Mathf.PI / 180), _animationSmoothFactor * Time.deltaTime);
             //-1 backward; 1 forward
-            _animatorVelocityY = Mathf.Lerp(_animatorVelocityY, Mathf.Cos(animAngle * Mathf.PI / 180), _animationSmoothFactor * Time.deltaTime);
+            _animatorVelocityY = Mathf.Lerp(_animatorVelocityY, Mathf.Cos(_animAngle * Mathf.PI / 180), _animationSmoothFactor * Time.deltaTime);
 
             _animator.SetFloat("velocityX", _animatorVelocityX * _animationSmoothMultiplier);
             _animator.SetFloat("velocityY", _animatorVelocityY * _animationSmoothMultiplier);
@@ -59,25 +82,14 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetFloat("velocityY", 0f);
         }
         //add gravity
-        playerInput.y = -1f;
+        _playerInput.y = -1f;
 
-        _controller.Move(playerInput * _playerSpeed * Time.deltaTime);
+        _controller.Move(_playerInput * _playerSpeed * Time.deltaTime);
     }
 
     private void RotatePlayer()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        RaycastHit groundHit;
-        if (Physics.Raycast(ray, out groundHit, Mathf.Infinity, _groundLayer))
-        {
-            _mousePosition = groundHit.point;
-        }
-
-        Vector3 lookDirection = _mousePosition - transform.position;
-        float angle = Mathf.Atan2(lookDirection.x, lookDirection.z) *
-                      Mathf.Rad2Deg + _rotationOffset;
-        transform.rotation = Quaternion.Euler(0, angle, 0);
+    {      
+        transform.rotation = Quaternion.Euler(0, _angle, 0);
     }
 
     private float SignedAngleBetween(Vector3 a, Vector3 b, Vector3 n)

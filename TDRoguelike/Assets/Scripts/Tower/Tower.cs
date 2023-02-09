@@ -42,6 +42,8 @@ public class Tower : MonoBehaviour
     {
         TowerManager.OnNextWaveButtonClicked += HandleStartWave;
         TowerManager.OnTowerSelect += HandleAnotherTowerSelected;
+        PauseManager.OnGamePaused += OnPaused;
+        PauseManager.OnGameResumed += OnResumed;
 
         _controls = new Controls();
         _controls.Player.Enable();
@@ -61,6 +63,22 @@ public class Tower : MonoBehaviour
         TowerManager.OnNextWaveButtonClicked -= HandleStartWave;
         TowerManager.OnTowerSelect -= HandleAnotherTowerSelected;
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
+        PauseManager.OnGamePaused -= OnPaused;
+        PauseManager.OnGameResumed -= OnResumed;
+    }
+    private void OnPaused()
+    {
+        if (_canvasAnimator.GetBool("shown")) _canvasAnimator.gameObject.SetActive(false);
+    }
+
+    private void OnResumed()
+    {
+        if (!_canvasAnimator.gameObject.activeSelf)
+        {
+            _canvasAnimator.gameObject.SetActive(true);
+            _canvasAnimator.SetBool("shown", true);
+            _audioSource.PlayOneShot(_showUISound);
+        }
     }
 
     public void SetAllBuildingMaterials()
@@ -80,6 +98,7 @@ public class Tower : MonoBehaviour
 
     private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0) return;
         if (!_isPlaced) return;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

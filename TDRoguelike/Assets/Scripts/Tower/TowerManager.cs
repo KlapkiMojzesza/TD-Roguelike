@@ -61,6 +61,7 @@ public class TowerManager : MonoBehaviour
 
     private void HandlePlayerMouseClick(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0) return;
         if (IsMouseOverUI()) return;
         if (_currentTowerPrefab == null) return;
         if (!_currentTower.CanBePlaced()) return;
@@ -70,6 +71,7 @@ public class TowerManager : MonoBehaviour
 
     private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0) return;
         if (_currentTowerPrefab == null) return;
         Destroy(_currentTowerPrefab);
         OnTowerDeselect?.Invoke();

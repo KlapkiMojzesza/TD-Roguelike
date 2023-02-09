@@ -22,6 +22,7 @@ public class TowerUIManager : MonoBehaviour
 
     private TowerManager _towermanager;
     private AudioSource _audioSource;
+    private bool _shouldShowOnResume = false;
 
     private void Start()
     {
@@ -31,6 +32,8 @@ public class TowerUIManager : MonoBehaviour
         TowerManager.OnMoneyAmountChanged += HandleMoneyAmountChanged;
         PlayerBase.OnBaseDestroyed += HandleBaseDestoryed;
         WaveManager.OnWaveEnd += HandleWaveEnd;
+        PauseManager.OnGamePaused += OnPaused;
+        PauseManager.OnGameResumed += OnResumed;
 
         _audioSource = GetComponent<AudioSource>();
         _towermanager = GetComponent<TowerManager>();
@@ -46,6 +49,26 @@ public class TowerUIManager : MonoBehaviour
         TowerManager.OnMoneyAmountChanged -= HandleMoneyAmountChanged;
         PlayerBase.OnBaseDestroyed -= HandleBaseDestoryed;
         WaveManager.OnWaveEnd -= HandleWaveEnd;
+        PauseManager.OnGamePaused -= OnPaused;
+        PauseManager.OnGameResumed -= OnResumed;
+    }
+
+    private void OnPaused()
+    {
+        if (_towersCanvasAnimator.GetBool("shown")) _shouldShowOnResume = true;
+        this.gameObject.SetActive(false);
+    }
+
+    private void OnResumed()
+    {
+        this.gameObject.SetActive(true);
+
+        if (_shouldShowOnResume)
+        {
+            _towersCanvasAnimator.SetBool("shown", true);
+            _audioSource.PlayOneShot(_showUISound);
+        }
+        _shouldShowOnResume = false;
     }
 
     private void HandleMoneyAmountChanged(int newMoneyAmount)
@@ -66,6 +89,7 @@ public class TowerUIManager : MonoBehaviour
             _iconsImage[i].texture = tower.TowerData.TowerIcon;
             _towersPriceText[i].text = tower.TowerData.TowerPrice.ToString();
         }
+        _towersCanvasAnimator.SetBool("shown", true);
     }
 
     private void HandleWaveEnd(int enmpy)

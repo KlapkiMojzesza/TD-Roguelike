@@ -40,6 +40,8 @@ public class ObstacleManager : MonoBehaviour
         _controls.Player.Info.performed += HandlePlayerMouseInfo;
         TowerManager.OnTowerPlaced += HideUI;
         TowerManager.OnTowerSelect += HandleTowerSelect;
+        PauseManager.OnGamePaused += OnPaused;
+        PauseManager.OnGameResumed += OnResumed;
     }
 
     private void OnDestroy()
@@ -47,10 +49,29 @@ public class ObstacleManager : MonoBehaviour
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
         TowerManager.OnTowerPlaced -= HideUI;
         TowerManager.OnTowerSelect -= HandleTowerSelect;
+        PauseManager.OnGamePaused -= OnPaused;
+        PauseManager.OnGameResumed -= OnResumed;
+    }
+
+    private void OnPaused()
+    {
+        if (_animator.GetBool("shown")) this.gameObject.SetActive(false);
+    }
+
+    private void OnResumed()
+    {
+        if (!this.gameObject.activeSelf)
+        {
+            this.gameObject.SetActive(true);
+            _animator.SetBool("shown", true);
+            _audioSource.PlayOneShot(_showUISound);
+        }
     }
 
     private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0) return;
+
         if (EventSystem.current.IsPointerOverGameObject(PointerInputModule.kMouseLeftId)) return;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

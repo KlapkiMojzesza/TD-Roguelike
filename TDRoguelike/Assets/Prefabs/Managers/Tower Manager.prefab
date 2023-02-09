@@ -174,8 +174,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -67.153625, y: 5.7802734}
-  m_SizeDelta: {x: 157.4872, y: 37.935}
+  m_AnchoredPosition: {x: -219.11684, y: 5.7802734}
+  m_SizeDelta: {x: 461.4137, y: 37.935}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6189829342856579397
 CanvasRenderer:
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -387,7 +387,8 @@ AudioSource:
   m_GameObject: {fileID: 7701644492400215754}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1574696943601149188, guid: 360cc6ad81106fb44a12545224a33354,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
