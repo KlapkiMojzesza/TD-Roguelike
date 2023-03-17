@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79e02da642c3d34408ba59010d4e48ee, type: 3}
-  m_Name: BallistaTowerData
+  m_Name: PylonTowerData
   m_EditorClassIdentifier: 
-  TowerName: Ballista
-  TowerInfo: Good tower :)
+  TowerName: Pylon
+  TowerInfo: Slows down enemies
   TowerPrice: 40
   TowerEnemyPierce: 1
-  TowerFireRate: 1.3
-  TowerRange: 45
-  TowerDamage: 50
-  ProjectileSpeed: 270
-  ProjectilePrefab: {fileID: 4946507660383248473, guid: 245448eeab2fe8b41bd79e52fa7be974,
-    type: 3}
-  TowerIcon: {fileID: 2800000, guid: d8bd4625d59fc904fa7ea1583e37c054, type: 3}
+  TowerFireRate: 1
+  TowerRange: 15
+  TowerDamage: 0
+  ProjectileSpeed: 300
+  ProjectilePrefab: {fileID: 0}
+  TowerIcon: {fileID: 0}
