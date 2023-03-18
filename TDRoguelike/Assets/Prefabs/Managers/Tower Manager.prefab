@@ -332,6 +332,7 @@ MonoBehaviour:
   TowerPrefabs:
   - {fileID: 4769767586024751121, guid: 6e3740f2545bb824d9673d9929292ea8, type: 3}
   - {fileID: 9154128754830370453, guid: 087f41c738c2933499bbb82eb9f4f99b, type: 3}
+  - {fileID: 5307492072661274165, guid: 660fcf0eae6986e42b05c331d5ebb829, type: 3}
 --- !u!114 &1035504923194178883
 MonoBehaviour:
   m_ObjectHideFlags: 0

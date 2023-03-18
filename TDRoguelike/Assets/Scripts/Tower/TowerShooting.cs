@@ -7,6 +7,7 @@ using UnityEngine.Pool;
 public class TowerShooting : MonoBehaviour
 {
     [Header("Settings")]
+    [SerializeField] private bool _rotateTowardsTarget = true;
     [SerializeField] private float _rotationOffset;
     [SerializeField] private float _rotationSpeed = 0.5f;
 
@@ -14,6 +15,7 @@ public class TowerShooting : MonoBehaviour
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _rotatingParts;
     [SerializeField] private AudioClip _shootSound;
+    [SerializeField] private AudioClip _targetPrioritySwitchSound;
     [SerializeField] private ParticleSystem _shootParticle;
 
     private TowerInGameUpgrades _towerUpgrades;
@@ -27,7 +29,7 @@ public class TowerShooting : MonoBehaviour
     private Projectile _currentProjectile;
     private Transform _currentFirePoint;
     private AudioSource _audioSource;
-    public bool _rotatedTowardsTarget = false;
+    private bool _rotatedTowardsTarget = false;
 
     private void Start()
     {
@@ -78,9 +80,9 @@ public class TowerShooting : MonoBehaviour
 
         if (_target == null) return;
 
-        RotateToTarget();
+        if (_rotateTowardsTarget) RotateToTarget();
 
-        if (_fireCountdown <= 0f && _rotatedTowardsTarget)
+        if (_fireCountdown <= 0f && (_rotatedTowardsTarget || !_rotateTowardsTarget))
         {
             Shoot();
             _fireCountdown = 1f / (_towerData.TowerFireRate + _towerUpgrades.GetBonusFireRate());
@@ -222,11 +224,13 @@ public class TowerShooting : MonoBehaviour
             projectile.Create(_target.gameObject.GetComponent<EnemyHealth>().AimPoint,
                               _towerData.ProjectileSpeed, 
                               _towerData.TowerDamage + _towerUpgrades.GetBonusDamage(),
-                              _towerData.TowerEnemyPierce + _towerUpgrades.GetBonusPierce());
+                              _towerData.TowerEnemyPierce + _towerUpgrades.GetBonusPierce(),
+                              _towerData.TowerSlowPercentage + _towerUpgrades.GetBonusSlow(),
+                              _towerData.TowerRange + _towerUpgrades.GetBonusRange());
         }
 
         if (_shootParticle != null) _shootParticle.Play();
-        _audioSource.PlayOneShot(_shootSound);
+        if (_shootSound != null) _audioSource.PlayOneShot(_shootSound);
         _animator.SetTrigger("shoot");
     }
 
@@ -257,6 +261,7 @@ public class TowerShooting : MonoBehaviour
                 _targetPriority = TargetPriority.Last;
                 break;
         }
+        _audioSource.PlayOneShot(_targetPrioritySwitchSound);
     }
 
     private Projectile CreateProjectile()

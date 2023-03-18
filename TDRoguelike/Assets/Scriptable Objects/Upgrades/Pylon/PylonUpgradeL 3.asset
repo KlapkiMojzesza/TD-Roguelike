@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf56e65ec703cf4db09f6e73f69efa4, type: 3}
+  m_Name: PylonUpgradeL 3
+  m_EditorClassIdentifier: 
+  UpgradeName: Pylon up 3
+  UpgradeInfo: Slow by 10%
+  UpgradeType: 4
+  Value: 110
+  UpgradeIcon: {fileID: 2800000, guid: 2db76dd1497f4d8438e1d7c9f3608ad1, type: 3}
+  UpgradePrice: 20

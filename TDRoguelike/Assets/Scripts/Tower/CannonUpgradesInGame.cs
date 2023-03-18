@@ -23,7 +23,7 @@ public class CannonUpgradesInGame : TowerInGameUpgrades
     private class LeftUpgrades
     {
         public GameObject UpgradeVisual;
-        public AnimatorOverrideController visualOverride;
+        public AnimatorOverrideController VisualOverride;
         public ParticleSystem ShootParticle;
     }
 
@@ -34,7 +34,7 @@ public class CannonUpgradesInGame : TowerInGameUpgrades
             if (i == leftUpgradesPurchased)
             {
                 _leftUpgrades[i].UpgradeVisual.SetActive(true);
-                _animator.runtimeAnimatorController = _leftUpgrades[i].visualOverride;             
+                _animator.runtimeAnimatorController = _leftUpgrades[i].VisualOverride;             
             } 
             else _leftUpgrades[i].UpgradeVisual.SetActive(false);          
         }

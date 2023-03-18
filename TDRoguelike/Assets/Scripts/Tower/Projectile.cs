@@ -11,17 +11,26 @@ public abstract class Projectile : MonoBehaviour
     protected float _speed;
     protected float _damage;
     protected int _enemyPierce = 1;
+    protected float _slowPercentage = 0;
+    protected float _towerRange = 1f;
 
     protected IObjectPool<Projectile> _pool;
 
     public void SetPool(IObjectPool<Projectile> pool) => _pool = pool;
 
-    public virtual void Create(Transform target, float speed, float damage, int enemyPierce)
+    public virtual void Create(Transform target,
+                               float speed,
+                               float damage,
+                               int enemyPierce,
+                               float slowPercentage = 1f,
+                               float towerRange = 1f)
     {
         _target = target;
         _speed = speed;
         _damage = damage;
         _enemyPierce = enemyPierce;
+        _slowPercentage = slowPercentage;
+        _towerRange = towerRange;
         _lastKnownDirection = target.position - transform.position;
     }
 

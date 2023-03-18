@@ -12,6 +12,7 @@ public class BalistaUpgradesInGame : TowerInGameUpgrades
     [SerializeField] private RightUpgrades[] _rightUpgrades;
 
     private TowerShooting _towerShooting;
+    private Animator _animator;
 
     [System.Serializable]
     private class RightUpgrades
@@ -27,8 +28,6 @@ public class BalistaUpgradesInGame : TowerInGameUpgrades
         public AnimatorOverrideController AnimatorOverride;
         public Transform FirePoint;
     }
-
-    private Animator _animator;
 
     protected override void Start()
     {

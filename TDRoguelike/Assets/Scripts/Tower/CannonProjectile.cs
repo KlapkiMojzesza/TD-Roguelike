@@ -21,7 +21,7 @@ public class CannonProjectile : Projectile
     private Vector3 _randomRotation;
     private bool hitSomething = false;
 
-    public override void Create(Transform target, float speed, float damage, int enemyPierce)
+    public override void Create(Transform target, float speed, float damage, int enemyPierce, float slowPercentage, float towerRange)
     {
         base.Create(target, speed, damage, enemyPierce);
         _randomRotation = new Vector3(UnityEngine.Random.Range(0f, 180f), 

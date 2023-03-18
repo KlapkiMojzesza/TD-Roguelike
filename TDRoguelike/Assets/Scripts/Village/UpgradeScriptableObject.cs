@@ -11,4 +11,4 @@ public class UpgradeScriptableObject : ScriptableObject
     public int UpgradePrice = 10;
 }
 
-public enum UpgradeType { TowerDamage, TowerRange, TowerFireRate, TowerEnemyPierce, TowerCustom }
+public enum UpgradeType { TowerDamage, TowerRange, TowerFireRate, TowerEnemyPierce, TowerSlow ,TowerCustom }

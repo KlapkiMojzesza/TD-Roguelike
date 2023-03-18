@@ -19,6 +19,7 @@ public class EnemyMovement : MonoBehaviour
     private WaypointManager _waypointManager;
     private float _distanceToNextWaypoint = 0f;
     private int _currentWaypoint;
+    private bool _isSlowedByPylon = false;
 
     private void Start()
     {
@@ -73,6 +74,15 @@ public class EnemyMovement : MonoBehaviour
     public void UpgradeSpeed(float amount)
     {
         _speed *= amount;
+    }
+
+    //Pylon Slow Effect
+    public void PylonSlowEnemy(float slowPercentage)
+    {
+        if (_isSlowedByPylon) return;
+
+        _speed *= (100 - slowPercentage) / 100;
+        _isSlowedByPylon = true;
     }
 
     //From animation

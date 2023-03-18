@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BallistaTowerData
   m_EditorClassIdentifier: 
   TowerName: Ballista
-  TowerInfo: Good tower :)
+  TowerInfo: Fast shhoting with decent damage
   TowerPrice: 40
   TowerEnemyPierce: 1
   TowerFireRate: 1.3

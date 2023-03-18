@@ -1968,13 +1968,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4070dc63727ae084397a3410baea02c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rotateTowardsTarget: 1
   _rotationOffset: 180
   _rotationSpeed: 0.03
   _firePoint: {fileID: 1014333582052573780}
   _rotatingParts: {fileID: 8739865720788482801}
   _shootSound: {fileID: 8300000, guid: 1f5e263812fc132469b5e51a12cb816e, type: 3}
+  _targetPrioritySwitchSound: {fileID: 8300000, guid: 7c7fccda25412024594b36a302692766,
+    type: 3}
   _shootParticle: {fileID: 0}
-  _rotatedTowardsTarget: 0
 --- !u!114 &7358294965479059010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1990,6 +1992,7 @@ MonoBehaviour:
   _upgradeButton: {fileID: 4212345440744588099}
   _upgradeInfo: {fileID: 4340671408203771242}
   _towerBonusStatsText: {fileID: 4957348515981194867}
+  _upgradeSwitchSound: {fileID: 8300000, guid: 7c7fccda25412024594b36a302692766, type: 3}
   _upgradeSound: {fileID: 8300000, guid: 16d129155f2825644bf06fd4693fced4, type: 3}
   _maxLevelIcon: {fileID: 2800000, guid: b8e66c6e341dc6942b3c6b3b6cff5069, type: 3}
   _towerUpgradesLeft:
@@ -4287,6 +4290,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8416723953350421648}
+    - target: {fileID: 6596925044969630202, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseTowerInfoButton
+      objectReference: {fileID: 0}
     - target: {fileID: 7237618813421449053, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

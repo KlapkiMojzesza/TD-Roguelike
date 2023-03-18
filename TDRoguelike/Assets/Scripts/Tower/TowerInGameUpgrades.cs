@@ -10,18 +10,23 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     [Header("To Attach")]
     [SerializeField] private GameObject _upgradeButton;
     [SerializeField] private TMP_Text _upgradeInfo;
-    [SerializeField] private TMP_Text _towerBonusStatsText;
+    [SerializeField] protected TMP_Text _towerBonusStatsText;
+    [SerializeField] private AudioClip _upgradeSwitchSound;
     [SerializeField] private AudioClip _upgradeSound;
     [SerializeField] private Texture _maxLevelIcon;
+    [Space(20)]
     [Header("To Attach: LEFT")]
     [SerializeField] UpgradeScriptableObject[] _towerUpgradesLeft;
+    [Space(20)]
     [SerializeField] private TMP_Text _upgradeNameLeft;
     [SerializeField] private TMP_Text _upgradePriceLeft;
     [SerializeField] private RawImage _upgradeIconImageLeft;
     [SerializeField] private Image _leftProgresImage;
     [SerializeField] private GameObject _coinsIconImageLeft;
+    [Space(20)]
     [Header("To Attach RIGHT")]
     [SerializeField] UpgradeScriptableObject[] _towerUpgradesRight;
+    [Space(20)]
     [SerializeField] private TMP_Text _upgradeNameRight;
     [SerializeField] private TMP_Text _upgradePriceRight;
     [SerializeField] private RawImage _upgradeIconImageRight;
@@ -34,10 +39,11 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     private TowerManager _towerManager;
     private Tower _tower;
 
-    private float _bonusTowerDamage = 0;
-    private float _bonusTowerRange = 0;
-    private float _bonusFireRate = 0;
-    private int _bonusEnemyPierce = 0;
+    protected float _bonusTowerDamage = 0;
+    protected float _bonusTowerRange = 0;
+    protected float _bonusFireRate = 0;
+    protected int _bonusEnemyPierce = 0;
+    protected float _bonusSlowPercentage = 0;
 
     private int _leftUpgradesPurchased = 0;
     private int _rightUpgradesPurchased = 0;
@@ -141,6 +147,7 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     public void SwitchUpgradeButton(int chosenUpgradeIndex)
     {
         _currentUpgradeChosen = (ChosenUpgradeSide)chosenUpgradeIndex;
+        _audioSource.PlayOneShot(_upgradeSwitchSound);
 
         if (_currentUpgradeChosen == ChosenUpgradeSide.Left &&
             _leftUpgradesPurchased < _towerUpgradesLeft.Length)
@@ -257,6 +264,9 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
                 _bonusEnemyPierce += (int)upgradeData.Value;
                 break;
 
+            case UpgradeType.TowerSlow:
+                _bonusSlowPercentage *= upgradeData.Value;
+                break;
             case UpgradeType.TowerCustom:
 
                 break;
@@ -266,7 +276,7 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
         UpdateTowerStatsText();
     }
 
-    private void UpdateTowerStatsText()
+    protected virtual void UpdateTowerStatsText()
     {
         string bonusDamageText = "";
         string bonusRangeText = "";
@@ -303,5 +313,10 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     public float GetBonusRange()
     {
         return _bonusTowerRange;
+    }
+
+    public float GetBonusSlow()
+    {
+        return _bonusSlowPercentage;
     }
 }

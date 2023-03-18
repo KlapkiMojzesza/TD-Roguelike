@@ -21,8 +21,8 @@ public class Tower : MonoBehaviour
     [SerializeField] private RawImage _iconImage;
     [SerializeField] private GameObject _towerHitBox;
     [SerializeField] private GameObject _towerInfoCanvas;
-    [SerializeField] private TMP_Text _towerStatsText;
-    [SerializeField] private TMP_Text _towerNameText;
+    [SerializeField] protected TMP_Text _towerStatsText;
+    [SerializeField] protected TMP_Text _towerNameText;
     [SerializeField] private AudioClip _showUISound;
     [SerializeField] private AudioClip _hideUISound;
     [SerializeField] private AudioClip _towerPlaceSound; 
@@ -163,7 +163,7 @@ public class Tower : MonoBehaviour
         OnTowerInfoShow?.Invoke();
     }
 
-    private void UpdateTowerStatsUI()
+    protected virtual void UpdateTowerStatsUI()
     {
         _towerStatsText.text = $"Damage: {TowerData.TowerDamage.ToString()}\n" +
                                $"Range: {TowerData.TowerRange.ToString()}\n" +
@@ -211,6 +211,15 @@ public class Tower : MonoBehaviour
         _towerRangeSprite.localScale = new Vector3(TowerData.TowerRange + bonusTowerRange, 
                                                    TowerData.TowerRange + bonusTowerRange,
                                                    1f);
+    }
+
+    public void CloseTowerInfoButton()
+    {
+        if (_canvasAnimator.GetBool("shown"))
+        {
+            _canvasAnimator.SetBool("shown", false);
+            _audioSource.PlayOneShot(_hideUISound);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

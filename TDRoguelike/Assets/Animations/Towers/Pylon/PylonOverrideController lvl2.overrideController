@@ -7,9 +7,9 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PylonOverrideController lvl2
-  m_Controller: {fileID: 9100000, guid: 9f3374e3c3505cc4faad4efbe1d1ab3f, type: 2}
+  m_Controller: {fileID: 9100000, guid: b4a29c42bea2046408d124110884ce93, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: b66649ae90e6d534b9a94b99ccd8074f, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: b66649ae90e6d534b9a94b99ccd8074f, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 28c8fb5024962c44291aa23315925780, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 28c8fb5024962c44291aa23315925780, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4f88a36a9e74ef44cb833a97aea23448, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0fd352cd3194db14d8a72e2404a0c57e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a84a4e33c7e40d04abbcb7983eb98907, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b4df36db09d5b414db851aedac022dfe, type: 2}

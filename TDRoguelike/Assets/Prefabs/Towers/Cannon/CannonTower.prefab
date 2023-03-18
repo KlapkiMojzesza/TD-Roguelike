@@ -291,13 +291,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4070dc63727ae084397a3410baea02c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rotateTowardsTarget: 1
   _rotationOffset: 180
   _rotationSpeed: 0.08
   _firePoint: {fileID: 7510321199220279699}
   _rotatingParts: {fileID: 8183596713101826679}
   _shootSound: {fileID: 8300000, guid: c35390c7f35cb02419334b605a11b0a4, type: 3}
+  _targetPrioritySwitchSound: {fileID: 8300000, guid: 7c7fccda25412024594b36a302692766,
+    type: 3}
   _shootParticle: {fileID: 7076379062540595472}
-  _rotatedTowardsTarget: 0
 --- !u!114 &3747221566067787978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +315,7 @@ MonoBehaviour:
   _upgradeButton: {fileID: 1669894114472658797}
   _upgradeInfo: {fileID: 1253354882951801156}
   _towerBonusStatsText: {fileID: 7608246836576891485}
+  _upgradeSwitchSound: {fileID: 8300000, guid: 7c7fccda25412024594b36a302692766, type: 3}
   _upgradeSound: {fileID: 8300000, guid: 16d129155f2825644bf06fd4693fced4, type: 3}
   _maxLevelIcon: {fileID: 2800000, guid: b8e66c6e341dc6942b3c6b3b6cff5069, type: 3}
   _towerUpgradesLeft:
@@ -335,16 +338,16 @@ MonoBehaviour:
   _coinsIconImageRight: {fileID: 2080613777192973813}
   _leftUpgrades:
   - UpgradeVisual: {fileID: 549900985589105539}
-    visualOverride: {fileID: 22100000, guid: a2f8b1e0203762f4ebc81f47869226c7, type: 2}
+    VisualOverride: {fileID: 0}
     ShootParticle: {fileID: 7076379062540595472}
   - UpgradeVisual: {fileID: 3009483008109898484}
-    visualOverride: {fileID: 22100000, guid: cb822fbeefa098643be81b2cd19e0af5, type: 2}
+    VisualOverride: {fileID: 0}
     ShootParticle: {fileID: 6356527725319481496}
   - UpgradeVisual: {fileID: 6688541202948555988}
-    visualOverride: {fileID: 22100000, guid: 59effca06c8ad714980ae9d797065829, type: 2}
+    VisualOverride: {fileID: 0}
     ShootParticle: {fileID: 107045323124024446}
   - UpgradeVisual: {fileID: 2091000913615745500}
-    visualOverride: {fileID: 22100000, guid: 9638f4705b67e604aa3c3e93aff5f44a, type: 2}
+    VisualOverride: {fileID: 0}
     ShootParticle: {fileID: 3357539326457130969}
   _rightUpgradesProjectiles:
   - {fileID: 5924342677543725132, guid: b2092f98c0f4f6640ab5e4a85711563f, type: 3}
@@ -664,6 +667,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2647583910127561856}
+    - target: {fileID: 6596925044969630202, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseTowerInfoButton
+      objectReference: {fileID: 0}
     - target: {fileID: 7237618813421449053, guid: bdfb9645aafdc5e4890d22e27c2a6de2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

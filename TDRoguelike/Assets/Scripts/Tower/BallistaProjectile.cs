@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallistaProjectile : Projectile
 {
-    public override void Create(Transform target, float speed, float damage, int enemyPierce)
+    public override void Create(Transform target, float speed, float damage, int enemyPierce, float slowPercentage, float towerRange)
     {
         base.Create(target, speed, damage, enemyPierce);
         transform.LookAt(target);
