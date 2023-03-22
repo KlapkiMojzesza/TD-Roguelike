@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 playerInputRaw = _controls.Player.Movement.ReadValue<Vector2>();
         _playerInput = new Vector3(playerInputRaw.x, 0f, playerInputRaw.y).normalized;
 
-        _animAngle = SignedAngleBetween((_mousePosition - transform.position).normalized, _playerInput, Vector3.up);
+        _animAngle = AngleBetweenVectors((_mousePosition - transform.position).normalized, _playerInput, Vector3.up);
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -92,13 +92,13 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, _angle, 0);
     }
 
-    private float SignedAngleBetween(Vector3 a, Vector3 b, Vector3 n)
+    private float AngleBetweenVectors(Vector3 lookingDirection, Vector3 movingDirection, Vector3 upwardsDirection)
     {
-        float angle = Vector3.Angle(a, b);
-        float sign = Mathf.Sign(Vector3.Dot(n, Vector3.Cross(a, b)));
+        float rawAngle = Vector3.Angle(lookingDirection, movingDirection);
+        float sign = Mathf.Sign(Vector3.Dot(upwardsDirection, Vector3.Cross(lookingDirection, movingDirection)));
 
-        float signed_angle = angle * sign;
-
-        return signed_angle;
+        //(-180f; 180f)
+        float angle = rawAngle * sign;
+        return angle;
     }
 }

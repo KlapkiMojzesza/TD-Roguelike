@@ -17,7 +17,7 @@ MonoBehaviour:
   TowerPrice: 40
   TowerEnemyPierce: 1
   TowerFireRate: 1
-  TowerRange: 15
+  TowerRange: 40
   TowerDamage: 0
   ProjectileSpeed: 300
   TowerSlowPercentage: 25
