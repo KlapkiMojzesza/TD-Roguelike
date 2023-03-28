@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf56e65ec703cf4db09f6e73f69efa4, type: 3}
   m_Name: PylonUpgradeR 1
   m_EditorClassIdentifier: 
-  UpgradeName: Right up 1
-  UpgradeInfo: Increase damage by 30
+  UpgradeName: Shards
+  UpgradeInfo: Deals +10 damage to  3 enemies
   UpgradeType: 0
-  Value: 30
-  UpgradeIcon: {fileID: 2800000, guid: 168fe5884b6633746a723775be2cf472, type: 3}
+  Value: 10
+  UpgradeIcon: {fileID: 2800000, guid: 9c37b471643ee1240a8cacc35c3b8a70, type: 3}
   UpgradePrice: 10

@@ -6,13 +6,22 @@ public class PylonUpgradesInGame : TowerInGameUpgrades
 {
     [Space(20)]
     [SerializeField] private LeftUpgrades[] _leftUpgrades;
-    [SerializeField] private GameObject[] _rightUpgradeVisual;
+    [SerializeField] private RightUpgrades[] _rightUpgrades;
+    [SerializeField] private Animator _crystalsAnimator;
 
     private TowerShooting _towerShooting;
     private Animator _animator;
 
     [System.Serializable]
     private class LeftUpgrades
+    {
+        public GameObject UpgradeVisual;
+        public AnimatorOverrideController VisualOverride;
+        public ParticleSystem ShootParticle;
+    }
+
+    [System.Serializable]
+    private class RightUpgrades
     {
         public GameObject UpgradeVisual;
         public AnimatorOverrideController VisualOverride;
@@ -38,14 +47,17 @@ public class PylonUpgradesInGame : TowerInGameUpgrades
             else _leftUpgrades[i].UpgradeVisual.SetActive(false);
         }
 
-        for (int j = 0; j < _rightUpgradeVisual.Length; j++)
+        for (int j = 0; j < _rightUpgrades.Length; j++)
         {
             if (j == rightUpgradesPurchased)
             {
-                _rightUpgradeVisual[j].SetActive(true);              
+                _rightUpgrades[j].UpgradeVisual.SetActive(true);              
             }
-            else _rightUpgradeVisual[j].SetActive(false);
+            else _rightUpgrades[j].UpgradeVisual.SetActive(false);
         }
+
+        _crystalsAnimator.runtimeAnimatorController = _rightUpgrades[rightUpgradesPurchased].VisualOverride;
+        _towerShooting.ChangeShootParticle(_leftUpgrades[leftUpgradesPurchased].ShootParticle);
     }
 
     protected override void UpdateTowerStatsText()

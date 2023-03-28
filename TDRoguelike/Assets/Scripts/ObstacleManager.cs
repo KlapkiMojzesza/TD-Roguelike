@@ -114,7 +114,7 @@ public class ObstacleManager : MonoBehaviour
         }
     }
 
-    public void HideUI()
+    public void HideUI(Tower tower)
     {
         _animator.SetBool("shown", false);
     }

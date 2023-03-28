@@ -26,19 +26,19 @@ public class Tower : MonoBehaviour
     [SerializeField] private AudioClip _showUISound;
     [SerializeField] private AudioClip _hideUISound;
     [SerializeField] private AudioClip _towerPlaceSound; 
-    [SerializeField] private AudioClip _towerSelectionSound;
+    [SerializeField] protected AudioClip _towerSelectionSound;
 
     public static event Action OnTowerInfoShow;
 
-    private AudioSource _audioSource;
-    private Animator _canvasAnimator;
+    protected AudioSource _audioSource;
     private int _collisionsAmount = 0;
     private bool _isPlaced = false;
 
+    private Animator _canvasAnimator;
     private Controls _controls;
     private Dictionary<Material, Color> _allObjects = new Dictionary<Material, Color>();
 
-    private void Awake()
+    protected virtual void Awake()
     {
         TowerManager.OnNextWaveButtonClicked += HandleStartWave;
         TowerManager.OnTowerSelect += HandleAnotherTowerSelected;
@@ -58,7 +58,7 @@ public class Tower : MonoBehaviour
         _canvasAnimator = _towerInfoCanvas.GetComponent<Animator>();
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         TowerManager.OnNextWaveButtonClicked -= HandleStartWave;
         TowerManager.OnTowerSelect -= HandleAnotherTowerSelected;

@@ -17,10 +17,10 @@ MonoBehaviour:
   TowerPrice: 40
   TowerEnemyPierce: 1
   TowerFireRate: 1
-  TowerRange: 40
+  TowerRange: 25
   TowerDamage: 0
   ProjectileSpeed: 300
   TowerSlowPercentage: 25
   ProjectilePrefab: {fileID: 663730234498308813, guid: 4ebe7a72ee4f77e40893dd75e5697981,
     type: 3}
-  TowerIcon: {fileID: 2800000, guid: 10ba2e1d3dc8a6b40a90ac20300b917c, type: 3}
+  TowerIcon: {fileID: 2800000, guid: 66348080ba6847c40a39c9c1c0995b7b, type: 3}

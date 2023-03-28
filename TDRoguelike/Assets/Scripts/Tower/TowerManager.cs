@@ -18,7 +18,7 @@ public class TowerManager : MonoBehaviour
 
     public static event Action<Tower> OnTowerSelect;
     public static event Action OnTowerDeselect;
-    public static event Action OnTowerPlaced;
+    public static event Action<Tower> OnTowerPlaced;
     public static event Action OnNextWaveButtonClicked;
     public static event Action<int> OnMoneyAmountChanged;
 
@@ -104,9 +104,9 @@ public class TowerManager : MonoBehaviour
 
         _currentTower.PlaceTower();
         _towersPlaced.Add(_currentTowerPrefab);
+        OnTowerPlaced?.Invoke(_currentTowerPrefab.GetComponent<Tower>());
         _currentTowerPrefab = null;
         OnTowerDeselect?.Invoke();
-        OnTowerPlaced?.Invoke();
     }
 
     public void SwitchTowers(int towerIndex)

@@ -26,7 +26,7 @@ public class TowerUIManager : MonoBehaviour
 
     private void Start()
     {
-        TowerManager.OnTowerPlaced += HandleTowerDeselect;
+        TowerManager.OnTowerPlaced += HandleTowerPlaced;
         TowerManager.OnTowerDeselect += HandleTowerDeselect;
         TowerManager.OnTowerSelect += HandleTowerSelect;
         TowerManager.OnMoneyAmountChanged += HandleMoneyAmountChanged;
@@ -43,7 +43,7 @@ public class TowerUIManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        TowerManager.OnTowerPlaced -= HandleTowerDeselect;
+        TowerManager.OnTowerPlaced -= HandleTowerPlaced;
         TowerManager.OnTowerDeselect -= HandleTowerDeselect;
         TowerManager.OnTowerSelect -= HandleTowerSelect;
         TowerManager.OnMoneyAmountChanged -= HandleMoneyAmountChanged;
@@ -105,6 +105,10 @@ public class TowerUIManager : MonoBehaviour
         _placingCanvas.SetActive(true);
     }
 
+    private void HandleTowerPlaced(Tower tower)
+    {
+        HandleTowerDeselect();
+    }
     private void HandleTowerDeselect()
     {
         ShowTowersUI();

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf56e65ec703cf4db09f6e73f69efa4, type: 3}
   m_Name: PylonUpgradeL 1
   m_EditorClassIdentifier: 
-  UpgradeName: Pylon up 1
-  UpgradeInfo: Slow by 10%
-  UpgradeType: 4
-  Value: 110
-  UpgradeIcon: {fileID: 2800000, guid: 2db76dd1497f4d8438e1d7c9f3608ad1, type: 3}
+  UpgradeName: Shiny Crystal
+  UpgradeInfo: Increase range by 10
+  UpgradeType: 1
+  Value: 10
+  UpgradeIcon: {fileID: 2800000, guid: b6ec55382b722114dba9b96e07fd12af, type: 3}
   UpgradePrice: 20

@@ -201,6 +201,7 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
                 return;
             }
             //this happends when next upgrade doesnt exist
+            _upgradeNameLeft.text = "MAX LEVEL";
             _upgradeIconImageLeft.texture = _maxLevelIcon;
             _upgradePriceLeft.text = "";
             _coinsIconImageLeft.SetActive(false);
@@ -227,6 +228,7 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
                 return;
             }
             //this happends when next upgrade doesnt exist
+            _upgradeNameRight.text = "MAX LEVEL";
             _upgradeIconImageRight.texture = _maxLevelIcon;
             _upgradePriceRight.text = "";
             _coinsIconImageRight.SetActive(false);
@@ -265,7 +267,7 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
                 break;
 
             case UpgradeType.TowerSlow:
-                _bonusSlowPercentage *= upgradeData.Value;
+                _bonusSlowPercentage += upgradeData.Value;
                 break;
             case UpgradeType.TowerCustom:
 
