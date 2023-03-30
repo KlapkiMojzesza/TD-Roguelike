@@ -19,11 +19,13 @@ public class EnemyMovement : MonoBehaviour
     private WaypointManager _waypointManager;
     private float _distanceToNextWaypoint = 0f;
     private int _currentWaypoint;
-    private bool _isSlowedByPylon = false;
+    private Animator _animator;
+    private float _currentSlowPercentage = 0;
 
     private void Start()
     {
         _waypointManager = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaypointManager>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -74,15 +76,22 @@ public class EnemyMovement : MonoBehaviour
     public void UpgradeSpeed(float amount)
     {
         _speed *= amount;
+       _animator.speed *= amount;
     }
 
     //Pylon Slow Effect
     public void PylonSlowEnemy(float slowPercentage)
     {
-        if (_isSlowedByPylon) return;
+        if (slowPercentage > _currentSlowPercentage)
+        {
+            _speed /= (100 - _currentSlowPercentage) / 100;
+            _animator.speed /= (100 - _currentSlowPercentage) / 100;
 
-        _speed *= (100 - slowPercentage) / 100;
-        _isSlowedByPylon = true;
+            _currentSlowPercentage = slowPercentage;
+
+            _speed *= (100 - _currentSlowPercentage) / 100;
+            _animator.speed *= (100 - _currentSlowPercentage) / 100;
+        }
     }
 
     //From animation

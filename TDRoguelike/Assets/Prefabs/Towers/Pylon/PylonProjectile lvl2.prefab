@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8891770221216576602}
   - component: {fileID: 663730234498308813}
   m_Layer: 14
-  m_Name: PylonProjectile
+  m_Name: PylonProjectile lvl2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,3 +47,4 @@ MonoBehaviour:
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 4096
+  _enemyHit: 5

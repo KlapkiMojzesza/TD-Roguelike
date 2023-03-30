@@ -25,6 +25,7 @@ public class PylonUpgradesInGame : TowerInGameUpgrades
     {
         public GameObject UpgradeVisual;
         public AnimatorOverrideController VisualOverride;
+        public Projectile Projectile;
     }
 
     protected override void Start()
@@ -58,6 +59,7 @@ public class PylonUpgradesInGame : TowerInGameUpgrades
 
         _crystalsAnimator.runtimeAnimatorController = _rightUpgrades[rightUpgradesPurchased].VisualOverride;
         _towerShooting.ChangeShootParticle(_leftUpgrades[leftUpgradesPurchased].ShootParticle);
+        _towerShooting.ChangeProjectile(_rightUpgrades[rightUpgradesPurchased].Projectile, null);
     }
 
     protected override void UpdateTowerStatsText()

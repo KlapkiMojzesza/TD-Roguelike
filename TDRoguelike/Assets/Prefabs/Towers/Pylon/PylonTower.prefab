@@ -1760,7 +1760,7 @@ MonoBehaviour:
     ShootParticle: {fileID: 574174181962205821}
   - UpgradeVisual: {fileID: 74039133713101993}
     VisualOverride: {fileID: 22100000, guid: 020df4d6a64fc97469f4bad59b292720, type: 2}
-    ShootParticle: {fileID: 574174181962205821}
+    ShootParticle: {fileID: 2838904938865727020}
   - UpgradeVisual: {fileID: 1435283072652019096}
     VisualOverride: {fileID: 22100000, guid: 4cefe6811c45fb145ac9d85bd9720da7, type: 2}
     ShootParticle: {fileID: 2838904938865727020}
@@ -1770,12 +1770,20 @@ MonoBehaviour:
   _rightUpgrades:
   - UpgradeVisual: {fileID: 8646047621116445749}
     VisualOverride: {fileID: 22100000, guid: 551e740afd84542408ed2105963a184d, type: 2}
+    Projectile: {fileID: 663730234498308813, guid: 57a447dde7121e84bbd9e813c731c516,
+      type: 3}
   - UpgradeVisual: {fileID: 1269385262560272344}
     VisualOverride: {fileID: 22100000, guid: 76e8c9c0e5af3cd40a6b32edb958edca, type: 2}
+    Projectile: {fileID: 663730234498308813, guid: b2d7d73882408d1478e8c7a1840e97c9,
+      type: 3}
   - UpgradeVisual: {fileID: 2397511261546654638}
     VisualOverride: {fileID: 22100000, guid: 2fb5adde16a27df409a3d9a7e54c53a3, type: 2}
+    Projectile: {fileID: 663730234498308813, guid: 4ebe7a72ee4f77e40893dd75e5697981,
+      type: 3}
   - UpgradeVisual: {fileID: 3371877896637171243}
     VisualOverride: {fileID: 22100000, guid: bca4472c9b4f3934b8351e6df8de609c, type: 2}
+    Projectile: {fileID: 663730234498308813, guid: 5f8c93e10744c534d84294860cafa8f8,
+      type: 3}
   _crystalsAnimator: {fileID: 4707659940747142150}
 --- !u!1 &5376858470599351608
 GameObject:
@@ -3284,6 +3292,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4819673153287900, guid: e9c1d4bd7f359ee4d903ca1fa5792a46, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819673153287900, guid: e9c1d4bd7f359ee4d903ca1fa5792a46, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819673153287900, guid: e9c1d4bd7f359ee4d903ca1fa5792a46, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 198253990903847732, guid: e9c1d4bd7f359ee4d903ca1fa5792a46,
         type: 3}
       propertyPath: playOnAwake
@@ -3374,6 +3394,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371301608603798189, guid: bd69cf1cbbba94e44bccd5e72b70e24b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371301608603798189, guid: bd69cf1cbbba94e44bccd5e72b70e24b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6148038639062191257, guid: bd69cf1cbbba94e44bccd5e72b70e24b,
         type: 3}

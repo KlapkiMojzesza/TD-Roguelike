@@ -6,6 +6,7 @@ public class PylonProjectile : Projectile
 {
     [Header("Settings")]
     [SerializeField] private LayerMask _enemyLayer;
+    [SerializeField] private int _enemyHit = 0;
 
     public override void Create(Transform target, float speed, float damage, int enemyPierce, float slowPercentage, float towerRange)
     {
@@ -15,6 +16,11 @@ public class PylonProjectile : Projectile
         foreach (Collider enemy in enemiesInRange)
         {
             enemy.GetComponent<EnemyMovement>().PylonSlowEnemy(_slowPercentage);
+            if (_enemyHit > 0)
+            {
+                enemy.GetComponent<IDamegeable>().TakeDamage(_damage);
+                _enemyHit--;
+            }
         }
     }
 
