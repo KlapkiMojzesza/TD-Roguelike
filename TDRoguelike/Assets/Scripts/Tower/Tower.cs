@@ -224,7 +224,7 @@ public class Tower : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Obstacle"))
+        if (other.CompareTag("Obstacle") || other.CompareTag("Tower"))
         {
             _collisionsAmount++;
         }
@@ -232,7 +232,7 @@ public class Tower : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Obstacle"))
+        if (other.CompareTag("Obstacle") || other.CompareTag("Tower"))
         {
             _collisionsAmount--;
         }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyEffects))]
 public class EnemyMovement : MonoBehaviour
 {
     [Header("Settings")]
@@ -75,8 +76,8 @@ public class EnemyMovement : MonoBehaviour
     //Minotaur Special
     public void UpgradeSpeed(float amount)
     {
-        _speed *= amount;
-       _animator.speed *= amount;
+        _speed *= (100 - amount) / 100;
+        _animator.speed *= (100 - amount) / 100;
     }
 
     //Pylon Slow Effect
@@ -92,6 +93,12 @@ public class EnemyMovement : MonoBehaviour
             _speed *= (100 - _currentSlowPercentage) / 100;
             _animator.speed *= (100 - _currentSlowPercentage) / 100;
         }
+    }
+
+    public void PylonRemoveSlow()
+    {
+        _speed /= (100 - _currentSlowPercentage) / 100;
+        _animator.speed /= (100 - _currentSlowPercentage) / 100;
     }
 
     //From animation

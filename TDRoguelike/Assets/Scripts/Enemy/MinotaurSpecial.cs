@@ -45,8 +45,7 @@ public class MinotaurSpecial : MonoBehaviour
         Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, _specialRange, enemyLayers);
         foreach (Collider enemy in enemiesInRange)
         {
-            enemy.GetComponent<EnemyMovement>().UpgradeSpeed(_speedBoostPercentage);
-            enemy.gameObject.GetComponent<Animator>().speed *= _speedBoostPercentage;
+            enemy.GetComponent<EnemyEffects>().MinotaurSpeedEnemy(enemy.gameObject, _speedBoostPercentage);
         }
     }
 

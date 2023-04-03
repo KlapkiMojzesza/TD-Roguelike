@@ -57,6 +57,7 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
 
     public void TakeDamage(float damage)
     {
+        if (damage <= 0) return;
         if (!_healthBar.activeSelf) _healthBar.SetActive(true);
 
         _currentHealth -= damage;

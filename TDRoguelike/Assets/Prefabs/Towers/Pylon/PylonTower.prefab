@@ -1487,7 +1487,7 @@ GameObject:
   - component: {fileID: 6365179744193425771}
   m_Layer: 13
   m_Name: PylonTower
-  m_TagString: Obstacle
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1714,7 +1714,7 @@ MonoBehaviour:
   _rotationSpeed: 0
   _firePoint: {fileID: 8011892054751202232}
   _rotatingParts: {fileID: 0}
-  _shootSound: {fileID: 0}
+  _shootSound: {fileID: 8300000, guid: 9b162f89255511b478121eb83f4e5f99, type: 3}
   _targetPrioritySwitchSound: {fileID: 8300000, guid: 7c7fccda25412024594b36a302692766,
     type: 3}
   _shootParticle: {fileID: 574174181962205821}
@@ -2714,7 +2714,7 @@ GameObject:
   - component: {fileID: 6180181967996940152}
   m_Layer: 0
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

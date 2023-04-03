@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 7989117912051073575}
   m_Layer: 13
   m_Name: CannonTower
-  m_TagString: Obstacle
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

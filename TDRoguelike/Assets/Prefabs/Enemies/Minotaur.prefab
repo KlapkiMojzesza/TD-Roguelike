@@ -578,6 +578,7 @@ GameObject:
   - component: {fileID: -3517573562502243777}
   - component: {fileID: -5391535217429423724}
   - component: {fileID: 4856051541117100361}
+  - component: {fileID: 2422779892878420929}
   m_Layer: 12
   m_Name: Minotaur
   m_TagString: Enemy
@@ -794,7 +795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01597d8263ed0147affdead973838fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedBoostPercentage: 1.1
+  _speedBoostPercentage: 10
   _specialCooldown: 3
   _specialRange: 30
   enemyLayers:
@@ -804,6 +805,18 @@ MonoBehaviour:
   _specialImage: {fileID: 992202960650122383}
   _specialSound: {fileID: 8300000, guid: 11cc8ddb73aca5143ba8aee82fd272e6, type: 3}
   _minotaurSpecialParticle: {fileID: 6949582850602994734}
+--- !u!114 &2422779892878420929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3794939104383789673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c58ebefa2c07e4cafd9f917ce8ed87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3957877720943898231
 GameObject:
   m_ObjectHideFlags: 0

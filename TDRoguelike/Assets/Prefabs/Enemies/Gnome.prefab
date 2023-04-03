@@ -412,6 +412,7 @@ GameObject:
   - component: {fileID: -8000552780799056211}
   - component: {fileID: 5352466302609825606}
   - component: {fileID: 7305555451590293056}
+  - component: {fileID: -5397128507692633652}
   m_Layer: 12
   m_Name: Gnome
   m_TagString: Enemy
@@ -614,6 +615,18 @@ MonoBehaviour:
   _rotateSpeed: 0.1
   _lookDirectionOffset: 0
   _footstepParticle: {fileID: 7462907276587613045}
+--- !u!114 &-5397128507692633652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3295161404839182595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c58ebefa2c07e4cafd9f917ce8ed87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3422119721537789613
 GameObject:
   m_ObjectHideFlags: 0
