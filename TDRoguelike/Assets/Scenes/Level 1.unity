@@ -10196,14 +10196,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b045134d458819b4a97075c482462b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerLayer:
-    serializedVersion: 2
-    m_Bits: 512
   _obstacleLayer:
     serializedVersion: 2
     m_Bits: 8192
   _textureOverUI: {fileID: 2800000, guid: da8e8533bcdde8540a372b7a096ea466, type: 3}
-  _textureOverTower: {fileID: 2800000, guid: b6ee21a5d2c7c504995a8ce4f5f9f2c7, type: 3}
+  _textureOverTower: {fileID: 2800000, guid: 96923d0538dd0344c8f9001c4266c2c7, type: 3}
   _textureOverObstacle: {fileID: 2800000, guid: 63bf9d7307d520c488155c776ea62620,
     type: 3}
   _textureOverOverGround: {fileID: 2800000, guid: bf7642802276d8149969b55b88311ac3,
