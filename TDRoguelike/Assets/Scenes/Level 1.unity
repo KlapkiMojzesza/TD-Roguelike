@@ -19446,8 +19446,24 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ResumeGameButton
       objectReference: {fileID: 0}
+    - target: {fileID: 7407985210640227296, guid: 3e057db44f4567640ab95bbf912cfffd,
+        type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 5812892338696074381}
+    - target: {fileID: 7571919521103736864, guid: 3e057db44f4567640ab95bbf912cfffd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e057db44f4567640ab95bbf912cfffd, type: 3}
+--- !u!95 &5812892338696074381 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7352992262356425069, guid: 3e057db44f4567640ab95bbf912cfffd,
+    type: 3}
+  m_PrefabInstance: {fileID: 5812892338696074380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7701644491881215804
 PrefabInstance:
   m_ObjectHideFlags: 0

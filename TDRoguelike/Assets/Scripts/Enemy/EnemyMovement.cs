@@ -25,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        _waypointManager = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaypointManager>();
+        _waypointManager = (WaypointManager)FindObjectOfType(typeof(WaypointManager));
         _animator = GetComponent<Animator>();
     }
 

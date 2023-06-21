@@ -5,25 +5,41 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
     [Header("To Attach")]
-    [SerializeField] GameObject _pauseCanvas;
-    [SerializeField] GameObject _optionsCanvas;
-    [SerializeField] AudioMixer _audioMixer;
+    [SerializeField] private Animator _optionsCanvasAnimator;
+    [SerializeField] private GameObject _pauseCanvas;
+    [SerializeField] private AudioMixer _audioMixer;
+    [SerializeField] private Slider _musicVolumeSlider;
+    [SerializeField] private Slider _soundVolumeSlider;
+    [SerializeField] private AudioClip _showOptionSound;
+    [SerializeField] private AudioClip _hideOptionSound;
 
     public static event Action OnGamePaused;
     public static event Action OnGameResumed;
 
+    private AudioSource _audioSource;
     private bool isPaused = false;
     private Controls _controls;
+    private float _musicVolume;
+    private float _soundVolume;
 
     private void Start()
     {
         _controls = new Controls();
         _controls.Player.Enable();
         _controls.Player.Pause.performed += HandlePause;
+
+        _audioSource = GetComponent<AudioSource>();
+
+        _audioMixer.GetFloat("MusicVolume", out _musicVolume);
+        _audioMixer.GetFloat("SoundsVolume", out _soundVolume);
+
+        _musicVolumeSlider.value = _musicVolume;
+        _soundVolumeSlider.value = _soundVolume;
     }
 
     private void OnDestroy()
@@ -50,7 +66,8 @@ public class PauseManager : MonoBehaviour
     {
         OnGameResumed?.Invoke();
         _pauseCanvas.SetActive(false);
-        _optionsCanvas.SetActive(false);
+        _optionsCanvasAnimator.SetBool("shown", false);
+        _audioSource.PlayOneShot(_hideOptionSound);
         Time.timeScale = 1f;
     }
 
@@ -80,12 +97,14 @@ public class PauseManager : MonoBehaviour
     public void ShowOptionsButton()
     {
         _pauseCanvas.SetActive(false);
-        _optionsCanvas.SetActive(true);
+        _optionsCanvasAnimator.SetBool("shown", true);
+        _audioSource.PlayOneShot(_showOptionSound);
     }
 
     public void OptionsBackButton()
     {
-        _optionsCanvas.SetActive(false);
+        _audioSource.PlayOneShot(_hideOptionSound);
+        _optionsCanvasAnimator.SetBool("shown", false);
         _pauseCanvas.SetActive(true);
     }
 

@@ -215,11 +215,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5847428196059083335, guid: 18b5a17da47836244a8590927446ad7c,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5847428196059083335, guid: 18b5a17da47836244a8590927446ad7c,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -231,12 +226,7 @@ PrefabInstance:
     - target: {fileID: 5847428196059083335, guid: 18b5a17da47836244a8590927446ad7c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HideUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 5847428196059083335, guid: 18b5a17da47836244a8590927446ad7c,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ObstacleManager, Assembly-CSharp
+      value: CloseButton
       objectReference: {fileID: 0}
     - target: {fileID: 5847428196059083335, guid: 18b5a17da47836244a8590927446ad7c,
         type: 3}
