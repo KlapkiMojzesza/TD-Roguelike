@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
     [Header("Settings")]
     [SerializeField] private float _maxHealth = 100f;
     public float EnemyStrength = 1f;
+    public int _experienceDrop = 10;
 
     [Header("To Attach")]
     [SerializeField] private Transform _healthbarCanvas;
@@ -28,6 +29,7 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
     public static event Action<EnemyHealth> OnEnemyDeath;
     public static event Action<EnemyHealth> OnEnemyKilled;
 
+    [HideInInspector] public bool DamagedByPlayer = false;
     private AudioSource _audioSource;
     private Camera _camera;
     private float _currentHealth;

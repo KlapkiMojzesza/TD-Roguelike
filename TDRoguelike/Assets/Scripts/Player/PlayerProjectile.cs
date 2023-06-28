@@ -57,6 +57,7 @@ public class PlayerProjectile : MonoBehaviour
             {
                 _pierceThroughEnemiesAmount--;
                 collision.gameObject.GetComponent<IDamegeable>().TakeDamage(_damage);
+                collision.gameObject.GetComponent<EnemyHealth>().DamagedByPlayer = true;
             }
             if (_pierceThroughEnemiesAmount == 0)
             {

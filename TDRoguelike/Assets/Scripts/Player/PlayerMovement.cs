@@ -13,11 +13,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _animationSmoothMultiplier = 1.15f;
 
     [Header("To Attach")]
+    [SerializeField] private Transform _rotatingParts;
     [SerializeField] private LayerMask _groundLayer;
 
     private Animator _animator;
     private Vector3 _playerInput;
     private Vector3 _mousePosition;
+    private Vector3 _moveDirection;
     private CharacterController _controller;
     private Controls _controls;
     private float _animAngle;
@@ -69,9 +71,9 @@ public class PlayerMovement : MonoBehaviour
         if (_playerInput.magnitude > 0.1f)
         {
             //-1 left; 1 right
-            _animatorVelocityX = Mathf.Lerp(_animatorVelocityX, Mathf.Sin(_animAngle * Mathf.PI / 180), _animationSmoothFactor * Time.deltaTime);
+            _animatorVelocityX = Mathf.Lerp(_animatorVelocityX, Mathf.Sin(_animAngle * Mathf.PI / 180), _animationSmoothFactor);
             //-1 backward; 1 forward
-            _animatorVelocityY = Mathf.Lerp(_animatorVelocityY, Mathf.Cos(_animAngle * Mathf.PI / 180), _animationSmoothFactor * Time.deltaTime);
+            _animatorVelocityY = Mathf.Lerp(_animatorVelocityY, Mathf.Cos(_animAngle * Mathf.PI / 180), _animationSmoothFactor);
 
             _animator.SetFloat("velocityX", _animatorVelocityX * _animationSmoothMultiplier);
             _animator.SetFloat("velocityY", _animatorVelocityY * _animationSmoothMultiplier);
@@ -81,15 +83,17 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetFloat("velocityX", 0f);
             _animator.SetFloat("velocityY", 0f);
         }
-        //add gravity
-        _playerInput.y = -1f;
 
-        _controller.Move(_playerInput * _playerSpeed * Time.deltaTime);
+        //add gravity
+        _moveDirection = _playerInput;
+        _moveDirection.y = -1f;
+
+        _controller.Move(_moveDirection * _playerSpeed * Time.deltaTime);
     }
 
     private void RotatePlayer()
     {      
-        transform.rotation = Quaternion.Euler(0, _angle, 0);
+        _rotatingParts.rotation = Quaternion.Euler(0, _angle, 0);
     }
 
     private float AngleBetweenVectors(Vector3 lookingDirection, Vector3 movingDirection, Vector3 upwardsDirection)

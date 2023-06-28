@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 7258741442970431606}
   - component: {fileID: 5959958936978680668}
   m_Layer: 5
-  m_Name: Health Icon
+  m_Name: Money Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -556,6 +556,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7701644492400215748}
     m_Modifications:
+    - target: {fileID: 558708245909361939, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 625435217762378217, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -566,6 +571,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 7701644492400215755}
+    - target: {fileID: 745789744110157825, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2044569991787456241, guid: 7dd8962c349e25a40b6f58fbe0d8c132,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

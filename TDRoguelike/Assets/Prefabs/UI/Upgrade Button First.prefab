@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 815151491918331478}
   - component: {fileID: 4024413675078800153}
   - component: {fileID: 3171897880210365339}
-  - component: {fileID: 4189386328476561489}
+  - component: {fileID: 3767116052051518273}
   m_Layer: 5
   m_Name: Upgrade Button First
   m_TagString: Untagged
@@ -125,9 +125,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4189386328476561489}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Upgrade
+      - m_Target: {fileID: 3767116052051518273}
+        m_TargetAssemblyTypeName: PlayerUpgradeButton, Assembly-CSharp
+        m_MethodName: ChooseUpgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -137,7 +137,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4189386328476561489
+--- !u!114 &3767116052051518273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,14 +146,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6010022961053043472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d59426b0f86ff24691b622c7c9619d9, type: 3}
+  m_Script: {fileID: 11500000, guid: a4a6657c26237204ababc8f11c9427ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _upgradeIcon: {fileID: 2434566723671769073}
+  _requiredUpgrade: {fileID: 0}
   _blockedIcon: {fileID: 0}
   _purchasedIcon: {fileID: 7909431071634164709}
-  _upgradeData: {fileID: 0}
-  _requiredUpgrade: {fileID: 0}
   IsPurchased: 0
 --- !u!1 &7124289401929337468
 GameObject:
@@ -188,10 +186,10 @@ RectTransform:
   m_Father: {fileID: 7865791212919189341}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00056398, y: -0.000025749}
-  m_SizeDelta: {x: 122.64177, y: 122.64314}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7455532809065381820
 CanvasRenderer:
@@ -261,10 +259,10 @@ RectTransform:
   m_Father: {fileID: 7865791212919189341}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00056398, y: -0.000025749}
-  m_SizeDelta: {x: 122.64177, y: 122.64314}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7259559083100606278
 CanvasRenderer:
@@ -334,10 +332,10 @@ RectTransform:
   m_Father: {fileID: 7865791212919189341}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.80981445, y: -2.8}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7842328487574089736
 CanvasRenderer:
