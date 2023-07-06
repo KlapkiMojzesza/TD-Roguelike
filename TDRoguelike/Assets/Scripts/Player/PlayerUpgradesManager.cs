@@ -22,6 +22,7 @@ public class PlayerUpgradesManager : MonoBehaviour
     [SerializeField] private GameObject _upgradeButtonBlank;
     [SerializeField] private GameObject _upgradeButtonBlocked;
     [SerializeField] private GameObject _upgradeButtonPurchased;
+    [SerializeField] private GameObject _upgradeButtonToExpensive;
     [SerializeField] private TMP_Text _upgradesTypeNameText;
     [SerializeField] private TMP_Text _upgradeDescriptionText;
     [SerializeField] private TMP_Text _levelPointsAmountText;
@@ -33,6 +34,7 @@ public class PlayerUpgradesManager : MonoBehaviour
     private Animator _upgradeCanvasAnimator;
     private AudioSource _audioSource;
     private PlayerUpgradeButton _currentUpgradeButtonLogic;
+    private PlayerUpgradeScriptableObject _currentUpgradeData;
     private Controls _controls;
     private int _currentLevelPointsAmount = 0;
     private bool _isShown = false;
@@ -96,17 +98,22 @@ public class PlayerUpgradesManager : MonoBehaviour
         {
             _upgradeButtonPurchased.SetActive(true);
         }
-        else if (upgradeButtonLogic.UpgradePossible())
+        else if (!upgradeButtonLogic.UpgradePossible())
         {
-            _upgradeButton.SetActive(true);
+            _upgradeButtonBlocked.SetActive(true);           
+        }
+        else if (upgradeData.UpgradePrice > _currentLevelPointsAmount)
+        {
+            _upgradeButtonToExpensive.SetActive(true);
         }
         else
         {
-            _upgradeButtonBlocked.SetActive(true);
+            _upgradeButton.SetActive(true);
         }
 
         _currentUpgradeButtonLogic = upgradeButtonLogic;
-        _upgradeDescriptionText.text = upgradeData.UpgradeDescription;
+        _currentUpgradeData = upgradeData;
+        _upgradeDescriptionText.text = _currentUpgradeData.UpgradeDescription;
 
         _audioSource.PlayOneShot(_choseUpgradeSound);
     }
@@ -135,6 +142,8 @@ public class PlayerUpgradesManager : MonoBehaviour
     {
         if (_upgradesPurchased.Contains(_currentUpgradeButtonLogic)) return;
 
+        _currentLevelPointsAmount -= _currentUpgradeData.UpgradePrice;
+        _levelPointsAmountText.text = _currentLevelPointsAmount.ToString();
         _currentUpgradeButtonLogic.IsPurchased = true;
 
         TurnOffAllUpgradeButons();
@@ -143,7 +152,6 @@ public class PlayerUpgradesManager : MonoBehaviour
 
         _upgradesPurchased.Add(_currentUpgradeButtonLogic);
         OnUpgradePurchased?.Invoke(_currentUpgradeButtonLogic);
-
     }
 
     private void TurnOffAllUpgradeButons()
@@ -152,6 +160,7 @@ public class PlayerUpgradesManager : MonoBehaviour
         _upgradeButton.SetActive(false);
         _upgradeButtonBlocked.SetActive(false);
         _upgradeButtonPurchased.SetActive(false);
+        _upgradeButtonToExpensive.SetActive(false);
     }
 
     public void SwitchUpgradeType(int iconIndex)

@@ -999,6 +999,7 @@ MonoBehaviour:
   _upgradeButtonBlank: {fileID: 9204004867968411168}
   _upgradeButtonBlocked: {fileID: 8648338196806392006}
   _upgradeButtonPurchased: {fileID: 4910800556868283563}
+  _upgradeButtonToExpensive: {fileID: 6888438441085338349}
   _upgradesTypeNameText: {fileID: 4636511754950585639}
   _upgradeDescriptionText: {fileID: 9186935083940183552}
   _levelPointsAmountText: {fileID: 6887140838020501951}
@@ -2253,6 +2254,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6888438441085338349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7310935411700758877, guid: 971b149c4e415864fa389db031e1b300,
+    type: 3}
+  m_PrefabInstance: {fileID: 4246066798148385712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8648338196806392006 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4821136959728558966, guid: 971b149c4e415864fa389db031e1b300,
