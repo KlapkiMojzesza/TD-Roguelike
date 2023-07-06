@@ -40,11 +40,6 @@ public class Tower : MonoBehaviour
 
     protected virtual void Awake()
     {
-        TowerManager.OnNextWaveButtonClicked += HandleStartWave;
-        TowerManager.OnTowerSelect += HandleAnotherTowerSelected;
-        PauseManager.OnGamePaused += OnPaused;
-        PauseManager.OnGameResumed += OnResumed;
-
         _controls = new Controls();
         _controls.Player.Enable();
         _controls.Player.Info.performed += HandlePlayerMouseInfo;
@@ -56,22 +51,31 @@ public class Tower : MonoBehaviour
 
         _audioSource = GetComponent<AudioSource>();
         _canvasAnimator = _towerInfoCanvas.GetComponent<Animator>();
+
+        TowerManager.OnNextWaveButtonClicked += HandleStartWave;
+        TowerManager.OnTowerSelect += HandleAnotherTowerSelected;
+        PauseManager.OnGamePaused += HideTowerUpgradesMenu;
+        PauseManager.OnGameResumed += ShowTowerUpgradesMenu;
+        PlayerUpgradesManager.OnUpgradeMenuShow += HideTowerUpgradesMenu;
+        PlayerUpgradesManager.OnUpgradeMenuHide += ShowTowerUpgradesMenu;
     }
 
     protected virtual void OnDestroy()
     {
+        _controls.Player.Info.performed -= HandlePlayerMouseInfo;
         TowerManager.OnNextWaveButtonClicked -= HandleStartWave;
         TowerManager.OnTowerSelect -= HandleAnotherTowerSelected;
-        _controls.Player.Info.performed -= HandlePlayerMouseInfo;
-        PauseManager.OnGamePaused -= OnPaused;
-        PauseManager.OnGameResumed -= OnResumed;
+        PauseManager.OnGamePaused -= HideTowerUpgradesMenu;
+        PauseManager.OnGameResumed -= ShowTowerUpgradesMenu;
+        PlayerUpgradesManager.OnUpgradeMenuShow -= HideTowerUpgradesMenu;
+        PlayerUpgradesManager.OnUpgradeMenuHide -= ShowTowerUpgradesMenu;
     }
-    private void OnPaused()
+    private void HideTowerUpgradesMenu()
     {
         if (_canvasAnimator.GetBool("shown")) _canvasAnimator.gameObject.SetActive(false);
     }
 
-    private void OnResumed()
+    private void ShowTowerUpgradesMenu()
     {
         if (!_canvasAnimator.gameObject.activeSelf)
         {

@@ -40,8 +40,10 @@ public class ObstacleManager : MonoBehaviour
         _controls.Player.Info.performed += HandlePlayerMouseInfo;
         TowerManager.OnTowerPlaced += HideUI;
         TowerManager.OnTowerSelect += HandleTowerSelect;
-        PauseManager.OnGamePaused += OnPaused;
-        PauseManager.OnGameResumed += OnResumed;
+        PauseManager.OnGamePaused += HideObstacleMenu;
+        PauseManager.OnGameResumed += ShowObstacleMenu;
+        PlayerUpgradesManager.OnUpgradeMenuShow += HideObstacleMenu;
+        PlayerUpgradesManager.OnUpgradeMenuHide += ShowObstacleMenu;
     }
 
     private void OnDestroy()
@@ -49,16 +51,18 @@ public class ObstacleManager : MonoBehaviour
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
         TowerManager.OnTowerPlaced -= HideUI;
         TowerManager.OnTowerSelect -= HandleTowerSelect;
-        PauseManager.OnGamePaused -= OnPaused;
-        PauseManager.OnGameResumed -= OnResumed;
+        PauseManager.OnGamePaused -= HideObstacleMenu;
+        PauseManager.OnGameResumed -= ShowObstacleMenu;
+        PlayerUpgradesManager.OnUpgradeMenuShow -= HideObstacleMenu;
+        PlayerUpgradesManager.OnUpgradeMenuHide -= ShowObstacleMenu;
     }
 
-    private void OnPaused()
+    private void HideObstacleMenu()
     {
         if (_animator.GetBool("shown")) this.gameObject.SetActive(false);
     }
 
-    private void OnResumed()
+    private void ShowObstacleMenu()
     {
         if (!this.gameObject.activeSelf)
         {

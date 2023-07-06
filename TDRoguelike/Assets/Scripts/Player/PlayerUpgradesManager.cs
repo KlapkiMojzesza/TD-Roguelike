@@ -8,26 +8,35 @@ using UnityEngine.InputSystem;
 public class PlayerUpgradesManager : MonoBehaviour
 {
     [Header("To Attach")]
+    [SerializeField] private GameObject _playerUpgradesCanvas;
     [SerializeField] private GameObject[] _iconsSelection;
     [SerializeField] private AudioClip[] _switchTypeSound;
     [SerializeField] private AudioClip _choseUpgradeSound;
     [SerializeField] private AudioClip _buyUpgradeSound;
+    [SerializeField] private AudioClip _showUISound;
+    [SerializeField] private AudioClip _hideUISound;
 
     [Space(20)]
+    [Header("To Attach UI")]
     [SerializeField] private GameObject _upgradeButton;
     [SerializeField] private GameObject _upgradeButtonBlank;
     [SerializeField] private GameObject _upgradeButtonBlocked;
     [SerializeField] private GameObject _upgradeButtonPurchased;
     [SerializeField] private TMP_Text _upgradesTypeNameText;
     [SerializeField] private TMP_Text _upgradeDescriptionText;
+    [SerializeField] private TMP_Text _levelPointsAmountText;
 
     public static event Action<PlayerUpgradeButton> OnUpgradePurchased;
-    public static event Action<EnemyHealth> OnUpgradeMenuShow;
-    public static event Action<EnemyHealth> OnUpgradeMenuHide;
+    public static event Action OnUpgradeMenuShow;
+    public static event Action OnUpgradeMenuHide;
 
+    private Animator _upgradeCanvasAnimator;
     private AudioSource _audioSource;
     private PlayerUpgradeButton _currentUpgradeButtonLogic;
     private Controls _controls;
+    private int _currentLevelPointsAmount = 0;
+    private bool _isShown = false;
+    private bool gameIsPaused = false;
 
     //private doesnt work for some reason :/
     public List<PlayerUpgradeButton> _upgradesPurchased;
@@ -37,36 +46,46 @@ public class PlayerUpgradesManager : MonoBehaviour
         _controls = new Controls();
         _controls.Player.Enable();
 
+        _upgradeCanvasAnimator = _playerUpgradesCanvas.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        _levelPointsAmountText.text = _currentLevelPointsAmount.ToString();
 
-        _controls.Player.UpgradeMenu.performed += ShowUpgradesMenu;
+        _controls.Player.UpgradeMenu.performed += SwitchUpgradesMenuVisibility;
         PlayerUpgradeButton.OnUpgradeChoose += HandleUpgradeChoose;
+        PlayerExperience.OnLevelUp += HandlePlayerLevelUp;
+        PauseManager.OnGamePaused += HandleGamePause;
+        PauseManager.OnGameResumed += HandleGameResume;
     }
 
     private void OnDestroy()
     {
-        _controls.Player.UpgradeMenu.performed -= ShowUpgradesMenu;
+        _controls.Player.UpgradeMenu.performed -= SwitchUpgradesMenuVisibility;
         PlayerUpgradeButton.OnUpgradeChoose -= HandleUpgradeChoose;
+        PlayerExperience.OnLevelUp -= HandlePlayerLevelUp;
+        PauseManager.OnGamePaused -= HandleGamePause;
+        PauseManager.OnGameResumed -= HandleGameResume;
     }
 
-    private void ShowUpgradesMenu(InputAction.CallbackContext obj)
+    private void SwitchUpgradesMenuVisibility(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
-    }
+        if (gameIsPaused) return;
 
-    public void UpgradeButton()
-    {
-        if (_upgradesPurchased.Contains(_currentUpgradeButtonLogic)) return;
-
-        _currentUpgradeButtonLogic.IsPurchased = true;
-
-        TurnOffAllUpgradeButons();
-        _upgradeButtonPurchased.SetActive(true);
-        _audioSource.PlayOneShot(_buyUpgradeSound);
-
-        _upgradesPurchased.Add(_currentUpgradeButtonLogic);
-        OnUpgradePurchased?.Invoke(_currentUpgradeButtonLogic);
-
+        if (_isShown)
+        {
+            _upgradeCanvasAnimator.SetBool("shown", false);
+            _isShown = false;
+            OnUpgradeMenuHide?.Invoke();
+            _audioSource.PlayOneShot(_hideUISound);
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            _upgradeCanvasAnimator.SetBool("shown", true);
+            _isShown = true;
+            OnUpgradeMenuShow?.Invoke();
+            _audioSource.PlayOneShot(_showUISound);
+            Time.timeScale = 0f;
+        }
     }
 
     private void HandleUpgradeChoose(PlayerUpgradeButton upgradeButtonLogic, PlayerUpgradeScriptableObject upgradeData)
@@ -90,6 +109,41 @@ public class PlayerUpgradesManager : MonoBehaviour
         _upgradeDescriptionText.text = upgradeData.UpgradeDescription;
 
         _audioSource.PlayOneShot(_choseUpgradeSound);
+    }
+
+    private void HandlePlayerLevelUp(int currentPlayerLevel)
+    {
+        _currentLevelPointsAmount++;
+        _levelPointsAmountText.text = _currentLevelPointsAmount.ToString();
+    }
+
+    private void HandleGamePause()
+    {
+        gameIsPaused = true;
+        _upgradeCanvasAnimator.SetBool("shown", false);
+        _isShown = false;
+        _playerUpgradesCanvas.SetActive(false);
+    }
+
+    private void HandleGameResume()
+    {
+        gameIsPaused = false;
+        _playerUpgradesCanvas.SetActive(true);
+    }
+
+    public void UpgradeButton()
+    {
+        if (_upgradesPurchased.Contains(_currentUpgradeButtonLogic)) return;
+
+        _currentUpgradeButtonLogic.IsPurchased = true;
+
+        TurnOffAllUpgradeButons();
+        _upgradeButtonPurchased.SetActive(true);
+        _audioSource.PlayOneShot(_buyUpgradeSound);
+
+        _upgradesPurchased.Add(_currentUpgradeButtonLogic);
+        OnUpgradePurchased?.Invoke(_currentUpgradeButtonLogic);
+
     }
 
     private void TurnOffAllUpgradeButons()
@@ -120,5 +174,14 @@ public class PlayerUpgradesManager : MonoBehaviour
         _upgradeDescriptionText.text = "";
 
         _audioSource.PlayOneShot(_switchTypeSound[UnityEngine.Random.Range(0, _switchTypeSound.Length)]);
+    }
+
+    public void CloseButton()
+    {
+        _upgradeCanvasAnimator.SetBool("shown", false);
+        _isShown = false;
+        OnUpgradeMenuHide?.Invoke();
+        _audioSource.PlayOneShot(_hideUISound);
+        Time.timeScale = 1f;
     }
 }

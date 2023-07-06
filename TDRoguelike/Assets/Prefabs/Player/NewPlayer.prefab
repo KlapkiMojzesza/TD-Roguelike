@@ -983,6 +983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 595b70fd68f4a384a9aabe995defa34b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerUpgradesCanvas: {fileID: 8691554291353293576}
   _iconsSelection:
   - {fileID: 1885257128722914146}
   - {fileID: 6039141592464755198}
@@ -992,12 +993,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6d9bf16bdf584c94ab51340079c0269c, type: 3}
   _choseUpgradeSound: {fileID: 8300000, guid: 891d886432332b34ab22539fa1734f96, type: 3}
   _buyUpgradeSound: {fileID: 8300000, guid: b7faa184d67fe5d46a7b4512a92c0934, type: 3}
+  _showUISound: {fileID: 8300000, guid: 2157b67691e25c74e9d30b55ed1d6ab6, type: 3}
+  _hideUISound: {fileID: 8300000, guid: e12131cea0760a14497f97113213dcad, type: 3}
   _upgradeButton: {fileID: 3991726543908477144}
   _upgradeButtonBlank: {fileID: 9204004867968411168}
   _upgradeButtonBlocked: {fileID: 8648338196806392006}
   _upgradeButtonPurchased: {fileID: 4910800556868283563}
   _upgradesTypeNameText: {fileID: 4636511754950585639}
   _upgradeDescriptionText: {fileID: 9186935083940183552}
+  _levelPointsAmountText: {fileID: 6887140838020501951}
   _upgradesPurchased: []
 --- !u!1 &4950457908512142543
 GameObject:
@@ -2065,7 +2069,7 @@ PrefabInstance:
     - target: {fileID: 4788335573537679544, guid: 971b149c4e415864fa389db031e1b300,
         type: 3}
       propertyPath: m_Name
-      value: Player Canvas
+      value: Player Upgrades Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 4788335573537679544, guid: 971b149c4e415864fa389db031e1b300,
         type: 3}
@@ -2086,6 +2090,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577233800127960433, guid: 971b149c4e415864fa389db031e1b300,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8463142695457584903}
+    - target: {fileID: 7577233800127960433, guid: 971b149c4e415864fa389db031e1b300,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577233800127960433, guid: 971b149c4e415864fa389db031e1b300,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerUpgradesManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621519023524708245, guid: 971b149c4e415864fa389db031e1b300,
+        type: 3}
+      propertyPath: m_Name
+      value: Level Points Amount Text
       objectReference: {fileID: 0}
     - target: {fileID: 7959915685449593979, guid: 971b149c4e415864fa389db031e1b300,
         type: 3}
@@ -2217,9 +2241,27 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4246066798148385712}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6887140838020501951 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7311881362111900175, guid: 971b149c4e415864fa389db031e1b300,
+    type: 3}
+  m_PrefabInstance: {fileID: 4246066798148385712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8648338196806392006 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4821136959728558966, guid: 971b149c4e415864fa389db031e1b300,
+    type: 3}
+  m_PrefabInstance: {fileID: 4246066798148385712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8691554291353293576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4788335573537679544, guid: 971b149c4e415864fa389db031e1b300,
     type: 3}
   m_PrefabInstance: {fileID: 4246066798148385712}
   m_PrefabAsset: {fileID: 0}

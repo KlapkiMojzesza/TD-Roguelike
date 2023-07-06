@@ -30,10 +30,15 @@ public class TowerUIManager : MonoBehaviour
         TowerManager.OnTowerDeselect += HandleTowerDeselect;
         TowerManager.OnTowerSelect += HandleTowerSelect;
         TowerManager.OnMoneyAmountChanged += HandleMoneyAmountChanged;
+
         PlayerBase.OnBaseDestroyed += HandleBaseDestoryed;
+
         WaveManager.OnWaveEnd += HandleWaveEnd;
-        PauseManager.OnGamePaused += OnPaused;
-        PauseManager.OnGameResumed += OnResumed;
+        PauseManager.OnGamePaused += HideTowerMenu;
+        PauseManager.OnGameResumed += ShowTowerMenu;
+
+        PlayerUpgradesManager.OnUpgradeMenuShow += HideTowerMenu;
+        PlayerUpgradesManager.OnUpgradeMenuHide += ShowTowerMenu;
 
         _audioSource = GetComponent<AudioSource>();
         _towermanager = GetComponent<TowerManager>();
@@ -47,19 +52,24 @@ public class TowerUIManager : MonoBehaviour
         TowerManager.OnTowerDeselect -= HandleTowerDeselect;
         TowerManager.OnTowerSelect -= HandleTowerSelect;
         TowerManager.OnMoneyAmountChanged -= HandleMoneyAmountChanged;
+
         PlayerBase.OnBaseDestroyed -= HandleBaseDestoryed;
+
         WaveManager.OnWaveEnd -= HandleWaveEnd;
-        PauseManager.OnGamePaused -= OnPaused;
-        PauseManager.OnGameResumed -= OnResumed;
+        PauseManager.OnGamePaused -= HideTowerMenu;
+        PauseManager.OnGameResumed -= ShowTowerMenu;
+
+        PlayerUpgradesManager.OnUpgradeMenuShow -= HideTowerMenu;
+        PlayerUpgradesManager.OnUpgradeMenuHide -= ShowTowerMenu;
     }
 
-    private void OnPaused()
+    private void HideTowerMenu()
     {
         if (_towersCanvasAnimator.GetBool("shown")) _shouldShowOnResume = true;
         this.gameObject.SetActive(false);
     }
 
-    private void OnResumed()
+    private void ShowTowerMenu()
     {
         this.gameObject.SetActive(true);
 
