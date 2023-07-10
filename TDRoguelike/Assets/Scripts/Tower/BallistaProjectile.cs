@@ -15,23 +15,23 @@ public class BallistaProjectile : Projectile
         if (_target != null) transform.LookAt(_target);
     }
 
-    protected override void OnCollisionEnter(Collision collision)
+    protected override void OnTriggerEnter(Collider collider)
     {
-        if (collision.collider.CompareTag("Ground") ||
-            collision.collider.CompareTag("Obstacle"))
+        if (collider.CompareTag("Ground") ||
+            collider.CompareTag("Obstacle"))
         {
             if (gameObject.activeSelf) _pool.Release(this);
             gameObject.SetActive(false);
             return;
         }
 
-        if (collision.collider.CompareTag("Enemy"))
+        if (collider.CompareTag("Enemy"))
         {
             _target = null;
             if (_enemyPierce > 0)
             {
                 _enemyPierce--;
-                collision.gameObject.GetComponent<IDamegeable>().TakeDamage(_damage);
+                collider.gameObject.GetComponent<IDamegeable>().TakeDamage(_damage);
             }
             if (_enemyPierce == 0)
             {

@@ -41,12 +41,12 @@ public class CannonProjectile : Projectile
         }
     }
 
-    protected override void OnCollisionEnter(Collision collision)
+    protected override void OnTriggerEnter(Collider collider)
     {
         if (hitSomething) return;
 
-        if (collision.collider.CompareTag("Ground") ||
-            collision.collider.CompareTag("Obstacle"))
+        if (collider.CompareTag("Ground") ||
+            collider.CompareTag("Obstacle"))
         {
             HandleProjectileHit(null);
             gameObject.SetActive(false);
@@ -55,11 +55,11 @@ public class CannonProjectile : Projectile
             return;
         }
 
-        if (collision.collider.CompareTag("Enemy"))
+        if (collider.CompareTag("Enemy"))
         {
             _target = null;
-            collision.gameObject.GetComponent<IDamegeable>().TakeDamage(_damage);
-            HandleProjectileHit(collision.collider);
+            collider.gameObject.GetComponent<IDamegeable>().TakeDamage(_damage);
+            HandleProjectileHit(collider);
             gameObject.SetActive(false);
             _pool.Release(this);
             hitSomething = true;

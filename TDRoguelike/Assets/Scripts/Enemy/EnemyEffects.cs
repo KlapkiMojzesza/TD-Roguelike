@@ -35,5 +35,5 @@ public class EnemyEffects : MonoBehaviour
         _enemyMovement.UpgradeSpeed(speedPercentage);
         //show boost icon
     }
-    
+
 }

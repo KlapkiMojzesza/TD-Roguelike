@@ -37,11 +37,11 @@ public class PlayerProjectile : MonoBehaviour
         transform.Translate(_direction * _speed * Time.deltaTime, Space.World);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
         if (_hitSomething) return;
 
-        if (collision.collider.CompareTag("Obstacle"))
+        if (collider.CompareTag("Obstacle"))
         {
             _projectileParticle.GetComponent<ParticleSystem>().Stop();
             _projectileParticle.transform.parent = null;
@@ -51,13 +51,13 @@ public class PlayerProjectile : MonoBehaviour
             _hitSomething = true;
             return;
         }
-        if (collision.collider.CompareTag("Enemy"))
+        if (collider.CompareTag("Enemy"))
         {
             if (_pierceThroughEnemiesAmount > 0)
             {
                 _pierceThroughEnemiesAmount--;
-                collision.gameObject.GetComponent<IDamegeable>().TakeDamage(_damage);
-                collision.gameObject.GetComponent<EnemyHealth>().DamagedByPlayer = true;
+                collider.gameObject.GetComponent<IDamegeable>().TakeDamage(_damage);
+                collider.gameObject.GetComponent<EnemyHealth>().DamagedByPlayer = true;
             }
             if (_pierceThroughEnemiesAmount == 0)
             {

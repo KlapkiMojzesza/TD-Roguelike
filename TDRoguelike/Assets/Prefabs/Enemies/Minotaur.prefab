@@ -638,7 +638,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3794939104383789673}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 4.92
   m_Height: 20.5
@@ -755,6 +755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 350
   EnemyStrength: 4
+  _experienceDrop: 10
   _healthbarCanvas: {fileID: 9063544991637977983}
   _healthBar: {fileID: 874114472434846241}
   _healthbarImage: {fileID: 514523254447759492}
@@ -766,6 +767,7 @@ MonoBehaviour:
   StartWaveSound: {fileID: 8300000, guid: 747e07de8a22dd04e8b3d6b0afe7db99, type: 3}
   HitSound: {fileID: 8300000, guid: 9f04fb4c33183304f86876d2ba4631e5, type: 3}
   DeathSound: {fileID: 8300000, guid: 312f6d67aedf1114bba1ebd71614c280, type: 3}
+  DamagedByPlayer: 0
 --- !u!114 &-5391535217429423724
 MonoBehaviour:
   m_ObjectHideFlags: 0

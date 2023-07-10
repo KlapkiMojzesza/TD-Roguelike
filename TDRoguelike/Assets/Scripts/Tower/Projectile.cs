@@ -45,8 +45,8 @@ public abstract class Projectile : MonoBehaviour
         transform.Translate(_lastKnownDirection.normalized * _speed * Time.deltaTime, Space.World);
     }
 
-    protected virtual void OnCollisionEnter(Collision collision)
+    protected virtual void OnTriggerEnter(Collider collider)
     {
-        //do stuff;
+        //do stuff
     }
 }
