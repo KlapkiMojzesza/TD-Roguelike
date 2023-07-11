@@ -140,7 +140,6 @@ GameObject:
   - component: {fileID: 1737061290472340454}
   - component: {fileID: 3316542504035137711}
   - component: {fileID: 3724327566422388042}
-  - component: {fileID: 1286715945619305161}
   m_Layer: 12
   m_Name: Golem
   m_TagString: Enemy
@@ -167,6 +166,7 @@ Transform:
   - {fileID: 1432760157124080123}
   - {fileID: 808979068684313360}
   - {fileID: 3402194699431491374}
+  - {fileID: 4695892486696123621}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -357,19 +357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c58ebefa2c07e4cafd9f917ce8ed87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1286715945619305161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 961444833417097064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0aafe226a9e60e478044d906d22facf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _closeRangeEnemyDamage: 10
 --- !u!1 &1268118078535304546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +1013,37 @@ Transform:
   m_Father: {fileID: 286729308582858599}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7868879768623615652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4186548222563517722}
+  m_Layer: 10
+  m_Name: Player Leayer doesnt interact with projectiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4186548222563517722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7868879768623615652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4695892486696123621}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8309263063684043877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,6 +1075,67 @@ Transform:
   m_Father: {fileID: 6017274377260473134}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8425299478744889352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4695892486696123621}
+  - component: {fileID: 2694966815412343190}
+  - component: {fileID: 6514352523280853799}
+  m_Layer: 10
+  m_Name: Enemy Attack Range
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4695892486696123621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8425299478744889352}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4186548222563517722}
+  m_Father: {fileID: 440345988725847506}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &2694966815412343190
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8425299478744889352}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 6.3
+  m_Height: 14.49
+  m_Direction: 1
+  m_Center: {x: 0, y: 5.13, z: 3.95}
+--- !u!114 &6514352523280853799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8425299478744889352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0aafe226a9e60e478044d906d22facf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _closeRangeEnemyDamage: 25
 --- !u!1 &8455285880071461213
 GameObject:
   m_ObjectHideFlags: 0

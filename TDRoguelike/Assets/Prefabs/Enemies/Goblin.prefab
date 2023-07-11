@@ -130,6 +130,67 @@ Transform:
   m_Father: {fileID: 7756396832358070108}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1799185612479559973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5811189740031255925}
+  - component: {fileID: 3509847226514881239}
+  - component: {fileID: 5575012210015200237}
+  m_Layer: 10
+  m_Name: Enemy Attack Range
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5811189740031255925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799185612479559973}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5443983277615791459}
+  m_Father: {fileID: 3245955975045092712}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &3509847226514881239
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799185612479559973}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 4.2
+  m_Height: 12.55
+  m_Direction: 1
+  m_Center: {x: 0, y: 3.98, z: 3.21}
+--- !u!114 &5575012210015200237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799185612479559973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0aafe226a9e60e478044d906d22facf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _closeRangeEnemyDamage: 10
 --- !u!1 &2122951809376696129
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +268,6 @@ GameObject:
   - component: {fileID: 3869996087002995911}
   - component: {fileID: 6877709559337767706}
   - component: {fileID: 1448209803692208488}
-  - component: {fileID: -158749373570815792}
   m_Layer: 12
   m_Name: Goblin
   m_TagString: Enemy
@@ -234,6 +294,7 @@ Transform:
   - {fileID: 6078748560610775679}
   - {fileID: 5197877941857464162}
   - {fileID: 6139680265172112652}
+  - {fileID: 5811189740031255925}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -267,7 +328,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 2.7
+  m_Radius: 3.87
   m_Height: 16.04
   m_Direction: 1
   m_Center: {x: 0, y: 6.77, z: 0}
@@ -422,18 +483,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2c58ebefa2c07e4cafd9f917ce8ed87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-158749373570815792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2756241929110736850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0aafe226a9e60e478044d906d22facf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3072510403469780861
@@ -661,6 +710,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5173211582230584480}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4303658826074388144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5443983277615791459}
+  m_Layer: 10
+  m_Name: Player Leayer doesnt interact with projectiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5443983277615791459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303658826074388144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5811189740031255925}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4432255086497653652

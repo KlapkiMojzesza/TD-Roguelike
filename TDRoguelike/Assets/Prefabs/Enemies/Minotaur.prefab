@@ -497,6 +497,37 @@ Transform:
   m_Father: {fileID: 6731588032848323146}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3368006859423976259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812210305598125654}
+  m_Layer: 10
+  m_Name: Player Leayer doesnt interact with projectiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &812210305598125654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368006859423976259}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7894049117269748348}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3770567729825790697
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +610,6 @@ GameObject:
   - component: {fileID: -5391535217429423724}
   - component: {fileID: 4856051541117100361}
   - component: {fileID: 2422779892878420929}
-  - component: {fileID: -3087823814598888594}
   m_Layer: 12
   m_Name: Minotaur
   m_TagString: Enemy
@@ -608,6 +638,7 @@ Transform:
   - {fileID: 6085919676548139730}
   - {fileID: 7115655152555061846}
   - {fileID: 4903161608977877862}
+  - {fileID: 7894049117269748348}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -820,19 +851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c58ebefa2c07e4cafd9f917ce8ed87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3087823814598888594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3794939104383789673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0aafe226a9e60e478044d906d22facf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _closeRangeEnemyDamage: 10
 --- !u!1 &3957877720943898231
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,6 +935,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4087154114234580590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7894049117269748348}
+  - component: {fileID: 8787190624648005391}
+  - component: {fileID: 873089390566332249}
+  m_Layer: 10
+  m_Name: Enemy Attack Range
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7894049117269748348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4087154114234580590}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5999999, y: 1.5999999, z: 1.5999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 812210305598125654}
+  m_Father: {fileID: 4603107280139366611}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8787190624648005391
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4087154114234580590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 5.3
+  m_Height: 13.32
+  m_Direction: 1
+  m_Center: {x: 0, y: 4.84, z: 3.3}
+--- !u!114 &873089390566332249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4087154114234580590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0aafe226a9e60e478044d906d22facf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _closeRangeEnemyDamage: 15
 --- !u!1 &4811168004848137527
 GameObject:
   m_ObjectHideFlags: 0

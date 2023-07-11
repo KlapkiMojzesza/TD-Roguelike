@@ -1315,6 +1315,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4166034990219045454, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1035504923194178883}
+    - target: {fileID: 4166034990219045454, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevelButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166034990219045454, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TowerUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166034990219045454, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4259360987830067114, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1446,6 +1466,26 @@ PrefabInstance:
       value: ExitGame
       objectReference: {fileID: 0}
     - target: {fileID: 7579516923899986245, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896215147409126865, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1035504923194178883}
+    - target: {fileID: 8896215147409126865, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitGameButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896215147409126865, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TowerUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896215147409126865, guid: fbb3cdc5ad8e2284f84952d5bf2c7ce2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine

@@ -1951,7 +1951,7 @@ PrefabInstance:
     - target: {fileID: 1303409071618882001, guid: 971b149c4e415864fa389db031e1b300,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_StringArgument
-      value: Poison
+      value: Towers
       objectReference: {fileID: 0}
     - target: {fileID: 1303409071618882001, guid: 971b149c4e415864fa389db031e1b300,
         type: 3}

@@ -10,7 +10,7 @@ public class EnemyCloseRangeAttack : MonoBehaviour
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInParent<Animator>();
     }
 
     private void OnTriggerEnter(Collider collider)

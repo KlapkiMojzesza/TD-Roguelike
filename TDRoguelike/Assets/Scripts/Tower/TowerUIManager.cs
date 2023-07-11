@@ -133,15 +133,6 @@ public class TowerUIManager : MonoBehaviour
         _levelEndCanvas.SetActive(true);
     }
 
-    public void ReturnToVillageButton()
-    {
-        HideTowersUI();
-        _placingCanvas.SetActive(false);
-        _levelEndCanvas.SetActive(false);
-
-        SceneManager.LoadScene(0);
-    }
-
     private void ShowTowersUI()
     {
         _towersCanvasAnimator.SetBool("shown", true);
@@ -173,8 +164,13 @@ public class TowerUIManager : MonoBehaviour
         }
     }
 
-    public void ExitGame()
+    public void ExitGameButton()
     {
         Application.Quit();
+    }
+
+    public void RestartLevelButton()
+    {
+        SceneManager.LoadScene("Level 1");
     }
 }
