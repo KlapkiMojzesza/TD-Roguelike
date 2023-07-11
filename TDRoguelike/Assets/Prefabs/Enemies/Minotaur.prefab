@@ -579,6 +579,7 @@ GameObject:
   - component: {fileID: -5391535217429423724}
   - component: {fileID: 4856051541117100361}
   - component: {fileID: 2422779892878420929}
+  - component: {fileID: -3087823814598888594}
   m_Layer: 12
   m_Name: Minotaur
   m_TagString: Enemy
@@ -640,8 +641,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 4.92
-  m_Height: 20.5
+  m_Radius: 6.86
+  m_Height: 21.94
   m_Direction: 1
   m_Center: {x: 0.027930303, y: 9.1, z: 0}
 --- !u!82 &-8022212056749285245
@@ -819,6 +820,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c58ebefa2c07e4cafd9f917ce8ed87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3087823814598888594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3794939104383789673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0aafe226a9e60e478044d906d22facf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _closeRangeEnemyDamage: 10
 --- !u!1 &3957877720943898231
 GameObject:
   m_ObjectHideFlags: 0

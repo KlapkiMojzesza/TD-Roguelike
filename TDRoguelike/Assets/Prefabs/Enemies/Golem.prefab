@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 1737061290472340454}
   - component: {fileID: 3316542504035137711}
   - component: {fileID: 3724327566422388042}
+  - component: {fileID: 1286715945619305161}
   m_Layer: 12
   m_Name: Golem
   m_TagString: Enemy
@@ -199,7 +200,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 3.91
+  m_Radius: 6.54
   m_Height: 13.8
   m_Direction: 1
   m_Center: {x: 0.043892864, y: 6.2, z: 0}
@@ -356,6 +357,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c58ebefa2c07e4cafd9f917ce8ed87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1286715945619305161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961444833417097064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0aafe226a9e60e478044d906d22facf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _closeRangeEnemyDamage: 10
 --- !u!1 &1268118078535304546
 GameObject:
   m_ObjectHideFlags: 0

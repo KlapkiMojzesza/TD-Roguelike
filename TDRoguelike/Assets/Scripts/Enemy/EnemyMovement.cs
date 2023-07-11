@@ -76,8 +76,8 @@ public class EnemyMovement : MonoBehaviour
     //Minotaur Special
     public void UpgradeSpeed(float amount)
     {
-        _speed *= (100 - amount) / 100;
-        _animator.speed *= (100 - amount) / 100;
+        _speed *= (100 + amount) / 100;
+        _animator.speed *= (100 + amount) / 100;
     }
 
     //Pylon Slow Effect
