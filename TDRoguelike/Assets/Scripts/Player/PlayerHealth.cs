@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     [Header("To Attach")]
     [SerializeField] private Image _healthbarImage;
     [SerializeField] private AudioClip _playerTakeDamageSound;
+    [SerializeField] private ParticleSystem _hitParticle;
 
     private AudioSource _audioSource;
     private int _currentHealth;
@@ -29,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         _currentHealth -= damage;
         _healthbarImage.fillAmount = (float)_currentHealth / (float)_playerMaxHealth;
         _audioSource.PlayOneShot(_playerTakeDamageSound);
+        if (_hitParticle != null) _hitParticle.Play();
 
         if (_currentHealth <= 0)
         {
@@ -38,6 +40,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void HendlePlayerDeath()
     {
-        throw new NotImplementedException();
+        Debug.Log("Player Died");
     }
 }

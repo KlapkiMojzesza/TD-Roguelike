@@ -16,18 +16,23 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private TMP_Text _moneyAmountText;
     [SerializeField] public GameObject[] TowerPrefabs;
 
-    public static event Action<Tower> OnTowerSelect;
+    public static event Action<Tower> OnTowerSelectedToPlace;
     public static event Action OnTowerDeselect;
     public static event Action<Tower> OnTowerPlaced;
     public static event Action OnNextWaveButtonClicked;
     public static event Action<int> OnMoneyAmountChanged;
+    public static event Action<int> OnTowerSelectionSwitch;
 
+    private Dictionary<int, GameObject> _playerTowers = new Dictionary<int, GameObject>();
     private List<GameObject> _towersPlaced = new List<GameObject>();
     private GameObject _currentTowerPrefab;
+    private GameObject _currentTowerSelected;
     private Tower _currentTower;
+    private TowerSlot _currentTowerSlot = null;
     private int _currentMoneyAmount;
 
     private Controls _controls;
+
 
     private void Start()
     {
@@ -40,23 +45,39 @@ public class TowerManager : MonoBehaviour
 
         _controls.Player.Info.performed += HandlePlayerMouseInfo;
         _controls.Player.Shoot.performed += HandlePlayerMouseClick;
-        PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
+        TowerSlot.OnSelectTowerButtonClicked += ChangeSlot;
+        TowerSlot.OnPlaceTowerButtonClicked += HandleTowerPlacement;
+        TowerSlot.OnSlotUnlockedButtonClicked += BuyTowerSlot;
         WaveManager.OnWaveEnd += HandleWaveEnd;
+        PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
+        PauseManager.OnGamePaused += CancelTowerSelected;
+        PlayerUpgradesManager.OnUpgradeMenuShow += CancelTowerSelected;
+
+        _currentTowerSelected = TowerPrefabs[0];
     }
 
     private void OnDestroy()
     {
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
         _controls.Player.Shoot.performed -= HandlePlayerMouseClick;
-        PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
+        TowerSlot.OnSelectTowerButtonClicked -= ChangeSlot;
+        TowerSlot.OnPlaceTowerButtonClicked -= HandleTowerPlacement;
+        TowerSlot.OnSlotUnlockedButtonClicked -= BuyTowerSlot;
         WaveManager.OnWaveEnd -= HandleWaveEnd;
+        PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
+        PauseManager.OnGamePaused -= CancelTowerSelected;
+        PlayerUpgradesManager.OnUpgradeMenuShow -= CancelTowerSelected;
     }
 
-    void Update()
+    private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0) return;
         if (_currentTowerPrefab == null) return;
 
-        MoveTowerPrefab();
+        _currentTowerPrefab.SetActive(false);
+        _currentTower.HideTower();
+        _currentTowerPrefab = null;
+        OnTowerDeselect?.Invoke();
     }
 
     private void HandlePlayerMouseClick(InputAction.CallbackContext context)
@@ -69,37 +90,13 @@ public class TowerManager : MonoBehaviour
         PlaceTower();
     }
 
-    private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
-    {
-        if (Time.timeScale == 0) return;
-        if (_currentTowerPrefab == null) return;
-        Destroy(_currentTowerPrefab);
-        OnTowerDeselect?.Invoke();
-    }
-
     private bool IsMouseOverUI()
     {
         return EventSystem.current.IsPointerOverGameObject(PointerInputModule.kMouseLeftId);
     }
 
-    private void MoveTowerPrefab()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        RaycastHit groundHit;
-        if (Physics.Raycast(ray, out groundHit, Mathf.Infinity, _groundLayer))
-        {
-            _currentTowerPrefab.transform.position = groundHit.point;
-        }
-        _currentTower.SetTowerColor();
-    }
-
     private void PlaceTower()
     {
-        _currentMoneyAmount -= _currentTower.TowerData.TowerPrice;
-        _moneyAmountText.text = _currentMoneyAmount.ToString();
-        OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
-
         _currentTower.SetOrginalColor();
 
         _currentTower.PlaceTower();
@@ -109,13 +106,24 @@ public class TowerManager : MonoBehaviour
         OnTowerDeselect?.Invoke();
     }
 
-    public void SwitchTowers(int towerIndex)
+    private void ChangeSlot(TowerSlot towerSlot)
     {
-        if (TowerPrefabs[towerIndex].GetComponent<Tower>().TowerData.TowerPrice > _currentMoneyAmount) return;
+        _currentTowerSlot = towerSlot;
+    }
 
-        _currentTowerPrefab = Instantiate(TowerPrefabs[towerIndex]);
+    private void HandleTowerPlacement(GameObject towerToPlace)
+    {
+        _currentTowerPrefab = towerToPlace;
         _currentTower = _currentTowerPrefab.GetComponent<Tower>();
-        OnTowerSelect?.Invoke(_currentTower);
+        _currentTowerPrefab.SetActive(true);
+        OnTowerSelectedToPlace?.Invoke(_currentTower);
+    }
+
+    public void BuyTowerSlot(int towerSlotPrice)
+    {
+        _currentMoneyAmount -= towerSlotPrice;
+        _moneyAmountText.text = _currentMoneyAmount.ToString();
+        OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
     }
 
     public void HandleWaveEnd(int amount)
@@ -143,7 +151,51 @@ public class TowerManager : MonoBehaviour
         OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
     }
 
-    public void SpawnNextWave()
+    private void CancelTowerSelected()
+    {
+        if (_currentTowerPrefab == null) return;
+
+        _currentTowerPrefab.SetActive(false);
+        _currentTower.HideTower();
+        _currentTowerPrefab = null;
+        OnTowerDeselect?.Invoke();
+    }
+
+    void Update()
+    {
+        if (_currentTowerPrefab == null) return;
+
+        MoveTowerPrefab();
+    }
+
+    private void MoveTowerPrefab()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit groundHit;
+        if (Physics.Raycast(ray, out groundHit, Mathf.Infinity, _groundLayer))
+        {
+            _currentTowerPrefab.transform.position = groundHit.point;
+        }
+        _currentTower.SetTowerColor();
+    }
+
+    public void SwitchTowerSelectedButton(int selectedTowerIndex)
+    {
+        _currentTowerSelected = TowerPrefabs[selectedTowerIndex];
+        OnTowerSelectionSwitch?.Invoke(selectedTowerIndex);
+    }
+
+    public void ChooseTowerButton()
+    {
+        _currentTowerPrefab = Instantiate(_currentTowerSelected);
+        _currentTower = _currentTowerPrefab.GetComponent<Tower>();
+        OnTowerSelectedToPlace?.Invoke(_currentTower);
+        _playerTowers.Add(_currentTowerSlot.GetSlotIndex(), _currentTowerPrefab);
+        _currentTowerSlot.PickTower(_currentTowerPrefab);
+    }
+
+    public void SpawnNextWaveButton()
     {
         OnNextWaveButtonClicked?.Invoke();
     }
@@ -151,7 +203,10 @@ public class TowerManager : MonoBehaviour
     public void CancelButtonClick()
     {
         if (_currentTowerPrefab == null) return;
-        Destroy(_currentTowerPrefab);
+
+        _currentTowerPrefab.SetActive(false);
+        _currentTower.HideTower();
+        _currentTowerPrefab = null;
         OnTowerDeselect?.Invoke();
     }
 

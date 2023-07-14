@@ -26,7 +26,6 @@ public class Tower : MonoBehaviour
     [SerializeField] private AudioClip _showUISound;
     [SerializeField] private AudioClip _hideUISound;
     [SerializeField] private AudioClip _towerPlaceSound; 
-    [SerializeField] protected AudioClip _towerSelectionSound;
 
     public static event Action OnTowerInfoShow;
 
@@ -53,29 +52,32 @@ public class Tower : MonoBehaviour
         _canvasAnimator = _towerInfoCanvas.GetComponent<Animator>();
 
         TowerManager.OnNextWaveButtonClicked += HandleStartWave;
-        TowerManager.OnTowerSelect += HandleAnotherTowerSelected;
-        PauseManager.OnGamePaused += HideTowerUpgradesMenu;
-        PauseManager.OnGameResumed += ShowTowerUpgradesMenu;
-        PlayerUpgradesManager.OnUpgradeMenuShow += HideTowerUpgradesMenu;
-        PlayerUpgradesManager.OnUpgradeMenuHide += ShowTowerUpgradesMenu;
+        TowerManager.OnTowerSelectedToPlace += HandleAnotherTowerSelected;
+        TowerUIManager.OnTowerSelectionMenuShow += HideInfoUI;
+        PauseManager.OnGamePaused += HideTowerAndDeactiveUpgradesMenu;
+        PauseManager.OnGameResumed += ShowAndActiveTowerUpgradesMenu;
+        PlayerUpgradesManager.OnUpgradeMenuShow += HideTowerAndDeactiveUpgradesMenu;
+        PlayerUpgradesManager.OnUpgradeMenuHide += ShowAndActiveTowerUpgradesMenu;
     }
 
     protected virtual void OnDestroy()
     {
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
         TowerManager.OnNextWaveButtonClicked -= HandleStartWave;
-        TowerManager.OnTowerSelect -= HandleAnotherTowerSelected;
-        PauseManager.OnGamePaused -= HideTowerUpgradesMenu;
-        PauseManager.OnGameResumed -= ShowTowerUpgradesMenu;
-        PlayerUpgradesManager.OnUpgradeMenuShow -= HideTowerUpgradesMenu;
-        PlayerUpgradesManager.OnUpgradeMenuHide -= ShowTowerUpgradesMenu;
+        TowerManager.OnTowerSelectedToPlace -= HandleAnotherTowerSelected;
+        TowerUIManager.OnTowerSelectionMenuShow -= HideInfoUI;
+        PauseManager.OnGamePaused -= HideTowerAndDeactiveUpgradesMenu;
+        PauseManager.OnGameResumed -= ShowAndActiveTowerUpgradesMenu;
+        PlayerUpgradesManager.OnUpgradeMenuShow -= HideTowerAndDeactiveUpgradesMenu;
+        PlayerUpgradesManager.OnUpgradeMenuHide -= ShowAndActiveTowerUpgradesMenu;
     }
-    private void HideTowerUpgradesMenu()
+
+    private void HideTowerAndDeactiveUpgradesMenu()
     {
         if (_canvasAnimator.GetBool("shown")) _canvasAnimator.gameObject.SetActive(false);
     }
 
-    private void ShowTowerUpgradesMenu()
+    private void ShowAndActiveTowerUpgradesMenu()
     {
         if (!_canvasAnimator.gameObject.activeSelf)
         {
@@ -145,7 +147,6 @@ public class Tower : MonoBehaviour
             HideInfoUI();
             return;
         }
-        _audioSource.PlayOneShot(_towerSelectionSound);
     }
 
     public bool CanBePlaced()
@@ -240,5 +241,11 @@ public class Tower : MonoBehaviour
         {
             _collisionsAmount--;
         }
+    }
+
+    public void HideTower()
+    {
+        _collisionsAmount = 0;
+        SetOrginalColor();
     }
 }

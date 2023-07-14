@@ -66,8 +66,8 @@ public class PauseManager : MonoBehaviour
     {
         OnGameResumed?.Invoke();
         _pauseCanvas.SetActive(false);
+        if (_optionsCanvasAnimator.GetBool("shown")) _audioSource.PlayOneShot(_hideOptionSound);
         _optionsCanvasAnimator.SetBool("shown", false);
-        _audioSource.PlayOneShot(_hideOptionSound);
         Time.timeScale = 1f;
     }
 
@@ -111,7 +111,7 @@ public class PauseManager : MonoBehaviour
     public void ResetLevelButton()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ExitGameButton()

@@ -29,7 +29,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
-        TowerManager.OnTowerSelect += TowerSelected;
+        TowerManager.OnTowerSelectedToPlace += TowerSelected;
         TowerManager.OnTowerDeselect += TowerDeselect;
 
         _audioSource = GetComponent<AudioSource>();
@@ -39,7 +39,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void OnDestroy()
     {
-        TowerManager.OnTowerSelect -= TowerSelected;
+        TowerManager.OnTowerSelectedToPlace -= TowerSelected;
         TowerManager.OnTowerDeselect -= TowerDeselect;
     }
 

@@ -1684,9 +1684,9 @@ MonoBehaviour:
   TowerData: {fileID: 11400000, guid: a385ea28d7519ce46b793233425baa4a, type: 2}
   _towerRangeSprite: {fileID: 7526782707467996383}
   _renderers:
+  - {fileID: 6661042597368810684}
   - {fileID: 1961097592984374016}
   - {fileID: 5403773270333724276}
-  - {fileID: 6661042597368810684}
   _iconImage: {fileID: 3004845850911205524}
   _towerHitBox: {fileID: 9105857679884979365}
   _towerInfoCanvas: {fileID: 1079165676255242102}
