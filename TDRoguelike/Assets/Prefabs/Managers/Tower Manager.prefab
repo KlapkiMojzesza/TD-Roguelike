@@ -139,6 +139,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -33}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &3860357926057509584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3341969707543238677}
+  m_Layer: 0
+  m_Name: Player Towers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3341969707543238677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3860357926057509584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7701644492400215748}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5302222635335547079
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +342,7 @@ Transform:
   - {fileID: 2537931264308596602}
   - {fileID: 3481626480567059563}
   - {fileID: 2084554815370215345}
+  - {fileID: 3341969707543238677}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -335,6 +367,7 @@ MonoBehaviour:
   - {fileID: 4769767586024751121, guid: 6e3740f2545bb824d9673d9929292ea8, type: 3}
   - {fileID: 9154128754830370453, guid: 087f41c738c2933499bbb82eb9f4f99b, type: 3}
   - {fileID: 5307492072661274165, guid: 660fcf0eae6986e42b05c331d5ebb829, type: 3}
+  _towersParentGameObject: {fileID: 3341969707543238677}
 --- !u!114 &1035504923194178883
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -62,6 +62,8 @@ public class TowerUIManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (TowerManager.towerManagerInstance != this.gameObject) return;
+
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
 
         TowerManager.OnTowerPlaced -= HandleTowerPlaced;
@@ -221,5 +223,10 @@ public class TowerUIManager : MonoBehaviour
     public void RestartLevelButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void NextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

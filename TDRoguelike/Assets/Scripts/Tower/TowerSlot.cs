@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TowerSlot : MonoBehaviour
 {
@@ -36,12 +37,13 @@ public class TowerSlot : MonoBehaviour
 
     private void Start()
     {
+        SceneManager.activeSceneChanged += ActiveSceneChanged;
+
         _towerManager = (TowerManager)FindObjectOfType(typeof(TowerManager));
         TowerManager.OnMoneyAmountChanged += UpdateButtonStatus;
         TowerManager.OnTowerPlaced += HandleTowerPlaced;
         TowerSlot.OnSlotUnlockedButtonClicked += CheckIfRequiredSlotUnlocked;
 
-        HideAllButtons();
         UpdateButtonStatus(_towerManager.GetCurrentMoneyAmount());
         _slotUnlockPriceText[0].text = _unlockPrice.ToString();
         _slotUnlockPriceText[1].text = _unlockPrice.ToString();
@@ -49,9 +51,24 @@ public class TowerSlot : MonoBehaviour
 
     private void OnDestroy()
     {
+        SceneManager.activeSceneChanged -= ActiveSceneChanged;
         TowerManager.OnMoneyAmountChanged -= UpdateButtonStatus;
         TowerManager.OnTowerPlaced -= HandleTowerPlaced;
         TowerSlot.OnSlotUnlockedButtonClicked -= CheckIfRequiredSlotUnlocked;
+    }
+
+    private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
+    {
+        //if next scene is not menu
+        _towerIsPlaced = false;
+        UpdateButtonStatus(_towerManager.GetCurrentMoneyAmount());
+    }
+
+    private void HandleTowerPlaced(Tower placedTower)
+    {
+        if (placedTower.gameObject != _towerAssignedToSlot) return;
+        _towerIsPlaced = true;
+        UpdateButtonStatus(_towerManager.GetCurrentMoneyAmount());
     }
 
     private void CheckIfRequiredSlotUnlocked(int slotIndex)
@@ -59,48 +76,11 @@ public class TowerSlot : MonoBehaviour
         UpdateButtonStatus(_towerManager.GetCurrentMoneyAmount());
     }
 
-    private void UpdateButtonStatus(int currentMoneyAmount)
-    {
-        if (_towerIsPlaced) return;
-
-        if (_towerAssignedToSlot != null) return;
-
-        if (_towerSlotUnlocked) return;
-
-        if (_requiredSlot != null)
-        {
-            if (!_requiredSlot.IsUnlocked())
-            {
-                _previousSlotBlockedButton.SetActive(true);
-                return;
-            }
-        }     
-
-        HideAllButtons();
-
-        if (currentMoneyAmount >= _unlockPrice)
-        {
-            _buyButton.SetActive(true);
-            return;
-        }
-
-        _buyButtonBlocked.SetActive(true);
-    }
-
-    private void HandleTowerPlaced(Tower placedTower)
-    {
-        if (placedTower.gameObject != _towerAssignedToSlot) return;
-        _towerIsPlaced = true;
-        HideAllButtons();
-        _placedTowerButtonBlocked.SetActive(true);
-    }
-
     public void UnlockTowerButton()
     {
         if (_towerManager.GetCurrentMoneyAmount() < _unlockPrice) return;
-        HideAllButtons();
+        UpdateButtonStatus(_towerManager.GetCurrentMoneyAmount());
         _towerSlotUnlocked = true;
-        _selectTowerButton.SetActive(true);
         _towerIconImage.texture = _slotUnlockedTexture;
         OnSlotUnlockedButtonClicked?.Invoke(_unlockPrice);
     }
@@ -110,12 +90,12 @@ public class TowerSlot : MonoBehaviour
         OnSelectTowerButtonClicked?.Invoke(this);
     }
 
+    //called from TowerManager
     public void PickTower(GameObject towerSelectedByPlayer)
     {
         _towerIconImage.texture = towerSelectedByPlayer.GetComponent<Tower>().TowerData.TowerIcon;
         _towerAssignedToSlot = towerSelectedByPlayer;
-        HideAllButtons();
-        _placeTowerButton.SetActive(true);
+        UpdateButtonStatus(_towerManager.GetCurrentMoneyAmount());
     }
 
     public void PlaceTowerButton()
@@ -126,6 +106,46 @@ public class TowerSlot : MonoBehaviour
     public int GetSlotIndex()
     {
         return _slotIndex;
+    }
+
+    private void UpdateButtonStatus(int currentMoneyAmount)
+    {
+        HideAllButtons();
+
+        if (_towerIsPlaced)
+        {
+            _placedTowerButtonBlocked.SetActive(true);
+            return;
+        }
+
+        if (_towerAssignedToSlot != null)
+        {
+            _placeTowerButton.SetActive(true);
+            return;
+        }
+
+        if (_towerSlotUnlocked)
+        {
+            _selectTowerButton.SetActive(true);
+            return;
+        }
+
+        if (_requiredSlot != null)
+        {
+            if (!_requiredSlot.IsUnlocked())
+            {
+                _previousSlotBlockedButton.SetActive(true);
+                return;
+            }
+        }
+
+        if (currentMoneyAmount >= _unlockPrice)
+        {
+            _buyButton.SetActive(true);
+            return;
+        }
+
+        _buyButtonBlocked.SetActive(true);
     }
 
     private void HideAllButtons()

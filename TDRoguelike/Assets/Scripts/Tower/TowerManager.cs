@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class TowerManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class TowerManager : MonoBehaviour
     [Header("To Attach")]
     [SerializeField] private TMP_Text _moneyAmountText;
     [SerializeField] public GameObject[] TowerPrefabs;
+    [SerializeField] private Transform _towersParentGameObject;
 
     public static event Action<Tower> OnTowerSelectedToPlace;
     public static event Action OnTowerDeselect;
@@ -23,7 +25,6 @@ public class TowerManager : MonoBehaviour
     public static event Action<int> OnMoneyAmountChanged;
     public static event Action<int> OnTowerSelectionSwitch;
 
-    private Dictionary<int, GameObject> _playerTowers = new Dictionary<int, GameObject>();
     private List<GameObject> _towersPlaced = new List<GameObject>();
     private GameObject _currentTowerPrefab;
     private GameObject _currentTowerSelected;
@@ -33,6 +34,20 @@ public class TowerManager : MonoBehaviour
 
     private Controls _controls;
 
+    public static GameObject towerManagerInstance;
+
+    private void Awake()
+    {
+        if (towerManagerInstance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            towerManagerInstance = this.gameObject;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -40,11 +55,13 @@ public class TowerManager : MonoBehaviour
         _moneyAmountText.text = _currentMoneyAmount.ToString();
         OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
 
+        SceneManager.activeSceneChanged += ActiveSceneChanged;
+
         _controls = new Controls();
         _controls.Player.Enable();
-
         _controls.Player.Info.performed += HandlePlayerMouseInfo;
         _controls.Player.Shoot.performed += HandlePlayerMouseClick;
+
         TowerSlot.OnSelectTowerButtonClicked += ChangeSlot;
         TowerSlot.OnPlaceTowerButtonClicked += HandleTowerPlacement;
         TowerSlot.OnSlotUnlockedButtonClicked += BuyTowerSlot;
@@ -58,8 +75,12 @@ public class TowerManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (towerManagerInstance != this.gameObject) return;
+        SceneManager.activeSceneChanged -= ActiveSceneChanged;
+
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
         _controls.Player.Shoot.performed -= HandlePlayerMouseClick;
+
         TowerSlot.OnSelectTowerButtonClicked -= ChangeSlot;
         TowerSlot.OnPlaceTowerButtonClicked -= HandleTowerPlacement;
         TowerSlot.OnSlotUnlockedButtonClicked -= BuyTowerSlot;
@@ -67,6 +88,16 @@ public class TowerManager : MonoBehaviour
         PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
         PauseManager.OnGamePaused -= CancelTowerSelected;
         PlayerUpgradesManager.OnUpgradeMenuShow -= CancelTowerSelected;
+    }
+
+    private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
+    {
+        //if next xcene menu destroy everything
+        foreach (GameObject tower in _towersPlaced)
+        {
+            tower.GetComponent<Tower>().HideTower();
+            tower.SetActive(false);
+        }
     }
 
     private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
@@ -189,9 +220,9 @@ public class TowerManager : MonoBehaviour
     public void ChooseTowerButton()
     {
         _currentTowerPrefab = Instantiate(_currentTowerSelected);
+        _currentTowerPrefab.transform.parent = _towersParentGameObject.transform;
         _currentTower = _currentTowerPrefab.GetComponent<Tower>();
         OnTowerSelectedToPlace?.Invoke(_currentTower);
-        _playerTowers.Add(_currentTowerSlot.GetSlotIndex(), _currentTowerPrefab);
         _currentTowerSlot.PickTower(_currentTowerPrefab);
     }
 

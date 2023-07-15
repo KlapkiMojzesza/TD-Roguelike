@@ -37,7 +37,7 @@ public class Tower : MonoBehaviour
     private Controls _controls;
     private Dictionary<Material, Color> _allObjects = new Dictionary<Material, Color>();
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         _controls = new Controls();
         _controls.Player.Enable();

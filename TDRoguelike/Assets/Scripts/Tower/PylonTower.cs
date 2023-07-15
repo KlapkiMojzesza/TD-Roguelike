@@ -7,25 +7,31 @@ public class PylonTower : Tower
 {
     private Animator _pylonAnimator;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
-        TowerManager.OnTowerPlaced += HandleTOwerPlacement;
+        base.Start();
+        TowerManager.OnTowerPlaced += HandleTowerPlacement;
         _pylonAnimator = GetComponent<Animator>();
         _pylonAnimator.enabled = false;
+
     }
 
     //to prevent animator to change color before tower is placed
     override protected void OnDestroy()
     {
         base.OnDestroy();
-        TowerManager.OnTowerPlaced -= HandleTOwerPlacement;
+        TowerManager.OnTowerPlaced -= HandleTowerPlacement;
     }
 
-    private void HandleTOwerPlacement(Tower tower)
+    private void HandleTowerPlacement(Tower tower)
     {
+        if (tower != this) return;
         _pylonAnimator.enabled = true;
-        TowerManager.OnTowerPlaced -= HandleTOwerPlacement;
+    }
+
+    private void OnDisable()
+    {
+        _pylonAnimator.enabled = false;
     }
 
     protected override void UpdateTowerStatsUI()
