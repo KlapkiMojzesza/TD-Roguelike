@@ -248,4 +248,9 @@ public class Tower : MonoBehaviour
         _collisionsAmount = 0;
         SetOrginalColor();
     }
+
+    protected virtual void OnDisable()
+    {
+        _towerRangeSprite.gameObject.SetActive(true);
+    }
 }

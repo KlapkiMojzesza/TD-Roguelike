@@ -30,6 +30,7 @@ public class TowerShooting : MonoBehaviour
     private Transform _currentFirePoint;
     private AudioSource _audioSource;
     private bool _rotatedTowardsTarget = false;
+    private Quaternion _startRotation;
 
     private void Start()
     {
@@ -44,6 +45,7 @@ public class TowerShooting : MonoBehaviour
         _currentProjectile = _towerData.ProjectilePrefab;
         _currentFirePoint = _firePoint;
         _pool = new ObjectPool<Projectile>(CreateProjectile, OnTakeProjectileFromPool, OnReturnProjectileToPool);
+        _startRotation = _rotatingParts.transform.rotation;
 
         InvokeRepeating("UpdateTarget", 0f, 0.01f);
     }
@@ -296,12 +298,17 @@ public class TowerShooting : MonoBehaviour
         _shootParticle = shootParticle;
     }
 
+    private void OnDisable()
+    {
+        _rotatingParts.transform.rotation = _startRotation;
+    }
+
     /*private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _towerData.TowerRange);
     }*/
-    
+
 }
 
 public enum TargetPriority{First = 0, Last = 1, Strongest = 2, Closest = 3}

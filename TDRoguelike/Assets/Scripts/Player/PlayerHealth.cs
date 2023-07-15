@@ -17,6 +17,21 @@ public class PlayerHealth : MonoBehaviour
     private AudioSource _audioSource;
     private int _currentHealth;
 
+    public static GameObject PlayerInstance;
+
+    private void Awake()
+    {
+        if (PlayerInstance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            PlayerInstance = this.gameObject;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     private void Start()
     {
         _currentHealth = _playerMaxHealth;

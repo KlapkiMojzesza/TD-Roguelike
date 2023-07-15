@@ -61,6 +61,8 @@ public class PlayerUpgradesManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (PlayerHealth.PlayerInstance != this.gameObject) return;
+
         _controls.Player.UpgradeMenu.performed -= SwitchUpgradesMenuVisibility;
         PlayerUpgradeButton.OnUpgradeChoose -= HandleUpgradeChoose;
         PlayerExperience.OnLevelUp -= HandlePlayerLevelUp;

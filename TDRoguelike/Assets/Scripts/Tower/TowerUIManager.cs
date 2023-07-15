@@ -62,7 +62,7 @@ public class TowerUIManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (TowerManager.towerManagerInstance != this.gameObject) return;
+        if (TowerManager.TowerManagerInstance != this.gameObject) return;
 
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
 

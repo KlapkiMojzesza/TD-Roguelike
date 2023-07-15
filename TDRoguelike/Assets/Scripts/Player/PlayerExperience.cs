@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerExperience : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class PlayerExperience : MonoBehaviour
 
     void Start()
     {
+        SceneManager.activeSceneChanged += ActiveSceneChanged;
         EnemyHealth.OnEnemyDeath += HandleEnemyDeath;
 
         _camera = Camera.main;
@@ -36,12 +38,15 @@ public class PlayerExperience : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (PlayerHealth.PlayerInstance != this.gameObject) return;
+
+        SceneManager.activeSceneChanged -= ActiveSceneChanged;
         EnemyHealth.OnEnemyDeath -= HandleEnemyDeath;
     }
 
-    private void Update()
+    private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
     {
-        RotateHealthbarToCamera();
+        _camera = Camera.main;
     }
 
     private void HandleEnemyDeath(EnemyHealth enemy)
@@ -60,6 +65,11 @@ public class PlayerExperience : MonoBehaviour
 
         _experiencebarImage.fillAmount = (float)_currentExperience / (float)_experienceToNextLevel;
         _currentLevelText.text = _currentLevel.ToString();
+    }
+
+    private void Update()
+    {
+        RotateHealthbarToCamera();
     }
 
     private void RotateHealthbarToCamera()

@@ -34,17 +34,17 @@ public class TowerManager : MonoBehaviour
 
     private Controls _controls;
 
-    public static GameObject towerManagerInstance;
+    public static GameObject TowerManagerInstance;
 
     private void Awake()
     {
-        if (towerManagerInstance != null)
+        if (TowerManagerInstance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            towerManagerInstance = this.gameObject;
+            TowerManagerInstance = this.gameObject;
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -75,7 +75,7 @@ public class TowerManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (towerManagerInstance != this.gameObject) return;
+        if (TowerManagerInstance != this.gameObject) return;
         SceneManager.activeSceneChanged -= ActiveSceneChanged;
 
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;

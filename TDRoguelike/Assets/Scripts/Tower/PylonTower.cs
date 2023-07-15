@@ -29,8 +29,9 @@ public class PylonTower : Tower
         _pylonAnimator.enabled = true;
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         _pylonAnimator.enabled = false;
     }
 
