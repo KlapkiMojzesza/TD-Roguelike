@@ -1,5 +1,81 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &514538595623335367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5788347294394870112}
+  - component: {fileID: 1832359892365898298}
+  - component: {fileID: 6285719319931132677}
+  m_Layer: 5
+  m_Name: Previous Slot Blocked Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5788347294394870112
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514538595623335367}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2007104053433132582}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.0005226135, y: -96.235}
+  m_SizeDelta: {x: 120.393, y: 47.048}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1832359892365898298
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514538595623335367}
+  m_CullTransparentMesh: 0
+--- !u!114 &6285719319931132677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514538595623335367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 79c8eba1b823edc4c9f9587f576687ed, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &624040630001956485
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +452,7 @@ RectTransform:
   m_Children:
   - {fileID: 4700771809687564740}
   m_Father: {fileID: 2007104053433132582}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -590,7 +666,7 @@ RectTransform:
   m_Children:
   - {fileID: 96989060910209012}
   m_Father: {fileID: 2007104053433132582}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1279,6 +1355,7 @@ RectTransform:
   - {fileID: 6298778642058068229}
   - {fileID: 8123392155225664151}
   - {fileID: 6575724630346226001}
+  - {fileID: 5788347294394870112}
   - {fileID: 1165653745707979492}
   - {fileID: 3618025047968573931}
   - {fileID: 4485054653601835528}
@@ -1304,6 +1381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slotIndex: -1
   _unlockPrice: 50
+  _requiredSlot: {fileID: 0}
   _towerIconImage: {fileID: 4841974637532484384}
   _slotUnlockedTexture: {fileID: 2800000, guid: b2609188c2dffd54b920dbcf54b96058,
     type: 3}
@@ -1312,6 +1390,7 @@ MonoBehaviour:
   - {fileID: 4713621131065910711}
   _buyButton: {fileID: 3515254090526124102}
   _buyButtonBlocked: {fileID: 6571355237949079729}
+  _previousSlotBlockedButton: {fileID: 514538595623335367}
   _selectTowerButton: {fileID: 7799327983440557464}
   _placeTowerButton: {fileID: 4739990249803154354}
   _placedTowerButtonBlocked: {fileID: 4084394950292091206}
@@ -1498,7 +1577,7 @@ RectTransform:
   m_Children:
   - {fileID: 8687023366526060143}
   m_Father: {fileID: 2007104053433132582}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

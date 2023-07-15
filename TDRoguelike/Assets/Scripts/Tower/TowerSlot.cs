@@ -12,11 +12,13 @@ public class TowerSlot : MonoBehaviour
     [SerializeField] private int _unlockPrice = 50;
 
     [Header("To Attach")]
+    [SerializeField] private TowerSlot _requiredSlot;
     [SerializeField] private RawImage _towerIconImage;
     [SerializeField] private Texture _slotUnlockedTexture;
     [SerializeField] private TMP_Text[] _slotUnlockPriceText;
     [SerializeField] private GameObject _buyButton;
     [SerializeField] private GameObject _buyButtonBlocked;
+    [SerializeField] private GameObject _previousSlotBlockedButton;
     [SerializeField] private GameObject _selectTowerButton;
     [SerializeField] private GameObject _placeTowerButton;
     [SerializeField] private GameObject _placedTowerButtonBlocked;
@@ -37,6 +39,7 @@ public class TowerSlot : MonoBehaviour
         _towerManager = (TowerManager)FindObjectOfType(typeof(TowerManager));
         TowerManager.OnMoneyAmountChanged += UpdateButtonStatus;
         TowerManager.OnTowerPlaced += HandleTowerPlaced;
+        TowerSlot.OnSlotUnlockedButtonClicked += CheckIfRequiredSlotUnlocked;
 
         HideAllButtons();
         UpdateButtonStatus(_towerManager.GetCurrentMoneyAmount());
@@ -48,6 +51,12 @@ public class TowerSlot : MonoBehaviour
     {
         TowerManager.OnMoneyAmountChanged -= UpdateButtonStatus;
         TowerManager.OnTowerPlaced -= HandleTowerPlaced;
+        TowerSlot.OnSlotUnlockedButtonClicked -= CheckIfRequiredSlotUnlocked;
+    }
+
+    private void CheckIfRequiredSlotUnlocked(int slotIndex)
+    {
+        UpdateButtonStatus(_towerManager.GetCurrentMoneyAmount());
     }
 
     private void UpdateButtonStatus(int currentMoneyAmount)
@@ -57,6 +66,15 @@ public class TowerSlot : MonoBehaviour
         if (_towerAssignedToSlot != null) return;
 
         if (_towerSlotUnlocked) return;
+
+        if (_requiredSlot != null)
+        {
+            if (!_requiredSlot.IsUnlocked())
+            {
+                _previousSlotBlockedButton.SetActive(true);
+                return;
+            }
+        }     
 
         HideAllButtons();
 
@@ -114,8 +132,14 @@ public class TowerSlot : MonoBehaviour
     {
         _buyButton.SetActive(false);
         _buyButtonBlocked.SetActive(false);
+        _previousSlotBlockedButton.SetActive(false);
         _selectTowerButton.SetActive(false);
         _placeTowerButton.SetActive(false);
         _placedTowerButtonBlocked.SetActive(false);
     }
+
+    public bool IsUnlocked()
+    {
+        return _towerSlotUnlocked;
+    }    
 }
