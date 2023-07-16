@@ -45,7 +45,7 @@ public class TowerShooting : MonoBehaviour
         _currentProjectile = _towerData.ProjectilePrefab;
         _currentFirePoint = _firePoint;
         _pool = new ObjectPool<Projectile>(CreateProjectile, OnTakeProjectileFromPool, OnReturnProjectileToPool);
-        _startRotation = _rotatingParts.transform.rotation;
+        if (_rotateTowardsTarget) _startRotation = _rotatingParts.transform.rotation;
 
         InvokeRepeating("UpdateTarget", 0f, 0.01f);
     }
@@ -300,7 +300,7 @@ public class TowerShooting : MonoBehaviour
 
     private void OnDisable()
     {
-        _rotatingParts.transform.rotation = _startRotation;
+        if (_rotateTowardsTarget) _rotatingParts.transform.rotation = _startRotation;
     }
 
     /*private void OnDrawGizmosSelected()

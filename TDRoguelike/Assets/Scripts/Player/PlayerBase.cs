@@ -17,6 +17,7 @@ public class PlayerBase : MonoBehaviour
 
     private AudioSource _audioSource;
     private float _currentBaseHealth;
+    private bool gameIsOver = false;
 
     public static event Action OnBaseDestroyed;
 
@@ -61,12 +62,15 @@ public class PlayerBase : MonoBehaviour
         UpdatePlayerBaseHealthUI(_currentBaseHealth);
     }
 
-    private void DestroyPlayerBase()
+    public void DestroyPlayerBase()
     {
+        if (gameIsOver) return;
+
         _audioSource.Stop();
         _audioSource.PlayOneShot(_gameOverSound);
+        
+        gameIsOver = true;
         OnBaseDestroyed?.Invoke();
-        _currentBaseHealth = _startBaseHealth;
     }
 
     private void UpdatePlayerBaseHealthUI(float value)

@@ -45,6 +45,8 @@ public class ObstacleManager : MonoBehaviour
         PauseManager.OnGameResumed += ShowObstacleMenu;
         PlayerUpgradesManager.OnUpgradeMenuShow += HideAndDeactiveObstacleMenu;
         PlayerUpgradesManager.OnUpgradeMenuHide += ShowObstacleMenu;
+        PlayerBase.OnBaseDestroyed += HandleGameOver;
+        PlayerHealth.OnPlayerDeath += HandleGameOver;
     }
 
     private void OnDestroy()
@@ -57,6 +59,8 @@ public class ObstacleManager : MonoBehaviour
         PauseManager.OnGameResumed -= ShowObstacleMenu;
         PlayerUpgradesManager.OnUpgradeMenuShow -= HideAndDeactiveObstacleMenu;
         PlayerUpgradesManager.OnUpgradeMenuHide -= ShowObstacleMenu;
+        PlayerBase.OnBaseDestroyed -= HandleGameOver;
+        PlayerHealth.OnPlayerDeath -= HandleGameOver;
     }
 
     private void HideAndDeactiveObstacleMenu()
@@ -150,5 +154,12 @@ public class ObstacleManager : MonoBehaviour
             _animator.SetBool("shown", false);
             _audioSource.PlayOneShot(_removeObstacleSound);
         }
+    }
+
+    private void HandleGameOver()
+    {
+        _controls.Player.Info.performed -= HandlePlayerMouseInfo;
+        PauseManager.OnGamePaused -= HideAndDeactiveObstacleMenu;
+        PauseManager.OnGameResumed -= ShowObstacleMenu;
     }
 }

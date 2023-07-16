@@ -33,6 +33,7 @@ public class PlayerShooting : MonoBehaviour
         SceneManager.activeSceneChanged += ActiveSceneChanged;
         TowerManager.OnTowerSelectedToPlace += TowerSelected;
         TowerManager.OnTowerDeselect += TowerDeselect;
+        PlayerHealth.OnPlayerDeath += HandlePlayerDeath;
 
         _audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
@@ -46,11 +47,32 @@ public class PlayerShooting : MonoBehaviour
         SceneManager.activeSceneChanged -= ActiveSceneChanged;
         TowerManager.OnTowerSelectedToPlace -= TowerSelected;
         TowerManager.OnTowerDeselect -= TowerDeselect;
+        PlayerHealth.OnPlayerDeath -= HandlePlayerDeath;
     }
 
     private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
     {
         _pool = new ObjectPool<PlayerProjectile>(CreateProjectile, OnTakeProjectileFromPool, OnReturnProjectileToPool);
+    }
+
+    private void TowerSelected(Tower selectedTower)
+    {
+        _towerSelected = true;
+    }
+
+    private void TowerDeselect()
+    {
+        Invoke("ChangeTowerSelection", 0.2f);
+    }
+
+    private void ChangeTowerSelection()
+    {
+        _towerSelected = false;
+    }
+
+    private void HandlePlayerDeath()
+    {
+        this.enabled = false;
     }
 
     private void Update()
@@ -113,18 +135,4 @@ public class PlayerShooting : MonoBehaviour
         return EventSystem.current.IsPointerOverGameObject();
     }
 
-    private void TowerDeselect()
-    {
-        Invoke("ChangeTowerSelection", 0.2f);
-    }
-
-    private void ChangeTowerSelection()
-    {
-        _towerSelected = false;
-    }
-
-    private void TowerSelected(Tower selectedTower)
-    {
-        _towerSelected = true;
-    }
 }

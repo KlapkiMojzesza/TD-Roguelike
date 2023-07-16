@@ -33,6 +33,18 @@ public class PlayerMovement : MonoBehaviour
         _controls = new Controls();
         _controls.Player.Enable();  
         _controller = GetComponent<CharacterController>();
+        PlayerHealth.OnPlayerDeath += HandlePlayerDeath;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerHealth.OnPlayerDeath -= HandlePlayerDeath;
+    }
+
+    private void HandlePlayerDeath()
+    {
+        _animator.SetTrigger("death");
+        this.enabled = false;
     }
 
     private void Update()

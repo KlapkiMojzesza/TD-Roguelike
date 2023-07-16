@@ -57,6 +57,9 @@ public class PlayerUpgradesManager : MonoBehaviour
         PlayerExperience.OnLevelUp += HandlePlayerLevelUp;
         PauseManager.OnGamePaused += HandleGamePause;
         PauseManager.OnGameResumed += HandleGameResume;
+        PlayerBase.OnBaseDestroyed += HandleGameOver;
+        PlayerHealth.OnPlayerDeath += HandleGameOver;
+
     }
 
     private void OnDestroy()
@@ -68,6 +71,8 @@ public class PlayerUpgradesManager : MonoBehaviour
         PlayerExperience.OnLevelUp -= HandlePlayerLevelUp;
         PauseManager.OnGamePaused -= HandleGamePause;
         PauseManager.OnGameResumed -= HandleGameResume;
+        PlayerBase.OnBaseDestroyed -= HandleGameOver;
+        PlayerHealth.OnPlayerDeath -= HandleGameOver;
     }
 
     private void SwitchUpgradesMenuVisibility(InputAction.CallbackContext context)
@@ -194,5 +199,14 @@ public class PlayerUpgradesManager : MonoBehaviour
         OnUpgradeMenuHide?.Invoke();
         _audioSource.PlayOneShot(_hideUISound);
         Time.timeScale = 1f;
+    }
+
+    private void HandleGameOver()
+    {
+        _controls.Player.UpgradeMenu.performed -= SwitchUpgradesMenuVisibility;
+        PlayerExperience.OnLevelUp -= HandlePlayerLevelUp;
+        PauseManager.OnGamePaused -= HandleGamePause;
+        PauseManager.OnGameResumed -= HandleGameResume;
+        this.enabled = false;
     }
 }

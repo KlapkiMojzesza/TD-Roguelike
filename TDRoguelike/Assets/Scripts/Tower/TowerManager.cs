@@ -66,7 +66,6 @@ public class TowerManager : MonoBehaviour
         TowerSlot.OnPlaceTowerButtonClicked += HandleTowerPlacement;
         TowerSlot.OnSlotUnlockedButtonClicked += BuyTowerSlot;
         WaveManager.OnWaveEnd += HandleWaveEnd;
-        PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
         PauseManager.OnGamePaused += CancelTowerSelected;
         PlayerUpgradesManager.OnUpgradeMenuShow += CancelTowerSelected;
 
@@ -85,7 +84,6 @@ public class TowerManager : MonoBehaviour
         TowerSlot.OnPlaceTowerButtonClicked -= HandleTowerPlacement;
         TowerSlot.OnSlotUnlockedButtonClicked -= BuyTowerSlot;
         WaveManager.OnWaveEnd -= HandleWaveEnd;
-        PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
         PauseManager.OnGamePaused -= CancelTowerSelected;
         PlayerUpgradesManager.OnUpgradeMenuShow -= CancelTowerSelected;
     }
@@ -93,6 +91,8 @@ public class TowerManager : MonoBehaviour
     private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
     {
         //if next xcene menu destroy everything
+        if (nextScene.buildIndex == 0) Destroy(gameObject);
+
         foreach (GameObject tower in _towersPlaced)
         {
             tower.GetComponent<Tower>().HideTower();
@@ -160,24 +160,6 @@ public class TowerManager : MonoBehaviour
     public void HandleWaveEnd(int amount)
     {
         _currentMoneyAmount += amount;
-        _moneyAmountText.text = _currentMoneyAmount.ToString();
-        OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
-    }
-
-    private void HandleBaseDestruction()
-    {
-        foreach (GameObject tower in _towersPlaced)
-        {
-            Destroy(tower);
-        }
-
-        EndLevel();
-    }
-
-    private void EndLevel()
-    {
-        _towersPlaced.Clear();
-        _currentMoneyAmount = _startMoneyAmount;
         _moneyAmountText.text = _currentMoneyAmount.ToString();
         OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
     }

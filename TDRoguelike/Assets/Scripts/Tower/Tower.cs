@@ -58,6 +58,8 @@ public class Tower : MonoBehaviour
         PauseManager.OnGameResumed += ShowAndActiveTowerUpgradesMenu;
         PlayerUpgradesManager.OnUpgradeMenuShow += HideTowerAndDeactiveUpgradesMenu;
         PlayerUpgradesManager.OnUpgradeMenuHide += ShowAndActiveTowerUpgradesMenu;
+        PlayerBase.OnBaseDestroyed += HandleGameOver;
+        PlayerHealth.OnPlayerDeath += HandleGameOver;
     }
 
     protected virtual void OnDestroy()
@@ -70,20 +72,26 @@ public class Tower : MonoBehaviour
         PauseManager.OnGameResumed -= ShowAndActiveTowerUpgradesMenu;
         PlayerUpgradesManager.OnUpgradeMenuShow -= HideTowerAndDeactiveUpgradesMenu;
         PlayerUpgradesManager.OnUpgradeMenuHide -= ShowAndActiveTowerUpgradesMenu;
+        PlayerBase.OnBaseDestroyed -= HandleGameOver;
+        PlayerHealth.OnPlayerDeath -= HandleGameOver;
     }
 
     private void HideTowerAndDeactiveUpgradesMenu()
     {
-        if (_canvasAnimator.GetBool("shown")) _canvasAnimator.gameObject.SetActive(false);
+        if (!_canvasAnimator.GetBool("shown")) return;
+
+        _towerInfoCanvas.SetActive(false);
+        _towerRangeSprite.gameObject.SetActive(false);
     }
 
     private void ShowAndActiveTowerUpgradesMenu()
     {
-        if (!_canvasAnimator.gameObject.activeSelf)
+        if (!_towerInfoCanvas.activeSelf)
         {
-            _canvasAnimator.gameObject.SetActive(true);
+            _towerInfoCanvas.SetActive(true);
             _canvasAnimator.SetBool("shown", true);
             _audioSource.PlayOneShot(_showUISound);
+            _towerRangeSprite.gameObject.SetActive(true);
         }
     }
 
@@ -130,7 +138,6 @@ public class Tower : MonoBehaviour
         _canvasAnimator.SetBool("shown", true);
         _audioSource.PlayOneShot(_showUISound);
         OnTowerInfoShow?.Invoke();
-        //here upgrade canvas needs to update money amount
     }
 
     private void HandleStartWave()
@@ -252,5 +259,12 @@ public class Tower : MonoBehaviour
     protected virtual void OnDisable()
     {
         _towerRangeSprite.gameObject.SetActive(true);
+    }
+
+    private void HandleGameOver()
+    {
+        _controls.Player.Info.performed -= HandlePlayerMouseInfo;
+        _canvasAnimator.SetBool("shown", false);
+        _towerRangeSprite.gameObject.SetActive(false);
     }
 }

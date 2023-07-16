@@ -11,6 +11,9 @@ using UnityEngine.UI;
 public class TowerUIManager : MonoBehaviour
 {
     [Header("To Attach")]
+    [SerializeField] private GameObject _towersCanvas;
+    [SerializeField] private GameObject _towerSelectionCanvas;
+    [SerializeField] private GameObject _playerMoneyCanvas;
     [SerializeField] private GameObject _placingCanvas;
     [SerializeField] private GameObject _levelEndCanvas;
     [SerializeField] private GameObject _showTowerMenuButton;
@@ -18,8 +21,6 @@ public class TowerUIManager : MonoBehaviour
     [SerializeField] private TMP_Text _towerDescriptionText;
 
     [Header("Sounds")]
-    [SerializeField] private Animator _towersCanvasAnimator;
-    [SerializeField] private Animator _towersSelectionCanvasAnimator;
     [SerializeField] private AudioClip _showUISound;
     [SerializeField] private AudioClip _hideUISound;
     [SerializeField] private AudioClip _startWaveSound;
@@ -30,6 +31,8 @@ public class TowerUIManager : MonoBehaviour
 
     public static Action OnTowerSelectionMenuShow;
 
+    private Animator _towersCanvasAnimator;
+    private Animator _towersSelectionCanvasAnimator;
     private AudioSource _audioSource;
     private bool _shouldShowOnResume = false;
     private Controls _controls;
@@ -47,8 +50,6 @@ public class TowerUIManager : MonoBehaviour
         TowerSlot.OnSelectTowerButtonClicked += ShowAvailableTowersMenu;
         TowerSlot.OnSlotUnlockedButtonClicked += HandleSlotUnlock;
 
-        PlayerBase.OnBaseDestroyed += HandleBaseDestoryed;
-
         WaveManager.OnWaveEnd += HandleWaveEnd;
         PauseManager.OnGamePaused += HideTowerMenu;
         PauseManager.OnGameResumed += ShowTowerMenu;
@@ -56,7 +57,12 @@ public class TowerUIManager : MonoBehaviour
         PlayerUpgradesManager.OnUpgradeMenuShow += HideTowerMenu;
         PlayerUpgradesManager.OnUpgradeMenuHide += ShowTowerMenu;
 
+        PlayerBase.OnBaseDestroyed += HandleGameOver;
+
         _audioSource = GetComponent<AudioSource>();
+
+        _towersSelectionCanvasAnimator = _towerSelectionCanvas.GetComponent<Animator>();
+        _towersCanvasAnimator = _towersCanvas.GetComponent<Animator>();
         _towersCanvasAnimator.SetBool("shown", true);
     }
 
@@ -73,14 +79,14 @@ public class TowerUIManager : MonoBehaviour
         TowerSlot.OnSelectTowerButtonClicked -= ShowAvailableTowersMenu;
         TowerSlot.OnSlotUnlockedButtonClicked -= HandleSlotUnlock;
 
-        PlayerBase.OnBaseDestroyed -= HandleBaseDestoryed;
-
         WaveManager.OnWaveEnd -= HandleWaveEnd;
         PauseManager.OnGamePaused -= HideTowerMenu;
         PauseManager.OnGameResumed -= ShowTowerMenu;
 
         PlayerUpgradesManager.OnUpgradeMenuShow -= HideTowerMenu;
         PlayerUpgradesManager.OnUpgradeMenuHide -= ShowTowerMenu;
+
+        PlayerBase.OnBaseDestroyed -= HandleGameOver;
     }
 
     private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
@@ -145,12 +151,6 @@ public class TowerUIManager : MonoBehaviour
         _audioSource.PlayOneShot(_unlockTowerSound);
     }
 
-    private void HandleBaseDestoryed()
-    {
-        HideTowersUI();
-        _placingCanvas.SetActive(false);
-        _levelEndCanvas.SetActive(true);
-    }
 
     private void HandleWaveEnd(int enmpy)
     {
@@ -161,12 +161,17 @@ public class TowerUIManager : MonoBehaviour
     private void HideTowerMenu()
     {
         if (_towersCanvasAnimator.GetBool("shown")) _shouldShowOnResume = true;
-        this.gameObject.SetActive(false);
+
+        _towersCanvas.SetActive(false);
+        _towerSelectionCanvas.SetActive(false);
+        _playerMoneyCanvas.SetActive(false);
     }
 
     private void ShowTowerMenu()
     {
-        this.gameObject.SetActive(true);
+        _towersCanvas.SetActive(true);
+        _towerSelectionCanvas.SetActive(true);
+        _playerMoneyCanvas.SetActive(true);
 
         if (_shouldShowOnResume)
         {
@@ -222,11 +227,20 @@ public class TowerUIManager : MonoBehaviour
 
     public void RestartLevelButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
     }
 
     public void NextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private void HandleGameOver()
+    {
+        _placingCanvas.SetActive(false);
+        _towersCanvas.SetActive(false);
+        _towerSelectionCanvas.SetActive(false);
+
+        _levelEndCanvas.SetActive(true);
     }
 }

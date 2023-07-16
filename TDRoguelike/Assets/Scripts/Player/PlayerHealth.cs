@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -14,8 +15,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private AudioClip _playerTakeDamageSound;
     [SerializeField] private ParticleSystem _hitParticle;
 
+    public static event Action OnPlayerDeath;
+
     private AudioSource _audioSource;
     private int _currentHealth;
+    private bool isAlive = true;
 
     public static GameObject PlayerInstance;
 
@@ -34,14 +38,29 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
+        SceneManager.activeSceneChanged += ActiveSceneChanged;
+
         _currentHealth = _playerMaxHealth;
         _healthbarImage.fillAmount = _currentHealth / _playerMaxHealth;
 
         _audioSource = GetComponent<AudioSource>();
     }
 
+    private void OnDestroy()
+    {
+        if (PlayerInstance != this.gameObject) return;
+        SceneManager.activeSceneChanged -= ActiveSceneChanged;
+    }
+
+    private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
+    {
+        if (nextScene.buildIndex == 0) Destroy(gameObject);
+    }
+
     public void TakeDamage(int damage)
     {
+        if (!isAlive) return;
+
         _currentHealth -= damage;
         _healthbarImage.fillAmount = (float)_currentHealth / (float)_playerMaxHealth;
         _audioSource.PlayOneShot(_playerTakeDamageSound);
@@ -49,12 +68,20 @@ public class PlayerHealth : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            HendlePlayerDeath();
+            HandlePlayerDeath();
         }
     }
 
-    private void HendlePlayerDeath()
+    private void HandlePlayerDeath()
     {
-        Debug.Log("Player Died");
+        OnPlayerDeath?.Invoke();
+        isAlive = false;
+    }
+
+    public void EndGame()
+    {
+        //this is called from player death animation event
+        PlayerBase playerBase = (PlayerBase)FindObjectOfType(typeof(PlayerBase));
+        playerBase.DestroyPlayerBase();
     }
 }

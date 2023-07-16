@@ -111,7 +111,7 @@ public class PauseManager : MonoBehaviour
     public void ResetLevelButton()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
     }
 
     public void ExitGameButton()

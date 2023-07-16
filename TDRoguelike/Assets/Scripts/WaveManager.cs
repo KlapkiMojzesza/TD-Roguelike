@@ -22,14 +22,16 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerBase.OnBaseDestroyed += HandleBaseDestruction;
+        PlayerHealth.OnPlayerDeath += HandleGameOver;
+        PlayerBase.OnBaseDestroyed += HandleGameOver;
         EnemyHealth.OnEnemyDeath += HandleDeath;
         TowerManager.OnNextWaveButtonClicked += SpawnNextWave;
     }
 
     private void OnDestroy()
     {
-        PlayerBase.OnBaseDestroyed -= HandleBaseDestruction;
+        PlayerHealth.OnPlayerDeath -= HandleGameOver;
+        PlayerBase.OnBaseDestroyed -= HandleGameOver;
         EnemyHealth.OnEnemyDeath -= HandleDeath;
         TowerManager.OnNextWaveButtonClicked -= SpawnNextWave;
     }
@@ -125,16 +127,16 @@ public class WaveManager : MonoBehaviour
         OnWaveEnd?.Invoke(_waves[_currentWaveIndex - 1].GoldForWaveCompleated);
     }
 
-    private void HandleBaseDestruction()
+    private void HandleGameOver()
     {
         //reset everything
         StopAllCoroutines();
-        foreach (GameObject enemy in _aliveEnemies)
-        {
-            Destroy(enemy);
-        }
+        //foreach (GameObject enemy in _aliveEnemies)
+        //{
+           // Destroy(enemy);
+        //}
 
-        _aliveEnemies.Clear();
+        //_aliveEnemies.Clear();
 
         _currentWaveIndex = 0;
         _currentMiniWaveIndex = 0;

@@ -29,6 +29,7 @@ public class PlayerExperience : MonoBehaviour
     {
         SceneManager.activeSceneChanged += ActiveSceneChanged;
         EnemyHealth.OnEnemyDeath += HandleEnemyDeath;
+        PlayerHealth.OnPlayerDeath += HandlePlayerDeath;
 
         _camera = Camera.main;
 
@@ -42,6 +43,7 @@ public class PlayerExperience : MonoBehaviour
 
         SceneManager.activeSceneChanged -= ActiveSceneChanged;
         EnemyHealth.OnEnemyDeath -= HandleEnemyDeath;
+        PlayerHealth.OnPlayerDeath -= HandlePlayerDeath;
     }
 
     private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
@@ -65,6 +67,11 @@ public class PlayerExperience : MonoBehaviour
 
         _experiencebarImage.fillAmount = (float)_currentExperience / (float)_experienceToNextLevel;
         _currentLevelText.text = _currentLevel.ToString();
+    }
+
+    private void HandlePlayerDeath()
+    {
+        this.enabled = false;
     }
 
     private void Update()

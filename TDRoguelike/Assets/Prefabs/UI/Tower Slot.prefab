@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 21afd3ad7e64d5d409636cf01b0a05ae, type: 3}
+  m_Texture: {fileID: 2800000, guid: 4f3d0d03babd34a4385b0876ee6052f4, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1383,7 +1383,7 @@ MonoBehaviour:
   _unlockPrice: 50
   _requiredSlot: {fileID: 0}
   _towerIconImage: {fileID: 4841974637532484384}
-  _slotUnlockedTexture: {fileID: 2800000, guid: b2609188c2dffd54b920dbcf54b96058,
+  _slotUnlockedTexture: {fileID: 2800000, guid: 9c0a5c0f8691484499402b8c549be5f3,
     type: 3}
   _slotUnlockPriceText:
   - {fileID: 4340549200654994373}
