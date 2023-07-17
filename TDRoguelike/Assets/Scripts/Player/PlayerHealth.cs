@@ -55,6 +55,12 @@ public class PlayerHealth : MonoBehaviour
     private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
     {
         if (nextScene.buildIndex == 0) Destroy(gameObject);
+        //turn off game object to allow position change (charracter contorller overrides it)
+        //and to remove trial from player rod particle
+        gameObject.SetActive(false);
+        PlayerBase playerBase = (PlayerBase)FindObjectOfType(typeof(PlayerBase));
+        transform.position = playerBase.GetPlayerSpawnPoint();
+        gameObject.SetActive(true);
     }
 
     public void TakeDamage(int damage)

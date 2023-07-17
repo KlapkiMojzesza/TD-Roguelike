@@ -11,6 +11,7 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private float _startBaseHealth = 100;
 
     [Header("To Attach")]
+    [SerializeField] private Transform _playerSpawnPoint; 
     [SerializeField] private AudioClip _gameOverSound;
     [SerializeField] private TMP_Text _healthAmountText;
     [SerializeField] private GameObject _playerBaseCanvas;
@@ -76,5 +77,10 @@ public class PlayerBase : MonoBehaviour
     private void UpdatePlayerBaseHealthUI(float value)
     {
         _healthAmountText.text = value.ToString();
+    }
+
+    public Vector3 GetPlayerSpawnPoint()
+    {
+        return _playerSpawnPoint.position;
     }
 }

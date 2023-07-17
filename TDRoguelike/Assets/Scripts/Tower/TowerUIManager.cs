@@ -232,6 +232,7 @@ public class TowerUIManager : MonoBehaviour
 
     public void NextScene()
     {
+        _towersCanvasAnimator.SetBool("shown", false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
