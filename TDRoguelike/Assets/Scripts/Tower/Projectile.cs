@@ -49,4 +49,13 @@ public abstract class Projectile : MonoBehaviour
     {
         //do stuff
     }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.CompareTag("Wall"))
+        {
+            if (gameObject.activeSelf) _pool.Release(this);
+            gameObject.SetActive(false);
+        }
+    }
 }

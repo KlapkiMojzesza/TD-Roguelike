@@ -152,8 +152,9 @@ public class TowerUIManager : MonoBehaviour
     }
 
 
-    private void HandleWaveEnd(int enmpy)
+    private void HandleWaveEnd(int empty, bool isLastWave)
     {
+        if (isLastWave) Debug.Log("Last Wave");
         _showTowerMenuButton.SetActive(true);
         ShowTowersUI();
     }

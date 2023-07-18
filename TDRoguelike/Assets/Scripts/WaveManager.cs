@@ -12,7 +12,7 @@ public class WaveManager : MonoBehaviour
     [Header("To Attach")]
     [SerializeField] private Transform _spawnPoint;
 
-    public static event Action<int> OnWaveEnd;
+    public static event Action<int, bool> OnWaveEnd;
     public static event Action<EnemyHealth> OnMiniWaveStart;
 
     private List<GameObject> _aliveEnemies = new List<GameObject>();
@@ -38,23 +38,23 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnNextWave()
     {
-        if (_currentWaveIndex >= _waves.Length)
-        {
-            _currentWaveIndex--;
+        if (_currentWaveIndex >= _waves.Length) return;
+            /*{
+                _currentWaveIndex--;
 
-            WaveScriptableObject infiniteWave = _waves[_currentWaveIndex];
-            infiniteWave.GoldForWaveCompleated += 50;
-            MiniWave[] infiniteMiniWaves = infiniteWave.MiniWaves;
+                WaveScriptableObject infiniteWave = _waves[_currentWaveIndex];
+                infiniteWave.GoldForWaveCompleated += 50;
+                MiniWave[] infiniteMiniWaves = infiniteWave.MiniWaves;
 
-            foreach (MiniWave infiniteMiniWave in infiniteMiniWaves)
-            {
-                infiniteMiniWave.Amount += 20;
-                infiniteMiniWave.SpawnRate += 0.2f;
-                infiniteMiniWave.TimeAfterWave *= 0.9f;
-            }
+                foreach (MiniWave infiniteMiniWave in infiniteMiniWaves)
+                {
+                    infiniteMiniWave.Amount += 20;
+                    infiniteMiniWave.SpawnRate += 0.2f;
+                    infiniteMiniWave.TimeAfterWave *= 0.9f;
+                }
 
-            _waves[_currentWaveIndex] = infiniteWave;
-        }
+                _waves[_currentWaveIndex] = infiniteWave;
+            }*/
 
         _waveCompleated = false;
         StartCoroutine(spawnWave(_timeBeforeFirstWave));
@@ -124,7 +124,10 @@ public class WaveManager : MonoBehaviour
 
     private void EndWave()
     {
-        OnWaveEnd?.Invoke(_waves[_currentWaveIndex - 1].GoldForWaveCompleated);
+        bool isLastWave = false;
+        if (_currentWaveIndex >= _waves.Length) isLastWave = true;
+
+        OnWaveEnd?.Invoke(_waves[_currentWaveIndex - 1].GoldForWaveCompleated, isLastWave);      
     }
 
     private void HandleGameOver()

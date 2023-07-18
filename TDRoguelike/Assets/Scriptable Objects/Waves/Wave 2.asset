@@ -16,13 +16,13 @@ MonoBehaviour:
   - EnemyPrefab: {fileID: 2756241929110736850, guid: 88b6aea29bdc7e94e804c267465b862e,
       type: 3}
     Amount: 5
-    SpawnRate: 2.2
-    TimeAfterWave: 1
+    SpawnRate: 2.4
+    TimeAfterWave: 0.9
     dontWaitWithNextWave: 0
   - EnemyPrefab: {fileID: 2756241929110736850, guid: 88b6aea29bdc7e94e804c267465b862e,
       type: 3}
-    Amount: 3
-    SpawnRate: 2.5
-    TimeAfterWave: 1
+    Amount: 10
+    SpawnRate: 2.7
+    TimeAfterWave: 0.9
     dontWaitWithNextWave: 0
-  GoldForWaveCompleated: 20
+  GoldForWaveCompleated: 70

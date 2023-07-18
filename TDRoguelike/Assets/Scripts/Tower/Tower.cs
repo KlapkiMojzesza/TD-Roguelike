@@ -53,6 +53,7 @@ public class Tower : MonoBehaviour
 
         TowerManager.OnNextWaveButtonClicked += HandleStartWave;
         TowerManager.OnTowerSelectedToPlace += HandleAnotherTowerSelected;
+        TowerSlot.OnPlaceTowerButtonClicked += HandleTowerSelection;
         TowerUIManager.OnTowerSelectionMenuShow += HideInfoUI;
         PauseManager.OnGamePaused += HideTowerAndDeactiveUpgradesMenu;
         PauseManager.OnGameResumed += ShowAndActiveTowerUpgradesMenu;
@@ -67,6 +68,7 @@ public class Tower : MonoBehaviour
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
         TowerManager.OnNextWaveButtonClicked -= HandleStartWave;
         TowerManager.OnTowerSelectedToPlace -= HandleAnotherTowerSelected;
+        TowerSlot.OnPlaceTowerButtonClicked -= HandleTowerSelection;
         TowerUIManager.OnTowerSelectionMenuShow -= HideInfoUI;
         PauseManager.OnGamePaused -= HideTowerAndDeactiveUpgradesMenu;
         PauseManager.OnGameResumed -= ShowAndActiveTowerUpgradesMenu;
@@ -146,7 +148,18 @@ public class Tower : MonoBehaviour
         _towerRangeSprite.gameObject.SetActive(false);
     }
 
-    //another tower button was clicked
+    //place tower button clicked
+    private void HandleTowerSelection(GameObject selectedTower)
+    {
+        if (selectedTower != this.gameObject)
+        {
+            HideInfoUI();
+            return;
+        }
+        _towerRangeSprite.gameObject.SetActive(true);
+    }
+
+    //select tower from available towers button clicked
     private void HandleAnotherTowerSelected(Tower selectedTower)
     {
         if (selectedTower != this)
@@ -253,6 +266,8 @@ public class Tower : MonoBehaviour
     public void HideTower()
     {
         _collisionsAmount = 0;
+        _towerHitBox.SetActive(false);
+        _isPlaced = false;
         SetOrginalColor();
     }
 
