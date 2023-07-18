@@ -16,7 +16,9 @@ public class TowerUIManager : MonoBehaviour
     [SerializeField] private GameObject _playerMoneyCanvas;
     [SerializeField] private GameObject _placingCanvas;
     [SerializeField] private GameObject _levelEndCanvas;
-    [SerializeField] private GameObject _showTowerMenuButton;
+    [SerializeField] private GameObject _showMenuToggleButton;
+    [SerializeField] private GameObject _startButton;
+    [SerializeField] private GameObject _mapCompleteButton;
     [SerializeField] private GameObject[] _towerIconsSelected;
     [SerializeField] private TMP_Text _towerDescriptionText;
 
@@ -39,6 +41,8 @@ public class TowerUIManager : MonoBehaviour
 
     private void Start()
     {
+        SceneManager.activeSceneChanged += ActiveSceneChanged;
+
         _controls = new Controls();
         _controls.Player.Enable();
         _controls.Player.Info.performed += HandlePlayerMouseInfo;
@@ -70,6 +74,8 @@ public class TowerUIManager : MonoBehaviour
     {
         if (TowerManager.TowerManagerInstance != this.gameObject) return;
 
+        SceneManager.activeSceneChanged -= ActiveSceneChanged;
+
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
 
         TowerManager.OnTowerPlaced -= HandleTowerPlaced;
@@ -87,6 +93,13 @@ public class TowerUIManager : MonoBehaviour
         PlayerUpgradesManager.OnUpgradeMenuHide -= ShowTowerMenu;
 
         PlayerBase.OnBaseDestroyed -= HandleGameOver;
+    }
+
+    private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
+    {
+        _towersCanvasAnimator.SetBool("shown", false);
+        _startButton.SetActive(true);
+        _mapCompleteButton.SetActive(false);
     }
 
     private void HandlePlayerMouseInfo(InputAction.CallbackContext context)
@@ -154,8 +167,12 @@ public class TowerUIManager : MonoBehaviour
 
     private void HandleWaveEnd(int empty, bool isLastWave)
     {
-        if (isLastWave) Debug.Log("Last Wave");
-        _showTowerMenuButton.SetActive(true);
+        if (isLastWave)
+        {
+            _startButton.SetActive(false);
+            _mapCompleteButton.SetActive(true);
+        }
+        _showMenuToggleButton.SetActive(true);
         ShowTowersUI();
     }
 
@@ -195,7 +212,7 @@ public class TowerUIManager : MonoBehaviour
     public void NextWaveButton()
     {
         _audioSource.PlayOneShot(_startWaveSound);
-        _showTowerMenuButton.SetActive(false);
+        _showMenuToggleButton.SetActive(false);
         _towersCanvasAnimator.SetBool("shown", false);
     }
 
@@ -229,12 +246,6 @@ public class TowerUIManager : MonoBehaviour
     public void RestartLevelButton()
     {
         SceneManager.LoadScene(0);
-    }
-
-    public void NextScene()
-    {
-        _towersCanvasAnimator.SetBool("shown", false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private void HandleGameOver()

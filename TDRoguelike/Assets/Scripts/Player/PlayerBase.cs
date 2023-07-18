@@ -15,6 +15,7 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private AudioClip _gameOverSound;
     [SerializeField] private TMP_Text _healthAmountText;
     [SerializeField] private GameObject _playerBaseCanvas;
+    [SerializeField] private GameObject _playerNextMapArea;
 
     private AudioSource _audioSource;
     private float _currentBaseHealth;
@@ -33,6 +34,8 @@ public class PlayerBase : MonoBehaviour
 
         PauseManager.OnGamePaused += OnPaused;
         PauseManager.OnGameResumed += OnResumed;
+
+        WaveManager.OnWaveEnd += HandleWaveEnd;
     }
 
     private void OnDestroy()
@@ -40,6 +43,7 @@ public class PlayerBase : MonoBehaviour
         EnemyMovement.OnEnemyPathCompleate -= TakeDamage;
         PauseManager.OnGamePaused -= OnPaused;
         PauseManager.OnGameResumed -= OnResumed;
+        WaveManager.OnWaveEnd -= HandleWaveEnd;
     }
 
     private void OnPaused()
@@ -77,6 +81,12 @@ public class PlayerBase : MonoBehaviour
     private void UpdatePlayerBaseHealthUI(float value)
     {
         _healthAmountText.text = value.ToString();
+    }
+
+    private void HandleWaveEnd(int empty, bool isLastWave)
+    {
+        if (!isLastWave) return;
+        _playerNextMapArea.SetActive(true);
     }
 
     public Vector3 GetPlayerSpawnPoint()

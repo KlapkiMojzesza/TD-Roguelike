@@ -379,23 +379,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c11589ab219fc4791227d6884e5689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectsToHideOnGameOver:
-  - {fileID: 7284906541220415027}
-  - {fileID: 8532281225442718566}
-  - {fileID: 3576832717574861475}
   _towersCanvas: {fileID: 8532281225442718566}
   _towerSelectionCanvas: {fileID: 3576832717574861475}
   _playerMoneyCanvas: {fileID: 1441659622610006735}
   _placingCanvas: {fileID: 7284906541220415027}
   _levelEndCanvas: {fileID: 1339063268209779336}
-  _showTowerMenuButton: {fileID: 6811833237216926233}
+  _showMenuToggleButton: {fileID: 6811833237216926233}
+  _startButton: {fileID: 3154586238691560093}
+  _mapCompleteButton: {fileID: 2478650659238035694}
   _towerIconsSelected:
   - {fileID: 2496351152824464090}
   - {fileID: 2370512326499047830}
   - {fileID: 3153953204453798232}
   _towerDescriptionText: {fileID: 603813774585431182}
-  _towersCanvasAnimator: {fileID: 1442104567706471214}
-  _towersSelectionCanvasAnimator: {fileID: 8379807739763457040}
   _showUISound: {fileID: 8300000, guid: 453c288341b43f046bef3d9cc57bb04d, type: 3}
   _hideUISound: {fileID: 8300000, guid: e12131cea0760a14497f97113213dcad, type: 3}
   _startWaveSound: {fileID: 8300000, guid: 02f8cf44b0b54a54ab081f22ed59dfdd, type: 3}
@@ -1247,12 +1243,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2620694176982965157}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &8379807739763457040 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5770691969976788917, guid: 7a5f692ab95614c4699cd373ad8790f3,
-    type: 3}
-  m_PrefabInstance: {fileID: 2620694176982965157}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4527378852396088316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1407,15 +1397,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cbf8b69ed1eeef4791370d9b2921de3, type: 3}
---- !u!95 &1442104567706471214 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3086963982371909842, guid: 5cbf8b69ed1eeef4791370d9b2921de3,
+--- !u!1 &2478650659238035694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2067597188221172498, guid: 5cbf8b69ed1eeef4791370d9b2921de3,
     type: 3}
   m_PrefabInstance: {fileID: 4527378852396088316}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &2537931264308596602 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2156362331462300806, guid: 5cbf8b69ed1eeef4791370d9b2921de3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4527378852396088316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3154586238691560093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1518606342496252257, guid: 5cbf8b69ed1eeef4791370d9b2921de3,
     type: 3}
   m_PrefabInstance: {fileID: 4527378852396088316}
   m_PrefabAsset: {fileID: 0}
