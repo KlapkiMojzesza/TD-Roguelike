@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
@@ -31,7 +30,9 @@ public class PauseManager : MonoBehaviour
     {
         _controls = new Controls();
         _controls.Player.Enable();
-        _controls.Player.Pause.performed += HandlePause;
+
+        LevelLoaderManager.OnSceneReadyToPlay += AllowPlayerToPause;
+        LevelLoaderManager.OnSceneTransitionBegin += BlockPlayerPause;
 
         _audioSource = GetComponent<AudioSource>();
 
@@ -43,6 +44,17 @@ public class PauseManager : MonoBehaviour
     }
 
     private void OnDestroy()
+    {
+        LevelLoaderManager.OnSceneReadyToPlay -= AllowPlayerToPause;
+        LevelLoaderManager.OnSceneTransitionBegin -= BlockPlayerPause;
+        _controls.Player.Pause.performed -= HandlePause;
+    }
+    private void AllowPlayerToPause()
+    {
+        _controls.Player.Pause.performed += HandlePause;
+    }
+
+    private void BlockPlayerPause()
     {
         _controls.Player.Pause.performed -= HandlePause;
     }
@@ -111,7 +123,8 @@ public class PauseManager : MonoBehaviour
     public void ResetLevelButton()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        LevelLoaderManager _levelLoader = (LevelLoaderManager)FindObjectOfType(typeof(LevelLoaderManager));
+        _levelLoader.LoadMainMenu();
     }
 
     public void ExitGameButton()

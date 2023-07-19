@@ -5,7 +5,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TowerUIManager : MonoBehaviour
@@ -41,7 +40,7 @@ public class TowerUIManager : MonoBehaviour
 
     private void Start()
     {
-        SceneManager.activeSceneChanged += ActiveSceneChanged;
+        LevelLoaderManager.OnSceneLoaded += RefreshTowersMenu;
 
         _controls = new Controls();
         _controls.Player.Enable();
@@ -74,7 +73,7 @@ public class TowerUIManager : MonoBehaviour
     {
         if (TowerManager.TowerManagerInstance != this.gameObject) return;
 
-        SceneManager.activeSceneChanged -= ActiveSceneChanged;
+        LevelLoaderManager.OnSceneLoaded -= RefreshTowersMenu;
 
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
 
@@ -95,7 +94,7 @@ public class TowerUIManager : MonoBehaviour
         PlayerBase.OnBaseDestroyed -= HandleGameOver;
     }
 
-    private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
+    private void RefreshTowersMenu()
     {
         _towersCanvasAnimator.SetBool("shown", false);
         _startButton.SetActive(true);
@@ -245,7 +244,8 @@ public class TowerUIManager : MonoBehaviour
 
     public void RestartLevelButton()
     {
-        SceneManager.LoadScene(0);
+        LevelLoaderManager _levelLoader = (LevelLoaderManager)FindObjectOfType(typeof(LevelLoaderManager));
+        _levelLoader.LoadMainMenu();
     }
 
     private void HandleGameOver()

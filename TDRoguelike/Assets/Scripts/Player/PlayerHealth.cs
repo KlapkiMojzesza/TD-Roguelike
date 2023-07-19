@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -38,7 +37,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        SceneManager.activeSceneChanged += ActiveSceneChanged;
+        LevelLoaderManager.OnMainMenuLoading += DestoryPlayer;
+        LevelLoaderManager.OnSceneLoaded += MovePlayerToSpawnPoint;
 
         _currentHealth = _playerMaxHealth;
         _healthbarImage.fillAmount = _currentHealth / _playerMaxHealth;
@@ -49,22 +49,23 @@ public class PlayerHealth : MonoBehaviour
     private void OnDestroy()
     {
         if (PlayerInstance != this.gameObject) return;
-        SceneManager.activeSceneChanged -= ActiveSceneChanged;
+
+        LevelLoaderManager.OnMainMenuLoading -= DestoryPlayer;
+        LevelLoaderManager.OnSceneLoaded -= MovePlayerToSpawnPoint;
     }
 
-    private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
+    private void MovePlayerToSpawnPoint()
     {
-        if (nextScene.buildIndex == 0)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        //turn off game object to allow position change (charracter contorller overrides it)
-        //and to remove trial from player rod particle
         gameObject.SetActive(false);
         PlayerBase playerBase = (PlayerBase)FindObjectOfType(typeof(PlayerBase));
+        if (playerBase == null) return;
         transform.position = playerBase.GetPlayerSpawnPoint();
         gameObject.SetActive(true);
+    }
+
+    private void DestoryPlayer()
+    {
+        Destroy(gameObject);
     }
 
     public void TakeDamage(int damage)

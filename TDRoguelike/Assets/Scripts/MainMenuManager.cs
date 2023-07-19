@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
 public class MainMenuManager : MonoBehaviour
@@ -15,10 +14,12 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private AudioClip _hideOptionsSound;
 
     private AudioSource _audioSource;
+    private LevelLoaderManager _levelLoader;
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        _levelLoader = (LevelLoaderManager)FindObjectOfType(typeof(LevelLoaderManager));
 
         _optionsCnavasAnimator.SetBool("shown", false);
         _startCanvas.SetActive(true);
@@ -39,7 +40,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlayGameButton()
     {
-        SceneManager.LoadScene("Level 1");
+        _levelLoader.LoadNextScene();
     }
 
     public void ShowOptionsButton()

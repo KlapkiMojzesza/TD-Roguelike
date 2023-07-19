@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerExperience : MonoBehaviour
 {
@@ -27,7 +26,7 @@ public class PlayerExperience : MonoBehaviour
 
     void Start()
     {
-        SceneManager.activeSceneChanged += ActiveSceneChanged;
+        LevelLoaderManager.OnSceneLoaded += ChangeMainCamera;
         EnemyHealth.OnEnemyDeath += HandleEnemyDeath;
         PlayerHealth.OnPlayerDeath += HandlePlayerDeath;
 
@@ -41,12 +40,12 @@ public class PlayerExperience : MonoBehaviour
     {
         if (PlayerHealth.PlayerInstance != this.gameObject) return;
 
-        SceneManager.activeSceneChanged -= ActiveSceneChanged;
+        LevelLoaderManager.OnSceneLoaded -= ChangeMainCamera;
         EnemyHealth.OnEnemyDeath -= HandleEnemyDeath;
         PlayerHealth.OnPlayerDeath -= HandlePlayerDeath;
     }
 
-    private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
+    private void ChangeMainCamera()
     {
         _camera = Camera.main;
     }

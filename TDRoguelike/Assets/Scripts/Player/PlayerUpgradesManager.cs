@@ -52,7 +52,8 @@ public class PlayerUpgradesManager : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _levelPointsAmountText.text = _currentLevelPointsAmount.ToString();
 
-        _controls.Player.UpgradeMenu.performed += SwitchUpgradesMenuVisibility;
+        LevelLoaderManager.OnSceneReadyToPlay += AllowPlayerToShowUpgradesMenu;
+        LevelLoaderManager.OnSceneTransitionBegin += BlockPlayerUpgradesMenu;
         PlayerUpgradeButton.OnUpgradeChoose += HandleUpgradeChoose;
         PlayerExperience.OnLevelUp += HandlePlayerLevelUp;
         PauseManager.OnGamePaused += HandleGamePause;
@@ -67,12 +68,24 @@ public class PlayerUpgradesManager : MonoBehaviour
         if (PlayerHealth.PlayerInstance != this.gameObject) return;
 
         _controls.Player.UpgradeMenu.performed -= SwitchUpgradesMenuVisibility;
+
+        LevelLoaderManager.OnSceneReadyToPlay -= AllowPlayerToShowUpgradesMenu;
+        LevelLoaderManager.OnSceneTransitionBegin -= BlockPlayerUpgradesMenu;
         PlayerUpgradeButton.OnUpgradeChoose -= HandleUpgradeChoose;
         PlayerExperience.OnLevelUp -= HandlePlayerLevelUp;
         PauseManager.OnGamePaused -= HandleGamePause;
         PauseManager.OnGameResumed -= HandleGameResume;
         PlayerBase.OnBaseDestroyed -= HandleGameOver;
         PlayerHealth.OnPlayerDeath -= HandleGameOver;
+    }
+    private void AllowPlayerToShowUpgradesMenu()
+    {
+        _controls.Player.UpgradeMenu.performed += SwitchUpgradesMenuVisibility;
+    }
+
+    private void BlockPlayerUpgradesMenu()
+    {
+        _controls.Player.UpgradeMenu.performed -= SwitchUpgradesMenuVisibility;
     }
 
     private void SwitchUpgradesMenuVisibility(InputAction.CallbackContext context)

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Pool;
-using UnityEngine.SceneManagement;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -30,7 +29,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
-        SceneManager.activeSceneChanged += ActiveSceneChanged;
+        LevelLoaderManager.OnSceneLoaded += CreateNewPool;
         TowerManager.OnTowerSelectedToPlace += TowerSelected;
         TowerManager.OnTowerDeselect += TowerDeselect;
         PlayerHealth.OnPlayerDeath += HandlePlayerDeath;
@@ -44,13 +43,13 @@ public class PlayerShooting : MonoBehaviour
     {
         if (PlayerHealth.PlayerInstance != this.gameObject) return;
 
-        SceneManager.activeSceneChanged -= ActiveSceneChanged;
+        LevelLoaderManager.OnSceneLoaded -= CreateNewPool;
         TowerManager.OnTowerSelectedToPlace -= TowerSelected;
         TowerManager.OnTowerDeselect -= TowerDeselect;
         PlayerHealth.OnPlayerDeath -= HandlePlayerDeath;
     }
 
-    private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
+    private void CreateNewPool()
     {
         _pool = new ObjectPool<PlayerProjectile>(CreateProjectile, OnTakeProjectileFromPool, OnReturnProjectileToPool);
     }

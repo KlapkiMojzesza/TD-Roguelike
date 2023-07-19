@@ -5,7 +5,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class TowerManager : MonoBehaviour
 {
@@ -55,7 +54,8 @@ public class TowerManager : MonoBehaviour
         _moneyAmountText.text = _currentMoneyAmount.ToString();
         OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
 
-        SceneManager.activeSceneChanged += ActiveSceneChanged;
+        LevelLoaderManager.OnMainMenuLoading += DestroyGameObject;
+        LevelLoaderManager.OnSceneTransitionBegin += HandlePlacedTowerLogic;
 
         _controls = new Controls();
         _controls.Player.Enable();
@@ -75,7 +75,9 @@ public class TowerManager : MonoBehaviour
     private void OnDestroy()
     {
         if (TowerManagerInstance != this.gameObject) return;
-        SceneManager.activeSceneChanged -= ActiveSceneChanged;
+
+        LevelLoaderManager.OnMainMenuLoading -= DestroyGameObject;
+        LevelLoaderManager.OnSceneTransitionBegin -= HandlePlacedTowerLogic;
 
         _controls.Player.Info.performed -= HandlePlayerMouseInfo;
         _controls.Player.Shoot.performed -= HandlePlayerMouseClick;
@@ -88,11 +90,13 @@ public class TowerManager : MonoBehaviour
         PlayerUpgradesManager.OnUpgradeMenuShow -= CancelTowerSelected;
     }
 
-    private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
+    private void DestroyGameObject()
     {
-        //if next xcene menu destroy everything
-        if (nextScene.buildIndex == 0) Destroy(gameObject);
+        Destroy(gameObject);
+    }
 
+    private void HandlePlacedTowerLogic()
+    {
         foreach (GameObject tower in _towersPlaced)
         {
             tower.GetComponent<Tower>().HideTower();

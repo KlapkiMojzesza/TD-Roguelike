@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
-using UnityEngine.SceneManagement;
 
 public class TowerShooting : MonoBehaviour
 {
@@ -35,7 +34,7 @@ public class TowerShooting : MonoBehaviour
 
     private void Start()
     {
-        SceneManager.activeSceneChanged += ActiveSceneChanged;
+        LevelLoaderManager.OnSceneLoaded += CreateNewPool;
         EnemyHealth.OnEnemySpawn += AddEnemyToList;
         EnemyHealth.OnEnemyDeath += RemoveEnemyFromList;
 
@@ -54,12 +53,12 @@ public class TowerShooting : MonoBehaviour
 
     private void OnDestroy()
     {
-        SceneManager.activeSceneChanged -= ActiveSceneChanged;
+        LevelLoaderManager.OnSceneLoaded -= CreateNewPool;
         EnemyHealth.OnEnemySpawn -= AddEnemyToList;
         EnemyHealth.OnEnemyDeath -= RemoveEnemyFromList;
     }
 
-    private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
+    private void CreateNewPool()
     {
         _pool = new ObjectPool<Projectile>(CreateProjectile, OnTakeProjectileFromPool, OnReturnProjectileToPool);
     }
