@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BallistaUpgradeL 3
   m_EditorClassIdentifier: 
   UpgradeName: Double
-  UpgradeInfo: Increase damage by 50
+  UpgradeInfo: Increase damage by 40
   UpgradeType: 0
-  Value: 50
+  Value: 40
   UpgradeIcon: {fileID: 2800000, guid: 237bdeeac7582fd47ad684d2a91245d7, type: 3}
   UpgradePrice: 50

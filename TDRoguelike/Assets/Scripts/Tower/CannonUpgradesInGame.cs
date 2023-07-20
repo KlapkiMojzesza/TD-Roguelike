@@ -28,7 +28,8 @@ public class CannonUpgradesInGame : TowerInGameUpgrades
     }
 
     public override void UpgradeVisual(int leftUpgradesPurchased, int rightUpgradesPurchased)
-    {          
+    {
+        base.UpgradeVisual(leftUpgradesPurchased, rightUpgradesPurchased);
         for (int i = 0; i < _leftUpgrades.Length ; i++)           
         {
             if (i == leftUpgradesPurchased)

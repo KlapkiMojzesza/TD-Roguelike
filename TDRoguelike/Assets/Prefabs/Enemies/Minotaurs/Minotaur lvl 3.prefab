@@ -375,11 +375,11 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c0073f00b6294946a72e5784f775c2a, type: 2}
-  - {fileID: 2100000, guid: 84c1a539b8a0aa24a9738eb0c12445ef, type: 2}
-  - {fileID: 2100000, guid: 96a58656d01b558408505ce107baf784, type: 2}
+  - {fileID: 2100000, guid: 4938d51d74c848b47ad81fc3a0acef9c, type: 2}
+  - {fileID: 2100000, guid: 39ae3a502890ad9499ae9dd5e4961cf1, type: 2}
+  - {fileID: 2100000, guid: 41a47d3970d7a054ba15c398cc642fc8, type: 2}
   - {fileID: 2100000, guid: e9c800bfa9718d74d8ceb05a90b32468, type: 2}
-  - {fileID: 2100000, guid: 6aa35599cd0050648ad7b97dbef28035, type: 2}
+  - {fileID: 2100000, guid: f87dcf2afac6b344aab2ef1ea63c44fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -611,7 +611,7 @@ GameObject:
   - component: {fileID: 4856051541117100361}
   - component: {fileID: 2422779892878420929}
   m_Layer: 12
-  m_Name: Minotaur
+  m_Name: Minotaur lvl 3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -626,7 +626,7 @@ Transform:
   m_GameObject: {fileID: 3794939104383789673}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8779509301150579457}
@@ -785,8 +785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5681a4ceae940458b262438ce4afc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 350
-  EnemyStrength: 4
+  _maxHealth: 700
+  EnemyStrength: 23
   _experienceDrop: 10
   _healthbarCanvas: {fileID: 9063544991637977983}
   _healthBar: {fileID: 874114472434846241}
@@ -812,8 +812,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce44320d26a71384aad088791ddd170e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 30
+  _damageToPlayerBase: 25
   _speed: 30
+  _enemyVariantSpeedMultiplier: 5
   _rotateSpeed: 0.15
   _lookDirectionOffset: 0
   _footstepParticle: {fileID: 6258320693563590008}
@@ -829,8 +830,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01597d8263ed0147affdead973838fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedBoostPercentage: 10
-  _specialCooldown: 3
+  _speedBoostPercentage: 20
+  _specialCooldown: 3.5
   _specialRange: 30
   enemyLayers:
     serializedVersion: 2

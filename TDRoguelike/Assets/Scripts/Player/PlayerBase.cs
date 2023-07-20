@@ -11,6 +11,7 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private float _startBaseHealth = 100;
 
     [Header("To Attach")]
+    [SerializeField] private GameObject _nextLevelArrow;
     [SerializeField] private Transform _playerSpawnPoint; 
     [SerializeField] private AudioClip _gameOverSound;
     [SerializeField] private TMP_Text _healthAmountText;
@@ -87,6 +88,7 @@ public class PlayerBase : MonoBehaviour
     {
         if (!isLastWave) return;
         _playerNextMapArea.SetActive(true);
+        _nextLevelArrow.SetActive(true);
     }
 
     public Vector3 GetPlayerSpawnPoint()

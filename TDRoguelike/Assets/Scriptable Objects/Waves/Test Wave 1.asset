@@ -37,4 +37,52 @@ MonoBehaviour:
     SpawnRate: 2.2
     TimeAfterWave: 1.8
     dontWaitWithNextWave: 0
+  - EnemyPrefab: {fileID: 961444833417097064, guid: bf06cfe7e1f8fb2498fd610ef9df6746,
+      type: 3}
+    Amount: 3
+    SpawnRate: 2.2
+    TimeAfterWave: 1.8
+    dontWaitWithNextWave: 0
+  - EnemyPrefab: {fileID: 2756241929110736850, guid: 5a650f411040a9744989162db876129f,
+      type: 3}
+    Amount: 3
+    SpawnRate: 2.2
+    TimeAfterWave: 1.8
+    dontWaitWithNextWave: 0
+  - EnemyPrefab: {fileID: 3295161404839182595, guid: ad8c8432684685d449c96edab81bb9f4,
+      type: 3}
+    Amount: 3
+    SpawnRate: 2.2
+    TimeAfterWave: 1.8
+    dontWaitWithNextWave: 0
+  - EnemyPrefab: {fileID: 3794939104383789673, guid: a607a5d956680b441b82ae278ae9f4a1,
+      type: 3}
+    Amount: 3
+    SpawnRate: 2.2
+    TimeAfterWave: 1.8
+    dontWaitWithNextWave: 0
+  - EnemyPrefab: {fileID: 3794939104383789673, guid: 91819d6cecf16c5419d36a361ea1bbcf,
+      type: 3}
+    Amount: 3
+    SpawnRate: 2.2
+    TimeAfterWave: 1.8
+    dontWaitWithNextWave: 0
+  - EnemyPrefab: {fileID: 961444833417097064, guid: e4281cbb711f4f542be5e675406d5d51,
+      type: 3}
+    Amount: 3
+    SpawnRate: 2.2
+    TimeAfterWave: 1.8
+    dontWaitWithNextWave: 0
+  - EnemyPrefab: {fileID: 2756241929110736850, guid: a48e000fa364e124684541a11845e41d,
+      type: 3}
+    Amount: 3
+    SpawnRate: 2.2
+    TimeAfterWave: 1.8
+    dontWaitWithNextWave: 0
+  - EnemyPrefab: {fileID: 3295161404839182595, guid: cd1c455c7ca5d054f839d448905892f2,
+      type: 3}
+    Amount: 3
+    SpawnRate: 2.2
+    TimeAfterWave: 1.8
+    dontWaitWithNextWave: 0
   GoldForWaveCompleated: 10

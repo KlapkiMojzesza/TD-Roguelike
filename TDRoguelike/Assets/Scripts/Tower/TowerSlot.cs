@@ -17,6 +17,10 @@ public class TowerSlot : MonoBehaviour
     [SerializeField] private RawImage _towerIconImage;
     [SerializeField] private Texture _slotUnlockedTexture;
     [SerializeField] private TMP_Text[] _slotUnlockPriceText;
+    [SerializeField] private GameObject _leftUpgradeLevelBackground;
+    [SerializeField] private GameObject _rightUpgradeLevelBackground;
+    [SerializeField] private TMP_Text _leftUpgradeLevelText;
+    [SerializeField] private TMP_Text _rightUpgradeLevelText;
     [SerializeField] private GameObject _buyButton;
     [SerializeField] private GameObject _buyButtonBlocked;
     [SerializeField] private GameObject _previousSlotBlockedButton;
@@ -43,6 +47,7 @@ public class TowerSlot : MonoBehaviour
         TowerManager.OnMoneyAmountChanged += UpdateButtonStatus;
         TowerManager.OnTowerPlaced += HandleTowerPlaced;
         TowerSlot.OnSlotUnlockedButtonClicked += CheckIfRequiredSlotUnlocked;
+        TowerInGameUpgrades.OnTowerUpgrade += HandleTowerUpgrade;
 
         UpdateButtonStatus(_towerManager.GetCurrentMoneyAmount());
         _slotUnlockPriceText[0].text = _unlockPrice.ToString();
@@ -55,6 +60,15 @@ public class TowerSlot : MonoBehaviour
         TowerManager.OnMoneyAmountChanged -= UpdateButtonStatus;
         TowerManager.OnTowerPlaced -= HandleTowerPlaced;
         TowerSlot.OnSlotUnlockedButtonClicked -= CheckIfRequiredSlotUnlocked;
+        TowerInGameUpgrades.OnTowerUpgrade -= HandleTowerUpgrade;
+    }
+
+    private void HandleTowerUpgrade(int leftUpgradeLevel, int rightUpgradeLevel, GameObject upgradedTower)
+    {
+        if (upgradedTower != _towerAssignedToSlot) return;
+
+        _leftUpgradeLevelText.text = (leftUpgradeLevel + 1).ToString();
+        _rightUpgradeLevelText.text = (rightUpgradeLevel + 1).ToString();
     }
 
     private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
@@ -96,6 +110,8 @@ public class TowerSlot : MonoBehaviour
         _towerIconImage.texture = towerSelectedByPlayer.GetComponent<Tower>().TowerData.TowerIcon;
         _towerAssignedToSlot = towerSelectedByPlayer;
         UpdateButtonStatus(_towerManager.GetCurrentMoneyAmount());
+        _leftUpgradeLevelBackground.SetActive(true);
+        _rightUpgradeLevelBackground.SetActive(true);
     }
 
     public void PlaceTowerButton()

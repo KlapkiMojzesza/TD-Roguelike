@@ -33,6 +33,8 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     [SerializeField] private Image _rightProgresImage;
     [SerializeField] private GameObject _coinsIconImageRight;
 
+    public static event Action<int, int, GameObject> OnTowerUpgrade;
+
     UpgradeScriptableObject currentLeftUpgrade;
     UpgradeScriptableObject currentRightUpgrade;
     private AudioSource _audioSource;
@@ -241,6 +243,7 @@ public abstract class TowerInGameUpgrades : MonoBehaviour
     //for overriding
     public virtual void UpgradeVisual(int leftUpgradesPurchased, int rightUpgradesPurchased)
     {
+        OnTowerUpgrade?.Invoke(leftUpgradesPurchased, rightUpgradesPurchased, this.gameObject);
         //do something different for each tower
     }
 
