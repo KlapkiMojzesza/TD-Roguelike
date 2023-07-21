@@ -5552,6 +5552,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Menu Wave Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 1825788058891669582, guid: ccfff227aadb717418ec258827356109,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccfff227aadb717418ec258827356109, type: 3}
 --- !u!1001 &4839917593530759149

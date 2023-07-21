@@ -10,34 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 061d4f40547bd1a45b19ee63e540f275, type: 3}
-  m_Name: Wave 9
+  m_Name: Level 2 Wave 6
   m_EditorClassIdentifier: 
   MiniWaves:
-  - EnemyPrefab: {fileID: 961444833417097064, guid: 2eeaad9f62c0a274b9eca98fa1a5cd6f,
+  - EnemyPrefab: {fileID: 961444833417097064, guid: bf06cfe7e1f8fb2498fd610ef9df6746,
       type: 3}
     Amount: 2
     SpawnRate: 1
     TimeAfterWave: 0.2
     dontWaitWithNextWave: 0
-  - EnemyPrefab: {fileID: 3794939104383789673, guid: d17e4ceb640eab34eb3dbd474430f6a7,
+  - EnemyPrefab: {fileID: 3794939104383789673, guid: a607a5d956680b441b82ae278ae9f4a1,
       type: 3}
-    Amount: 3
+    Amount: 2
     SpawnRate: 2
     TimeAfterWave: 0
     dontWaitWithNextWave: 1
-  - EnemyPrefab: {fileID: 3295161404839182595, guid: 51cb00f00a01162489af0659b8c1f361,
+  - EnemyPrefab: {fileID: 3295161404839182595, guid: ad8c8432684685d449c96edab81bb9f4,
       type: 3}
     Amount: 10
     SpawnRate: 4.4
     TimeAfterWave: 2
     dontWaitWithNextWave: 1
-  - EnemyPrefab: {fileID: 2756241929110736850, guid: 88b6aea29bdc7e94e804c267465b862e,
+  - EnemyPrefab: {fileID: 2756241929110736850, guid: 5a650f411040a9744989162db876129f,
       type: 3}
     Amount: 25
     SpawnRate: 2.3
     TimeAfterWave: 3
     dontWaitWithNextWave: 1
-  - EnemyPrefab: {fileID: 3794939104383789673, guid: d17e4ceb640eab34eb3dbd474430f6a7,
+  - EnemyPrefab: {fileID: 3794939104383789673, guid: a607a5d956680b441b82ae278ae9f4a1,
       type: 3}
     Amount: 2
     SpawnRate: 2
@@ -49,4 +49,4 @@ MonoBehaviour:
     SpawnRate: 2
     TimeAfterWave: 10
     dontWaitWithNextWave: 0
-  GoldForWaveCompleated: 100
+  GoldForWaveCompleated: 60

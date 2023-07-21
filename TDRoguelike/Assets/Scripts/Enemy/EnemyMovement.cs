@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float _damageToPlayerBase = 25f;
+    [SerializeField] private int _damageToPlayer = 10;
     [SerializeField] private float _speed = 50f;
     [SerializeField] private float _enemyVariantSpeedMultiplier = 0f;
     [SerializeField] private float _rotateSpeed = 0.05f;
@@ -103,6 +104,11 @@ public class EnemyMovement : MonoBehaviour
     {
         _speed /= (100 - _currentSlowPercentage) / 100;
         _animator.speed /= (100 - _currentSlowPercentage) / 100;
+    }
+
+    public int GetDamageToPlayer()
+    {
+        return _damageToPlayer;
     }
 
     //From animation

@@ -813,7 +813,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageToPlayerBase: 25
+  _damageToPlayer: 20
   _speed: 30
+  _enemyVariantSpeedMultiplier: 0
   _rotateSpeed: 0.15
   _lookDirectionOffset: 0
   _footstepParticle: {fileID: 6258320693563590008}
@@ -995,7 +997,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0aafe226a9e60e478044d906d22facf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _closeRangeEnemyDamage: 15
 --- !u!1 &4811168004848137527
 GameObject:
   m_ObjectHideFlags: 0

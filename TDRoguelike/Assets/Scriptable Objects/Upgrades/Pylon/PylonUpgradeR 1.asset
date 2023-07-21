@@ -17,4 +17,4 @@ MonoBehaviour:
   UpgradeType: 0
   Value: 10
   UpgradeIcon: {fileID: 2800000, guid: 9c37b471643ee1240a8cacc35c3b8a70, type: 3}
-  UpgradePrice: 10
+  UpgradePrice: 15

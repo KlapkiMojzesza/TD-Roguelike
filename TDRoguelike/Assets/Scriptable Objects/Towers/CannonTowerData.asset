@@ -16,10 +16,11 @@ MonoBehaviour:
   TowerInfo: Very Slow With High Damage
   TowerPrice: 50
   TowerEnemyPierce: 1
-  TowerFireRate: 1
+  TowerFireRate: 0.6
   TowerRange: 40
-  TowerDamage: 150
+  TowerDamage: 110
   ProjectileSpeed: 200
+  TowerSlowPercentage: 0
   ProjectilePrefab: {fileID: 5924342677543725132, guid: b2092f98c0f4f6640ab5e4a85711563f,
     type: 3}
   TowerIcon: {fileID: 2800000, guid: 31f25142bf1ec70419df31c3555e9ae7, type: 3}

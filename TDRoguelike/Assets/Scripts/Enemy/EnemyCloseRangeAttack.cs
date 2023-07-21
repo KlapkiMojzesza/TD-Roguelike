@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemyCloseRangeAttack : MonoBehaviour
 {
-    [SerializeField] private int _closeRangeEnemyDamage = 10;
-
+    private EnemyMovement _enemyMovement;
     private Animator _animator;
 
     private void Start()
     {
+        _enemyMovement = GetComponentInParent<EnemyMovement>();
         _animator = GetComponentInParent<Animator>();
     }
 
@@ -18,7 +18,7 @@ public class EnemyCloseRangeAttack : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             _animator.SetTrigger("attack");
-            collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(_closeRangeEnemyDamage);
+            collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(_enemyMovement.GetDamageToPlayer());
         }
     }
 }

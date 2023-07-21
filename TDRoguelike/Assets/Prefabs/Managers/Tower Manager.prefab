@@ -392,6 +392,7 @@ MonoBehaviour:
   - {fileID: 2370512326499047830}
   - {fileID: 3153953204453798232}
   _towerDescriptionText: {fileID: 603813774585431182}
+  _waveProgressText: {fileID: 8239487082148352126}
   _showUISound: {fileID: 8300000, guid: 453c288341b43f046bef3d9cc57bb04d, type: 3}
   _hideUISound: {fileID: 8300000, guid: e12131cea0760a14497f97113213dcad, type: 3}
   _startWaveSound: {fileID: 8300000, guid: 02f8cf44b0b54a54ab081f22ed59dfdd, type: 3}
@@ -1421,6 +1422,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4527378852396088316}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8239487082148352126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5516050605676718978, guid: 5cbf8b69ed1eeef4791370d9b2921de3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4527378852396088316}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8532281225442718566 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5241270249655912602, guid: 5cbf8b69ed1eeef4791370d9b2921de3,

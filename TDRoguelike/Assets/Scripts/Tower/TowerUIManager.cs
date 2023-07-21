@@ -20,6 +20,7 @@ public class TowerUIManager : MonoBehaviour
     [SerializeField] private GameObject _mapCompleteButton;
     [SerializeField] private GameObject[] _towerIconsSelected;
     [SerializeField] private TMP_Text _towerDescriptionText;
+    [SerializeField] private TMP_Text _waveProgressText;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip _showUISound;
@@ -98,6 +99,7 @@ public class TowerUIManager : MonoBehaviour
     {
         _towersCanvasAnimator.SetBool("shown", false);
         _startButton.SetActive(true);
+        _waveProgressText.text = "1/10";
         _mapCompleteButton.SetActive(false);
     }
 
@@ -164,8 +166,10 @@ public class TowerUIManager : MonoBehaviour
     }
 
 
-    private void HandleWaveEnd(int empty, bool isLastWave)
+    private void HandleWaveEnd(int moneyForWave, int nextWaveIndex, bool isLastWave)
     {
+        _waveProgressText.text = (nextWaveIndex + 1).ToString() + "/10";
+
         if (isLastWave)
         {
             _startButton.SetActive(false);

@@ -84,7 +84,7 @@ public class PlayerBase : MonoBehaviour
         _healthAmountText.text = value.ToString();
     }
 
-    private void HandleWaveEnd(int empty, bool isLastWave)
+    private void HandleWaveEnd(int moneyForWave, int nextWaveIndex,  bool isLastWave)
     {
         if (!isLastWave) return;
         _playerNextMapArea.SetActive(true);

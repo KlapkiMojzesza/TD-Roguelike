@@ -161,9 +161,9 @@ public class TowerManager : MonoBehaviour
         OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
     }
 
-    public void HandleWaveEnd(int amount, bool isLastWave)
+    public void HandleWaveEnd(int moneyForWave, int nextWaveIndex, bool isLastWave)
     {
-        _currentMoneyAmount += amount;
+        _currentMoneyAmount += moneyForWave;
         _moneyAmountText.text = _currentMoneyAmount.ToString();
         OnMoneyAmountChanged?.Invoke(_currentMoneyAmount);
     }

@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5681a4ceae940458b262438ce4afc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 700
+  _maxHealth: 1000
   EnemyStrength: 32
   _experienceDrop: 10
   _healthbarCanvas: {fileID: 5521330312332069536}
@@ -341,7 +341,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce44320d26a71384aad088791ddd170e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageToPlayerBase: 25
+  _damageToPlayerBase: 35
+  _damageToPlayer: 40
   _speed: 25
   _enemyVariantSpeedMultiplier: 5
   _rotateSpeed: 0.2
@@ -699,7 +700,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 0a35cbe6ffea6994e9748d27a5789dde, type: 2}
-  - {fileID: 2100000, guid: dac63001486f270419c3ab093306e820, type: 2}
+  - {fileID: 2100000, guid: 0a35cbe6ffea6994e9748d27a5789dde, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1201,7 +1202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0aafe226a9e60e478044d906d22facf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _closeRangeEnemyDamage: 25
 --- !u!1 &8426819401867576240
 GameObject:
   m_ObjectHideFlags: 0

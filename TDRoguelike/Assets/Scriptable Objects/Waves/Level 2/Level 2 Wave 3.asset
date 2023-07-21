@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061d4f40547bd1a45b19ee63e540f275, type: 3}
+  m_Name: Level 2 Wave 3
+  m_EditorClassIdentifier: 
+  MiniWaves:
+  - EnemyPrefab: {fileID: 2756241929110736850, guid: 5a650f411040a9744989162db876129f,
+      type: 3}
+    Amount: 15
+    SpawnRate: 2.2
+    TimeAfterWave: 0.2
+    dontWaitWithNextWave: 1
+  - EnemyPrefab: {fileID: 3794939104383789673, guid: a607a5d956680b441b82ae278ae9f4a1,
+      type: 3}
+    Amount: 3
+    SpawnRate: 0.5
+    TimeAfterWave: 0
+    dontWaitWithNextWave: 1
+  - EnemyPrefab: {fileID: 3295161404839182595, guid: ad8c8432684685d449c96edab81bb9f4,
+      type: 3}
+    Amount: 15
+    SpawnRate: 3
+    TimeAfterWave: 2
+    dontWaitWithNextWave: 0
+  - EnemyPrefab: {fileID: 961444833417097064, guid: bf06cfe7e1f8fb2498fd610ef9df6746,
+      type: 3}
+    Amount: 1
+    SpawnRate: 1
+    TimeAfterWave: 2
+    dontWaitWithNextWave: 1
+  GoldForWaveCompleated: 50

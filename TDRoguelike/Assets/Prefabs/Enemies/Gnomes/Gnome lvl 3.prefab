@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5681a4ceae940458b262438ce4afc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 90
+  _maxHealth: 200
   EnemyStrength: 3
   _experienceDrop: 12
   _healthbarCanvas: {fileID: 3504679905868189678}
@@ -613,9 +613,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce44320d26a71384aad088791ddd170e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageToPlayerBase: 15
+  _damageToPlayerBase: 20
+  _damageToPlayer: 15
   _speed: 65
-  _enemyVariantSpeedMultiplier: 23
+  _enemyVariantSpeedMultiplier: 35
   _rotateSpeed: 0.1
   _lookDirectionOffset: 0
   _footstepParticle: {fileID: 7462907276587613045}
@@ -1031,7 +1032,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0aafe226a9e60e478044d906d22facf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _closeRangeEnemyDamage: 5
 --- !u!1 &6576297393127212832
 GameObject:
   m_ObjectHideFlags: 0
