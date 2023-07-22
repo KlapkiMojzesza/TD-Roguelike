@@ -15,13 +15,12 @@ public class MinotaurSpecial : MonoBehaviour
     [SerializeField] private Image _specialImage;
     [SerializeField] private AudioClip _specialSound;
     [SerializeField] private ParticleSystem _minotaurSpecialParticle;
+    [SerializeField] private AudioSource _audioSource;
 
-    private AudioSource _audioSource;
     private float _timer;
 
     void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
         _specialBar.SetActive(true);
     }
 

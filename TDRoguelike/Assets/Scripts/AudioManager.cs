@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    private AudioSource _audioSource;
+    [SerializeField] private AudioSource _enemyHitAudioSource;
+    [SerializeField] private AudioSource _audioSource;
 
     void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
-
         EnemyHealth.OnEnemyKilled += HandleEnemyDeath;
         WaveManager.OnMiniWaveStart += HandleStartWave;
         CannonProjectile.OnExplosion += PlayBoomSound;
@@ -34,7 +33,7 @@ public class AudioManager : MonoBehaviour
 
     private void HandleEnemyDeath(EnemyHealth enemy)
     {
-        _audioSource.PlayOneShot(enemy.HitSound);
+        _enemyHitAudioSource.PlayOneShot(enemy.HitSound);
         _audioSource.PlayOneShot(enemy.DeathSound);
     }
 

@@ -21,6 +21,8 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
     [SerializeField] private Transform _deathParticleSpawn;
 
     [Header("Audio")]
+    [SerializeField] private AudioSource _enemyHitAudioSource;
+    [SerializeField] private AudioSource _audioSource;
     [SerializeField] public AudioClip StartWaveSound;
     [SerializeField] public AudioClip HitSound;
     [SerializeField] public AudioClip DeathSound;
@@ -30,7 +32,6 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
     public static event Action<EnemyHealth> OnEnemyKilled;
 
     [HideInInspector] public bool DamagedByPlayer = false;
-    private AudioSource _audioSource;
     private Camera _camera;
     private float _currentHealth;
 
@@ -39,7 +40,6 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
         OnEnemySpawn?.Invoke(this);
 
         _camera = Camera.main;
-        _audioSource = GetComponent<AudioSource>();
 
         _currentHealth = _maxHealth;
         UpdateHealthbar(_maxHealth, _currentHealth);
@@ -72,7 +72,7 @@ public class EnemyHealth : MonoBehaviour, IDamegeable
         }
 
         if (_hitParticle != null) _hitParticle.Play();
-        if (HitSound != null) _audioSource.PlayOneShot(HitSound);
+        if (HitSound != null) _enemyHitAudioSource.PlayOneShot(HitSound);
         UpdateHealthbar(_maxHealth, _currentHealth);
     }
 
