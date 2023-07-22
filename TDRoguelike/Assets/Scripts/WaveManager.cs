@@ -21,6 +21,7 @@ public class WaveManager : MonoBehaviour
     private bool _waveCompleated = false;
 
     //for simple dev tools
+    /*
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -30,6 +31,7 @@ public class WaveManager : MonoBehaviour
             EndWave();
         }
     }
+    */
 
     private void Start()
     {

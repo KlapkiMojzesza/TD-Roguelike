@@ -73,6 +73,12 @@ public class LevelLoaderManager : MonoBehaviour
 
     public void LoadNextScene()
     {
+        if (SceneManager.GetActiveScene().buildIndex + 2 >= SceneManager.sceneCountInBuildSettings)
+        {
+            LoadMainMenu();
+            return;
+        }
+
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
@@ -82,7 +88,7 @@ public class LevelLoaderManager : MonoBehaviour
         _crossfadeCanvasAnimator.SetBool("show", true);
 
         yield return new WaitForSeconds(_transitionTime);
-
+    
         SceneManager.LoadScene(levelIndex);
     }
 }
