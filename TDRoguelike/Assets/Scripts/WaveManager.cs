@@ -11,6 +11,7 @@ public class WaveManager : MonoBehaviour
 
     [Header("To Attach")]
     [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private GameObject _enemyDirectionArrow;
 
     public static event Action<int, int, bool> OnWaveEnd;
     public static event Action<EnemyHealth> OnMiniWaveStart;
@@ -52,6 +53,7 @@ public class WaveManager : MonoBehaviour
     public void SpawnNextWave()
     {
         if (_currentWaveIndex >= _waves.Length) return;
+        if(_enemyDirectionArrow.activeSelf) _enemyDirectionArrow.SetActive(false);
             
         _waveCompleated = false;
         StartCoroutine(spawnWave(_timeBeforeFirstWave));
